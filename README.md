@@ -1,6 +1,6 @@
 # PROP
-
-## 1ra entrega
+ 
+## 1ra entrega (26 d’abril)
 
 - Funcionalitats del sistema
 - Diagrama dels casus d'us
@@ -9,7 +9,7 @@
     - Diagrama de classes
 - Funcions principals
 
-## 2na enterega
+## 2na enterega (31 de maig)
 
 - Imlementació funcions restants
 - Prova
@@ -24,14 +24,29 @@
 
 ## Funcionabilitats del sitema
 
+- Crear problema
+    - Load
+    - Modificar
+    - Eliminar
+    - Test
+- Problemes predeterminats
+    - Load
+    - Copia
+- Cassificació de problemes
+    - Tema
+    - Dificultat
 - Jugar
-    - Jugador vs Jugador
-    - Jugador vs IA<sub>x</sub>
-    - IA<sub>x</sub> vs IA<sub>x</sub>
-
-- Creador de problemes
-
-- Ranking
+    - PvP
+    - PvIA
+        - IA fàcil
+        - IA dificil
+    - IAvIA
+        - Seleccionar K problemes
+    
+    Els jugadors poden triar el color.
+- Estadistiques
+    - Segons perfils
+    - Segons problema
 
 ---
 
