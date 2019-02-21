@@ -72,6 +72,5 @@
 - [ ] Use case diagram
 
 ---
-
         Created by Arnau Santos, Daniel Palomo and David Soldevila
 ---
