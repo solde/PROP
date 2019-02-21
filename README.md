@@ -63,7 +63,7 @@
 - Users
 
 - Code comments
-
+    - Doxygen
 ---
 
 ## TO-DO
@@ -74,3 +74,4 @@
 ---
 
         Created by Arnau Santos, Daniel Palomo and David Soldevila
+---
