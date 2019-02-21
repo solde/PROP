@@ -52,8 +52,6 @@
 
 ## TO-DO
 
-### Classe 2
-
 - [ ] Pensar algorisme
 - [ ] Diagrama casos d'us
 
