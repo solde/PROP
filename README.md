@@ -1,59 +1,75 @@
 # PROP
  
-## 1ra entrega (26 d’abril)
+## 1st deliver (26 d’abril)
 
-- Funcionalitats del sistema
-- Diagrama dels casus d'us
-    - Espedificació
-- Model de dades conceptual
-    - Diagrama de classes
-- Funcions principals
+- System functionalities
+- Use case diagram
+    - Specification
+- Conceptual data model
+    - Classes diagram
+- Main functions
 
-## 2na enterega (31 de maig)
+## 2nd deliver (31 de maig)
 
-- Imlementació funcions restants
-- Prova
-    - Jocs de prova
-- Documentació
-- Prova
+- Full implementation
+- Tests
+    - Set of tests
+- Documentation
+- tests
     - Drivers
     - Stubs
-- Documentació JUNIT
-    - 1 classe
+- JUNIT documentation
+    - 1 class
+
 ---
 
-## Funcionabilitats del sitema
+## System functionalities
 
-- Crear problema
+- Create problem
     - Load
-    - Modificar
-    - Eliminar
+    - Modification
+    - Delete
     - Test
-- Problemes predeterminats
+    - [Export/Import]
+- Default problems
     - Load
-    - Copia
-- Cassificació de problemes
-    - Tema
-    - Dificultat
-- Jugar
+    - Copy
+- Problem classification
+    - Theme
+    - Difficulty
+- Play
     - PvP
     - PvIA
-        - IA fàcil
-        - IA dificil
+        - IA east
+        - IA difficult
     - IAvIA
-        - Seleccionar K problemes
+        - Select K different problems
+
+    Players can choose between whit and black.
+- Statistics 
+    - By problems
+    - [By profiles]
+        - [Achievements]
+        - [Ranking]
     
-    Els jugadors poden triar el color.
-- Estadistiques
-    - Segons perfils
-    - Segons problema
+---
+
+## Style
+
+- Problems
+
+> $: creador FEM W/b N [user:temps, user:temps, ...]
+
+- Users
+
+- Code comments
 
 ---
 
 ## TO-DO
 
-- [ ] Pensar algorisme
-- [ ] Diagrama casos d'us
+- [ ] Algorithms to use
+- [ ] Use case diagram
 
 ---
 
