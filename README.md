@@ -1,7 +1,5 @@
 # PROP
 
-<note> Created by Arnau Santos, Daniel Palomo and David Soldevila</note>
-
 ## 1ra entrega
 
 - Funcionalitats del sistema
@@ -22,3 +20,6 @@
     - Stubs
 - Documentació JUNIT
     - 1 classe
+
+---
+        Created by Arnau Santos, Daniel Palomo and David Soldevila
