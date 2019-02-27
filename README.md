@@ -29,7 +29,7 @@
     - Load
     - Modification
     - Delete
-    - Test
+    - Test(play)
     - [Export/Import]
 2. Default problems
     - Load
@@ -46,14 +46,16 @@
         - Select K different problems
 
     Players can choose between white and black.
-    
+
 5. Statistics 
     - By problems
     - [By profiles]
         - [Achievements]
         - [Ranking]
 
-6. Login/SignUp
+6. Profile management
+    - Log in
+    - Sign Up
     
 ---
 
@@ -73,7 +75,7 @@
 
 ## TO-DO
 
-- [ ] Algorithms to use
+- [x] Algorithms to use
 - [ ] Use case diagram
 
 ---
