@@ -25,19 +25,19 @@
 
 ## System functionalities
 
-- Create problem
+1. Create problem
     - Load
     - Modification
     - Delete
     - Test
     - [Export/Import]
-- Default problems
+2. Default problems
     - Load
     - Copy
-- Problem classification
+3. Problem classification
     - Theme
     - Difficulty
-- Play
+4. Play
     - PvP
     - PvIA
         - IA east
@@ -46,7 +46,7 @@
         - Select K different problems
 
     Players can choose between whit and black.
-- Statistics 
+5. Statistics 
     - By problems
     - [By profiles]
         - [Achievements]
@@ -58,9 +58,11 @@
 
 - Problems
 
-> $: creador FEM W/b N [user:temps, user:temps, ...]
+> id_creador FEM W/b N [user:temps, user:temps, ...]
 
 - Users
+
+    id_user 
 
 - Code comments
     - Doxygen
