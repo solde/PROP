@@ -16,9 +16,7 @@
     - Set of tests
 - Documentation
 - tests
-    - Drivers
-    - Stubs
-- JUNIT documentation
+    - Drihon
     - 1 class
 
 ---
