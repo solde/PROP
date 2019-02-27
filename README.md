@@ -45,12 +45,15 @@
     - IAvIA
         - Select K different problems
 
-    Players can choose between whit and black.
+    Players can choose between white and black.
+    
 5. Statistics 
     - By problems
     - [By profiles]
         - [Achievements]
         - [Ranking]
+
+6. Login/SignUp
     
 ---
 
