@@ -67,7 +67,7 @@
 
 - Users
 
-    id_user 
+> id_user 
 
 - Code comments
     - Doxygen
@@ -79,5 +79,5 @@
 - [ ] Use case diagram
 
 ---
-        Created by Arnau Santos, Daniel Palomo and David Soldevila
+        Created by Daniel Palomo, Arnau Santos and David Soldevila
 ---
