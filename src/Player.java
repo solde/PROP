@@ -12,30 +12,18 @@ package capaDomini;
 public abstract class Player {
     //private 
 
-    private String id;
-    private int wins;
-    private int loses;
-    private float ELO;
-    private float OP_RATING;
+    protected String id;
+    protected int wins;
+    protected int loses;
+    protected float ELO;
+    protected float OP_rating;
+
 
     //public methods
     public abstract void play_turn();
     //public constructors & get/set
 
-    public Player() {
-        this.id = null;
-        this.wins = 0;
-        this.loses = 0;
-        this.ELO = 0;
-    }
 
-    public Player(String id, int wins, int loses, float ELO) {
-        this.id = id;
-        this.wins = wins;
-        this.loses = loses;
-        this.ELO = ELO;
-
-    }
 
     public String getId() {
         return id;
@@ -68,9 +56,11 @@ public abstract class Player {
     public void setELO(float ELO) {
         this.ELO = ELO;
     }
-
-    public void setOP_RATING(float OP_RATING){
-        this.OP_RATING = OP_RATING;
+    public float getOP_rating() {
+        return OP_rating;
     }
 
+    public void setOP_rating(float OP_rating) {
+        this.OP_rating = OP_rating;
+    }
 }

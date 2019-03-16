@@ -12,7 +12,7 @@ package capaDomini;
 public class Human extends Player {
 
     //private
-    private String password; //temp
+    private String password; //TEMP, ja millorarem la seguritat
 
     //public methods
     public int autenticate(String pass) {
@@ -27,24 +27,46 @@ public class Human extends Player {
         return 0;
 
     }
+
     @Override
-    public void play_turn(){
-        
+    public void play_turn() {
+         System.out.println("Solament per testejar");
     }
 
     //public constructors & get/set
-    
     public Human() { //basic constructor
-        super();
+        this.id = null;
+        this.wins = 0; 
+        this.loses = 0;
+        this.ELO = 0;
+        this.OP_rating=0;
+        setPassword(null);
+
         password = null;
     }
 
     public Human(String id, String pass, int wins, int loses, float ELO) {  //constructor amb parametres
-        super(id, wins, loses, ELO);
+
+        this.id = id;
+        this.wins = wins; 
+        this.loses = loses;
+        this.ELO = ELO;
+        this.OP_rating=0;
         setPassword(pass);
 
     }
+    public Human(String id,String pass){
+              
+        this.id = id;
+        this.wins = 0; 
+        this.loses = 0;
+        this.ELO = 0;
+        this.OP_rating=0;
+        setPassword(pass);
 
+        
+        
+    }
     public String getPassword() {
         return password;
     }
