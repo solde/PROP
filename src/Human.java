@@ -38,29 +38,29 @@ public class Human extends Player {
         this.id = null;
         this.wins = 0; 
         this.loses = 0;
-        this.ELO = 0;
+        this.ELO = 1000;
         this.OP_rating=0;
         setPassword(null);
 
         password = null;
     }
 
-    public Human(String id, String pass, int wins, int loses, float ELO) {  //constructor amb parametres
-
+    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) {  //constructor amb parametres
+        //Create a human player by entering the stats
         this.id = id;
         this.wins = wins; 
         this.loses = loses;
         this.ELO = ELO;
-        this.OP_rating=0;
+        this.OP_rating= OP_rating;
         setPassword(pass);
 
     }
     public Human(String id,String pass){
-              
+        // Create a new human player
         this.id = id;
         this.wins = 0; 
         this.loses = 0;
-        this.ELO = 0;
+        this.ELO = DEFAULT_ELO;
         this.OP_rating=0;
         setPassword(pass);
 
