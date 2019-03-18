@@ -85,5 +85,64 @@ public class HumanTest {
         // TODO review the generated test code and remove the default call to fail.
         //
     }
+    Human.
+     */
+    @Test
+    public void testGetID() {
+        System.out.println("getID");
+        Human instance = new Human("pepe","ya");
+        String expResult = "pepe";
+        String result = instance.getID();
+        if(result.equals(expResult)){ return;
+        }else  fail("The test case is a prototype.");
+        
+        // TODO review the generated test code and remove the default call to fail.
+        //
+    }Human.
+     */
+    @Test
+    public void testGetWins() {
+        System.out.println("getSetWins");
+        Human instance = new Human("pepe","ya");
+        instance.setWins(24);
+        int expResult = 24;
+        int result = instance.getWins();
+        if(result.equals(expResult)){ return;
+        }else  fail("The test case is a prototype.");
+        
+        // TODO review the generated test code and remove the default call to fail.
+        //
+    }
+    Human.
+     */
+    @Test
+    public void testGetSetLoses() {
+        System.out.println("getSetLoses");
+        Human instance = new Human("pepe","ya");
+        instance.setLoses(345);
+        int expResult = 345;
+        int result = instance.getLoses();
+        if(result.equals(expResult)){ return;
+        }else  fail("The test case is a prototype.");
+        
+        // TODO review the generated test code and remove the default call to fail.
+        //
+    }
+    Human.
+     */
+    @Test
+    public void testGetSetELO() {
+        System.out.println("getSetELO");
+        Human instance = new Human("pepe","ya");
+        instance.setELO(1345);
+        int expResult = "1345";
+        int result = instance.getELO();
+        if(result.equals(expResult)){ return;
+        }else  fail("The test case is a prototype.");
+        
+        // TODO review the generated test code and remove the default call to fail.
+        //
+    }
+    
     
 }
