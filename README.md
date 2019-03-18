@@ -71,12 +71,6 @@
 
 - Code comments
     - Doxygen
----
-
-## TO-DO
-
-- [x] Algorithms to use
-- [ ] Use case diagram
 
 ---
         Created by Daniel Palomo, Arnau Santos and David Soldevila
