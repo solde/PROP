@@ -12,6 +12,8 @@ package capaDomini;
 public abstract class Player {
     //private 
 
+    private static final int DEFAULT_ELO = 1000;
+
     protected String id;
     protected int wins;
     protected int loses;
@@ -49,6 +51,14 @@ public abstract class Player {
         this.loses = loses;
     }
 
+    public void incLoses() {
+        this.loses = this.loses+1;
+    }
+
+    public void incWinds() {
+        this.wins = this.wins+1;
+    }
+
     public float getELO() {
         return ELO;
     }
@@ -62,5 +72,9 @@ public abstract class Player {
 
     public void setOP_rating(float OP_rating) {
         this.OP_rating = OP_rating;
+    }
+
+    public void incOP_rating(float OP_rating) {
+        this.OP_rating = this.OP_rating + OP_rating;
     }
 }
