@@ -30,7 +30,7 @@ public class Human extends Player {
 
     @Override
     public void play_turn() {
-         System.out.println("Solament per testejar");
+         System.out.println("Només per testejar");
     }
 
     //public constructors & get/set
@@ -62,9 +62,7 @@ public class Human extends Player {
         this.loses = 0;
         this.ELO = DEFAULT_ELO;
         this.OP_rating=0;
-        setPassword(pass);
-
-        
+        setPassword(pass);        
         
     }
     public String getPassword() {
