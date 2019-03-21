@@ -20,7 +20,6 @@ public abstract class Player {
     protected float ELO;
     protected float OP_rating;
 
-s
 
 
     public String getId() {

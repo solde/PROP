@@ -12,12 +12,8 @@ package capaDomini;
  */
 public class AI1 extends Player {
 
-    @Override
-    public void play_turn() {
-         System.out.println("Només per testejar");
-        calculate_mov();
-        
-    }
+
+ 
 
     //public constructors & get/set
   /* public AI1() { //basic constructor

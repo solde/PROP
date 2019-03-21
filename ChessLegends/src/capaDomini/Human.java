@@ -28,10 +28,6 @@ public class Human extends Player {
 
     }
 
-    @Override
-    public void play_turn() {
-         System.out.println("Només per testejar");
-    }
 
     //public constructors & get/set
     public Human() { //basic constructor
