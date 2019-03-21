@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package capaDgit omini;
+package capaDomini;
+
 
 /**
  *
  * @author Daniel Palomo
  */
-public class Human extends AI1 {
+public class AI1 extends Player {
 
     @Override
     public void play_turn() {
@@ -19,17 +20,17 @@ public class Human extends AI1 {
     }
 
     //public constructors & get/set
-    public AI1() { //basic constructor
-        loader l();
-        T AI_info = l.get_player_info(AI1);
+  /* public AI1() { //basic constructor
+        //loaderl();
+        //T AI_info = l.get_player_info(AI1);
         this.id = AI_info.id;
         this.wins = AI_info.wins;
         this.loses = AI_info.loses;
         this.ELO = AI_info.ELO;
         this.OP_rating = AI_info.OP_rating;
-    }
+    }*/
 
-    private calculate_mov(){
+    private void calculate_mov(){
         System.out.println("Calculant el moviment");
     }
 

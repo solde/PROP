@@ -135,9 +135,9 @@ public class HumanTest {
         System.out.println("getSetELO");
         Human instance = new Human("pepe","ya");
         instance.setELO(1345);
-        int expResult = "1345";
-        int result = instance.getELO();
-        if(result.equals(expResult)){ return;
+        int expResult = 1345;
+        int result = (int) instance.getELO();
+        if(expResult == result)){ return;
         }else  fail("The test case is a prototype.");
         
         // TODO review the generated test code and remove the default call to fail.

@@ -5,6 +5,8 @@
  */
 package capaDomini;
 
+import java.util.Vector;
+
 /**
  *
  * @author Arnau Santos
@@ -12,13 +14,13 @@ package capaDomini;
 public class Board {
 
     //private
-    private string FEN_code;
-    private const string Default_FEN_code = "8/8/8/8/8/8/8/8";
+    private String FEN_code;
+    private String Default_FEN_code;
 
     //public methods
-    public array<array> get_pos_piece() {
-		
-
+    public Vector<Vector> get_pos_piece() {
+	Vector<Vector> temp =new Vector();	
+            return temp;
     }
 	
 	public void move_piece() {
@@ -26,11 +28,13 @@ public class Board {
 	}
 
     //public constructors & get/set
-    public Board() { //basic constructor
+    public Board() { this.Default_FEN_code = "8/8/8/8/8/8/8/8";
+//basic constructor
         this.FEN_code = Default_FEN_code;
     }
 
-    public Board(String FEN_code) {  //constructor amb parametres
+    public Board(String FEN_code) {  this.Default_FEN_code = "8/8/8/8/8/8/8/8";
+//constructor amb parametres
 
         this.FEN_code = FEN_code;
 
