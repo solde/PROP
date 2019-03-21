@@ -1,4 +1,4 @@
-
+package capaDomini;
 public class Alfil implements Piece {
 	
 	private int max;

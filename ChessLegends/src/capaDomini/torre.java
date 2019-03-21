@@ -1,5 +1,5 @@
-
-public class Torre implements Piece {
+package capaDomini;
+public class Torre extends Piece {
 	
 	private int max;
 
@@ -13,7 +13,7 @@ public class Torre implements Piece {
 	
   public int getMax(){return this.max;}
   
-  @override
+  @Override
   public int[] getPosMov(){
   	//per acabar
   }
