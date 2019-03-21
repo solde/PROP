@@ -12,7 +12,7 @@ package capaDomini;
 public abstract class Player {
     //private 
 
-    private static final int DEFAULT_ELO = 1000;
+    protected static final int DEFAULT_ELO = 1000;
 
     protected String id;
     protected int wins;

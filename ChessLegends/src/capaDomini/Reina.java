@@ -1,4 +1,4 @@
-
+package capaDomini;
 public class Reina implements Piece {
 	
 	private int max;

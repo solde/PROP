@@ -1,4 +1,4 @@
-
+package capaDomini;
 public abstract class Piece {
 
 

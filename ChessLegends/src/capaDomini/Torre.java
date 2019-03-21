@@ -1,28 +1,24 @@
 package capaDomini;
-
-
-public class Cavall implements Piece {
+public class Torre extends Piece {
 	
 	private int max;
 
 
 
 	
-	public Cavall() {
+	public Torre() {
 		super();
 		this.max=8;
 	}
 	
   public int getMax(){return this.max;}
   
-  @override
+  @Override
   public int[] getPosMov(){
   	//per acabar
   }
   
 }
-
-
 
 
 

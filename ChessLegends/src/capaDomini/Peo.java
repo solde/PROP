@@ -1,3 +1,5 @@
+package capaDomini;
+
 
 public class Peo implements Piece {
 	

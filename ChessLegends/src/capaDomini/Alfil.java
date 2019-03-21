@@ -1,14 +1,12 @@
 package capaDomini;
-
-
-public class Cavall implements Piece {
+public class Alfil implements Piece {
 	
 	private int max;
 
 
 
 	
-	public Cavall() {
+	public Alfil() {
 		super();
 		this.max=8;
 	}
@@ -21,8 +19,6 @@ public class Cavall implements Piece {
   }
   
 }
-
-
 
 
 
