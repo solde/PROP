@@ -57,17 +57,6 @@ public class HumanTest {
         else return;
     }
 
-    /**
-     * Test of play_turn method, of class  
-     */
-    @Test
-    public void testPlay_turn() {
-        System.out.println("play_turn");
-        Human instance = new Human();
-        instance.play_turn();
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getPassword method, of class  

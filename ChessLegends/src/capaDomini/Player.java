@@ -20,11 +20,7 @@ public abstract class Player {
     protected float ELO;
     protected float OP_rating;
 
-
-    //public methods
-    public abstract void play_turn();
-    //public constructors & get/set
-
+s
 
 
     public String getId() {
