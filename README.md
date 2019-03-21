@@ -74,5 +74,5 @@
     - Doxygen
 
 ---
-        Created by Daniel Palomo, Arnau Santos and David Soldevila
+        Created by Daniel Palomo, Arnau Santos and David Soldevila.
 ---
