@@ -12,6 +12,10 @@ public class Reina extends Piece {
 	}
 	
   public int getMax(){return this.max;}
+
+    public void setMax(int max) {
+        this.max = max;
+    }
   
     @Override
     public int[] get_poss_mov() {
