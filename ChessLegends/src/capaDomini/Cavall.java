@@ -12,6 +12,10 @@ public class Cavall extends Piece {
 		super();
 		this.max=8;
 	}
+
+    public void setMax(int max) {
+        this.max = max;
+    }
 	
   public int getMax(){return this.max;}
   

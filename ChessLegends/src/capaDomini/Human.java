@@ -5,6 +5,8 @@
  */
 package capaDomini;
 
+import Exception.chessException;
+
 /**
  *
  * @author Daniel Palomo
@@ -15,13 +17,15 @@ public class Human extends Player {
     private String password; //TEMP, ja millorarem la seguritat
 
     //public methods
-    public int autenticate(String pass) {
-
-        if (!pass.equals(this.password)) {
-            return 1;
-        } else if (pass.isEmpty()) {
-            return 2;
-        }
+    public int autenticate(String pass) throws chessException {
+        
+         if (pass.isEmpty()) {
+            throw new chessException("No password introduced");
+         }else if (!pass.equals(this.password)) {
+            throw new chessException("Bad password");
+            
+        } 
+        
 
         //Es poden posar mes
         return 0;
@@ -65,7 +69,7 @@ public class Human extends Player {
         return password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

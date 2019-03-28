@@ -12,6 +12,10 @@ public class Rey extends Piece {
 	}
 	
   public int getMax(){return this.max;}
+
+    public void setMax(int max) {
+        this.max = max;
+    }
   
 
 
