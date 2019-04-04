@@ -8,16 +8,17 @@ package propdrivers;
 ;
 
 import java.util.Scanner;
+import Exception.chessException;
 import capaDomini.Bishop;
 import java.util.concurrent.TimeUnit;
 
 /**
  *
- * @author Daniel Palomo
+ * @author Arnau Santos
  */
 
 
-public class BishopDriver {
+public class bishopDriver {
 
     /**
      * @param args the command line arguments
@@ -35,7 +36,7 @@ public class BishopDriver {
                 case 1: {
                     System.out.println("Provando getMax");
                     int p = h.getMax();
-                    if (p!=2) {
+                    if (p!=8) {
                         System.out.println("getter no funciona");
                     } else {
                         System.out.println("passed");
@@ -55,21 +56,7 @@ public class BishopDriver {
                     TimeUnit.SECONDS.sleep(3);
 
                     display_menu();//Para poder leer la salida mejor
-                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
-                }
-                 case 3: {
-                    System.out.println("provando getValue");
-                    h.setValue(7);
-                    double k = h.getValue();
-                    if (k!=7) {
-                        System.out.println("Getter no funciona");
-                    } else {
-                        System.out.println("passed");
-                    }
-                    TimeUnit.SECONDS.sleep(3);
-
-                    display_menu();//Para poder leer la salida mejor
-                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
+                    h.setMax(8); // reinstaurar el estado anterior para multiples tests
                 }
 
                 default:
@@ -84,9 +71,8 @@ public class BishopDriver {
         System.out.println("Menu de opciones:");
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
-        System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4:  setValue ");
-        /*
+     //   System.out.println("Test 3: setPassword  ");
+        /*System.out.println("Test 4:   ");
           System.out.println("Test 5:   ");
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
