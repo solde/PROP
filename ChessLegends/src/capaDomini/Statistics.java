@@ -20,13 +20,13 @@ public class Statistics {
 
     public void showStatsPlayer(Player p) throws chessException {
         try {
-            float elo = p.getELO();
-            System.out.println("--");
-            System.out.println(p.getId());
+            double elo = p.getELO();
+            System.out.print("--");
+            System.out.print(p.getId());
             System.out.println("--  \n");
-            System.out.println("ELO:");
+            System.out.print("ELO:");
             System.out.println(elo);
-            System.out.println(" Rank: ");
+            System.out.print(" Rank: ");
             if (elo > 1000.0 && elo <= 1599) {
                 System.out.println("Noob");
             }
@@ -45,15 +45,10 @@ public class Statistics {
             if (elo >= 3000) {
                 System.out.println("Cheater, please report");
             }
-            System.out.println("\n");
-            System.out.println("Wins: ");
+  
+            System.out.print("Wins: ");
             System.out.println(p.getWins());
-            System.out.println("\n");
-            System.out.println("--");
-            System.out.println("--");
-            System.out.println("\n");
-            System.out.println("\n");
-            System.out.println("\n");
+
 
         } catch (Exception IllegalArgumentException) {
             throw new chessException("Player not found");
@@ -61,7 +56,7 @@ public class Statistics {
     }
     
     public void showStatsGame(Game g){
-        
+        //to implement
         
     }
 

@@ -4,12 +4,9 @@ package capaDomini;
 public class Bishop extends Piece {
 	
 	private int max;
-
-	value = 3;
-
 	
 	public Bishop() {
-		super();
+		super(3);
 		this.max=10;
 	}
 

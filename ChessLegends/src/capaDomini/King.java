@@ -3,11 +3,11 @@ public class King extends Piece {
 	
 	private int max;
 	
-	value = 0;
+	
 
 	
 	public King() {
-		super();
+		super(0);
 		this.max=2;
 	}
 	
