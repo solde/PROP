@@ -50,7 +50,7 @@ public class HumanDriver {
                     } catch (chessException e) {
                         String p = e.getMessage();
                         System.out.println(p);
-                        break;
+                        
 
                     }
                     try {
@@ -60,7 +60,7 @@ public class HumanDriver {
                     } catch (chessException a) {
                         String p = a.getMessage();
                         System.out.println(p);
-                        break;
+                        
                     }
                     String p = "Passed";
                     System.out.println(p);

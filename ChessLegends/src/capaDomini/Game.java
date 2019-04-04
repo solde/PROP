@@ -18,7 +18,7 @@ public class Game {
     private String bPlayer;
     private String prblemId;
 
-    void Game(boolen initialTurn, String wPlayer, String bPlayer) {
+    void Game(boolean initialTurn, String wPlayer, String bPlayer) {
         this.turn = initialTurn;
         this.wPlayer = wPlayer;
         this.bPlayer = bPlayer;
@@ -71,11 +71,12 @@ public class Game {
     public void setPrblemId(String prblemId) {
         this.prblemId = prblemId;
     }
-
-    public int gameLoop() {
-        Board B();
-        Problem P();
-        PlayerController P();
+/*
+    public int gameLoop() { //let me execute pls thx u
+        
+        Board B= new Board();
+        Problem p= new Problem();
+        PlayerController P= new PlayerController();
         boolean checkMate;
 
         //Init problem and loads
@@ -135,6 +136,6 @@ public class Game {
         else{
             P.updateELO(this.bPlayer, this.timerB, this.wPlayer, this.timerW);
         }
-    }
+    }*/
 
 }
