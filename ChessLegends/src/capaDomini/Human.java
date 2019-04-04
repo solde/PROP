@@ -19,12 +19,11 @@ public class Human extends Player {
     //public methods
     public int autenticate(String pass) throws chessException {
         
-         if (pass.isEmpty()) {
+        if (pass.isEmpty()) {
             throw new chessException("No password introduced");
          }else if (!pass.equals(this.password)) {
             throw new chessException("Bad password");
-            
-        } 
+        }
         
 
         //Es poden posar mes
@@ -34,7 +33,7 @@ public class Human extends Player {
 
 
     //public constructors & get/set
-    public Human() { //basic constructor
+    public Human(){ //basic constructor
         this.id = null;
         this.wins = 0; 
         this.loses = 0;
@@ -62,7 +61,7 @@ public class Human extends Player {
         this.id = id;
         this.wins = 0; 
         this.loses = 0;
-        this.ELO = (float) DEFAULT_ELO;
+        this.ELO = 1000;
         this.OP_rating=0;
         setPassword(pass);        
         
