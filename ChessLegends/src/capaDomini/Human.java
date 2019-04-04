@@ -60,7 +60,7 @@ public class Human extends Player {
         this.id = id;
         this.wins = 0; 
         this.loses = 0;
-        this.ELO = DEFAULT_ELO;
+        this.ELO = (float) DEFAULT_ELO;
         this.OP_rating=0;
         setPassword(pass);        
         
