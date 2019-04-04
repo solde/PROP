@@ -10,14 +10,15 @@ package capaDomini;
  * @author David Soldevila
  */
 public class Game {
-    private boolean turn;
+    private boolean turn; //0 is black
     private int turnNumber;
     private double timerW;
     private double timerB;
-    private player* wPlayer;
-    private player* bPlayer;
+    private string wPlayer;
+    private string bPlayer;
+    private string prblemId;
     
-    void Game(boolen initialTurn, player* wPlayer, player* bPlayer){
+    void Game(boolen initialTurn, string wPlayer, string bPlayer){
         this.turn = initialTurn;
         this.wPlayer = wPlayer;
         this.bPlayer = bPlayer;
@@ -34,6 +35,16 @@ public class Game {
         if(wPlayer->getId() == player_id){
             stats.time = this.timerW;
             stats.OpRating = bPlayer->getELO;
+        }
+    }
+    
+    int gameLoop(){
+        Board B();
+        Problem P();
+        P.load(problemId);
+        B.setBoard( P.getFEN() );
+        for(int i = 0; i < P(getMovs; ++i){
+            
         }
     }
             
