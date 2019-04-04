@@ -9,7 +9,7 @@ package propdrivers;
 
 import java.util.Scanner;
 import Exception.chessException;
-import capaDomini.Cavall;
+import capaDomini.Knight;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 
-public class cavallDriver {
+public class knightDriver {
 
     /**
      * @param args the command line arguments
@@ -28,7 +28,7 @@ public class cavallDriver {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Cavall h = new Cavall();
+        Knight h = new Knight();
         int i = sc.nextInt();
         while (i <= 7) { // ( o el que sea
             switch (i) {

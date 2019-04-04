@@ -9,7 +9,7 @@ package propdrivers;
 
 import java.util.Scanner;
 import Exception.chessException;
-import capaDomini.Rey;
+import capaDomini.Pawn;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 
-public class reyDriver {
+public class pawnDriver {
 
     /**
      * @param args the command line arguments
@@ -28,7 +28,7 @@ public class reyDriver {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Rey h = new Rey();
+        Pawn h = new Pawn();
         int i = sc.nextInt();
         while (i <= 7) { // ( o el que sea
             switch (i) {
