@@ -19,6 +19,9 @@ public class Peo extends Piece {
     public int[] get_poss_mov() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+      public void setMax(int max) {
+        this.max = max;
+    }
   
 }
 

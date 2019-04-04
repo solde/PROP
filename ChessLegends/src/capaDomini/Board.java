@@ -40,7 +40,6 @@ public class Board {
 
     }
     
-    
     public String getFEN_code() {
         return FEN_code;
     }
