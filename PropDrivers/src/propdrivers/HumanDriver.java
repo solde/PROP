@@ -31,6 +31,16 @@ public class HumanDriver {
         int i = sc.nextInt();
         while (i <= 7) { // ( o el que sea
             switch (i) {
+                case 0: {
+                    try {
+                        Human p = new Human();
+                        Human p2 = new Human("nom", "password");
+                        Human p3 = new Human("nom", "pass", 2, 3, 1520, 8965);
+                    } catch (chessException k) {
+                        String p = k.getMessage();
+                        System.out.println(p);
+                    }
+                }
                 case 1: {
                     String pass = "yah";
                     System.out.println("Provando autenticate");
@@ -40,6 +50,7 @@ public class HumanDriver {
                     } catch (chessException e) {
                         String p = e.getMessage();
                         System.out.println(p);
+                        break;
 
                     }
                     try {
@@ -49,7 +60,10 @@ public class HumanDriver {
                     } catch (chessException a) {
                         String p = a.getMessage();
                         System.out.println(p);
+                        break;
                     }
+                    String p = "Passed";
+                    System.out.println(p);
                     TimeUnit.SECONDS.sleep(3); //Para poder leer la salida mejor
                     display_menu();
 
@@ -60,6 +74,7 @@ public class HumanDriver {
                     String p = h.getPassword();
                     if (!p.equals("loco")) {
                         System.out.println("getter no funciona");
+                        break;
                     } else {
                         System.out.println("passed");
                     }
@@ -72,6 +87,7 @@ public class HumanDriver {
                     String k = h.getPassword();
                     if (k.equals("loco")) {
                         System.out.println("Setter no funciona");
+                        break;
                     } else {
                         System.out.println("passed");
                     }
@@ -91,10 +107,11 @@ public class HumanDriver {
 
     public static void display_menu() {
         System.out.println("Menu de opciones:");
+        System.out.println("Test 0: Creadora (Automatico) ");
         System.out.println("Test 1: Authenticate  ");
         System.out.println("Test 2: getPassword   ");
         System.out.println("Test 3: setPassword  ");
-        /*System.out.println("Test 4:   ");
+        /*
           System.out.println("Test 5:   ");
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");

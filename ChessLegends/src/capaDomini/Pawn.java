@@ -5,11 +5,10 @@ public class Pawn extends Piece {
 	
 	private int max;
 
-	value = 1;
 
 	
 	public Pawn() {
-		super();
+		super(1);
 		this.max=16;
 	}
 	

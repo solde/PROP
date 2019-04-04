@@ -12,12 +12,14 @@ package capaDomini;
 public abstract class Player {
     //private 
 
+  
+
     protected static final double DEFAULT_ELO = 1000.0;
 
     protected String id;
     protected int wins;
     protected int loses;
-    protected float ELO;
+    protected double ELO;
     protected float OP_rating;
 
     public String getId() {
@@ -52,7 +54,7 @@ public abstract class Player {
         this.wins = this.wins+1;
     }
 
-    public float getELO() {
+    public double getELO() {
         return ELO;
     }
 

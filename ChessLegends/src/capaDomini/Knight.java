@@ -5,11 +5,10 @@ public class Knight extends Piece {
 	
 	private int max;
 
-	value = 3.5;
-
+	
 	
 	public Knight() {
-		super();
+		super(3.5);
 		this.max=10;
 	}
 

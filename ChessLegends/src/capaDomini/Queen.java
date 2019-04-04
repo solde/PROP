@@ -3,11 +3,11 @@ public class Queen extends Piece {
 	
 	private int max;
 
-	value = 7.0;
+	
 
 	
 	public Queen() {
-		super();
+		super(7);
 		this.max=9;
 	}
 	

@@ -5,11 +5,11 @@ public class Rock extends Piece {
 	
 	private int max;
 
-	value = 5.0;
+	
 
 	
 	public Rock() {
-		super();
+		super(5);
 		this.max=10; //for each player
 	}
 
