@@ -9,7 +9,7 @@ package propdrivers;
 
 import java.util.Scanner;
 import Exception.chessException;
-import capaDomini.Reina;
+import capaDomini.King;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 
-public class reinaDriver {
+public class kingDriver {
 
     /**
      * @param args the command line arguments
@@ -28,7 +28,7 @@ public class reinaDriver {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Reina h = new Reina();
+        King h = new King();
         int i = sc.nextInt();
         while (i <= 7) { // ( o el que sea
             switch (i) {
