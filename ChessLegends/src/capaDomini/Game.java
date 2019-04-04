@@ -12,33 +12,44 @@ package capaDomini;
 public class Game {
 
     private boolean turn;
-    private int turnNumber;
     private double timerW;
     private double timerB;
-    private string wPlayer;
-    private string bPlayer;
-    private string prblemId;
+    private String wPlayer;
+    private String bPlayer;
+    private String prblemId;
 
-    void Game(boolen initialTurn, string wPlayer, string bPlayer) {
+    void Game(boolen initialTurn, String wPlayer, String bPlayer) {
         this.turn = initialTurn;
         this.wPlayer = wPlayer;
         this.bPlayer = bPlayer;
-    }
-
-    getStatistics(int player_id) {
-        Statistics stats();
-        if (wPlayer -> getId() == player_id) {
-            stats.time = this.timerW;
-            stats.OpRating = bPlayer -> getELO;
-        }
     }
 
     public void setTurn(boolean turn) {
         this.turn = turn;
     }
 
-    public void setTurnNumber(int turnNumber) {
-        this.turnNumber = turnNumber;
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public double getTimerW() {
+        return timerW;
+    }
+
+    public double getTimerB() {
+        return timerB;
+    }
+
+    public String getwPlayer() {
+        return wPlayer;
+    }
+
+    public String getbPlayer() {
+        return bPlayer;
+    }
+
+    public String getPrblemId() {
+        return prblemId;
     }
 
     public void setTimerW(double timerW) {
@@ -49,23 +60,23 @@ public class Game {
         this.timerB = timerB;
     }
 
-    public void setwPlayer(string wPlayer) {
+    public void setwPlayer(String wPlayer) {
         this.wPlayer = wPlayer;
     }
 
-    public void setbPlayer(string bPlayer) {
+    public void setbPlayer(String bPlayer) {
         this.bPlayer = bPlayer;
     }
 
-    public void setPrblemId(string prblemId) {
+    public void setPrblemId(String prblemId) {
         this.prblemId = prblemId;
     }
 
-    int gameLoop() {
+    public int gameLoop() {
         Board B();
         Problem P();
         PlayerController P();
-        boolean finish;
+        boolean checkMate;
 
         //Init problem and loads
         P.load(problemId);
@@ -77,7 +88,7 @@ public class Game {
         
         //Game loop
         for (int i = 0; i < P(getMovs); ++i) {
-            string toDo;
+            String toDo;
             if (turn) {
                 int t0 = System.currentTimeMillis();
                 toDo = P.playTurn(wPlayer);
@@ -91,8 +102,8 @@ public class Game {
             }
             B.move_piece(toDo);
             turn = !turn;
-            finish = b.jaqueMate(isCheckMate);
-            if (finish) {
+            checkMate = b.jaqueMate(isCheckMate);
+            if (checkMate) {
                 break;
             }
 
@@ -109,15 +120,21 @@ public class Game {
             }
             B.move_piece(toDo);
             turn = !turn;
-            finish = B.jaqueMate(isCheckMate);
-            if (finish) {
+            checkMate = B.jaqueMate(isCheckMate);
+            if (checkMate) {
                 break;
             }
         }
-        if(finish){
-            P.get
-        }
         
+        //Update players stats
+        boolean atk P.getAtk();
+        boolean def P.getDef();
+        if((atk and checkMate) or (def and !checkMate)){
+            P.updateELO(this.wPlayer, this.timerW, this.bPlayer, this.timerB);
+        }
+        else{
+            P.updateELO(this.bPlayer, this.timerB, this.wPlayer, this.timerW);
+        }
     }
 
 }
