@@ -1,32 +1,30 @@
 package capaDomini;
-
-
-public class Cavall extends Piece {
+public class King extends Piece {
 	
 	private int max;
-
-
+	
+	value = 0;
 
 	
-	public Cavall() {
+	public King() {
 		super();
-		this.max=8;
+		this.max=2;
 	}
+	
+  public int getMax(){return this.max;}
 
     public void setMax(int max) {
         this.max = max;
     }
-	
-  public int getMax(){return this.max;}
-  
+	  
+
+
     @Override
     public int[] get_poss_mov() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   
 }
-
-
 
 
 
