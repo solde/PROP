@@ -44,7 +44,7 @@ public class Human extends Player {
         password = null;
     }
 
-    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) throws chessException {  //constructor amb parametres
+    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating)  {  //constructor amb parametres
         //Create a human player by entering the stats
         this.id = id;
         this.wins = wins; 
@@ -52,10 +52,8 @@ public class Human extends Player {
         this.ELO = ELO;
         this.OP_rating= OP_rating;
         setPassword(pass);
-        int u=3;
-        if(u==2) throw new chessException("Somehow this thing failed");
-
     }
+    
     public Human(String id,String pass){
         // Create a new human player
         this.id = id;
