@@ -8,17 +8,16 @@ package propdrivers;
 ;
 
 import java.util.Scanner;
-import Exception.chessException;
 import capaDomini.Rock;
 import java.util.concurrent.TimeUnit;
 
 /**
  *
- * @author David Soldevila
+ * @author Daniel Palomo
  */
 
 
-public class rockDriver {
+public class RockDriver {
 
     /**
      * @param args the command line arguments
@@ -36,7 +35,7 @@ public class rockDriver {
                 case 1: {
                     System.out.println("Provando getMax");
                     int p = h.getMax();
-                    if (p!=8) {
+                    if (p!=2) {
                         System.out.println("getter no funciona");
                     } else {
                         System.out.println("passed");
@@ -56,7 +55,21 @@ public class rockDriver {
                     TimeUnit.SECONDS.sleep(3);
 
                     display_menu();//Para poder leer la salida mejor
-                    h.setMax(8); // reinstaurar el estado anterior para multiples tests
+                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
+                }
+                 case 3: {
+                    System.out.println("provando getValue");
+                    h.setValue(7);
+                    double k = h.getValue();
+                    if (k!=7) {
+                        System.out.println("Getter no funciona");
+                    } else {
+                        System.out.println("passed");
+                    }
+                    TimeUnit.SECONDS.sleep(3);
+
+                    display_menu();//Para poder leer la salida mejor
+                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
                 }
 
                 default:
@@ -71,8 +84,9 @@ public class rockDriver {
         System.out.println("Menu de opciones:");
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
-     //   System.out.println("Test 3: setPassword  ");
-        /*System.out.println("Test 4:   ");
+        System.out.println("Test 3: getValue  ");
+        System.out.println("Test 4:  setValue ");
+        /*
           System.out.println("Test 5:   ");
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");

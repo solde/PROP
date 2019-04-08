@@ -18,6 +18,7 @@ public class AI1 extends Player {
     // nodePointer is a pointer to a node. maxTurn defines if you
     // want the highes score or the lowest. score[] is contains the scores of 
     // every node. targetDepth is the maximum depth to search.
+    /*
     private int minmax(int currentDepth, int nodeId, boolean maxTurn, int score[], int targetDepth) {
         if (currentDepth == targetDepth) {
             return scores[nodeIndex];
@@ -31,7 +32,7 @@ public class AI1 extends Player {
                 }
             }
         }
-    }
+    }*/
     //return Math.max(minimax(depth+1, nodeIndex*2, false, scores, h), minimax(depth+1, nodeIndex*2 + 1, false, scores, h)); 
 
     private void calculate_mov() {
