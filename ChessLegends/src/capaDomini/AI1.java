@@ -12,6 +12,10 @@ package capaDomini;
 public class AI1 extends Player {
 
     private static int AI1_ID = 2;
+    
+    public AI1(){
+        System.out.println("Not implemented");
+    }
 
     // minmax funciton: it's used to calculate the next movment based on the
     // minmax algorithm. currentDepth is the depth of the actual node.
