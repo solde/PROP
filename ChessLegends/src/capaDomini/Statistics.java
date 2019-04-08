@@ -17,17 +17,23 @@ public class Statistics {
     public double time;
     public boolean WL;
     public boolean OpRating;
-
+    
+    public Statistics(){}
+    
     public void showStatsPlayer(Player p) throws chessException {
+        double elo;
         try {
-            double elo = p.getELO();
+            elo = p.getELO();
+            } catch (Exception ObjectNotFoundException) {
+            throw new chessException("Player not found");
+        }
             System.out.print("--");
             System.out.print(p.getId());
             System.out.println("--  \n");
             System.out.print("ELO:");
             System.out.println(elo);
-            System.out.print(" Rank: ");
-            if (elo > 1000.0 && elo <= 1599) {
+            System.out.print("Rank: ");
+            if (elo >= 1000.0 && elo <= 1599) {
                 System.out.println("Noob");
             }
             if (elo >= 1600 && elo <= 2000) {
@@ -50,9 +56,7 @@ public class Statistics {
             System.out.println(p.getWins());
 
 
-        } catch (Exception IllegalArgumentException) {
-            throw new chessException("Player not found");
-        }
+        
     }
     
     public void showStatsGame(Game g){
