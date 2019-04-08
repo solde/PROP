@@ -11,4 +11,9 @@ package capaDomini;
  */
 public class PlayerController {
     
+    private Player p1;
+    private Player p2;
+    
+    
+    
 }
