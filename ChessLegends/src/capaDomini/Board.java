@@ -16,16 +16,19 @@ public class Board {
     //private
     private String FEN_code;
     private String Default_FEN_code;
+    
+    private Vector<Piece> WhitePiecesOnBoard;
+    private Vector<Piece> BlackPiecesOnBoard;
 
     //public methods
     public Vector<Vector> get_pos_piece() {
-	Vector<Vector> temp =new Vector();	
+	Vector<Vector> temp = new Vector();	
             return temp;
     }
 	
-	public void move_piece() {
+    public void move_piece() {
 		
-	}
+    }
 
     //public constructors & get/set
     public Board() { this.Default_FEN_code = "8/8/8/8/8/8/8/8";
@@ -44,8 +47,51 @@ public class Board {
         return FEN_code;
     }
 
-    private void setFEN_code(String FEN_code) {
-        this.FEN_code = FEN_code;
+    private void processFEN(){
+        int i = 0, j = 0;
+        while(i < 7){
+            while(FEN_code.charAt(j) != '/'){
+                if(FEN_code.charAt(j) > '0' and FEN_code.charAt(j) <= '9'){
+                    contB += Character.getNumericValue(FEN_code.charAt(j));
+                    contW += Character.getNumericValue(FEN_code.charAt(j));
+                }
+                else if( Character.isLowerCase(FEN_code.charAt(j)) ){
+                    Piece newPiece;
+                    switch(FEN_code.charAt(j)){
+                        case 'P': newPiece = Pawn(i, j);
+                        case 'Q': newPiece = Queen(i, j);
+                        case 'K': newPiece = King(i, j);
+                        case 'B': newPiece = Bishop(i, j);
+                        case 'R': newPiece = Rock(i, j);
+                        case 'N': newPiece = Knight(i, j);
+                    }
+                    WhitePiecesOnBoard.add(newPiece);
+                }
+                else if( Character.isUpperCase(FEN_code.charAt(j)) ){
+                    Piece newPiece;
+                    switch(FEN_code.charAt(j)){
+                        case 'p': newPiece = Pawn(i, j);
+                        case 'q': newPiece = Queen(i, j);
+                        case 'k': newPiece = King(i, j);
+                        case 'b': newPiece = Bishop(i, j);
+                        case 'r': newPiece = Rock(i, j);
+                        case 'n': newPiece = Knight(i, j);
+                    }
+                    BlackPiecesOnBoard.add(newPiece);
+                }
+                ++j;
+            }
+            ++i;
+        }
     }
 
 }
+
+    public void setFEN_code(String FEN_code) {
+        this.FEN_code = FEN_code;
+        processFEN();
+    }
+    
+    public boolean isCheckMate(){
+        return false;
+    }
