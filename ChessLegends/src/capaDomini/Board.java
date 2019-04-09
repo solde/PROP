@@ -22,18 +22,26 @@ public class Board {
     private Vector<Piece> BlackPiecesOnBoard;
 
     //public methods
-    public Vector<Vector> get_pos_piece() {
-	Vector<Vector> temp = new Vector();	
-            return temp;
+    /**
+     * Pre: True
+     * Post: Return a conquetenation of WhitePiecesOnBoard and 
+     * BlackPiecesOnBoard.
+     * @return 
+     */
+    public Vector<Piece> get_pieces() {
+	Vector<Piece> temp = WhitePiecesOnBoard;
+        temp.addAll(BlackPiecesOnBoard);
+        return temp;
     }
 	
     /**
-     * Pre: Exist a piece at source and it can move to destiantion.
-     * Post: Piece has de new location.
+     * @Pre Exist a piece at source and it can move to destiantion.
+     * @Post Piece has de new location.
      * 
-     * Function to move a piece. toDo is a string with two board cord. (ex: A3),
+     * @brief Function to move a piece. toDo is a string with two board cord. (ex: A3),
      * source and destination. If cord are in low case the piece to move is
      * black, otherwise it is a white piece.
+     * 
      * @param toDo 
      */
     public void move_piece(String toDo) {
@@ -70,22 +78,39 @@ public class Board {
     }
 
     //public constructors & get/set
+    /**
+     * @Pre True
+     * @Post Create a empty board (fen code = 8/8/8/8/8/8/8/8)
+     */
     public Board() { this.Default_FEN_code = "8/8/8/8/8/8/8/8";
-//basic constructor
         this.FEN_code = Default_FEN_code;
     }
 
-    public Board(String FEN_code) {  this.Default_FEN_code = "8/8/8/8/8/8/8/8";
-//constructor amb parametres
-
+    /**
+     * @Pre FEN_code contains a correct fen code
+     * @Post Create a board with fen code equals to FEN_code
+     * @param FEN_code 
+     */
+    public Board(String FEN_code) {  
+        this.Default_FEN_code = "8/8/8/8/8/8/8/8";
         this.FEN_code = FEN_code;
-
+        processFEN();
     }
     
+    /**
+     * @Pre True
+     * @Post Return the original FEN_code
+     * @return 
+     */
     public String getFEN_code() {
         return FEN_code;
     }
 
+    /**
+     * @Pre True
+     * @Post Vectors WhitePiecesOnBoard and BlackPiecesOnBoard are initialized 
+     * with the pieces acording with the fen code
+     */
     private void processFEN(){
         int i = 0, j = 0;
         while(i < 7){
@@ -124,13 +149,23 @@ public class Board {
         }
     }
 
-}
-
+    /**
+     * @Pre: FEN_code contains a correct fen code
+     * @Post: The board contains the piece distribution encoded at FEN_code
+     * @param FEN_code 
+     */
     public void setFEN_code(String FEN_code) {
         this.FEN_code = FEN_code;
         processFEN();
     }
     
+    /**
+     * @Pre True
+     * @Post Returns if any of the kings is in check mate
+     * @return 
+     */
     public boolean isCheckMate(){
         return false;
     }
+    
+}
