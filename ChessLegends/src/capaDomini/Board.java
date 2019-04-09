@@ -28,6 +28,9 @@ public class Board {
     }
 	
     /**
+     * Pre: Exist a piece at source and it can move to destiantion.
+     * Post: Piece has de new location.
+     * 
      * Function to move a piece. toDo is a string with two board cord. (ex: A3),
      * source and destination. If cord are in low case the piece to move is
      * black, otherwise it is a white piece.
@@ -37,13 +40,32 @@ public class Board {
         String source = toDo.substring(0, 1);
         String destination = toDo.substring(2, 3);
         if( Character.isLowerCase(toDo.charAt(0)) ){ //Black
-            Iterator it = BlackPiecesOnBoard.iterator();
-            while( it.hasNext() ){
-                it.next().
+            int sX = int('a') - toDo.charAt(0);
+            int xY = Character.getNumericValue(toDo.charAt(1));
+
+            int dX = int('a') - toDo.charAt(2);
+            int dY = Character.getNumericValue(toDo.charAt(3));
+            
+            for(int i = 0; i < BlackPiecesOnBoard.size(); ++i){
+                if(BlackPiecesOnBoard.elementAt(i).equalXY(sX, sY)){
+                    BlackPiecesOnBoard.elementAt(i).setX(dX);
+                    BlackPiecesOnBoard.elementAt(i).setY(dY);
+                }
             }
         }
         else{ //White
+            int sX = int('A') - toDo.charAt(0);
+            int xY = Character.getNumericValue(toDo.charAt(1));
+
+            int dX = int('A') - toDo.charAt(2);
+            int dY = Character.getNumericValue(toDo.charAt(3));
             
+            for(int i = 0; i < WhitePiecesOnBoard.size(); ++i){
+                if(WhitePiecesOnBoard.elementAt(i).equalXY(sX, sY)){
+                    WhitePiecesOnBoard.elementAt(i).setX(dX);
+                    WhitePiecesOnBoard.elementAt(i).setY(dY);
+                }
+            }
         }
     }
 
@@ -68,31 +90,31 @@ public class Board {
         int i = 0, j = 0;
         while(i < 7){
             while(FEN_code.charAt(j) != '/'){
+                int cont = 0;
                 if(FEN_code.charAt(j) > '0' and FEN_code.charAt(j) <= '9'){
-                    contB += Character.getNumericValue(FEN_code.charAt(j));
-                    contW += Character.getNumericValue(FEN_code.charAt(j));
+                    cont += Character.getNumericValue(FEN_code.charAt(j));
                 }
                 else if( Character.isLowerCase(FEN_code.charAt(j)) ){
                     Piece newPiece;
                     switch(FEN_code.charAt(j)){
-                        case 'P': newPiece = Pawn(i, j);
-                        case 'Q': newPiece = Queen(i, j);
-                        case 'K': newPiece = King(i, j);
-                        case 'B': newPiece = Bishop(i, j);
-                        case 'R': newPiece = Rock(i, j);
-                        case 'N': newPiece = Knight(i, j);
+                        case 'P': newPiece = Pawn(i, cont);
+                        case 'Q': newPiece = Queen(i, cont);
+                        case 'K': newPiece = King(i, cont);
+                        case 'B': newPiece = Bishop(i, cont);
+                        case 'R': newPiece = Rock(i, cont);
+                        case 'N': newPiece = Knight(i, cont);
                     }
                     WhitePiecesOnBoard.add(newPiece);
                 }
                 else if( Character.isUpperCase(FEN_code.charAt(j)) ){
                     Piece newPiece;
                     switch(FEN_code.charAt(j)){
-                        case 'p': newPiece = Pawn(i, j);
-                        case 'q': newPiece = Queen(i, j);
-                        case 'k': newPiece = King(i, j);
-                        case 'b': newPiece = Bishop(i, j);
-                        case 'r': newPiece = Rock(i, j);
-                        case 'n': newPiece = Knight(i, j);
+                        case 'p': newPiece = Pawn(i, cont);
+                        case 'q': newPiece = Queen(i, cont);
+                        case 'k': newPiece = King(i, cont);
+                        case 'b': newPiece = Bishop(i, cont);
+                        case 'r': newPiece = Rock(i, cont);
+                        case 'n': newPiece = Knight(i, cont);
                     }
                     BlackPiecesOnBoard.add(newPiece);
                 }
