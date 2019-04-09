@@ -167,5 +167,4 @@ public class Board {
     public boolean isCheckMate(){
         return false;
     }
-    
 }
