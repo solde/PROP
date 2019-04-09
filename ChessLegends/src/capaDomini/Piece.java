@@ -39,6 +39,10 @@ public abstract class Piece {
         a[1]=this.y;
         return a;
     }
+    
+    public boolean equalXY(int X, int Y){
+        return (X == this.x && Y == this.y);
+    }
 
     public double getValue() {
         return value;
