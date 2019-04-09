@@ -6,6 +6,7 @@
 package capaDomini;
 
 import java.util.Vector;
+import java.util.*; 
 
 /**
  *
@@ -26,8 +27,24 @@ public class Board {
             return temp;
     }
 	
-    public void move_piece() {
-		
+    /**
+     * Function to move a piece. toDo is a string with two board cord. (ex: A3),
+     * source and destination. If cord are in low case the piece to move is
+     * black, otherwise it is a white piece.
+     * @param toDo 
+     */
+    public void move_piece(String toDo) {
+        String source = toDo.substring(0, 1);
+        String destination = toDo.substring(2, 3);
+        if( Character.isLowerCase(toDo.charAt(0)) ){ //Black
+            Iterator it = BlackPiecesOnBoard.iterator();
+            while( it.hasNext() ){
+                it.next().
+            }
+        }
+        else{ //White
+            
+        }
     }
 
     //public constructors & get/set
