@@ -9,10 +9,12 @@ package capaDomini;
  *
  * @author David Soldevila
  */
-public class PlayerController {
-    
-    private Player p1;
-    private Player p2;
+public class CtrlDomainGame {
+    Game G;
+
+    public CtrlDomainGame() {
+        Game G = new Game();
+    }
     
     
     
