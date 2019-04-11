@@ -1,5 +1,6 @@
 package capaDomini;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
@@ -8,12 +9,12 @@ public class King extends Piece {
     private int max;
 
     public King() {
-        super(0, 0, 0);
+        super(0, 0, 0,true);
         this.max = 2;
     }
 
-    public King(int x, int y) {
-        super(0, x, y);
+    public King(int x, int y,boolean color) {
+        super(0, x, y,color);
         this.max = 2;
     }
 
@@ -26,20 +27,50 @@ public class King extends Piece {
     }
 
     @Override
-    public Pair get_poss_mov(Board b) {
-        List<Pair> mov = new List; 
-        Pair tmp = new Pair(0, 0);
-        Piece whites[] = b.getWhitePiecesOnBoard();
-        Piece blacks[] = b.getBlackPiecesOnBoard();
+    public List<Pair> get_poss_mov(Board b) {
+        List<Pair> mov = new ArrayList<>();
+        Pair tmp;
         int x_temp = getX();
         int y_temp = getY();
 
-        for (int i = 0; i < whites.length; i++) {
-            int x_check=whites[i].getX();
-            int y_check=blacks[i].getY();
-            
-            if(x_check-1==x_temp && y_check-1==y_temp){
+        tmp = new Pair(x_temp - 1, y_temp - 1);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
         }
+
+        tmp = new Pair(x_temp + 1, y_temp - 1);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+
+        tmp = new Pair(x_temp - 1, y_temp + 1);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+
+        tmp = new Pair(x_temp + 1, y_temp + 1);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+
+        tmp = new Pair(x_temp, y_temp - 1);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+
+        tmp = new Pair(x_temp, y_temp + 1);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+
+        tmp = new Pair(x_temp + 1, y_temp);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+
+        tmp = new Pair(x_temp - 1, y_temp);
+        if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
         }
 
         return mov;
