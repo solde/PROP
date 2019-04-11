@@ -59,5 +59,7 @@ public class Problem {
         diff = 0;
     }
     
-    
+    public void load(String problemName){
+        
+    }
 }
