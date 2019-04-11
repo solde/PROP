@@ -52,36 +52,52 @@ public class Board {
      * 
      * @param toDo 
      */
-    public void move_piece(String toDo) {
-        String source = toDo.substring(0, 1);
-        String destination = toDo.substring(2, 3);
-        if( Character.isLowerCase(toDo.charAt(0)) ){ //Black
-            int sX = int('a') - toDo.charAt(0);
-            int xY = Character.getNumericValue(toDo.charAt(1));
-
-            int dX = int('a') - toDo.charAt(2);
-            int dY = Character.getNumericValue(toDo.charAt(3));
-            
-            for(int i = 0; i < BlackPiecesOnBoard.size(); ++i){
-                if(BlackPiecesOnBoard.elementAt(i).equalXY(sX, sY)){
-                    BlackPiecesOnBoard.elementAt(i).setX(dX);
-                    BlackPiecesOnBoard.elementAt(i).setY(dY);
-                }
-            }
-        }
-        else{ //White
-            int sX = int('A') - toDo.charAt(0);
-            int xY = Character.getNumericValue(toDo.charAt(1));
-
-            int dX = int('A') - toDo.charAt(2);
-            int dY = Character.getNumericValue(toDo.charAt(3));
-            
+    public void movePiece(int sX, int sY, int dX, int dY, boolean player) {
+        boolean moved = false;
+        if(player){
             for(int i = 0; i < WhitePiecesOnBoard.size(); ++i){
                 if(WhitePiecesOnBoard.elementAt(i).equalXY(sX, sY)){
-                    WhitePiecesOnBoard.elementAt(i).setX(dX);
-                    WhitePiecesOnBoard.elementAt(i).setY(dY);
+                    for(int j = 0; j < WhitePiecesOnBoard.size(); ++j){
+                        if(WhitePiecesOnBoard.elementAt(j).equalXY(dX, dY)){
+                            throw new ArithmeticException("Can't move - You have one piece at destiny");
+                        }
+                    }
                 }
+                if(BlackPiecesOnBoard.elementAt(i).equalXY(sX, sY)){
+                    for(int j = 0; j < BlackPiecesOnBoard.size(); ++j){
+                        if(BlackPiecesOnBoard.elementAt(j).equalXY(dX, dY)){
+                            killPieceAt(dX, dY);
+                        }
+                    }
+                }
+                WhitePiecesOnBoard.elementAt(i).setX(dX);
+                WhitePiecesOnBoard.elementAt(i).setY(dY);
+                moved = true;
             }
+        }
+        else{
+            for(int i = 0; i < WhitePiecesOnBoard.size(); ++i){
+                if(BlackPiecesOnBoard.elementAt(i).equalXY(sX, sY)){
+                    for(int j = 0; j < BlackPiecesOnBoard.size(); ++j){
+                        if(BlackPiecesOnBoard.elementAt(j).equalXY(dX, dY)){
+                            throw new ArithmeticException("Can't move - You have one piece at destiny");
+                        }
+                    }
+                }
+                if(WhitePiecesOnBoard.elementAt(i).equalXY(sX, sY)){
+                    for(int j = 0; j < WhitePiecesOnBoard.size(); ++j){
+                        if(WhitePiecesOnBoard.elementAt(j).equalXY(dX, dY)){
+                            killPieceAt(dX, dY);
+                        }
+                    }
+                }
+                BlackPiecesOnBoard.elementAt(i).setX(dX);
+                BlackPiecesOnBoard.elementAt(i).setY(dY);
+                moved = true;
+            }
+        }
+        if(!moved){
+            throw new ArithmeticExcetpion("Can't move -  You dont have any piece at source")
         }
     }
 

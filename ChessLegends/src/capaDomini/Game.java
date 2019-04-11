@@ -12,17 +12,14 @@ package capaDomini;
 public class Game {
 
     private boolean turn;
-    private double timerW;
-    private double timerB;
+    private long timerW;
+    private long timerB;
     private String wPlayer;
     private String bPlayer;
     private String prblemId;
     
     private Player P1;
     private Player P2;
-    
-    private Problem P;
-    private Board B;
 
     void Game(boolean initialTurn, String wPlayer, String pswP1, String bPlayer, String pswP2) {
         this.turn = initialTurn;
@@ -49,15 +46,21 @@ public class Game {
     }
     
     //public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk)
-    public void init_problem(fenCode, Name, diff, N_mov, Theme, atk){
-        P = new Problem(fenCode, Name, diff, N_mvo, Theme, atk);
+
+    
+    void addTimeW(long t){
+        timerW += t;
+    }
+    
+    void addTimeB(long t){
+        timerB += t;
     }
     
     /**
      * @Pre True.
      * @Post Game has been played.
      */
-    public void gameLoop() { //let me execute pls thx u
+/*    public void gameLoop() { //let me execute pls thx u
         
         B.setFEN_code(P.getFenCode);
     
@@ -112,7 +115,7 @@ public class Game {
         else{
             P.updateELO(this.bPlayer, this.timerB, this.wPlayer, this.timerW);
         }
-    }
+    }*/
 
     public void setTurn(boolean turn) {
         this.turn = turn;
@@ -161,7 +164,9 @@ public class Game {
     public void setPrblemId(String prblemId) {
         this.prblemId = prblemId;
     }
+    
+    public String getProbemFEN(){
+        return P.getFenCode();
+    }
 
-    
-    
 }

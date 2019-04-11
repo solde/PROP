@@ -10,12 +10,21 @@ package capaDomini;
  * @author David Soldevila
  */
 public class CtrlDomainGame {
-    Game G;
-
+    private Game G;
+    private Board B;
+    private Problem P;
+    
     public CtrlDomainGame() {
-        Game G = new Game();
+        G = new Game();
+        B = new Board();
+        P = new Problem();
     }
     
+    public void loadProblemTest(String fenCode, String Name, int diff, String, N_mov, String Theme, int atk){
+        //(fenCode, Name, diff, N_mov, Theme, atk)
+        P = new Problem(fenCode, Name, diff, N_mvo, Theme, atk);
+    }
     
-    
+    public void moveWhitePiece(int sX, int sY, int dX, int dY){
+    }
 }
