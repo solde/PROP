@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package capaDomini;
 
 import Exception.chessException;
 //This class should manage the statistics from player and game, it may be usless when the controlers are implemented
 
-/**
- *
- * @author David Soldevila
- */
 public class Statistics {
 
     public double time;

@@ -1,6 +1,7 @@
 package capaDomini;
 
 import java.util.List;
+import java.util.Vector;
 import javafx.util.Pair;
 
 public abstract class Piece {
@@ -70,8 +71,8 @@ public abstract class Piece {
         boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
-        Piece whites[] = b.getWhitePiecesOnBoard();
-        Piece blacks[] = b.getBlackPiecesOnBoard();
+        Vector<Piece> whites= b.getWhitePiecesOnBoard();
+        Vector<Piece> blacks= b.getBlackPiecesOnBoard();
         
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
 
