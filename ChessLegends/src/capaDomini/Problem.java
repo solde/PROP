@@ -12,15 +12,21 @@ package capaDomini;
 public class Problem {
     private String fenCode;
     private String Name;
+    private String Theme;
     private int diff;
     private int N_mov;
+    private bloolean atk; //True = white, False = black
 
     public Problem() {
     }
 
-    public Problem(String fenCode, String Name) {
+    public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk) {
         this.fenCode = fenCode;
         this.Name = Name;
+        this.diff = diff;
+        this.N_mov = N_mov;
+        this.Theme = Theme;
+        this.atk = atk;
     }
 
     public String getFenCode() {
@@ -37,6 +43,14 @@ public class Problem {
 
     public int getN_mov() {
         return N_mov;
+    }
+    
+    public String getTheme(){
+        return this.Theme;
+    }
+    
+    public void setThem(String Theme){
+        this.Theme = Theme;
     }
 
     public void setFenCode(String fenCode) {
@@ -55,11 +69,32 @@ public class Problem {
         return true;
     }
     
-    public void calculateDiff(){
-        diff = 0;
+    private int numberPiecesOf(){
+        char i, e;
+        int cont = 0;
+        if(atk){
+            i = 'A';
+            e = 'Z';
+        }
+        else{
+            i = 'a';
+            e = 'z'; 
+        }
+        for(int i = 0; i < fenCode.length(); ++i){
+            if( fenCode.charAt(i) >= i && fenCode.charAt(i) <= e ){
+                ++cont;
+            }
+        }
+        return cont;
     }
     
-    public void load(String problemName){
-        
+    /**
+     * @Pre true
+     * @Post diff get the value of the difficulty of the problem.
+     */
+    public void calculateDiff(){
+        int x = numberPiecesOf();
+        diff = 5*(16-x)*N_mov);
     }
+    
 }

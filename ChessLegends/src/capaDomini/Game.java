@@ -48,18 +48,20 @@ public class Game {
         timerB = 0;
     }
     
-    void setProblem(String problemName){
-        P.load(problemName);
+    //public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk)
+    public void init_problem(fenCode, Name, diff, N_mov, Theme, atk){
+        P = new Problem(fenCode, Name, diff, N_mvo, Theme, atk);
     }
     
-    public int gameLoop() { //let me execute pls thx u
+    /**
+     * @Pre True.
+     * @Post Game has been played.
+     */
+    public void gameLoop() { //let me execute pls thx u
         
         B.setFEN_code(P.getFenCode);
     
         boolean checkMate = false;
-
-        //Init problem and loads
-        P.load(problemId);
         
         //Game loop
         for (int i = 0; i < P.getMovs() ++i) {
@@ -160,4 +162,6 @@ public class Game {
         this.prblemId = prblemId;
     }
 
+    
+    
 }

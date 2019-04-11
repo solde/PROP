@@ -33,6 +33,14 @@ public class Board {
         temp.addAll(BlackPiecesOnBoard);
         return temp;
     }
+
+    public Vector<Piece> getWhitePiecesOnBoard() {
+        return WhitePiecesOnBoard;
+    }
+
+    public Vector<Piece> getBlackPiecesOnBoard() {
+        return BlackPiecesOnBoard;
+    }
 	
     /**
      * @Pre Exist a piece at source and it can move to destiantion.
