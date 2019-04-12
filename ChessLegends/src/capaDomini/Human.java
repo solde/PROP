@@ -50,6 +50,15 @@ public class Human extends Player {
         setPassword(pass);
     }
     
+    public Human(String id, int wins, int loses, float ELO, float OP_rating)  {  //constructor amb parametres
+        //Create a human player by entering the stats
+        this.id = id;
+        this.wins = wins; 
+        this.loses = loses;
+        this.ELO = ELO;
+        this.OP_rating= OP_rating;
+    }
+    
     public Human(String id,String pass){
         // Create a new human player
         this.id = id;
@@ -58,14 +67,12 @@ public class Human extends Player {
         this.ELO = 1000;
         this.OP_rating=0;
         setPassword(pass);        
-        
     }
-    public String getPassword() {
-        return password;
-    }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
 
+    
+    
 }

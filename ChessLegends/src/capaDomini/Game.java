@@ -16,106 +16,35 @@ public class Game {
     private long timerB;
     private String wPlayer;
     private String bPlayer;
-    private String prblemId;
     
     private Player P1;
     private Player P2;
-
-    void Game(boolean initialTurn, String wPlayer, String pswP1, String bPlayer, String pswP2) {
+    
+    void Game(boolean initialTurn) {
         this.turn = initialTurn;
-        this.wPlayer = wPlayer;
-        this.bPlayer = bPlayer;
-        
-        if(wPlayer.equals("AI1")){
-            P1 = AI1();
-        }
-        else{
-            P1 = Human();
-            //P1.login(wPlayer, pswP1);
-        }
-        if(bPlayer.equals("AI1")){
-            P2 = AI1();
-        }
-        else{
-            P2 = Human();
-            //P2.login(bPlayer, pswP2);
-        }
         
         timerW = 0;
         timerB = 0;
     }
     
-    //public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk)
+    void Game(){
+        timerW = 0;
+        timerB = 0;
+        turn = true;
+    }
 
+    public void resetTimers(){
+        timerW = 0;
+        timerB = 0;
+    }
     
-    void addTimeW(long t){
+    public void addTimeW(long t){
         timerW += t;
     }
     
-    void addTimeB(long t){
+    public void addTimeB(long t){
         timerB += t;
     }
-    
-    /**
-     * @Pre True.
-     * @Post Game has been played.
-     */
-/*    public void gameLoop() { //let me execute pls thx u
-        
-        B.setFEN_code(P.getFenCode);
-    
-        boolean checkMate = false;
-        
-        //Game loop
-        for (int i = 0; i < P.getMovs() ++i) {
-            String toDo;
-            if (turn) {
-                long t0 = System.currentTimeMillis();
-                toDo = P.playTurn(wPlayer);
-                t0 = System.currentTimeMillis() - t0;
-                timerW += t0;
-            } else {
-                long t0 = System.currentTimeMillis();
-                toDo = P.playTurn(bPlayer);
-                t0 = System.currentTimeMillis() - t0;
-                timerB += t0;
-            }
-            B.move_piece(toDo);
-            turn = !turn;
-            checkMate = b.jaqueMate(isCheckMate);
-            if (checkMate) {
-                break;
-            }
-
-            if (turn) {
-                long t0 = System.currentTimeMillis();
-                toDo = P.playTurn(wPlayer);
-                t0 = System.currentTimeMillis() - t0;
-                timerW += t0;
-            } else {
-                long t0 = System.currentTimeMillis();
-                toDo = P.playTurn(bPlayer);
-                t0 = System.currentTimeMillis() - t0;
-                timerB += t0;
-            }
-            B.move_piece(toDo);
-            turn = !turn;
-            checkMate = B.isCheckMate());
-            if (checkMate) {
-                break;
-            }
-        }
-        
-        //Update players stats
-        boolean atk P.getAtk();
-        boolean def P.getDef();
-        if((atk and checkMate) or (def and !checkMate)){
-            P.updateELO(this.wPlayer, this.timerW, this.bPlayer, this.timerB);
-        }
-        else{
-            P.updateELO(this.bPlayer, this.timerB, this.wPlayer, this.timerW);
-        }
-    }*/
 
     public void setTurn(boolean turn) {
         this.turn = turn;
@@ -141,15 +70,11 @@ public class Game {
         return bPlayer;
     }
 
-    public String getPrblemId() {
-        return prblemId;
-    }
-
-    public void setTimerW(double timerW) {
+    public void setTimerW(long timerW) {
         this.timerW = timerW;
     }
 
-    public void setTimerB(double timerB) {
+    public void setTimerB(long timerB) {
         this.timerB = timerB;
     }
 
@@ -160,13 +85,21 @@ public class Game {
     public void setbPlayer(String bPlayer) {
         this.bPlayer = bPlayer;
     }
-
-    public void setPrblemId(String prblemId) {
-        this.prblemId = prblemId;
+    
+    public void setPlayer1(String playerId, int wins, int loses, int ELO, int OP_rating){
+        P1 = new Human(playerId, wins, loses, ELO, OP_rating);
     }
     
-    public String getProbemFEN(){
-        return P.getFenCode();
+    public void setPlayer2(String playerId, int wins, int loses, int ELO, int OP_rating){
+        P2 = new Human(playerId, wins, loses, ELO, OP_rating);
     }
-
+    
+    public void setAi1AsPlayer(boolean b){
+        if(b){
+            P1 = new AI1();
+        }
+        else{
+            P2 = new AI1();
+        }
+    }
 }

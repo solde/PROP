@@ -15,20 +15,26 @@ public class Problem {
     private String Theme;
     private int diff;
     private int N_mov;
-    private bloolean atk; //True = white, False = black
+    private boolean atk; //True = white, False = black
+    private boolean first_turn;
 
     public Problem() {
     }
 
-    public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk) {
+    public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) {
         this.fenCode = fenCode;
         this.Name = Name;
         this.diff = diff;
         this.N_mov = N_mov;
         this.Theme = Theme;
         this.atk = atk;
+        this.first_turn = first_turn;
     }
 
+    public boolean getFirstTurn(){
+        return this.first_turn;
+    }
+    
     public String getFenCode() {
         return fenCode;
     }
@@ -64,15 +70,19 @@ public class Problem {
     public void setN_mov(int N_mov) {
         this.N_mov = N_mov;
     }
+    
+    public void setFirstTurn(boolean firstTurn){
+        this.first_turn = firstTurn;
+    }
         
     public boolean verify(){
         return true;
     }
     
-    private int numberPiecesOf(){
+    private int numberPiecesOf(boolean bw){
         char i, e;
         int cont = 0;
-        if(atk){
+        if(bw){
             i = 'A';
             e = 'Z';
         }
@@ -80,8 +90,8 @@ public class Problem {
             i = 'a';
             e = 'z'; 
         }
-        for(int i = 0; i < fenCode.length(); ++i){
-            if( fenCode.charAt(i) >= i && fenCode.charAt(i) <= e ){
+        for(int j = 0; j < fenCode.length(); ++j){
+            if( fenCode.charAt(j) >= i && fenCode.charAt(j) <= e ){
                 ++cont;
             }
         }
@@ -93,8 +103,8 @@ public class Problem {
      * @Post diff get the value of the difficulty of the problem.
      */
     public void calculateDiff(){
-        int x = numberPiecesOf();
-        diff = 5*(16-x)*N_mov);
+        int x = numberPiecesOf(atk);
+        this.diff = 5*(17-x)*N_mov;
     }
     
 }

@@ -7,6 +7,8 @@ package capaDomini;
 
 import java.util.Vector;
 import java.util.*; 
+import java.io.*;
+import Exception.chessException;
 
 /**
  *
@@ -50,9 +52,13 @@ public class Board {
      * source and destination. If cord are in low case the piece to move is
      * black, otherwise it is a white piece.
      * 
-     * @param toDo 
+     * @param sX
+     * @param sY
+     * @param dX
+     * @param dY
+     * @param player 
      */
-    public void movePiece(int sX, int sY, int dX, int dY, boolean player) {
+    public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
         boolean moved = false;
         if(player){
             for(int i = 0; i < WhitePiecesOnBoard.size(); ++i){
@@ -66,7 +72,7 @@ public class Board {
                 if(BlackPiecesOnBoard.elementAt(i).equalXY(sX, sY)){
                     for(int j = 0; j < BlackPiecesOnBoard.size(); ++j){
                         if(BlackPiecesOnBoard.elementAt(j).equalXY(dX, dY)){
-                            killPieceAt(dX, dY);
+                            BlackPiecesOnBoard.remove(j);
                         }
                     }
                 }
@@ -87,7 +93,7 @@ public class Board {
                 if(WhitePiecesOnBoard.elementAt(i).equalXY(sX, sY)){
                     for(int j = 0; j < WhitePiecesOnBoard.size(); ++j){
                         if(WhitePiecesOnBoard.elementAt(j).equalXY(dX, dY)){
-                            killPieceAt(dX, dY);
+                            WhitePiecesOnBoard.remove(j);
                         }
                     }
                 }
@@ -96,8 +102,8 @@ public class Board {
                 moved = true;
             }
         }
-        if(!moved){
-            throw new ArithmeticExcetpion("Can't move -  You dont have any piece at source")
+        if(!moved){ 
+            throw new chessException("Can't move -  You dont have any piece at source");
         }
     }
 
@@ -140,30 +146,30 @@ public class Board {
         while(i < 7){
             while(FEN_code.charAt(j) != '/'){
                 int cont = 0;
-                if(FEN_code.charAt(j) > '0' and FEN_code.charAt(j) <= '9'){
+                if(FEN_code.charAt(j) > '0' && FEN_code.charAt(j) <= '9'){
                     cont += Character.getNumericValue(FEN_code.charAt(j));
                 }
                 else if( Character.isLowerCase(FEN_code.charAt(j)) ){
-                    Piece newPiece;
-                    switch(FEN_code.charAt(j)){
-                        case 'P': newPiece = Pawn(i, cont);
-                        case 'Q': newPiece = Queen(i, cont);
-                        case 'K': newPiece = King(i, cont);
-                        case 'B': newPiece = Bishop(i, cont);
-                        case 'R': newPiece = Rock(i, cont);
-                        case 'N': newPiece = Knight(i, cont);
+                        Piece newPiece;
+                        switch(FEN_code.charAt(j)){
+                            case 'Q': newPiece = new Queen(i, cont, true);
+                            case 'K': newPiece = new King(i, cont, true);
+                            case 'B': newPiece = new Bishop(i, cont, true);
+                            case 'R': newPiece = new Rock(i, cont, true);
+                            case 'N': newPiece = new Knight(i, cont, true);
+                            default: newPiece = new Pawn(i, cont, true);
+                        }
+                        WhitePiecesOnBoard.add(newPiece);
                     }
-                    WhitePiecesOnBoard.add(newPiece);
-                }
                 else if( Character.isUpperCase(FEN_code.charAt(j)) ){
                     Piece newPiece;
                     switch(FEN_code.charAt(j)){
-                        case 'p': newPiece = Pawn(i, cont);
-                        case 'q': newPiece = Queen(i, cont);
-                        case 'k': newPiece = King(i, cont);
-                        case 'b': newPiece = Bishop(i, cont);
-                        case 'r': newPiece = Rock(i, cont);
-                        case 'n': newPiece = Knight(i, cont);
+                        case 'q': newPiece = new Queen(i, cont, false);
+                        case 'k': newPiece = new King(i, cont, false);
+                        case 'b': newPiece = new Bishop(i, cont, false);
+                        case 'r': newPiece = new Rock(i, cont, false);
+                        case 'n': newPiece = new Knight(i, cont, false);
+                        default: newPiece = new Pawn(i, cont, false);
                     }
                     BlackPiecesOnBoard.add(newPiece);
                 }
