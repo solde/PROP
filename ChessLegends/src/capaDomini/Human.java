@@ -27,7 +27,6 @@ public class Human extends Player {
 
     }
 
-
     //public constructors & get/set
     public Human(){ //basic constructor
         this.id = null;

@@ -22,6 +22,41 @@ public class Board {
     
     private Vector<Piece> WhitePiecesOnBoard;
     private Vector<Piece> BlackPiecesOnBoard;
+    
+    private Vector<Vector<Piece>> chessBoard;
+    
+    /**
+     * @Pre True
+     * @Post Create a empty board (fen code = 8/8/8/8/8/8/8/8)
+     */
+    /*public Board() { 
+        this.Default_FEN_code = "8/8/8/8/8/8/8/8";
+        this.FEN_code = Default_FEN_code;
+        chessBoard = new Vector<Vector<Piece>>();
+        for(int i = 0; i < 8; ++i){
+            Vector<Piece> aux = new Vector<Piece>();
+            for(int j = 0; j < 8; ++j){
+                Piece newPiece = new Piece();
+                aux.add(newPiece);
+            }
+            chessBoard.add(aux);
+        }
+    }*/
+
+    /**
+     * @Pre FEN_code contains a correct fen code
+     * @Post Create a board with fen code equals to FEN_code
+     * @param FEN_code 
+     */
+    public Board(String FEN_code) {  
+        this.Default_FEN_code = "8/8/8/8/8/8/8/8";
+        this.FEN_code = FEN_code;
+        processFEN();
+    }
+
+    Board() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     //public methods
     /**
@@ -58,6 +93,23 @@ public class Board {
      * @param dY
      * @param player 
      */
+    
+    /*public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
+        boolean moved = false;
+        if(chessBoard.elementAt(sX).elementAt(sY) != null){
+            if(player && chessBoard.elementAt(sX).elementAt(dY).isColor()){
+                if(chessBoard.elementAt(dX).elementAt(dY) == null || !chessBoard.elementAt(dX).elementAt(dY).isColor()){
+                    chessBoard.elementAt(dX).elementAt(dY) = chessBoard.elementAt(sX).elementAt(sY);
+                    chessBoard.elementAt(sX).elementAt(dY) = new Piece();
+                }
+                else throw chessEsception("You have a piece at destination");
+                
+            if(!player && )
+            }
+        }
+        else throw new chessException("No piece at source");
+    }*/
+    
     public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
         boolean moved = false;
         if(player){
@@ -108,24 +160,7 @@ public class Board {
     }
 
     //public constructors & get/set
-    /**
-     * @Pre True
-     * @Post Create a empty board (fen code = 8/8/8/8/8/8/8/8)
-     */
-    public Board() { this.Default_FEN_code = "8/8/8/8/8/8/8/8";
-        this.FEN_code = Default_FEN_code;
-    }
 
-    /**
-     * @Pre FEN_code contains a correct fen code
-     * @Post Create a board with fen code equals to FEN_code
-     * @param FEN_code 
-     */
-    public Board(String FEN_code) {  
-        this.Default_FEN_code = "8/8/8/8/8/8/8/8";
-        this.FEN_code = FEN_code;
-        processFEN();
-    }
     
     /**
      * @Pre True
@@ -197,4 +232,13 @@ public class Board {
     public boolean isCheckMate(){
         return false;
     }
+    
+    /*public String toFEN(){
+        for(int i = 0; i < 8; ++i){
+            String line;
+            for(int j = 0; j < 8; ++j){
+                if()
+            }
+        }
+    }*/
 }

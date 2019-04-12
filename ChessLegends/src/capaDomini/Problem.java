@@ -30,6 +30,16 @@ public class Problem {
         this.atk = atk;
         this.first_turn = first_turn;
     }
+    
+    public Problem(String fenCode, String Name, int N_mov, String Theme, boolean atk, boolean first_turn) {
+        this.fenCode = fenCode;
+        this.Name = Name;
+        this.N_mov = N_mov;
+        this.Theme = Theme;
+        this.atk = atk;
+        this.first_turn = first_turn;
+        calculateDiff();
+    }
 
     public boolean getFirstTurn(){
         return this.first_turn;

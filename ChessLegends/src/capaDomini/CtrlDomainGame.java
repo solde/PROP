@@ -76,4 +76,5 @@ public class CtrlDomainGame {
         G.setTurn(P.getFirstTurn());
         G.resetTimers();
     }
+   
 }
