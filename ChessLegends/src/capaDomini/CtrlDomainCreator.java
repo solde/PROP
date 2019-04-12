@@ -19,7 +19,7 @@ public class CtrlDomainCreator {
         Pl = new Human();
     }
     
-    public createNewCustomBoard(){
+    public void createNewCustomBoard(){
         B = new Board();
     }
 
@@ -41,8 +41,9 @@ public class CtrlDomainCreator {
     
     public createNewPlayer(String Name, String Password){
         if(!CD.checkUser(Name)){
-            Pl = new Human(Name, Password)
+            Pl = new Human(Name, Password);
+            CD.storeUser(Pl.getHumanInfo());
         }
-        
+        else throw new chessEsception("Username is in use");
     }
 }
