@@ -9,19 +9,16 @@ package capaDomini;
  *
  * @author David Soldevila <3
  */
-public class Game {
-
-    private boolean turn;
+public class Game extends GameAbs {
     private long timerW;
     private long timerB;
     private String wPlayer;
     private String bPlayer;
     
-    private Player P1;
-    private Player P2;
+
     
     void Game(boolean initialTurn) {
-        this.turn = initialTurn;
+        turn = initialTurn;
         
         timerW = 0;
         timerB = 0;
@@ -46,13 +43,7 @@ public class Game {
         timerB += t;
     }
 
-    public void setTurn(boolean turn) {
-        this.turn = turn;
-    }
 
-    public boolean isTurn() {
-        return turn;
-    }
 
     public double getTimerW() {
         return timerW;
