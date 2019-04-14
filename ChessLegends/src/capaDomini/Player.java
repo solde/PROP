@@ -1,4 +1,3 @@
-
 package capaDomini;
 
 /**
@@ -8,8 +7,6 @@ package capaDomini;
 public abstract class Player {
     //private 
 
-  
-
     protected static final double DEFAULT_ELO = 1000.0;
 
     protected String id;
@@ -17,6 +14,15 @@ public abstract class Player {
     protected int loses;
     protected double ELO;
     protected float OP_rating;
+    protected int lineID; //linea del ficher on esta la password
+
+    public int getLineID() {
+        return lineID;
+    }
+
+    public void setLineID(int lineID) {
+        this.lineID = lineID;
+    }
 
     public String getId() {
         return id;
@@ -43,11 +49,11 @@ public abstract class Player {
     }
 
     public void incLoses() {
-        this.loses = this.loses+1;
+        this.loses = this.loses + 1;
     }
 
     public void incWinds() {
-        this.wins = this.wins+1;
+        this.wins = this.wins + 1;
     }
 
     public double getELO() {
@@ -57,11 +63,12 @@ public abstract class Player {
     public void setELO(float ELO) {
         this.ELO = ELO;
     }
+
     public float getOP_rating() {
         return OP_rating;
     }
-    
-    public void restartELO(){
+
+    public void restartELO() {
         this.ELO = DEFAULT_ELO;
     }
 
@@ -72,9 +79,9 @@ public abstract class Player {
     public void incOP_rating(float OP_rating) {
         this.OP_rating = this.OP_rating + OP_rating;
     }
-    
-    public void calcualteELO(){
-        double new_elo = (OP_rating+(400.0*( (double)wins + (double)loses )))/( (double)wins + (double)loses );
+
+    public void calcualteELO() {
+        double new_elo = (OP_rating + (400.0 * ((double) wins + (double) loses))) / ((double) wins + (double) loses);
         this.ELO = new_elo;
     }
 }
