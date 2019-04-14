@@ -66,20 +66,30 @@ public class Board {
      * @return 
      */
     public Vector<Piece> get_pieces() {
-	Vector<Piece> temp = WhitePiecesOnBoard;
+	Vector<Piece> temp;
+        temp = WhitePiecesOnBoard;
         temp.addAll(BlackPiecesOnBoard);
         return temp;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector<Piece> getWhitePiecesOnBoard() {
         return WhitePiecesOnBoard;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector<Piece> getBlackPiecesOnBoard() {
         return BlackPiecesOnBoard;
     }
 	
     /**
+     * @throws Exception.chessException
      * @Pre Exist a piece at source and it can move to destiantion.
      * @Post Piece has de new location.
      * 
@@ -117,7 +127,7 @@ public class Board {
                 if(WhitePiecesOnBoard.elementAt(i).equalXY(sX, sY)){
                     for(int j = 0; j < WhitePiecesOnBoard.size(); ++j){
                         if(WhitePiecesOnBoard.elementAt(j).equalXY(dX, dY)){
-                            throw new ArithmeticException("Can't move - You have one piece at destiny");
+                            throw new chessException("Can't move - You have one piece at destiny");
                         }
                     }
                 }
@@ -138,7 +148,7 @@ public class Board {
                 if(BlackPiecesOnBoard.elementAt(i).equalXY(sX, sY)){
                     for(int j = 0; j < BlackPiecesOnBoard.size(); ++j){
                         if(BlackPiecesOnBoard.elementAt(j).equalXY(dX, dY)){
-                            throw new ArithmeticException("Can't move - You have one piece at destiny");
+                            throw new chessException("Can't move - You have one piece at destiny");
                         }
                     }
                 }

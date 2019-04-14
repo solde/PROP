@@ -5,6 +5,8 @@
  */
 package capaDomini;
 
+import Exception.chessException;
+
 /**
  *
  * @author David Soldevila
@@ -14,16 +16,17 @@ public abstract class GameAbs {
     protected Player P2;
     
     protected Board B;
+    protected Problem P;
     
     protected boolean turn;
 
     public GameAbs(boolean turn) {
         this.turn = turn;
-        B = new B();
+        B = new Board();
     }
 
     public GameAbs() {
-        B = new B();
+        B = new Board();
     }
     
     public void setTurn(boolean turn) {
@@ -34,7 +37,39 @@ public abstract class GameAbs {
         return turn;
     }
     
-    public void setFENcode(String FEN){
-        B.setFEN_code(FEN);
+    public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
+        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
     }
+    
+    public void setPlayer1(String playerId, int wins, int loses, int ELO, int OP_rating){
+        if(playerId.equalsIgnoreCase("AI1")){
+            P1 = new AI1();
+        }
+        else{
+            P1 = new Human(playerId, wins, loses, ELO, OP_rating);
+        }
+    }
+    
+    public void setPlayer2(String playerId, int wins, int loses, int ELO, int OP_rating){
+        if(playerId.equalsIgnoreCase("AI1")){
+            P2 = new AI1();
+        }
+        else{
+            P2 = new Human(playerId, wins, loses, ELO, OP_rating);
+        }
+    }
+    
+    /**
+     *
+     * @param sX
+     * @param sY
+     * @param dX
+     * @param dY
+     * @param color
+     * @param time
+     * @throws chessException
+     */
+    public abstract void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException;
+    public abstract boolean playMatch() throws chessException;
+    public abstract void resetTimers();
 }

@@ -30,32 +30,22 @@ public class AICompetition extends GameAbs{
         return N;
     }
     
-    public void setAI(boolean player1, boolean player2){
-        if(!player1){
-            P1 = new AI1(); 
-        }
-        else{
-            P1 = new AI1();
-            System.out.println("Not Implemented");
-        }
-        if(!player2){
-            P2 = new AI1();
-        }
-        else{
-            P2 = new AI1();
-            System.out.println("Not implemented");
-        }
-    }
-    
-    public boolean gameLoop(){
-        
-    }
-    
+    /**
+     *
+     * @return
+     * @throws chessException
+     */
+    @Override
     public boolean playMatch() throws chessException{
         if(N == 0) throw new chessException("Competition is done");
         else{
             return false;
         }
+    }
+
+    @Override
+    public void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException {
+        throw new UnsupportedOperationException("You are a mere spectator");
     }
     
 }

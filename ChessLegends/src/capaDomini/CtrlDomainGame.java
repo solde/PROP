@@ -12,41 +12,41 @@ import Exception.chessException;
  */
 public class CtrlDomainGame {
     private GameAbs G;
-    private Problem P;
         
     public CtrlDomainGame() {
-        P = new Problem();
+        G = new Game();
+    }
+    
+    public CtrlDomainGame(int N){
+        G = new AICompetition(N);
     }
     
     public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
         //(fenCode, Name, diff, N_mov, Theme, atk)
-        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
-        G.setFEN_code( P.getFenCode() );
-        initGame();
+        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
     }
     
     public void authPlayer1Test(String playerId, String playerPassword, int wins, int loses, int ELO, int OP_rating){
-        if(playerId.equals("AI1")){
-            G.setAi1AsPlayer(true);
-        }
-        else{
-            G.setPlayer1(playerId, wins, loses, ELO, OP_rating);
-        }
+        G.setPlayer1(playerId, wins, loses, ELO, OP_rating);
     }
     
     public void authPlayer2Test(String playerId, String playerPassword, int wins, int loses, int ELO, int OP_rating){
-        if(playerId.equals("AI1")){
-            G.setAi1AsPlayer(false);
-        }
-        else{
-            G.setPlayer2(playerId, wins, loses, ELO, OP_rating);
-        }
+        G.setPlayer2(playerId, wins, loses, ELO, OP_rating);
     }
     
+    /**
+     *
+     * @param sX
+     * @param sY
+     * @param dX
+     * @param dY
+     * @param time
+     * @return
+     */
     public int moveWhitePiece(int sX, int sY, int dX, int dY, long time){
         try{
             if(G.isTurn()){
-                B.movePiece(sX, sY, dX, dY, true);
+                G.movePiece(sX, sY, dX, dY, true, time);
             }
             else return -1;
         }
@@ -56,12 +56,18 @@ public class CtrlDomainGame {
         return 0;
     }
     
+    /**
+     *
+     * @param sX
+     * @param sY
+     * @param dX
+     * @param dY
+     * @param time
+     * @return
+     */
     public int moveBlackPiece(int sX, int sY, int dX, int dY, long time){
         try{
-            if(G.isTurn()){
-                B.movePiece(sX, sY, dX, dY, false);
-            }
-            else return -1;
+            G.movePiece(sX, sY, dX, dY, false, time);
         }
         catch(chessException e){
             System.out.println("Can't move");
@@ -71,13 +77,13 @@ public class CtrlDomainGame {
     
     public void initGame(){
         G = new Game();
-        G.setTurn(P.getFirstTurn());
         G.resetTimers();
     }
     
-    public void initCompetition(int N, boolean player1, boolean player2){
-        G = new AICompetition(N);
-        G.setAI(player1, player2);
+    public void initCompetition(boolean player1, boolean player2){
+        G.setPlayer1("AI1", 0, 0, 1000, 1000);
+        G.setPlayer2("AI1", 0, 0, 1000, 1000);
+        //Fer coses d'estadistiques
     }
    
 }

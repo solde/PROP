@@ -5,6 +5,8 @@
  */
 package capaDomini;
 
+import Exception.chessException;
+
 /**
  *
  * @author David Soldevila <3
@@ -30,6 +32,10 @@ public class Game extends GameAbs {
         turn = true;
     }
 
+    /**
+     *
+     */
+    @Override
     public void resetTimers(){
         timerW = 0;
         timerB = 0;
@@ -75,20 +81,35 @@ public class Game extends GameAbs {
         this.bPlayer = bPlayer;
     }
     
-    public void setPlayer1(String playerId, int wins, int loses, int ELO, int OP_rating){
-        P1 = new Human(playerId, wins, loses, ELO, OP_rating);
-    }
+
     
-    public void setPlayer2(String playerId, int wins, int loses, int ELO, int OP_rating){
-        P2 = new Human(playerId, wins, loses, ELO, OP_rating);
-    }
-    
-    public void setAi1AsPlayer(boolean b){
-        if(b){
-            P1 = new AI1();
+    /**
+     *
+     * @param sX
+     * @param sY
+     * @param dX
+     * @param dY
+     * @param color
+     * @param time
+     * @throws chessException
+     */
+    @Override
+    public void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException{
+        if(color != this.turn){
+            throw new chessException("You are not the owner of the piece");
         }
         else{
-            P2 = new AI1();
+            try{
+                B.movePiece(sX, sY, dX, dY, color);
+            }
+            catch (chessException e){
+                throw new chessException("Can't move");
+            }
         }
+    }    
+
+    @Override
+    public boolean playMatch() throws chessException {
+        throw new UnsupportedOperationException("You have to play, slacker"); //To change body of generated methods, choose Tools | Templates.
     }
 }
