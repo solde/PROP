@@ -47,6 +47,10 @@ public class AICompetition extends GameAbs{
         }
     }
     
+    public boolean gameLoop(){
+        
+    }
+    
     public boolean playMatch() throws chessException{
         if(N == 0) throw new chessException("Competition is done");
         else{

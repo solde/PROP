@@ -5,6 +5,8 @@
  */
 package capaDomini;
 
+import Exception.chessException;
+
 /**
  *
  * @author David Soldevila
@@ -12,18 +14,31 @@ package capaDomini;
 public class CtrlDomainCreator {
     private Board B;
     private Problem P;
+    private Player Pl;
         
+    /**
+     *
+     */
     public CtrlDomainCreator() {
         B = new Board();
         P = new Problem();
         Pl = new Human();
     }
     
+    /**
+     *
+     */
     public void createNewCustomBoard(){
         B = new Board();
     }
 
-    public addPieceToBoard(int X, int Y, char Type){
+    /**
+     *
+     * @param X
+     * @param Y
+     * @param Type
+     */
+    public void addPieceToBoard(int X, int Y, char Type){
         try{
             B.addPieceAt(X, Y, Type);
         }
@@ -32,18 +47,32 @@ public class CtrlDomainCreator {
         }
     }
     
-    public createNewProblem(String Name int N_mov, String Theme, boolean atk, boolean first_turn){
+    /**
+     *
+     * @param Name
+     * @param N_mov
+     * @param Theme
+     * @param atk
+     * @param first_turn
+     */
+    public void createNewProblem(String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
         String fenCode = B.toFEN();
         P = new Problem(fenCode, Name, N_mov, Theme, atk, first_turn);
         if(P.verify())  CD.storeProblem( P.getProblemInfo() );
         else throw new chessException("Problem has no solution");
     }
     
-    public createNewPlayer(String Name, String Password){
+    /**
+     *
+     * @param Name
+     * @param Password
+     * @throws chessException
+     */
+    public void createNewPlayer(String Name, String Password) throws chessException{
         if(!CD.checkUser(Name)){
             Pl = new Human(Name, Password);
             CD.storeUser(Pl.getHumanInfo());
         }
-        else throw new chessEsception("Username is in use");
+        else throw new chessException("Username is in use");
     }
 }

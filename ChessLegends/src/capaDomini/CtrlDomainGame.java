@@ -11,20 +11,17 @@ import Exception.chessException;
  * @author David Soldevila
  */
 public class CtrlDomainGame {
-    private Game G;
-    private Board B;
+    private GameAbs G;
     private Problem P;
         
     public CtrlDomainGame() {
-        G = new Game();
-        B = new Board();
         P = new Problem();
     }
     
     public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
         //(fenCode, Name, diff, N_mov, Theme, atk)
         P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
-        B.setFEN_code( P.getFenCode() );
+        G.setFEN_code( P.getFenCode() );
         initGame();
     }
     
@@ -73,8 +70,14 @@ public class CtrlDomainGame {
     }
     
     public void initGame(){
+        G = new Game();
         G.setTurn(P.getFirstTurn());
         G.resetTimers();
+    }
+    
+    public void initCompetition(int N, boolean player1, boolean player2){
+        G = new AICompetition(N);
+        G.setAI(player1, player2);
     }
    
 }

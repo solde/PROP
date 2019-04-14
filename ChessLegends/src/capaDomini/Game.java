@@ -43,8 +43,6 @@ public class Game extends GameAbs {
         timerB += t;
     }
 
-
-
     public double getTimerW() {
         return timerW;
     }
