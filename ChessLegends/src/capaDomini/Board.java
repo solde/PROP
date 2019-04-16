@@ -206,7 +206,7 @@ public class Board {
      *
      * @return
      */
-    public String fenToString(){
+    public String fenToString() throws chessException {
         String str = new String
         for(int i = 0; i < 8; ++i){
             String line = new String;
@@ -217,33 +217,38 @@ public class Board {
                 }
                 else{
                     if(cont != 0){
-                        line.concat(Integer.toString(cont));
+                        line = line.concat(Integer.toString(cont));
                         cont = 0;
                     }
                     if(chessBoard[i][j].isColor()){
                         switch(chessBoard[i][j].getValue()){
-                            case 0: line.concat("K");
-                            case 1: line.concat("P");
-                            case 3: p = line.concat("B");
-                            case 4: p = line.concat("N");
-                            case 5: p = line.concat("R");
-                            case 7: line.concat("Q");
-                            default: line.concat("X");
+                            case 0: line = line.concat("K");
+                            case 1: line = line.concat("P");
+                            case 3: line = line.concat("B");
+                            case 4: line = line.concat("N");
+                            case 5: line = line.concat("R");
+                            case 7: line = line.concat("Q");
+                            default: throw new chessException("Unexpected Error");
                         }
                     }
                     else{
                         switch(chessBoard[i][j].getValue()){
-                            case 0: line.concat("k");
-                            case 1: line.concat("p");
-                            case 3: line.concat("b");
-                            case 4: line.concat("n");
-                            case 5: line.concat("r");
-                            case 7: line.concat("q");
-                            default: line.concat("x");
+                            case 0: line = line.concat("k");
+                            case 1: line = line.concat("p");
+                            case 3: line = line.concat("b");
+                            case 4: line = line.concat("n");
+                            case 5: line = line.concat("r");
+                            case 7: line = line.concat("q");
+                            default: throw new chessException("Unexpected Error");
                         }
                     }
                 }
             }
+            str = str.concat(line);
+            if(i != 7){
+                str = str.concat("/");
+            }
         }
+        return str;
     }
 }
