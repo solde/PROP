@@ -6,7 +6,7 @@ import javafx.util.Pair;
 
 public abstract class Piece {
 
-    private double value;
+    private int value;
     private int x;
     private int y;
     private boolean color; //TRUE WHITE FALSE BLACK

@@ -8,24 +8,46 @@ public class King extends Piece {
 
     private int max;
 
+    /**
+     *
+     */
     public King() {
         super(0, 0, 0,true);
         this.max = 2;
     }
 
-    public King(int x, int y,boolean color) {
+    /**
+     *
+     * @param x
+     * @param y
+     * @param color
+     */
+    public King(int x, int y, boolean color) {
         super(0, x, y,color);
         this.max = 2;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMax() {
         return this.max;
     }
 
+    /**
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /**
+     *
+     * @param b
+     * @return
+     */
     @Override
     public List<Pair> get_poss_mov(Board b) {
         List<Pair> mov = new ArrayList<>();

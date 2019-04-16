@@ -38,13 +38,8 @@ public class CtrlDomainCreator {
      * @param Y
      * @param Type
      */
-    public void addPieceToBoard(int X, int Y, char Type){
-        try{
-            B.addPieceAt(X, Y, Type);
-        }
-        catch(Exception e){
-            System.out.println("Cannot add piece");
-        }
+    public void modifyBoardCell(int X, int Y, int Type, boolean color){
+        B.addPieceToBoard(X, Y, Type, color);
     }
     
     /**
@@ -56,7 +51,7 @@ public class CtrlDomainCreator {
      * @param first_turn
      */
     public void createNewProblem(String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
-        String fenCode = B.toFEN();
+        String fenCode = G.getActualFEN();
         P = new Problem(fenCode, Name, N_mov, Theme, atk, first_turn);
         if(P.verify())  CD.storeProblem( P.getProblemInfo() );
         else throw new chessException("Problem has no solution");
@@ -71,8 +66,16 @@ public class CtrlDomainCreator {
     public void createNewPlayer(String Name, String Password) throws chessException{
         if(!CD.checkUser(Name)){
             Pl = new Human(Name, Password);
-            CD.storeUser(Pl.getHumanInfo());
+            //CD.storeUser(Pl.getHumanInfo());
         }
         else throw new chessException("Username is in use");
+    }
+    
+    public void modifyProblemTest(String Name, String FEN_code, int N_mov, String Theme, boolean atk, boolean first_turn){
+        B.setFEN_code(FEN_code);
+    }
+    
+    public saveProblemAsCopy(String newName){
+        String newFen = B.toString()
     }
 }

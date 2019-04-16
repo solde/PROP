@@ -9,7 +9,7 @@ public class Knight extends Piece {
     private int max;
 
     public Knight() {  //Per defecte son whites
-        super(3.5, 0, 0, true);
+        super(4, 0, 0, true);
         this.max = 10;
     }
 
