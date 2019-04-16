@@ -50,11 +50,15 @@ public class CtrlDomainCreator {
      * @param atk
      * @param first_turn
      */
-    public void createNewProblem(String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
+    public void createNewProblemTest(String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
         String fenCode = G.getActualFEN();
         P = new Problem(fenCode, Name, N_mov, Theme, atk, first_turn);
-        if(P.verify())  CD.storeProblem( P.getProblemInfo() );
-        else throw new chessException("Problem has no solution");
+        if(P.verify()){
+            CD.storeProblemVerifyed( P.getProblemInfo() );
+        }
+        else{
+            CD.storeProblemNotVerifyed( P.getProblemInfo() )
+        }
     }
     
     /**

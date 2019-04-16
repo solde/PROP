@@ -40,6 +40,46 @@ public class Problem {
         this.first_turn = first_turn;
         calculateDiff();
     }
+    
+    /**
+     *
+     * @param info
+     */
+    public Problem(String info) {
+        int i = 0;
+        fenCode = "";
+        while(info.charAt(i) != ' ' && i < info.length()){
+            this.fenCode = fenCode.concat(Character.toString(info.charAt(i)));
+        }
+        
+        Name = "";
+        while(info.charAt(i) != ' ' && i < info.length()){
+            this.Name = Name.concat(Character.toString(info.charAt(i)));
+        }
+        
+        String aux = "";
+        while(info.charAt(i) != ' ' && i < info.length()){
+            aux = aux.concat(Character.toString(info.charAt(i)));
+        }
+        N_mov = Integer.getInteger(aux);
+        
+        this.Theme = "";
+        while(info.charAt(i) != ' ' && i < info.length()){
+            this.Theme = Theme.concat(Character.toString(info.charAt(i)));
+        }
+        
+        aux = "";
+        while(info.charAt(i) != ' ' && i < info.length()){
+            aux = aux.concat(Character.toString(info.charAt(i)));
+        }
+        atk = Boolean.valueOf(aux);
+        
+        aux = "";
+        while(info.charAt(i) != ' ' && i < info.length()){
+            aux = aux.concat(Character.toString(info.charAt(i)));
+        }
+        first_turn = Boolean.valueOf(aux);
+    }
 
     public boolean getFirstTurn(){
         return this.first_turn;
@@ -117,4 +157,25 @@ public class Problem {
         this.diff = 5*(17-x)*N_mov;
     }
     
+    /**
+     *
+     * @return
+     */
+    public String getProblemInfo(){
+        String ret = "";
+        ret = ret.concat(fenCode);
+        ret = ret.concat(" ");
+        ret = ret.concat(Name);
+        ret = ret.concat(" ");
+        ret = ret.concat(Theme);
+        ret = ret.concat(" ");
+        ret = ret.concat(Integer.toString(diff));
+        ret = ret.concat(" ");
+        ret = ret.concat(Integer.toString(N_mov));
+        ret = ret.concat(" ");
+        ret = ret.concat(Boolean.toString(atk));
+        ret = ret.concat(" ");
+        ret = ret.concat(Boolean.toString(first_turn));
+        return ret;
+    }
 }

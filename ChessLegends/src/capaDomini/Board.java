@@ -202,8 +202,12 @@ public class Board {
         chessBoard[x][y] = p;
     }
     
-    public String toString(){
-        String str = new String;
+    /**
+     *
+     * @return
+     */
+    public String fenToString(){
+        String str = new String
         for(int i = 0; i < 8; ++i){
             String line = new String;
             int cont = 0;
