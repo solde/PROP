@@ -87,8 +87,10 @@ public class BoardDriver {
 
                     break;       
                 
-                 case 10:
-
+                 case 10: //addPieceToBoard
+                    B = new Board();
+                    B.addPieceToBoard(5, 5, 0, true);
+                    if()
                     break;       
                 
                  case 11:
