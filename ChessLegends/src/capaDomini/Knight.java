@@ -9,12 +9,12 @@ public class Knight extends Piece {
     private int max;
 
     public Knight() {  //Per defecte son whites
-        super(4, 0, 0, true);
+        super(4, 4, 0, 0, true);
         this.max = 10;
     }
 
     public Knight(int x, int y, boolean color) {
-        super(4, x, y, color);
+        super(4, 4, x, y, color);
         this.max = 10;
     }
 
@@ -27,49 +27,49 @@ public class Knight extends Piece {
     }
 
     @Override
-    public List<Pair> get_poss_mov(Board b) {
-        List<Pair> mov = new ArrayList<>();
-        Pair tmp;
+    public ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b) {
+        ArrayList<Pair<Integer, Integer>> mov = new ArrayList<>();
+        Pair<Integer, Integer> tmp;
         int x_temp = getX();
         int y_temp = getY();
 
-        tmp = new Pair(x_temp - 1, y_temp - 2);
+        tmp = new Pair<Integer, Integer>(x_temp - 1, y_temp - 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
-        tmp = new Pair(x_temp - 1, y_temp + 2);
+        tmp = new Pair<Integer, Integer>(x_temp - 1, y_temp + 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
-        tmp = new Pair(x_temp + 1, y_temp - 2);
+        tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp - 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
-        tmp = new Pair(x_temp + 1, y_temp + 2);
+        tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp + 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
 
-        tmp = new Pair(x_temp - 2, y_temp - 1);
+        tmp = new Pair<Integer, Integer>(x_temp - 2, y_temp - 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
-        tmp = new Pair(x_temp + 2, y_temp - 1);
+        tmp = new Pair<Integer, Integer>(x_temp + 2, y_temp - 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
-        tmp = new Pair(x_temp - 2, y_temp + 1);
+        tmp = new Pair<Integer, Integer>(x_temp - 2, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
-        tmp = new Pair(x_temp + 2, y_temp + 1);
+        tmp = new Pair<Integer, Integer>(x_temp + 2, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 

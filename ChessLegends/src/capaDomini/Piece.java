@@ -1,10 +1,11 @@
 package capaDomini;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
 public abstract class Piece {
-
+    private final int id;
     private int value;
     private int x;
     private int y;
@@ -12,10 +13,11 @@ public abstract class Piece {
 
     public Piece() {
         this.value = 0;
-        
+        this.id = -1;
     }
     
-    public Piece(int val, int x, int y, boolean color) {
+    public Piece(int id, int val, int x, int y, boolean color){
+        this.id = id;
         this.value = val;
         this.color=color;
         this.x=x;
@@ -101,6 +103,11 @@ public abstract class Piece {
         }
         return ret;
     }
+    
+    public boolean equals(Piece p){
+        boolean ret = this.color == p.color && this.value == p.value && this.equalXY(p.getX(), p.y) && this.id == p.getTypeOfPiece();
+        return ret;
+    }
 
 //This method will always be overwritten
 
@@ -109,6 +116,6 @@ public abstract class Piece {
      * @param b
      * @return
      */
-    public abstract List<Pair> get_poss_mov(Board b); //CHANGE IN UML
+    public abstract ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b); //CHANGE IN UML
     public abstract int getTypeOfPiece();
 }

@@ -9,12 +9,12 @@ public class Rock extends Piece {
     private int max;
 
     public Rock() {
-        super(5, 0, 0, true);
+        super(5, 5, 0, 0, true);
         this.max = 10; //for each player
     }
 
     public Rock(int x, int y, boolean color) {
-        super(5, x, y, color);
+        super(5, 5, x, y, color);
         this.max = 10; //for each player
     }
 
@@ -27,15 +27,15 @@ public class Rock extends Piece {
     }
 
     @Override
-    public List<Pair> get_poss_mov(Board b) {
-        List<Pair> mov = new ArrayList<>();
-        Pair tmp;
+    public ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b) {
+        ArrayList<Pair<Integer, Integer>> mov = new ArrayList<>();
+        Pair<Integer, Integer> tmp;
   
         int x_temp = getX();
         int y_temp = getY();
 
         for (int i = 0; i < 8; i++) {
-            tmp = new Pair(x_temp - i, y_temp);
+            tmp = new Pair<Integer, Integer>(x_temp - i, y_temp);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
@@ -43,7 +43,7 @@ public class Rock extends Piece {
             }
         }
         for (int i = 0; i < 8; i++) {
-            tmp = new Pair(x_temp + i, y_temp);
+            tmp = new Pair<Integer, Integer>(x_temp + i, y_temp);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
@@ -51,7 +51,7 @@ public class Rock extends Piece {
             }
         }
         for (int i = 0; i < 8; i++) {
-            tmp = new Pair(x_temp, y_temp + i);
+            tmp = new Pair<Integer, Integer>(x_temp, y_temp + i);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
@@ -59,7 +59,7 @@ public class Rock extends Piece {
             }
         }
         for (int i = 0; i < 8; i++) {
-            tmp = new Pair(x_temp, y_temp - i);
+            tmp = new Pair<Integer, Integer>(x_temp, y_temp - i);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {

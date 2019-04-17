@@ -9,12 +9,12 @@ public class Pawn extends Piece {
     private int max;
 
     public Pawn() {
-        super(1, 0, 0, true);
+        super(1, 1, 0, 0, true);
         this.max = 16;
     }
 
     public Pawn(int x, int y, boolean color) {
-        super(1, x, y, color);
+        super(1, 1, x, y, color);
         this.max = 16;
     }
 
@@ -23,19 +23,19 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Pair> get_poss_mov(Board b) {
-        List<Pair> mov = new ArrayList<>();
-        Pair tmp;
+    public ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b) {
+        ArrayList<Pair<Integer, Integer>> mov = new ArrayList<>();
+        Pair<Integer, Integer> tmp;
         int x_temp = getX();
         int y_temp = getY();
 
         if (isColor()) {
-            tmp = new Pair(x_temp, y_temp + 1);
+            tmp = new Pair<>(x_temp, y_temp + 1);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             }
             if (y_temp == 1) {
-                tmp = new Pair(x_temp, y_temp + 2);
+                tmp = new Pair<>(x_temp, y_temp + 2);
                 if (!pos_taken(tmp, b)) {
                     mov.add(tmp);
                 }
@@ -43,12 +43,12 @@ public class Pawn extends Piece {
         }
         
         if (!isColor()) {
-            tmp = new Pair(x_temp, y_temp - 1);
+            tmp = new Pair<>(x_temp, y_temp - 1);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             }
             if (y_temp == 6) {
-                tmp = new Pair(x_temp, y_temp - 2);
+                tmp = new Pair<>(x_temp, y_temp - 2);
                 if (!pos_taken(tmp, b)) {
                     mov.add(tmp);
                 }

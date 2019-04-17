@@ -9,12 +9,12 @@ public class NullPiece extends Piece {
     private int max;
 
     public NullPiece() {
-        super(-1, 0, 0, true);
+        super(-1, -1, 0, 0, true);
         this.max = 64;
     }
 
     public NullPiece(int x, int y,boolean color) {
-        super(-1, x, y,color);
+        super(-1, -1, x, y,color);
         this.max = 64;
     }
 
@@ -27,8 +27,8 @@ public class NullPiece extends Piece {
     }
 
     @Override
-    public List<Pair> get_poss_mov(Board b) {
-        List<Pair> mov = new ArrayList<>();
+    public ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b) {
+        ArrayList<Pair<Integer, Integer>> mov = new ArrayList<>();
         return mov;
     }
 
