@@ -5,9 +5,7 @@
  */
 package capaDomini;
 
-import java.util.Vector;
 import java.util.*; 
-import java.io.*;
 import Exception.chessException;
 import javafx.util.Pair;
 
@@ -19,7 +17,7 @@ public class Board {
 
     //private
     private String FEN_code;
-    private String Default_FEN_code;
+    private final String Default_FEN_code;
     
     private Piece[][] chessBoard;
     
@@ -122,18 +120,42 @@ public class Board {
                 }
                 else{
                     switch(FEN_code.charAt(j)){
-                        case 'Q': chessBoard[i][cont] = new Queen(i, cont, true);
-                        case 'K': chessBoard[i][cont] = new King(i, cont, true);
-                        case 'B': chessBoard[i][cont] = new Bishop(i, cont, true);
-                        case 'R': chessBoard[i][cont] = new Rock(i, cont, true);
-                        case 'N': chessBoard[i][cont] = new Knight(i, cont, true);
-                        case 'P': chessBoard[i][cont] = new Pawn(i, cont, true);
-                        case 'q': chessBoard[i][cont] = new Queen(i, cont, false);
-                        case 'k': chessBoard[i][cont] = new King(i, cont, false);
-                        case 'b': chessBoard[i][cont] = new Bishop(i, cont, false);
-                        case 'r': chessBoard[i][cont] = new Rock(i, cont, false);
-                        case 'n': chessBoard[i][cont] = new Knight(i, cont, false);
-                        case 'p': chessBoard[i][cont] = new Pawn(i, cont, false);
+                        case 'Q': 
+                            chessBoard[i][cont] = new Queen(i, cont, true);
+                            break;
+                        case 'K': 
+                            chessBoard[i][cont] = new King(i, cont, true);
+                            break;
+                        case 'B':
+                            chessBoard[i][cont] = new Bishop(i, cont, true);
+                            break;
+                        case 'R': 
+                            chessBoard[i][cont] = new Rock(i, cont, true);
+                            break;
+                        case 'N': 
+                            chessBoard[i][cont] = new Knight(i, cont, true);
+                            break;
+                        case 'P': 
+                            chessBoard[i][cont] = new Pawn(i, cont, true);
+                            break;
+                        case 'q': 
+                            chessBoard[i][cont] = new Queen(i, cont, false);
+                            break;
+                        case 'k': 
+                            chessBoard[i][cont] = new King(i, cont, false);
+                            break;
+                        case 'b': 
+                            chessBoard[i][cont] = new Bishop(i, cont, false);
+                            break;
+                        case 'r': 
+                            chessBoard[i][cont] = new Rock(i, cont, false);
+                            break;
+                        case 'n': 
+                            chessBoard[i][cont] = new Knight(i, cont, false);
+                            break;
+                        case 'p': 
+                            chessBoard[i][cont] = new Pawn(i, cont, false);
+                            break;
                         default: chessBoard[i][cont] = new NullPiece(i, cont, true);
                     }
                     ++cont;
@@ -164,7 +186,7 @@ public class Board {
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
                 if(chessBoard[i][j].getTypeOfPiece() == 0 && !(color ^ chessBoard[i][j].isColor())){
-                    List<Pair> pos_movs = chessBoard[i][j].get_poss_mov(this);
+                    List<Pair<Integer, Integer>> pos_movs = chessBoard[i][j].get_poss_mov(this);
                     if(pos_movs.size() > 0) return false;
                 }
             }
@@ -176,8 +198,8 @@ public class Board {
      *
      * @return
      */
-    public List<Piece> getWhitePiecesOnBoard(){
-        List<Piece> ret = new ArrayList<>();
+    public ArrayList<Piece> getWhitePiecesOnBoard(){
+        ArrayList<Piece> ret = new ArrayList<>();
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
                 if(chessBoard[i][j].getTypeOfPiece() != -1 && chessBoard[i][j].isColor()){
@@ -188,11 +210,11 @@ public class Board {
         return ret;
     }
 
-    public List<Piece> getBlackPiecesOnBoard(){
-        List<Piece> ret = new ArrayList<>();
+    public ArrayList<Piece> getBlackPiecesOnBoard(){
+        ArrayList<Piece> ret = new ArrayList<>();
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
-                if(!chessBoard[i][j].isColor()){
+                if(chessBoard[i][j].getTypeOfPiece() != -1 && !chessBoard[i][j].isColor()){
                     ret.add(chessBoard[i][j]);
                 }
             }
@@ -203,12 +225,24 @@ public class Board {
     public void addPieceToBoard(int x, int y, int value, boolean color){
         Piece p;
         switch(value){
-            case 0: p = new King(x, y, color);
-            case 1: p = new Pawn(x, y, color);
-            case 3: p = new Bishop(x, y, color);
-            case 4: p = new Knight(x, y, color);
-            case 5: p = new Rock(x, y, color);
-            case 7: p = new Queen(x, y, color);
+            case 0: 
+                p = new King(x, y, color);
+                break;
+            case 1: 
+                p = new Pawn(x, y, color);
+                break;
+            case 3: 
+                p = new Bishop(x, y, color);
+                break;
+            case 4: 
+                p = new Knight(x, y, color);
+                break;
+            case 5: 
+                p = new Rock(x, y, color);
+                break;
+            case 7: 
+                p = new Queen(x, y, color);
+                break;
             default: p = new NullPiece(x, y, true);
         }
         chessBoard[x][y] = p;
