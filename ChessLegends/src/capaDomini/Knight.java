@@ -14,7 +14,7 @@ public class Knight extends Piece {
     }
 
     public Knight(int x, int y, boolean color) {
-        super(3.5, x, y, color);
+        super(4, x, y, color);
         this.max = 10;
     }
 

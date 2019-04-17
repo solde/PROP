@@ -47,5 +47,10 @@ public class AICompetition extends GameAbs{
     public void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException {
         throw new UnsupportedOperationException("You are a mere spectator");
     }
+
+    @Override
+    public void resetTimers() {
+        throw new UnsupportedOperationException("AI"); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

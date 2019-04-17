@@ -1,7 +1,6 @@
 package capaDomini;
 
 import java.util.List;
-import java.util.Vector;
 import javafx.util.Pair;
 
 public abstract class Piece {
@@ -16,7 +15,7 @@ public abstract class Piece {
         
     }
     
-    public Piece(double val, int x, int y, boolean color) {
+    public Piece(int val, int x, int y, boolean color) {
         this.value = val;
         this.color=color;
         this.x=x;
@@ -59,20 +58,26 @@ public abstract class Piece {
         return (X == this.x && Y == this.y);
     }
 
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
+    /**
+     *
+     * @param p
+     * @param b
+     * @return
+     */
     public boolean pos_taken(Pair p, Board b) {  //FALSE = LLIURE  TRUE = OCUPADA
         boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
-        Vector<Piece> whites= b.getWhitePiecesOnBoard();
-        Vector<Piece> blacks= b.getBlackPiecesOnBoard();
+        List<Piece> whites= b.getWhitePiecesOnBoard();
+        List<Piece> blacks= b.getBlackPiecesOnBoard();
         
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
 
@@ -98,5 +103,11 @@ public abstract class Piece {
     }
 
 //This method will always be overwritten
+
+    /**
+     *
+     * @param b
+     * @return
+     */
     public abstract List<Pair> get_poss_mov(Board b); //CHANGE IN UML
 }

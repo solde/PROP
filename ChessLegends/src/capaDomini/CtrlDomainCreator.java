@@ -51,14 +51,20 @@ public class CtrlDomainCreator {
      * @param first_turn
      */
     public void createNewProblemTest(String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
-        String fenCode = G.getActualFEN();
+        String fenCode;
+        try{
+            fenCode = B.fenToString();
+        }
+        catch(chessException e){
+            System.out.println("Unexpected Error");
+        }
         P = new Problem(fenCode, Name, N_mov, Theme, atk, first_turn);
-        if(P.verify()){
+        /*if(P.verify()){
             CD.storeProblemVerifyed( P.getProblemInfo() );
         }
         else{
             CD.storeProblemNotVerifyed( P.getProblemInfo() )
-        }
+        }*/
     }
     
     /**
@@ -68,11 +74,7 @@ public class CtrlDomainCreator {
      * @throws chessException
      */
     public void createNewPlayer(String Name, String Password) throws chessException{
-        if(!CD.checkUser(Name)){
-            Pl = new Human(Name, Password);
-            //CD.storeUser(Pl.getHumanInfo());
-        }
-        else throw new chessException("Username is in use");
+        Pl = new Human(Name, Password, 0, 0, 1000, 0);
     }
     
     public void modifyProblemTest(String Name, String FEN_code, int N_mov, String Theme, boolean atk, boolean first_turn){

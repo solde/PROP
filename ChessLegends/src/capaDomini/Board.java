@@ -48,6 +48,12 @@ public class Board {
         this.FEN_code = FEN_code;
         processFEN();
     }
+    
+    public Board(Board b) {  
+        this.Default_FEN_code = "8/8/8/8/8/8/8/8";          
+        this.FEN_code = b.getFEN_code();
+        this.chessBoard = b.getchessBoard();
+    }
 
     /*Board() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -82,11 +88,17 @@ public class Board {
                 throw new chessException("Cannot move to dest");
             }
             else{
-                
+                chessBoard[dX][dY] = chessBoard[sX][sX];
+                chessBoard[dX][dY].setX(dX);
+                chessBoard[dX][dY].setY(dY);
+                chessBoard[sX][sY] = new NullPiece(sX, sY, true);
             }
         }
     }
 
+    protected Piece[][] getchessBoard(){
+        return this.chessBoard;
+    }
 
     //public constructors & get/set
 
@@ -205,11 +217,12 @@ public class Board {
     /**
      *
      * @return
+     * @throws Exception.chessException
      */
     public String fenToString() throws chessException {
-        String str = new String
+        String str = new String();
         for(int i = 0; i < 8; ++i){
-            String line = new String;
+            String line = new String();
             int cont = 0;
             for(int j = 0; j < 8; ++j){
                 if(chessBoard[i][j].getValue() == -1){
@@ -222,23 +235,47 @@ public class Board {
                     }
                     if(chessBoard[i][j].isColor()){
                         switch(chessBoard[i][j].getValue()){
-                            case 0: line = line.concat("K");
-                            case 1: line = line.concat("P");
-                            case 3: line = line.concat("B");
-                            case 4: line = line.concat("N");
-                            case 5: line = line.concat("R");
-                            case 7: line = line.concat("Q");
+                            case 0: 
+                                line = line.concat("K");
+                                break;
+                            case 1: 
+                                line = line.concat("P");
+                                break;
+                            case 3: 
+                                line = line.concat("B");
+                                break;
+                            case 4: 
+                                line = line.concat("N");
+                                break;
+                            case 5: 
+                                line = line.concat("R");
+                                break;
+                            case 7: 
+                                line = line.concat("Q");
+                                break;
                             default: throw new chessException("Unexpected Error");
                         }
                     }
                     else{
                         switch(chessBoard[i][j].getValue()){
-                            case 0: line = line.concat("k");
-                            case 1: line = line.concat("p");
-                            case 3: line = line.concat("b");
-                            case 4: line = line.concat("n");
-                            case 5: line = line.concat("r");
-                            case 7: line = line.concat("q");
+                            case 0: 
+                                line = line.concat("k");
+                                break;
+                            case 1: 
+                                line = line.concat("p");
+                                break;
+                            case 3: 
+                                line = line.concat("b");
+                                break;
+                            case 4: 
+                                line = line.concat("n");
+                                break;
+                            case 5: 
+                                line = line.concat("r");
+                                break;
+                            case 7: 
+                                line = line.concat("q");
+                                break;
                             default: throw new chessException("Unexpected Error");
                         }
                     }
@@ -250,5 +287,9 @@ public class Board {
             }
         }
         return str;
+    }
+    
+    public Piece getPieceAt(int x, int y){
+        return chessBoard[x][y];
     }
 }
