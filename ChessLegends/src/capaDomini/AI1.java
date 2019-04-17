@@ -38,10 +38,8 @@ public class AI1 extends Player {
                 if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ this.color)){
                     for(int k=0; k<8; k++){
                         for(int l=0; l<8; l++){
-                            List<Pair> possMovs;
-                            possMovs = piece.get_poss_mov(Board ;
-b);
-                            for(int x = 0; x < possMovs.size(); ++i){
+                            List<Pair> possMovs = piece.get_poss_mov(Board b);
+                            for(int x = 0; x < possMovs.size(); ++x){
                                 int mov[4];
                                 mov[0] = piece.getX();
                                 mov[1] = piece.getY();
