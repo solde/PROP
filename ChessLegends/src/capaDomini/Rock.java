@@ -69,4 +69,9 @@ public class Rock extends Piece {
 
         return mov;
     }
+
+    @Override
+    public int getTypeOfPiece() {
+        return 5;
+    }
 }

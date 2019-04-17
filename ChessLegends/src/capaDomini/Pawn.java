@@ -62,4 +62,9 @@ public class Pawn extends Piece {
         this.max = max;
     }
 
+    @Override
+    public int getTypeOfPiece() {
+        return 1;
+    }
+
 }

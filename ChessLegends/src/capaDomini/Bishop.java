@@ -72,4 +72,9 @@ public class Bishop extends Piece {
         return mov;
     }
 
+    @Override
+    public int getTypeOfPiece() {
+        return 3;
+    }
+
 }

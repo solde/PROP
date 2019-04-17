@@ -5,8 +5,6 @@
  */
 package propdrivers;
 
-;
-
 import java.util.Scanner;
 import capaDomini.Bishop;
 import java.util.concurrent.TimeUnit;
@@ -31,8 +29,7 @@ public class BishopDriver {
         int i = sc.nextInt();
         while (i <= 7) { // ( o el que sea
             switch (i) {
-
-                case 1: {
+                case 1: 
                     System.out.println("Provando getMax");
                     int p = h.getMax();
                     if (p!=2) {
@@ -42,8 +39,9 @@ public class BishopDriver {
                     }
                     TimeUnit.SECONDS.sleep(3);
                     display_menu();//Para poder leer la salida mejor
-                }
-                case 2: {
+                    break;
+                    
+                case 2: 
                     System.out.println("provando setMax");
                     h.setMax(7);
                     int k = h.getMax();
@@ -53,33 +51,32 @@ public class BishopDriver {
                         System.out.println("passed");
                     }
                     TimeUnit.SECONDS.sleep(3);
-
                     display_menu();//Para poder leer la salida mejor
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
-                }
-                 case 3: {
+                    break;
+
+                 case 3:
                     System.out.println("provando getValue");
                     h.setValue(7);
-                    double k = h.getValue();
-                    if (k!=7) {
-                        System.out.println("Getter no funciona");
-                    } else {
+                    int value;
+                    value = h.getValue();
+                    if (value==7) {
                         System.out.println("passed");
+                    } else {
+                        System.out.println("Getter no funciona");
                     }
                     TimeUnit.SECONDS.sleep(3);
-
                     display_menu();//Para poder leer la salida mejor
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
-                }
-
-                default:
                     break;
 
             }
-            i = sc.nextInt();
-        }
+        i = sc.nextInt();
     }
 
+    /**
+     *
+     */
     public static void display_menu() {
         System.out.println("Menu de opciones:");
         System.out.println("Test 1: getMax  ");

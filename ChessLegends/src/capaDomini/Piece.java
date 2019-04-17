@@ -110,4 +110,5 @@ public abstract class Piece {
      * @return
      */
     public abstract List<Pair> get_poss_mov(Board b); //CHANGE IN UML
+    public abstract int getTypeOfPiece();
 }

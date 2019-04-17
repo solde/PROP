@@ -78,4 +78,9 @@ public class Knight extends Piece {
         return mov;
     }
 
+    @Override
+    public int getTypeOfPiece() {
+        return 4;
+    }
+
 }

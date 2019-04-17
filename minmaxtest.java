@@ -1,5 +1,7 @@
+import capaDomini.Board;
 import java.util.*;
 import java.awt.*;
+import java.util.List;
 	
 public class MinMax implements AI {
 	private static final int DEPTH = 1;
@@ -27,23 +29,21 @@ public class MinMax implements AI {
 		 */
 		for(int i = 0; i<8; i++){
 			for(int j=0; j<8; j++){
-				if(b.hasPiece(i,j)){
-					Piece piece = b.getSquare(i,j);
-					if(!(piece.isColor() ^ this.color)){
-						for(int k=0; k<8; k++){
-							for(int l=0; l<8; l++){
-                                List<Pair> possMovs = piece.get_poss_mov(Board b);
-                                for(int x = 0; x < possMovs.size(); ++i){
-                                    int mov[4];
-                                    mov[0] = piece.getX();
-                                    mov[1] = piece.getY();
-                                    mov[3] = possMovs.elementAt(x)
-                                    mov[4] = possMovs.elementAt(x)
-                                }
-							}
-						}
-					}
-				}
+                Piece piece = b.getPieceAt(i,j);
+                if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ this.color)){
+                    for(int k=0; k<8; k++){
+                        for(int l=0; l<8; l++){
+                            List<Pair> possMovs = piece.get_poss_mov(Board b);
+                            for(int x = 0; x < possMovs.size(); ++i){
+                                int mov[4];
+                                mov[0] = piece.getX();
+                                mov[1] = piece.getY();
+                                mov[3] = possMovs.elementAt(x).getKey();
+                                mov[4] = possMovs.elementAt(x).getValue();
+                            }
+                        }
+                    }
+                }
 			}
 		}
 		//initializes bestMove to the first move in the 
@@ -76,6 +76,24 @@ public class MinMax implements AI {
 		return doMove(b, bestMove); //doMove performs the move on the original board and returns a string of that move
 	}
 	
+        public List <int[5]> deepEvaluate( Board b, boolean color){
+            List <int[5]> moves;
+            for(int i = 0; i<8; i++){
+                    for(int j=0; j<8; j++){
+                            if(b.getPieceAt(i,j).getTypeOfPiece() != -1){ 
+                                if(b.getPieceAt(i,j).isColor() == color){
+                                    Piece piece = b.getPieceAt(i,j);
+                                    List<pair> llista = get_poss_mov(piece);
+                                    for each (pair movi : llista){
+                                        moves.add(i, j, movi.getKey(), movi.getValue() ,piece.getTypeOfPiece() ); //?????
+                                    }
+                                }
+                            }
+                    }
+            }
+            return moves;
+        }
+        
 	/**
 	 * The evaluatePosition function takes a board, initial alpha, initial beta, depth, and color as parameters
 	 * and computes a number that describes how advantageous for the AI a particular board is.  The function is 
@@ -103,28 +121,11 @@ public class MinMax implements AI {
 		}
 		
 		if(!color){ //minimizing player--sequence of events that occurs
-			ArrayList<Move> moves = new ArrayList<Move>(); //this arraylist keeps track of possible moves from the given position
+			List <int[5]> moves = deepEvaluate(b, color);
 			/*
 			 * Iterate through the board, collect all possible moves of the minimizing player
 			 */
-			for(int i = 0; i<8; i++){
-				for(int j=0; j<8; j++){
-					if(b.hasPiece(i,j)){
-						if(b.getSquare(i,j).getColor() == color){
-							Piece piece = b.getSquare(i,j);
-							for(int k =0; k<8; k++){
-								for(int l=0; l<8; l++){
-									Point p = new Point(k*62,l*62);
-									if(piece.checkLegalMove(p, b)){
-										moves.add(new Move(i,j,k,l,piece)); //adds moves to the arraylist as they are calculated
-									}
-									
-								}
-							}
-						}
-					}
-				}
-			}
+
 			/*
 			 * This for loop goes through all possible moves and calls evaluatePosition on them,
 			 * changing the color.  Alpha-beta pruning is used here to remove obviously poor moves.
@@ -132,39 +133,26 @@ public class MinMax implements AI {
 			 * which is the score of the minimizing (in this case white player) is less than or
 			 * equal to alpha are discarded.  
 			 */
-			int newBeta = beta;
-			for(Move move : moves){ //for child in node
-				System.out.println("Move to be evaluated: " + move.toString());
-				Board successorBoard = new Board(b); 
-				doMove(successorBoard, move);
+			
+                        int newBeta = beta;
+			for(int i = 0; i < moves.size(); ++i){
+				//System.out.println("Move to be evaluated: " + move.toString());
+				Board successorBoard = new Board(b);
+                                int aux[5] = moves.elementAt(i);
+				b.movePiece(aux[0], aux[1], aux[2], aux[3], color);
+                                
 				newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
 				if(newBeta<= alpha) break;
 			}
 			return newBeta; //returns the highest score of the possible moves
 		}else{ //maximizing player--this is the course of action determined if this is the maximizing player, or black
-			ArrayList<Move> moves = new ArrayList<Move>();
 			/*
 			 * These for loops iterate through the board and add all possible pieces to the ArrayList of
 			 * moves.  
 			 */
-			for(int i = 0; i<8; i++){
-				for(int j=0; j<8; j++){
-					if(b.hasPiece(i,j)){
-						if(b.getSquare(i,j).getColor() == true){
-							Piece piece = b.getSquare(i,j);
-							for(int k =0; k<8; k++){
-								for(int l=0; l<8; l++){
-									Point p = new Point(k*62,l*62);
-									if(piece.checkLegalMove(p, b)){
-										moves.add(new Move(i,j,k,l,piece)); //Check this statement 
-									}
-									
-								}
-							}
-						}
-					}
-				}
-		}
+                        //AQUI VA LA DEEP_EVALUATE
+                       List<int[5]> moves = deepEvaluate(b, color);
+			
 		/*
 		 * This for loop cycles through all possible moves and 
 		 * calculates a new alpha if the successor board evaluates
@@ -172,10 +160,10 @@ public class MinMax implements AI {
 		 * which is stored in alpha.  
 		 */
 		int newAlpha = alpha;
-		for(Move move : moves){ //for child in node
-			System.out.println("Move to be evaluated: " + move.toString());
+		for(int i = 0; i < moves.size(); ++i){
+			//System.out.println("Move to be evaluated: " + move.toString());
 			Board successorBoard = new Board(b); 
-			doMove(successorBoard, move);
+			b.movePiece(aux[0], aux[1], aux[2], aux[3], color);
 			newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
 			if(beta<= newAlpha) break;
 		}
@@ -194,44 +182,27 @@ public class MinMax implements AI {
 	 * @return int that represents how advantageous a board is
 	 */
 	public int evaluate(Board b){
-		int whitescore = 0;
-		int blackscore = 0;
+		int ws = 0;
+		int bs = 0;
 
 		/*
 		 * Iterates through entire board.   
 		 */
 		for(int i = 0; i<8; i++){
 			for(int j=0; j<8; j++){
-				if(b.hasPiece(i, j)){
-					if(b.getSquare(i, j).getColor() == false){ //case that piece is white
-						if(b.getSquare(i,j).getType() == "Queen"){
-							whitescore += 9;
-						}else if(b.getSquare(i,j).getType() == "Rook"){
-							whitescore += 5;
-						}else if(b.getSquare(i,j).getType() == "Knight" || b.getSquare(i,j).getType() == "Bishop"){
-							whitescore += 3;
-						}else if(b.getSquare(i,j).getType() == "Pawn"){
-							whitescore += 1;
-						}else if(b.getSquare(i,j).getType() == "King"){
-							whitescore += 10000000;
-						}
-					}else if(b.getSquare(i,j).getColor() == true){ //case that piece is black
-						if(b.getSquare(i,j).getType() == "Queen"){
-							blackscore += 9;
-						}else if(b.getSquare(i,j).getType() == "Rook"){
-							blackscore += 5;
-						}else if(b.getSquare(i,j).getType() == "Knight" || b.getSquare(i,j).getType() == "Bishop"){
-							blackscore += 3;
-						}else if(b.getSquare(i,j).getType() == "Pawn"){
-							blackscore += 1;
-						}else if(b.getSquare(i,j).getType() == "King"){
-							blackscore += 10000000;
-						}
+				if(b.getPieceAt(i, j).getTypeOfPiece() != -1){
+                                    Piece piece = b.getPieceAt(i,j);
+					if(piece.isColor()){ //true es blanc perquè som racistes
+                                                ws += piece.getValue();
+                                        }
+					
+                                        else { //fals es negre, perque aixi hauria de ser la seva existència
+                                                bs += piece.getValue();
 					}
 				}
 			}
 		}
-		return blackscore-whitescore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+		return bs-ws; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
 	}
 
 }

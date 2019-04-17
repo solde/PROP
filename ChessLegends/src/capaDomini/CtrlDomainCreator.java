@@ -51,7 +51,7 @@ public class CtrlDomainCreator {
      * @param first_turn
      */
     public void createNewProblemTest(String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
-        String fenCode;
+        String fenCode = null;
         try{
             fenCode = B.fenToString();
         }
@@ -81,7 +81,7 @@ public class CtrlDomainCreator {
         B.setFEN_code(FEN_code);
     }
     
-    public saveProblemAsCopy(String newName){
-        String newFen = B.toString()
+    public void saveProblemAsCopy(String newName){
+        String newFen = B.toString();
     }
 }

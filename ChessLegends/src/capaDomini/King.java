@@ -12,7 +12,7 @@ public class King extends Piece {
      *
      */
     public King() {
-        super(0, 0, 0,true);
+        super(1000, 0, 0,true);
         this.max = 2;
     }
 
@@ -23,7 +23,7 @@ public class King extends Piece {
      * @param color
      */
     public King(int x, int y, boolean color) {
-        super(0, x, y,color);
+        super(1000, x, y,color);
         this.max = 2;
     }
 
@@ -96,6 +96,11 @@ public class King extends Piece {
         }
 
         return mov;
+    }
+
+    @Override
+    public int getTypeOfPiece() {
+        return 0;
     }
 
 }

@@ -32,4 +32,9 @@ public class NullPiece extends Piece {
         return mov;
     }
 
+    @Override
+    public int getTypeOfPiece() {
+        return -1;
+    }
+
 }

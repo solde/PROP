@@ -103,4 +103,9 @@ public class Queen extends Piece {
 
         return mov;
     }
+
+    @Override
+    public int getTypeOfPiece() {
+        return 7;
+    }
 }

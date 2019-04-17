@@ -77,14 +77,14 @@ public class Board {
      */
     public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
         boolean moved = false;
-        if(chessBoard[sX][sY].getValue() == -1){
+        if(chessBoard[sX][sY].getTypeOfPiece() == -1){
             throw new chessException("No piece at Soruce");
         }
         else{
             if(chessBoard[sX][sY].isColor() ^ player){
                 throw new chessException("Not your piece");
             } 
-            else if(chessBoard[dX][dY].getValue() != -1 && !(chessBoard[dX][dY].isColor() ^ player)){
+            else if(chessBoard[dX][dY].getTypeOfPiece() != -1 && !(chessBoard[dX][dY].isColor() ^ player)){
                 throw new chessException("Cannot move to dest");
             }
             else{
@@ -163,7 +163,7 @@ public class Board {
     public boolean isCheckMate(boolean color){
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
-                if(chessBoard[i][j].getValue() == 0 && !(color ^ chessBoard[i][j].isColor())){
+                if(chessBoard[i][j].getTypeOfPiece() == 0 && !(color ^ chessBoard[i][j].isColor())){
                     List<Pair> pos_movs = chessBoard[i][j].get_poss_mov(this);
                     if(pos_movs.size() > 0) return false;
                 }
@@ -180,7 +180,7 @@ public class Board {
         List<Piece> ret = new ArrayList<>();
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
-                if(chessBoard[i][j].getValue() != -1 && chessBoard[i][j].isColor()){
+                if(chessBoard[i][j].getTypeOfPiece() != -1 && chessBoard[i][j].isColor()){
                     ret.add(chessBoard[i][j]);
                 }
             }
@@ -225,7 +225,7 @@ public class Board {
             String line = new String();
             int cont = 0;
             for(int j = 0; j < 8; ++j){
-                if(chessBoard[i][j].getValue() == -1){
+                if(chessBoard[i][j].getTypeOfPiece() == -1){
                     cont++;
                 }
                 else{
@@ -234,7 +234,7 @@ public class Board {
                         cont = 0;
                     }
                     if(chessBoard[i][j].isColor()){
-                        switch(chessBoard[i][j].getValue()){
+                        switch(chessBoard[i][j].getTypeOfPiece()){
                             case 0: 
                                 line = line.concat("K");
                                 break;
@@ -257,7 +257,7 @@ public class Board {
                         }
                     }
                     else{
-                        switch(chessBoard[i][j].getValue()){
+                        switch(chessBoard[i][j].getTypeOfPiece()){
                             case 0: 
                                 line = line.concat("k");
                                 break;
