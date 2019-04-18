@@ -75,17 +75,17 @@ public class ProblemDriver {
 
     public static void display_menu() {
         System.out.println("Menu de opciones:");
-        System.out.println("Test 1: Problem Constuctor");
-        System.out.println("Test 2 :Problem Constuctor");
-        System.out.println("Test 3: create a copy of a board  ");
-        System.out.println("Test 4: getFEN_code ");
-        System.out.println("Test 5: getWhitePiecesOnBoard  ");
-        System.out.println("Test 6: getBlackPiecesOnBoard  ");
-        System.out.println("Test 7: getPieceAt  ");
-        System.out.println("Test 8: movePiece   ");
-        System.out.println("Test 9: setFEN_code   ");
-        System.out.println("Test 10: addPieceToBoard   ");
-        System.out.println("Test 11: fenToString   ");
+        System.out.println("Test 1: Problem Constuctor Creator");
+        System.out.println("Test 2 :Problem Constuctor Loader Test");
+        System.out.println("Test 3: Problem Constuctor Loader String Info");
+        System.out.println("Test 4: verify ");
+        System.out.println("Test 5: numberPiecesOf  ");
+        System.out.println("Test 6: calculateDiff/getDiff  ");
+        System.out.println("Test 7: getProblemInfo  ");
+        System.out.println("Test 8: ");
+        System.out.println("Test 9: ");
+        System.out.println("Test 10: ");
+        System.out.println("Test 11: ");
 
         System.out.println("Para salir presione 8");
 
