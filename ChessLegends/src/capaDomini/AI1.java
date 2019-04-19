@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package capaDomini;
+
 import java.util.List;
 import javafx.util.Pair;
 
@@ -15,73 +16,73 @@ public class AI1 extends Player {
 
     private static int AI1_ID = 2;
     private static final long serialVersionUID = 1L;
-    
-    public AI1(){
+
+    public AI1() {
         System.out.println("Not implemented");
     }
 
     public String makeMove(Board b) {
-		// TODO Auto-generated method stub
-		//generate all legal moves
-		List<int[]> bestMove; //keeps track of the best possible move AI has available
-		int bestMoveScore; //score of that best move
-		
-		ArrayList<Board> possibleBoards = new ArrayList<Board>(); //keeps track of the possible boards (boards with the possible moves made on them)
-		ArrayList<int[]> moves  = new ArrayList<int[4]>(); //keeps track of all possible moves 
+        // TODO Auto-generated method stub
+        //generate all legal moves
+        List<int[]> bestMove; //keeps track of the best possible move AI has available
+        int bestMoveScore; //score of that best move
+
+        ArrayList<Board> possibleBoards = new ArrayList<Board>(); //keeps track of the possible boards (boards with the possible moves made on them)
+        ArrayList<int[]> moves = new ArrayList<int[4]>(); //keeps track of all possible moves 
 		
 		/*
 		 * iterates through board, generates all possible moves and saves them in moves
 		 */
-		for(int i = 0; i<8; i++){
-			for(int j=0; j<8; j++){
-                Piece piece = b.getPieceAt(i,j);
-                if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ this.color)){
-                    for(int k=0; k<8; k++){
-                        for(int l=0; l<8; l++){
-                            List<Pair> possMovs = piece.get_poss_mov(Board b);
-                            for(int x = 0; x < possMovs.size(); ++x){
+		for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Piece piece = b.getPieceAt(i, j);
+                if (piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ this.color)) {
+                    for (int k = 0; k < 8; k++) {
+                        for (int l = 0; l < 8; l++) {
+                            List<Pair> possMovs = piece.get_poss_mov(Board b );
+                            for (int x = 0; x < possMovs.size(); ++x) {
                                 int mov[4];
                                 mov[0] = piece.getX();
                                 mov[1] = piece.getY();
-                                mov[3] = possMovs.elementAt(x).getKey();
-                                mov[4] = possMovs.elementAt(x).getValue();
+                               // mov[3] = possMovs.elementAt(x).getKey();
+                               // mov[4] = possMovs.elementAt(x).getValue();
                             }
                         }
                     }
                 }
-			}
-		}
-		//initializes bestMove to the first move in the 
-		bestMove = moves.get(0);
-		bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, false);
-		
-		//call evaluateposition on each move
-		//keep track of the move with the best score
-		if(N>0){
-			for(int i = 1; i<possibleBoards.size(); i++){
-				System.out.println("Evaluating move: " + moves.get(i).toString());
-				/*
+            }
+        }
+        //initializes bestMove to the first move in the 
+        bestMove = moves.get(0);
+        bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, false);
+
+        //call evaluateposition on each move
+        //keep track of the move with the best score
+        if (N > 0) {
+            for (int i = 1; i < possibleBoards.size(); i++) {
+                System.out.println("Evaluating move: " + moves.get(i).toString());
+                /*
 				 * calls evaluatePosition on each possible board and if the score is higher than previous,
 				 * reset the bestMove
-				 */
-				int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, false);
-				if(j >= bestMoveScore){
-					bestMove = moves.get(i);
-					bestMoveScore = j;
-				}
-	
-			}
-		}else{
-			Random generator = new Random();
-			int index = generator.nextInt(moves.size());
-			bestMove = moves.get(index);
-		}
-		System.out.println(bestMove.toString());
-		numTurns++;
-		return doMove(b, bestMove); //doMove performs the move on the original board and returns a string of that move
-	}
-	
-        public List <int[5]> deepEvaluate( Board b, boolean color){
+                 */
+                int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, false);
+                if (j >= bestMoveScore) {
+                    bestMove = moves.get(i);
+                    bestMoveScore = j;
+                }
+
+            }
+        } else {
+            Random generator = new Random();
+            int index = generator.nextInt(moves.size());
+            bestMove = moves.get(index);
+        }
+        System.out.println(bestMove.toString());
+        numTurns++;
+        return doMove(b, bestMove); //doMove performs the move on the original board and returns a string of that move
+    }
+
+    /* public List <int[5]> deepEvaluate( Board b, boolean color){
             List <int[5]> moves;
             for(int i = 0; i<8; i++){
                     for(int j=0; j<8; j++){
@@ -112,34 +113,33 @@ public class AI1 extends Player {
 	 * @param depth
 	 * @param color
 	 * @return an int giving a score of how good a particular board is, with higher numbers corresponding to better boards for the AI
-	 */
-	public int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color){ 
-		System.out.println("Begin evaluating position: depth-" + depth + "for- "+ color);
-		/*
+     */
+    public int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color) {
+        System.out.println("Begin evaluating position: depth-" + depth + "for- " + color);
+        /*
 		 * Base case: when depth is decremented to 0, evaluatePosition simply returns the result
 		 * of the evaluate function
-		 */
-		if(depth == 0){
-			int evaluation = evaluate(b);
-			System.out.println("Evaluated to: " + evaluation);
-			return evaluation;
-		}
-		
-		if(!color){ //minimizing player--sequence of events that occurs
-			List <int[5]> moves = deepEvaluate(b, color);
-			/*
-			 * Iterate through the board, collect all possible moves of the minimizing player
-			 */
+         */
+        if (depth == 0) {
+            //int evaluation = evaluate(b);
+            System.out.println("Evaluated to: " + evaluation);
+            return evaluation;
+        }
 
-			/*
+        if (!color) { //minimizing player--sequence of events that occurs
+            //List <int[5]> moves = deepEvaluate(b, color);
+            /*
+			 * Iterate through the board, collect all possible moves of the minimizing player
+             */
+
+ /*
 			 * This for loop goes through all possible moves and calls evaluatePosition on them,
 			 * changing the color.  Alpha-beta pruning is used here to remove obviously poor moves.
 			 * These are determined by the variables alpha and beta.  All moves where the beta,
 			 * which is the score of the minimizing (in this case white player) is less than or
 			 * equal to alpha are discarded.  
-			 */
-			
-                        int newBeta = beta;
+             */
+ /*  int newBeta = beta;
 			for(int i = 0; i < moves.size(); ++i){
 				//System.out.println("Move to be evaluated: " + move.toString());
 				Board successorBoard = new Board(b);
@@ -148,23 +148,23 @@ public class AI1 extends Player {
                                 
 				newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
 				if(newBeta<= alpha) break;
-			}
-			return newBeta; //returns the highest score of the possible moves
-		}else{ //maximizing player--this is the course of action determined if this is the maximizing player, or black
-			/*
+			}*/
+            //return newBeta; //returns the highest score of the possible moves
+        } else { //maximizing player--this is the course of action determined if this is the maximizing player, or black
+            /*
 			 * These for loops iterate through the board and add all possible pieces to the ArrayList of
 			 * moves.  
-			 */
-                        //AQUI VA LA DEEP_EVALUATE
-                       List<int[5]> moves = deepEvaluate(b, color);
-			
-		/*
+             */
+            //AQUI VA LA DEEP_EVALUATE
+            //  List<int[5]> moves = deepEvaluate(b, color);
+
+            /*
 		 * This for loop cycles through all possible moves and 
 		 * calculates a new alpha if the successor board evaluates
 		 * to a higher number than what is currently the highest score,
 		 * which is stored in alpha.  
-		 */
-		int newAlpha = alpha;
+             */
+ int newAlpha = alpha;
 		for(int i = 0; i < moves.size(); ++i){
 			//System.out.println("Move to be evaluated: " + move.toString());
 			Board successorBoard = new Board(b); 
@@ -175,39 +175,38 @@ public class AI1 extends Player {
 		return newAlpha; //returns the highest score of the possible moves
 		}
 	}
-	
-	/**
-	 * The evaluate(Board b) function is an evaluation function that returns a number based on
-	 * how advantageous a board is for the maximizing, black in this case, player. This function
-	 * simply iterates through the whole board and gives a weighted number to each piece on the board,
-	 * kings naturally yielding the highest number, queens the second, and so on.  The total white score
-	 * is subtracted from the total black score to give a full picture of how advantageous the board is 
-	 * for a black player.  
-	 * @param b
-	 * @return int that represents how advantageous a board is
-	 */
-	public int evaluate(Board b){
+            /**
+             * The evaluate(Board b) function is an evaluation function that
+             * returns a number based on how advantageous a board is for the
+             * maximizing, black in this case, player. This function simply
+             * iterates through the whole board and gives a weighted number to
+             * each piece on the board, kings naturally yielding the highest
+             * number, queens the second, and so on. The total white score is
+             * subtracted from the total black score to give a full picture of
+             * how advantageous the board is for a black player.
+             *
+             * @param b
+             * @return int that represents how advantageous a board is
+             */
+            public int evaluate(Board b){
 		int ws = 0;
 		int bs = 0;
 
 		/*
 		 * Iterates through entire board.   
-		 */
-		for(int i = 0; i<8; i++){
-			for(int j=0; j<8; j++){
-				if(b.getPieceAt(i, j).getTypeOfPiece() != -1){
-                                    Piece piece = b.getPieceAt(i,j);
-					if(piece.isColor()){ //true es blanc perqu� som racistes
-                                                ws += piece.getValue();
-                                        }
-					
-                                        else { //fals es negre, perque aixi hauria de ser la seva exist�ncia
-                                                bs += piece.getValue();
-					}
-				}
-			}
-		}
-		return bs-ws; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
-	}
-
+             */
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (b.getPieceAt(i, j).getTypeOfPiece() != -1) {
+                        Piece piece = b.getPieceAt(i, j);
+                        if (piece.isColor()) { //true es blanc perqu� som racistes
+                                      ws += piece.getValue();
+                        } else { //fals es negre, perque aixi hauria de ser la seva exist�ncia
+                                     bs += piece.getValue();
+                        }
+                    }
+                }
+            }
+            return bs-ws; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+        }
 }
