@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.util.Pair;
 
 public abstract class Piece {
+
     private final int id;
     private int value;
     private int x;
@@ -15,13 +16,13 @@ public abstract class Piece {
         this.value = 0;
         this.id = -1;
     }
-    
-    public Piece(int id, int val, int x, int y, boolean color){
+
+    public Piece(int id, int val, int x, int y, boolean color) {
         this.id = id;
         this.value = val;
-        this.color=color;
-        this.x=x;
-        this.y=y;
+        this.color = color;
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
@@ -35,7 +36,6 @@ public abstract class Piece {
     public void setColor(boolean color) {
         this.color = color;
     }
-    
 
     public void setX(int x) {
         this.x = x;
@@ -78,9 +78,9 @@ public abstract class Piece {
         boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
-        List<Piece> whites= b.getWhitePiecesOnBoard();
-        List<Piece> blacks= b.getBlackPiecesOnBoard();
-        
+        List<Piece> whites = b.getWhitePiecesOnBoard();
+        List<Piece> blacks = b.getBlackPiecesOnBoard();
+
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
 
             for (Piece white : whites) {
@@ -97,25 +97,24 @@ public abstract class Piece {
                     ret = true;
                 }
             }
-        }
-        else{
+        } else {
             return true;
         }
         return ret;
     }
-    
-    public boolean equals(Piece p){
+
+    public boolean equals(Piece p) {
         boolean ret = this.color == p.color && this.value == p.value && this.equalXY(p.getX(), p.y) && this.id == p.getTypeOfPiece();
         return ret;
     }
 
 //This method will always be overwritten
-
     /**
      *
      * @param b
      * @return
      */
     public abstract ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b); //CHANGE IN UML
+
     public abstract int getTypeOfPiece();
 }

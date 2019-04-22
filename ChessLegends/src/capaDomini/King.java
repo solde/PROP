@@ -76,17 +76,17 @@ public class King extends Piece {
             mov.add(tmp);
         }
 
-        tmp = new Pair<Integer, Integer>(x_temp, y_temp - 1);
+        tmp = new Pair<>(x_temp, y_temp - 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
 
-        tmp = new Pair<Integer, Integer>(x_temp, y_temp + 1);
+        tmp = new Pair<>(x_temp, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
 
-        tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp);
+        tmp = new Pair<>(x_temp + 1, y_temp);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }

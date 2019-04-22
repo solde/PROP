@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import static java.lang.System.in;
+import java.util.Map;
 
 /**
  *
@@ -16,12 +17,22 @@ import static java.lang.System.in;
 public class Human extends Player {
 
     //Basicament tot lo relacionat amb password es temporal 
-    
     //private
     private String password; //TEMP, ja millorarem la seguritat
-
+    private Map<String, Float> times;
     //public methods
- 
+
+    public Map<String, Float> getTimes() {
+        return times;
+    }
+
+    public void setTimes(Map<String, Float> times) {
+        this.times = times;
+    }
+
+    public void addTime(String prob, Float time) {
+        times.put(prob, time);
+    }
 
     //Funció temporal per la primera entrega 
     public int autenticate(String pass) throws chessException, FileNotFoundException, IOException {

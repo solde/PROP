@@ -7,26 +7,48 @@ package capaDomini;
 
 import Exception.chessException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author David Soldevila <3
  */
 public class Game extends GameAbs {
+
     private long timerW;
     private long timerB;
     private String wPlayer;
     private String bPlayer;
-    
+    private ArrayList<Human> listOfPlayers; //temp
+    private List<String> listOfProblems; //temp
 
-    
+    public List<String> getListOfProblems() {
+        return listOfProblems;
+    }
+
+    public void setListOfProblems(List<String> listOfProblems) {
+        this.listOfProblems = listOfProblems;
+    }
+
+
+
+    public ArrayList<Human> getListOfPlayers() {
+        return listOfPlayers;
+    }
+
+    public void setListOfPlayers(ArrayList<Human> listOfPlayers) {
+        this.listOfPlayers = listOfPlayers;
+    }
+
     void Game(boolean initialTurn) {
         turn = initialTurn;
-        
+
         timerW = 0;
         timerB = 0;
     }
-    
-    void Game(){
+
+    void Game() {
         timerW = 0;
         timerB = 0;
         turn = true;
@@ -36,16 +58,16 @@ public class Game extends GameAbs {
      *
      */
     @Override
-    public void resetTimers(){
+    public void resetTimers() {
         timerW = 0;
         timerB = 0;
     }
-    
-    public void addTimeW(long t){
+
+    public void addTimeW(long t) {
         timerW += t;
     }
-    
-    public void addTimeB(long t){
+
+    public void addTimeB(long t) {
         timerB += t;
     }
 
@@ -80,9 +102,7 @@ public class Game extends GameAbs {
     public void setbPlayer(String bPlayer) {
         this.bPlayer = bPlayer;
     }
-    
 
-    
     /**
      *
      * @param sX
@@ -94,19 +114,17 @@ public class Game extends GameAbs {
      * @throws chessException
      */
     @Override
-    public void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException{
-        if(color != this.turn){
+    public void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException {
+        if (color != this.turn) {
             throw new chessException("You are not the owner of the piece");
-        }
-        else{
-            try{
+        } else {
+            try {
                 B.movePiece(sX, sY, dX, dY, color);
-            }
-            catch (chessException e){
+            } catch (chessException e) {
                 throw new chessException("Can't move");
             }
         }
-    }    
+    }
 
     @Override
     public boolean playMatch() throws chessException {
