@@ -12,7 +12,7 @@ import javafx.util.Pair;
 
 /**
  *
- * @author Daniel Palomo
+ * @author Arnau Santos
  */
 public class AI1 extends Player {
 
@@ -23,7 +23,8 @@ public class AI1 extends Player {
         System.out.println("Not implemented");
     }
 
-    public void makeMove(Board b, boolean color, int N) throws chessException {
+    public static void makeMove(Board b, boolean color, int N, int depth) throws chessException {   //now incomplete. Needs to associate moves w/ possible boards.
+                                                                                                    //nowadays possi
         
 		int[] bestMove; //keeps track of the best possible move AI has available
 		int bestMoveScore; //score of that best move
@@ -47,6 +48,11 @@ public class AI1 extends Player {
                                             mov[1] = piece.getY();
                                             mov[2] = possMovs.get(x).getKey();
                                             mov[3] = possMovs.get(x).getValue();
+                                            
+                                            moves.add(mov); //Adds the possible movement to a poss. movs. list
+                                            Board altBoard = new Board(b); //initialices an alternative space to evaluate
+                                            altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                                            possibleBoards.add(altBoard); //adds the alternative board to the possible boards list
                                         }
                                     }
                                 }      
@@ -57,7 +63,7 @@ public class AI1 extends Player {
 		}
 		//initializes bestMove to the first move in the 
 		bestMove = moves.get(0);
-		bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, 1, false); //1 is the depth, explained in evaluate position "header"
+		bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, false); //1 is the depth, explained in evaluate position "header"
 		
 		//call evaluateposition on each move
 		//keep track of the move with the best score
@@ -68,7 +74,7 @@ public class AI1 extends Player {
 				 * calls evaluatePosition on each possible board and if the score is higher than previous,
 				 * reset the bestMove
 				 */
-				int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, 1, false); //May this 1 has to be changed
+				int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, false); 
 				if(j >= bestMoveScore){
 					bestMove = moves.get(i);
 					bestMoveScore = j;
@@ -91,7 +97,7 @@ public class AI1 extends Player {
      * @param color
      * @return
      */
-    public ArrayList <int[]> deepEvaluate( Board b, boolean color){
+    public static ArrayList <int[]> deepEvaluate( Board b, boolean color){
             ArrayList<int[]> moves = new ArrayList<>();
             for(int i = 0; i<8; i++){
                     for(int j=0; j<8; j++){
@@ -132,7 +138,7 @@ public class AI1 extends Player {
 	 * @return an int giving a score of how good a particular board is, with higher numbers corresponding to better boards for the AI
          * @throws Exception.chessException 
 	 */
-	public int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color) throws chessException{ 
+	public static int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color) throws chessException{ 
 		System.out.println("Begin evaluating position: depth-" + depth + "for- "+ color);
 		/*
 		 * Base case: when depth is decremented to 0, evaluatePosition simply returns the result
@@ -207,7 +213,7 @@ public class AI1 extends Player {
 	 * @param b
 	 * @return int that represents how advantageous a board is
 	 */
-	public int evaluate(Board b){
+	public static int evaluate(Board b){
 		int ws = 0;
 		int bs = 0;
 
