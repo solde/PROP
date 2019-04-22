@@ -43,12 +43,18 @@ public class Board {
      */
     public Board(String FEN_code) {  
         this.Default_FEN_code = "8/8/8/8/8/8/8/8";
+        chessBoard = new Piece[8][8];
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                chessBoard[i][j] = new NullPiece(i, j, false);
+            }
+        }
         this.FEN_code = FEN_code;
         processFEN();
     }
     
     public Board(Board b) {  
-        this.Default_FEN_code = "8/8/8/8/8/8/8/8";          
+        this.Default_FEN_code = "8/8/8/8/8/8/8/8"; 
         this.FEN_code = b.getFEN_code();
         this.chessBoard = b.getchessBoard();
     }
@@ -112,11 +118,16 @@ public class Board {
 
     private void processFEN(){
         int i = 0, j = 0;
-        while(i < 7){
-            while(FEN_code.charAt(j) != '/' && j < FEN_code.length()){
-                int cont = 0;
-                if(FEN_code.charAt(j) > '0' && FEN_code.charAt(j) <= '9'){
+        while(i < 8){
+            int cont = 0;
+            while(j < FEN_code.length()){
+                if(FEN_code.charAt(j) == '/'){
+                    ++j;
+                    break;
+                }
+                if(FEN_code.charAt(j) >= '0' && FEN_code.charAt(j) <= '9'){
                     cont = cont + Character.getNumericValue(FEN_code.charAt(j));
+                    System.out.println("->" + Integer.toString(cont));
                 }
                 else{
                     switch(FEN_code.charAt(j)){
@@ -160,10 +171,10 @@ public class Board {
                     }
                     ++cont;
                 }
+                ++j;
             }
-            ++j;
+            ++i;
         }
-        ++i;
     }
 
     /**
@@ -262,6 +273,7 @@ public class Board {
                 if(chessBoard[i][j].getTypeOfPiece() == -1){
                     cont++;
                 }
+                else if(cont == 8) line = line.concat(Integer.toString(cont));
                 else{
                     if(cont != 0){
                         line = line.concat(Integer.toString(cont));
@@ -287,7 +299,7 @@ public class Board {
                             case 7: 
                                 line = line.concat("Q");
                                 break;
-                            default: throw new chessException("Unexpected Error");
+                            default: throw new chessException("Unexpected chess white Error");
                         }
                     }
                     else{
@@ -310,15 +322,20 @@ public class Board {
                             case 7: 
                                 line = line.concat("q");
                                 break;
-                            default: throw new chessException("Unexpected Error");
+                            default: throw new chessException("Unexpected chess black Error");
                         }
                     }
                 }
             }
-            str = str.concat(line);
-            if(i != 7){
-                str = str.concat("/");
+            //if(cont != 0) line = line.concat(Integer.toString(cont));
+            if(cont != 0){
+                line = line.concat(Integer.toString(cont));
+                cont = 0;
             }
+            if(i != 7){
+                line = line.concat("/");
+            }
+            str = str.concat(line);
         }
         return str;
     }
