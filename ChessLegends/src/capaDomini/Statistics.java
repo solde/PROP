@@ -65,7 +65,7 @@ public class Statistics {
         String topH = null, toph2 = null, toph3 = null, toph4 = null, toph5 = null;
         ArrayList<Human> players;
         players = g.getListOfPlayers(); //no existe
-        List<String> problems = g.getListOfProblems();
+        List<String> problems = g.getListOfProblems(); //tampoco
         int i = 0;
         int cont = 0;
         while (!problems.isEmpty()) {
