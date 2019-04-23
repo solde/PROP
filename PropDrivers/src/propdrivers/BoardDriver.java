@@ -19,8 +19,9 @@ import java.util.Scanner;
 public class BoardDriver {
     
     public static void printBoard(Board B){
+        System.out.println("   0  1  2  3  4  5  6  7");
         for(int x = 0; x < 8; ++x){
-            System.out.print("|");
+            System.out.print(x + "|");
             for(int y = 0; y < 8; ++y){
                 if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
                 else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
@@ -28,6 +29,7 @@ public class BoardDriver {
             }
             System.out.println(" ");
         }
+        System.out.println(" ");
     }
     
     public static void main(String[] args) throws InterruptedException, chessException {
@@ -37,7 +39,7 @@ public class BoardDriver {
         Board B = new Board();
         Piece p;
         int i = sc.nextInt();
-        while (i <= 11) { // ( o el que sea
+        while (i <= 12) { // ( o el que sea
             switch (i) {              
                 case 1:
                     B = new Board();
@@ -62,8 +64,11 @@ public class BoardDriver {
                     break;
 
                 case 3:
-                    B = new Board();
+                    B = new Board("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B");
+                    printBoard(B);
                     Board B2 = new Board(B);
+                    
+                    printBoard(B2);
                     
                     if(B.getFEN_code().equals(B2.getFEN_code())){
                         System.out.println("Boards are equal");
@@ -166,6 +171,14 @@ public class BoardDriver {
                     System.out.println(ret_fen);
                     break;
                     
+                case 12:
+                    String mate_fen = "8/8/q7/K7/8/8/8/8";
+                    B = new Board(mate_fen);
+                    printBoard(B);
+                    if(B.isCheckMate(true)) System.out.println("C'murio");
+                    else System.out.println("Es dios y no muere");
+                    break;
+                    
                 case 0:
                     printBoard(B);
                     break;
@@ -187,6 +200,7 @@ public class BoardDriver {
         System.out.println("Test 9: setFEN_code   ");
         System.out.println("Test 10: addPieceToBoard   ");
         System.out.println("Test 11: fenToString   ");
+        System.out.println("Test 12: isCheckMate   ");
         
         System.out.println("0-Debug: print actual board");
 

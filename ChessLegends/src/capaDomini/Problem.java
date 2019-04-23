@@ -5,6 +5,12 @@
  */
 package capaDomini;
 
+import Exception.chessException;
+import static capaDomini.AI1.evaluatePosition;
+import java.util.ArrayList;
+import java.util.Random;
+import javafx.util.Pair;
+
 /**
  *
  * @author David Soldevila
@@ -126,8 +132,46 @@ public class Problem {
         this.first_turn = firstTurn;
     }
         
-    public boolean verify(){
-        return true;
+    public boolean verify() throws chessException{
+        Board b = new Board(this.getFenCode());
+        boolean color = this.first_turn;
+
+        return deep_verify(b, this.N_mov, this.first_turn);
+    }
+    
+    private boolean deep_verify(Board b, int n, boolean color) throws chessException{
+        ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
+        boolean can_solve = false;
+        
+        if(n == 0){
+            return b.isCheckMate(this.atk);
+        }
+
+        for(int i = 0; i<8; i++){
+            for(int j=0; j<8; j++){
+                Piece piece = b.getPieceAt(i,j);
+                if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ color)){
+                    for(int k=0; k<8; k++){
+                        for(int l=0; l<8; l++){
+                            ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
+                            for(int x = 0; x < possMovs.size(); ++x){
+                                int[] mov = new int[4];
+                                mov[0] = piece.getX();
+                                mov[1] = piece.getY();
+                                mov[2] = possMovs.get(x).getKey();
+                                mov[3] = possMovs.get(x).getValue();
+
+                                Board altBoard = new Board(b); //initialices an alternative space to evaluate
+                                altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                                can_solve = deep_verify(altBoard, n-1, !color);
+                                if(can_solve) return true;
+                            }
+                        }
+                    }      
+                }
+            }
+        }
+        return can_solve;
     }
     
     public boolean getATK(){

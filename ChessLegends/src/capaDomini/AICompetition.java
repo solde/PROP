@@ -32,15 +32,18 @@ public class AICompetition extends GameAbs{
     
     /**
      *
-     * @return
+     * @return true if the winner is the white player, fals if the winner is the black player
      * @throws chessException
      */
     @Override
     public boolean playMatch() throws chessException{
         if(N == 0) throw new chessException("Competition is done");
         else{
-            return false;
+            while(N > 0 && !B.isCheckMate(turn)){
+                AI1.makeMove(B, turn, N, 3);
+            }
         }
+        if(B.isCheckMate(true))
     }
 
     @Override

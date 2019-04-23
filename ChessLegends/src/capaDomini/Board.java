@@ -54,9 +54,15 @@ public class Board {
     }
     
     public Board(Board b) {  
+        chessBoard = new Piece[8][8];
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                chessBoard[i][j] = new NullPiece(i, j, false);
+            }
+        }
         this.Default_FEN_code = "8/8/8/8/8/8/8/8"; 
         this.FEN_code = b.getFEN_code();
-        this.chessBoard = b.getchessBoard();
+        processFEN();
     }
 
     /*Board() {
@@ -211,7 +217,7 @@ public class Board {
      * @param color
      * @Pre True
      * @Post Returns if any of the kings is in check mate
-     * @return 
+     * @return if player color is doing a checkmate to the other player
      */
     public boolean isCheckMate(boolean color){
         for(int i = 0; i < 8; ++i){
