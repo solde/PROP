@@ -127,10 +127,14 @@ public class BoardDriver {
                 
                 case 8://movePiece
                     B = new Board();
-                    B.addPieceToBoard(0, 0, 0, true);
-                    B.movePiece(0, 0, 1, 0, true);
-                    System.out.println(B.getPieceAt(0, 0));
-                    System.out.println(B.getPieceAt(1, 0));
+                    System.out.println("Original Board");
+                    B.addPieceToBoard(1, 5, 0, true);
+                    printBoard(B);
+                    System.out.print(B.fenToString());
+                    System.out.println("Moved board");
+                    B.movePiece(1, 5, 2, 5, true);
+                    printBoard(B);
+                    System.out.print(B.fenToString());
                     break;       
                 
                 case 9://setFEN_code

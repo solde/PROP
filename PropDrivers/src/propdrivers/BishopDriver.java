@@ -21,7 +21,7 @@ public class BishopDriver {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
@@ -72,6 +72,7 @@ public class BishopDriver {
 
             }
         i = sc.nextInt();
+        }
     }
 
     /**

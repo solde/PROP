@@ -92,9 +92,30 @@ public class Board {
                 throw new chessException("Cannot move to dest");
             }
             else{
-                chessBoard[dX][dY] = chessBoard[sX][sX];
-                chessBoard[dX][dY].setX(dX);
-                chessBoard[dX][dY].setY(dY);
+                switch(chessBoard[sX][sY].getTypeOfPiece()){
+                    case 0:
+                        chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 1:
+                        chessBoard[dX][dY] = new Pawn( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 2:
+                        chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 3:
+                        chessBoard[dX][dY] = new Bishop( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 4:
+                        chessBoard[dX][dY] = new Knight( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 5:
+                        chessBoard[dX][dY] = new Rock( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 7:
+                        chessBoard[dX][dY] = new Queen( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                       
+                }
                 chessBoard[sX][sY] = new NullPiece(sX, sY, true);
             }
         }
@@ -127,7 +148,6 @@ public class Board {
                 }
                 if(FEN_code.charAt(j) >= '0' && FEN_code.charAt(j) <= '9'){
                     cont = cont + Character.getNumericValue(FEN_code.charAt(j));
-                    System.out.println("->" + Integer.toString(cont));
                 }
                 else{
                     switch(FEN_code.charAt(j)){
