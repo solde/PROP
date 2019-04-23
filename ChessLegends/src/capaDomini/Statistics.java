@@ -1,12 +1,12 @@
 package capaDomini;
 
+//TOTALLY USELESS CLASS
 import Exception.chessException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javafx.util.Pair;
-//This class should manage the statistics from player and game, it may be usless when the controlers are implemented
 
 public class Statistics {
 
