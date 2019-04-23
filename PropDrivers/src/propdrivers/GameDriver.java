@@ -3,67 +3,73 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package capaDomini;
+package propdrivers;
 
-import Exception.chessException;
-import java.util.ArrayList;
+import capaDomini.Game;
 import java.util.Scanner;
 
 /**
  *
  * @author David Soldevila
  */
-public class ProblemDriver {
- public static void main(String[] args) throws InterruptedException, chessException {
+public class GameDriver {
+    public static void main(String[] args){
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Board B;
-        Piece p;
+        Game G;
         int i = sc.nextInt();
-        while (i <= 11) { // ( o el que sea
+        while (i <= 13) {
             switch (i) {
-                case 1: //
-
+                case 1: // Problem()
+                    
                     break;
                     
-                case 2: //
+                case 2: // Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn)
 
                     break;
 
-                case 3: //
+                case 3: //Creator with string with DL info
 
                     break;       
                 
-                case 4: //
-                    
-                    break;       
-                
-                case 5: //
+                case 4: //verify
 
                     break;       
                 
-                case 6: //
+                case 5: //numberPiecesOf
+
+                    break;       
+                
+                case 6: //calculateDiff/getDiff
 
                     break;
                 
-                case 7: //
+                case 7: //getProblemInfo
 
                     break;
                 
-                case 8://
+                case 8: //Get/set Name
 
                     break;       
                 
-                case 9://
+                case 9: //Get/set FirstTurn
+
+                    break;
+                
+                case 10: //Get/set Theme
 
                     break;       
                 
-                case 10: //
+                case 11: //Get/set Fen code
 
-                    break;       
+                    break;      
                 
-                case 11: //
+                case 12: //Get/set N
+
+                    break;      
+                
+                case 13: //Get/set atk
 
                     break;
 
@@ -82,12 +88,14 @@ public class ProblemDriver {
         System.out.println("Test 5: numberPiecesOf  ");
         System.out.println("Test 6: calculateDiff/getDiff  ");
         System.out.println("Test 7: getProblemInfo  ");
-        System.out.println("Test 8: ");
-        System.out.println("Test 9: ");
-        System.out.println("Test 10: ");
-        System.out.println("Test 11: ");
+        System.out.println("Test 8: Get/set Name");
+        System.out.println("Test 9: Get/set FirstTurn");
+        System.out.println("Test 10: Get/set Theme");
+        System.out.println("Test 11: Get/set Fen code");
+        System.out.println("Test 12: Get/set N");
+        System.out.println("Test 13: Get/set atk");
 
-        System.out.println("Para salir presione 8");
+        System.out.println("Para salir presione 14");
 
         System.out.println("Inserte opcion: ");
 

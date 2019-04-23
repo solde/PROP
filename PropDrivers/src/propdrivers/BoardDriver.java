@@ -17,15 +17,28 @@ import java.util.Scanner;
  * @author David Soldevila
  */
 public class BoardDriver {
+    
+    public static void printBoard(Board B){
+        for(int x = 0; x < 8; ++x){
+            System.out.print("|");
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+    }
+    
     public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Board B;
+        Board B = new Board();
         Piece p;
         int i = sc.nextInt();
         while (i <= 11) { // ( o el que sea
-            switch (i) {
+            switch (i) {              
                 case 1:
                     B = new Board();
                     if(B.fenToString().equals("8/8/8/8/8/8/8/8")){
@@ -40,13 +53,11 @@ public class BoardDriver {
                 case 2:
                     String newFen = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
                     B = new Board(newFen);
-                    System.out.println(B.getFEN_code());
-                    if(B.getFEN_code().equals(newFen)){
-                        System.out.println("TEST 2: OK");
-                    }
-                    else{
-                        System.out.println("Board is created with diferent piece distribution, the fen code of the acutal board is:");
-                        System.out.println(B.getFEN_code());
+                    System.out.println(newFen);
+                    for(int x = 0; x < 8; ++x){
+                        System.out.print("|");
+                        printBoard(B);
+                        System.out.println(" ");
                     }
                     break;
 
@@ -116,10 +127,14 @@ public class BoardDriver {
                 
                 case 8://movePiece
                     B = new Board();
-                    B.addPieceToBoard(0, 0, 0, true);
-                    B.movePiece(0, 0, 1, 0, true);
-                    System.out.println(B.getPieceAt(0, 0));
-                    System.out.println(B.getPieceAt(1, 0));
+                    System.out.println("Original Board");
+                    B.addPieceToBoard(1, 5, 0, true);
+                    printBoard(B);
+                    System.out.print(B.fenToString());
+                    System.out.println("Moved board");
+                    B.movePiece(1, 5, 2, 5, true);
+                    printBoard(B);
+                    System.out.print(B.fenToString());
                     break;       
                 
                 case 9://setFEN_code
@@ -146,21 +161,14 @@ public class BoardDriver {
                     fen_to_compare = sc.nextLine();
                     B = new Board(fen_to_compare);
                     String ret_fen = null;
-                    try{
-                        ret_fen = B.fenToString();
-                    }
-                    catch(chessException e){
-                        System.out.println(e.getMessage());
-                    }
-                    if(fen_to_compare != null && fen_to_compare.equals(ret_fen)){
-                        System.out.println("Convertion to fenCode is correct");
-                    }
-                    else{
-                        System.out.println("Convertion to fenCode is not correct");
-                    }
+                    ret_fen = B.fenToString();
+                    System.out.println(fen_to_compare);
+                    System.out.println(ret_fen);
                     break;
-
-
+                    
+                case 0:
+                    printBoard(B);
+                    break;
             }
             i = sc.nextInt();
         }
@@ -179,6 +187,8 @@ public class BoardDriver {
         System.out.println("Test 9: setFEN_code   ");
         System.out.println("Test 10: addPieceToBoard   ");
         System.out.println("Test 11: fenToString   ");
+        
+        System.out.println("0-Debug: print actual board");
 
         System.out.println("Para salir presione 8");
 

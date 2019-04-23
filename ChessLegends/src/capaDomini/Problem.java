@@ -19,6 +19,7 @@ public class Problem {
     private boolean first_turn;
 
     public Problem() {
+        this. fenCode = "8/8/8/8/8/8/8/8";
     }
 
     public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) {
@@ -94,7 +95,7 @@ public class Problem {
     }
 
     public int getDiff() {
-        return diff;
+        return this.diff;
     }
 
     public int getN_mov() {
@@ -105,7 +106,7 @@ public class Problem {
         return this.Theme;
     }
     
-    public void setThem(String Theme){
+    public void setTheme(String Theme){
         this.Theme = Theme;
     }
 
@@ -129,7 +130,15 @@ public class Problem {
         return true;
     }
     
-    private int numberPiecesOf(boolean bw){
+    public boolean getATK(){
+        return this.atk;
+    }
+    
+    public void setATK(boolean atk){
+        this.atk = atk;
+    }
+    
+    public int numberPiecesOf(boolean bw){
         char i, e;
         int cont = 0;
         if(bw){
@@ -154,7 +163,7 @@ public class Problem {
      */
     public void calculateDiff(){
         int x = numberPiecesOf(atk);
-        this.diff = 5*(17-x)*N_mov;
+        this.diff = (5*(16-x))*N_mov;
     }
     
     /**

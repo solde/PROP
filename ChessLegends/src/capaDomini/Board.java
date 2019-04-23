@@ -43,12 +43,18 @@ public class Board {
      */
     public Board(String FEN_code) {  
         this.Default_FEN_code = "8/8/8/8/8/8/8/8";
+        chessBoard = new Piece[8][8];
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                chessBoard[i][j] = new NullPiece(i, j, false);
+            }
+        }
         this.FEN_code = FEN_code;
         processFEN();
     }
     
     public Board(Board b) {  
-        this.Default_FEN_code = "8/8/8/8/8/8/8/8";          
+        this.Default_FEN_code = "8/8/8/8/8/8/8/8"; 
         this.FEN_code = b.getFEN_code();
         this.chessBoard = b.getchessBoard();
     }
@@ -86,9 +92,30 @@ public class Board {
                 throw new chessException("Cannot move to dest");
             }
             else{
-                chessBoard[dX][dY] = chessBoard[sX][sX];
-                chessBoard[dX][dY].setX(dX);
-                chessBoard[dX][dY].setY(dY);
+                switch(chessBoard[sX][sY].getTypeOfPiece()){
+                    case 0:
+                        chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 1:
+                        chessBoard[dX][dY] = new Pawn( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 2:
+                        chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 3:
+                        chessBoard[dX][dY] = new Bishop( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 4:
+                        chessBoard[dX][dY] = new Knight( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 5:
+                        chessBoard[dX][dY] = new Rock( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                    case 7:
+                        chessBoard[dX][dY] = new Queen( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                        break;
+                       
+                }
                 chessBoard[sX][sY] = new NullPiece(sX, sY, true);
             }
         }
@@ -112,10 +139,14 @@ public class Board {
 
     private void processFEN(){
         int i = 0, j = 0;
-        while(i < 7){
-            while(FEN_code.charAt(j) != '/' && j < FEN_code.length()){
-                int cont = 0;
-                if(FEN_code.charAt(j) > '0' && FEN_code.charAt(j) <= '9'){
+        while(i < 8){
+            int cont = 0;
+            while(j < FEN_code.length()){
+                if(FEN_code.charAt(j) == '/'){
+                    ++j;
+                    break;
+                }
+                if(FEN_code.charAt(j) >= '0' && FEN_code.charAt(j) <= '9'){
                     cont = cont + Character.getNumericValue(FEN_code.charAt(j));
                 }
                 else{
@@ -160,10 +191,10 @@ public class Board {
                     }
                     ++cont;
                 }
+                ++j;
             }
-            ++j;
+            ++i;
         }
-        ++i;
     }
 
     /**
@@ -262,6 +293,7 @@ public class Board {
                 if(chessBoard[i][j].getTypeOfPiece() == -1){
                     cont++;
                 }
+                else if(cont == 8) line = line.concat(Integer.toString(cont));
                 else{
                     if(cont != 0){
                         line = line.concat(Integer.toString(cont));
@@ -287,7 +319,7 @@ public class Board {
                             case 7: 
                                 line = line.concat("Q");
                                 break;
-                            default: throw new chessException("Unexpected Error");
+                            default: throw new chessException("Unexpected chess white Error");
                         }
                     }
                     else{
@@ -310,15 +342,20 @@ public class Board {
                             case 7: 
                                 line = line.concat("q");
                                 break;
-                            default: throw new chessException("Unexpected Error");
+                            default: throw new chessException("Unexpected chess black Error");
                         }
                     }
                 }
             }
-            str = str.concat(line);
-            if(i != 7){
-                str = str.concat("/");
+            //if(cont != 0) line = line.concat(Integer.toString(cont));
+            if(cont != 0){
+                line = line.concat(Integer.toString(cont));
+                cont = 0;
             }
+            if(i != 7){
+                line = line.concat("/");
+            }
+            str = str.concat(line);
         }
         return str;
     }
