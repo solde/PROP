@@ -25,7 +25,7 @@ public class BishopDriver {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
@@ -112,6 +112,41 @@ public class BishopDriver {
                     p1 = new Bishop(3, 4, true);
                     mov = p1.get_poss_mov(b);
                     if (mov.isEmpty()) {
+                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        break;
+                    }
+                    for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
+                        Pair movl = it.next();
+                        System.out.print("X: ");
+                        System.out.print(movl.getKey());
+                        System.out.print(" Y: ");
+                        System.out.println(movl.getValue());
+                    }
+                      System.out.println("Pieza en X:3 Y:4 con board no vacio");
+                     b = new Board("7K/ppppkkkk/k1P5/7p/8/8/kkppkkpp/8");
+                     mov=p1.get_poss_mov(b);
+                      if (mov.isEmpty()) {
+                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        break;
+                    }
+                    for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
+                        Pair movl = it.next();
+                        System.out.print("X: ");
+                        System.out.print(movl.getKey());
+                        System.out.print(" Y: ");
+                        System.out.println(movl.getValue());
+                    }
+             for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
+                        Pair movl = it.next();
+                        System.out.print("X: ");
+                        System.out.print(movl.getKey());
+                        System.out.print(" Y: ");
+                        System.out.println(movl.getValue());
+                    }
+                                      System.out.println("Pieza en X:3 Y:4 con board no vacio");
+                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                     mov=p1.get_poss_mov(b);
+                      if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
                         break;
                     }

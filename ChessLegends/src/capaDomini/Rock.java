@@ -30,7 +30,7 @@ public class Rock extends Piece {
     public ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b) {
         ArrayList<Pair<Integer, Integer>> mov = new ArrayList<>();
         Pair<Integer, Integer> tmp;
-  
+
         int x_temp = getX();
         int y_temp = getY();
 
@@ -39,6 +39,9 @@ public class Rock extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -47,6 +50,9 @@ public class Rock extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -55,6 +61,9 @@ public class Rock extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -63,6 +72,9 @@ public class Rock extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }

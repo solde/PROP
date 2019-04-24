@@ -38,6 +38,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -46,6 +49,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -54,6 +60,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -62,6 +71,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -70,6 +82,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -79,6 +94,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -88,6 +106,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -97,6 +118,9 @@ public class Queen extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }

@@ -102,6 +102,37 @@ public abstract class Piece {
         }
         return ret;
     }
+    
+    public boolean pos_killable(Pair p, Board b,boolean color){ //TRUE= KILLABLE  FALSE=FRIENDLY //tbd
+        
+     boolean ret = false;
+        int x_temp = (int) p.getKey();
+        int y_temp = (int) p.getValue();
+        List<Piece> whites = b.getWhitePiecesOnBoard();
+        List<Piece> blacks = b.getBlackPiecesOnBoard();
+
+        if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
+
+            for (Piece white : whites) {
+                int x_check = white.getX();
+                int y_check = white.getY();
+                if (x_check == x_temp && y_check == y_temp && !color) {
+                    ret = true;
+                    
+                }
+            }
+            for (Piece black : blacks) {
+                int x_check = black.getX();
+                int y_check = black.getY();
+                if (x_check == x_temp && y_check == y_temp && color) {
+                    ret = true;
+                }
+            }
+        } else {
+            return false;
+        }
+        return ret;
+    }
 
     public boolean equals(Piece p) {
         boolean ret = this.color == p.color && this.value == p.value && this.equalXY(p.getX(), p.y) && this.id == p.getTypeOfPiece();
