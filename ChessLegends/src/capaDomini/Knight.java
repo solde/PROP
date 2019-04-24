@@ -36,22 +36,34 @@ public class Knight extends Piece {
         tmp = new Pair<Integer, Integer>(x_temp - 1, y_temp - 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
-
         }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
+
         tmp = new Pair<Integer, Integer>(x_temp - 1, y_temp + 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
+        }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp - 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp + 2);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
+        }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
         }
 
         tmp = new Pair<Integer, Integer>(x_temp - 2, y_temp - 1);
@@ -59,20 +71,32 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<Integer, Integer>(x_temp + 2, y_temp - 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
+        }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp - 2, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
         }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<Integer, Integer>(x_temp + 2, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
 
+        }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
         }
 
         return mov;

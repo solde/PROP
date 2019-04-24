@@ -13,8 +13,8 @@ public class Bishop extends Piece {
         this.max = 10;
     }
 
-    public Bishop(int x, int y,boolean color) {
-        super(3, 3, x, y,color);
+    public Bishop(int x, int y, boolean color) {
+        super(3, 3, x, y, color);
         this.max = 10;
     }
 
@@ -39,6 +39,9 @@ public class Bishop extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -48,6 +51,9 @@ public class Bishop extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -57,6 +63,9 @@ public class Bishop extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }
@@ -66,6 +75,9 @@ public class Bishop extends Piece {
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             } else {
+                if (pos_killable(tmp, b, isColor())) {
+                    mov.add(tmp);
+                }
                 break;
             }
         }

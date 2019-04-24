@@ -98,10 +98,10 @@ public class PawnDriver {
 
                 case 5: {
                     System.out.println("Probando get_poss_mov");
-                    System.out.println("Pieza en X:0 Y:7:");
+                    System.out.println("Pieza en X:2 Y:1:");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
                     Board b = new Board();
-                    Piece p = new Pawn(0, 7, true);
+                    Piece p = new Pawn(2, 1, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
@@ -115,10 +115,24 @@ public class PawnDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Pieza en X:3 Y:4");
-                    p = new Pawn(3, 4, true);
+                    System.out.println("Pieza en X:2 Y:4");
+                    p = new Pawn(2, 4, true);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
+                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        break;
+                    }
+                    for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
+                        Pair movl = it.next();
+                        System.out.print("X: ");
+                        System.out.print(movl.getKey());
+                        System.out.print(" Y: ");
+                        System.out.println(movl.getValue());
+                    }
+                                      System.out.println("Pieza en X:2 Y:4 con board no vacio");
+                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                     mov=p.get_poss_mov(b);
+                      if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
                         break;
                     }

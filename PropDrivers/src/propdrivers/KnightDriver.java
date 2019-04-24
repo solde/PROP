@@ -129,6 +129,21 @@ public class KnightDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
+                     System.out.println("Pieza en X:3 Y:4 con board no vacio");
+                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                     mov=p.get_poss_mov(b);
+                      if (mov.isEmpty()) {
+                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        break;
+                    }
+                    for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
+                        Pair movl = it.next();
+                        System.out.print("X: ");
+                        System.out.print(movl.getKey());
+                        System.out.print(" Y: ");
+                        System.out.println(movl.getValue());
+                    }
+                    
                     TimeUnit.SECONDS.sleep(3);
                     display_menu();//Para poder leer la salida mejor
                     break;

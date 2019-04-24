@@ -12,7 +12,7 @@ public class King extends Piece {
      *
      */
     public King() {
-        super(0, 1000, 0, 0,true);
+        super(0, 1000, 0, 0, true);
         this.max = 2;
     }
 
@@ -23,7 +23,7 @@ public class King extends Piece {
      * @param color
      */
     public King(int x, int y, boolean color) {
-        super(3, 1000, x, y,color);
+        super(3, 1000, x, y, color);
         this.max = 2;
     }
 
@@ -60,9 +60,15 @@ public class King extends Piece {
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
 
         tmp = new Pair<>(x_temp + 1, y_temp - 1);
         if (!pos_taken(tmp, b)) {
+            mov.add(tmp);
+        }
+        if (pos_killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
 
@@ -70,32 +76,45 @@ public class King extends Piece {
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
 
         tmp = new Pair<>(x_temp + 1, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
-
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<>(x_temp, y_temp - 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
-
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<>(x_temp, y_temp + 1);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
-
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<>(x_temp + 1, y_temp);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
-
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         tmp = new Pair<>(x_temp - 1, y_temp);
         if (!pos_taken(tmp, b)) {
             mov.add(tmp);
         }
-
+        if (pos_killable(tmp, b, isColor())) {
+            mov.add(tmp);
+        }
         return mov;
     }
 
