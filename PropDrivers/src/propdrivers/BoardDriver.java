@@ -172,7 +172,7 @@ public class BoardDriver {
                     break;
                     
                 case 12:
-                    String mate_fen = "8/8/q7/K7/8/8/8/8";
+                    String mate_fen = "7k/1R6/R7/8/8/8/8/3K4";
                     B = new Board(mate_fen);
                     printBoard(B);
                     if(B.isCheckMate(true)) System.out.println("C'murio");

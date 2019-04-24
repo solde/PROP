@@ -219,16 +219,13 @@ public class Board {
      * @Post Returns if any of the kings is in check mate
      * @return if player color is doing a checkmate to the other player
      */
-    public boolean isCheckMate(boolean color){
-        for(int i = 0; i < 8; ++i){
-            for(int j = 0; j < 8; ++j){
-                if(chessBoard[i][j].getTypeOfPiece() == 0 && !(color ^ chessBoard[i][j].isColor())){
-                    List<Pair<Integer, Integer>> pos_movs = chessBoard[i][j].get_poss_mov(this);
-                    if(pos_movs.size() > 0) return false;
-                }
-            }
-        }
-        return true;
+    public boolean isCheckMate(boolean color) throws chessException{
+        Problem P = new Problem();
+        P.setFenCode(fenToString());
+        P.setATK(color);
+        P.setFirstTurn(color);
+        P.setN_mov(0);
+        return P.verify();
     }
     
     /**

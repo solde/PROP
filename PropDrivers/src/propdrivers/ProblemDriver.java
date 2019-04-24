@@ -43,12 +43,21 @@ public class ProblemDriver {
                     break;       
                 
                 case 4: //verify
-                    String fc3 = sc.nextLine();
+                    System.out.println("Enter a fen Code");
+                    //String fc3 = sc.nextLine();
+                    String fc3 = "4k3/8/3Q4/2B5/8/8/1K6/8";
+                    System.out.println("Enter a name");
                     String n3 = sc.nextLine();
+                    System.out.println("Enter a difficulty");
                     int d3 = sc.nextInt();
-                    int nm3 = sc.nextInt();
+                    System.out.println("Enter a number of movs");
+                    //4int nm3 = sc.nextInt();
+                    int nm3 = 1;
+                    System.out.println("Enter a theme");
                     String t3 = sc.nextLine();
+                    System.out.println("Enter the player who atacks");
                     boolean a3 = sc.nextBoolean();
+                    System.out.println("Enter a the player who starts the game");
                     boolean ft3 = sc.nextBoolean();
                     P = new Problem(fc3, n3, d3, nm3, t3, a3, ft3);
                     System.out.println(P.verify());
