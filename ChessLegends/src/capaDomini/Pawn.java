@@ -68,7 +68,7 @@ public class Pawn extends Piece {
             if (pos_killable(tmp, b, isColor())) {
                 mov.add(tmp);
             }
-            tmp = new Pair<>(x_temp + 1, y_temp + 1);
+            tmp = new Pair<>(x_temp + 1, y_temp - 1);
             if (pos_killable(tmp, b, isColor())) {
                 mov.add(tmp);
             }
@@ -77,7 +77,7 @@ public class Pawn extends Piece {
                 if (!pos_taken(tmp, b)) {
                     mov.add(tmp);
                 }
-                tmp = new Pair<>(x_temp + 2, y_temp + 1);
+                tmp = new Pair<>(x_temp + 2, y_temp - 1);
                 if (pos_killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
