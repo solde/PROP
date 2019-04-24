@@ -17,7 +17,7 @@ public class AI1Driver {
     //De moment només teniu aquest bonic missatge UwU
     public static void main(String[] args) throws chessException {
         String FENi = "1r6/5kp1/5p1p/p2b4/PP4P1/2B3K1/5PP1/1R6" ; //extret de Kasparov vs Carlsen, 2004
-        System.out.print(FENi);
+        System.out.println(FENi);
         Board b = new Board(FENi);
 
 
@@ -25,7 +25,7 @@ public class AI1Driver {
         //For some reason, this doesn't work
 
         String FENf = b.fenToString();
-        System.out.print(FENf);
+        System.out.println(FENf);
         if (FENi != FENf) System.out.println("Ha mogut.");
     }
 }

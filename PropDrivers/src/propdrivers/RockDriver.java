@@ -79,7 +79,7 @@ public class RockDriver {
                     display_menu();//Para poder leer la salida mejor
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
-                
+                }
                 case 4: {
                     System.out.println("provando setValue");
                     h.setValue(7);
@@ -134,7 +134,7 @@ public class RockDriver {
                     break;
                 }
 
-                }
+                
 
                 default:
                     break;

@@ -30,12 +30,12 @@ public class Pawn extends Piece {
         int y_temp = getY();
 
         if (isColor()) {
-            tmp = new Pair<>(x_temp, y_temp + 1);
+            tmp = new Pair<>(x_temp - 1, y_temp);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             }
-            if (y_temp == 1) {
-                tmp = new Pair<>(x_temp, y_temp + 2);
+            if (x_temp == 6) {
+                tmp = new Pair<>(x_temp - 2, y_temp);
                 if (!pos_taken(tmp, b)) {
                     mov.add(tmp);
                 }
@@ -43,12 +43,12 @@ public class Pawn extends Piece {
         }
         
         if (!isColor()) {
-            tmp = new Pair<>(x_temp, y_temp - 1);
+            tmp = new Pair<>(x_temp + 1, y_temp);
             if (!pos_taken(tmp, b)) {
                 mov.add(tmp);
             }
-            if (y_temp == 6) {
-                tmp = new Pair<>(x_temp, y_temp - 2);
+            if (x_temp == 1) {
+                tmp = new Pair<>(x_temp + 2, y_temp);
                 if (!pos_taken(tmp, b)) {
                     mov.add(tmp);
                 }

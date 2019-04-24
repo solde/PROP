@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class CtrlDomainCreratorDriver {
 
-    public static void main(String[] args) throws InterruptedException, Exception.chessException {
+    public static void main(String[] args) throws InterruptedException/*, Exception.chessException */{
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);

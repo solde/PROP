@@ -29,7 +29,7 @@ public class HumanDriver {
         Scanner sc = new Scanner(System.in);
         Human h = new Human("pepe", "loco");
         int i = sc.nextInt();
-        while (i <= 7) { // ( o el que sea
+        /*while (i <= 7) { // ( o el que sea
             switch (i) {
                 case 0: {
                     try {
@@ -102,7 +102,7 @@ public class HumanDriver {
 
             }
             i = sc.nextInt();
-        }
+        }*/
     }
 
     public static void display_menu() {
