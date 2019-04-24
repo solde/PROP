@@ -6,6 +6,7 @@
 package capaDomini;
 
 import Exception.chessException;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,6 +71,7 @@ public abstract class GameAbs {
      * @throws chessException
      */
     public abstract void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException;
-    public abstract boolean playMatch() throws chessException;
+    public abstract void playMatch() throws chessException;
     public abstract void resetTimers();
+    public abstract ArrayList<int[]> possibleMovements(boolean color);
 }

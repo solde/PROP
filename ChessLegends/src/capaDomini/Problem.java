@@ -8,6 +8,8 @@ package capaDomini;
 import Exception.chessException;
 import static capaDomini.AI1.evaluatePosition;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import javafx.util.Pair;
 
@@ -23,12 +25,16 @@ public class Problem {
     private int N_mov;
     private boolean atk; //True = white, False = black
     private boolean first_turn;
+    
+    private ArrayList<Pair<Long, String>> Ranking;
 
     public Problem() {
         this. fenCode = "8/8/8/8/8/8/8/8";
+        Ranking = new ArrayList<Pair<Long, String>>();
     }
 
     public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) {
+        Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
         this.Name = Name;
         this.diff = diff;
@@ -39,6 +45,7 @@ public class Problem {
     }
     
     public Problem(String fenCode, String Name, int N_mov, String Theme, boolean atk, boolean first_turn) {
+        Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
         this.Name = Name;
         this.N_mov = N_mov;
@@ -86,6 +93,7 @@ public class Problem {
             aux = aux.concat(Character.toString(info.charAt(i)));
         }
         first_turn = Boolean.valueOf(aux);
+        Ranking = new ArrayList<Pair<Long, String>>();
     }
 
     public boolean getFirstTurn(){
@@ -230,6 +238,10 @@ public class Problem {
         this.diff = (5*(16-x))*N_mov;
     }
     
+    private boolean comp(Pair<Long, String> a, Pair<Long, String>b){
+        return true;
+    }
+    
     /**
      *
      * @return
@@ -250,5 +262,27 @@ public class Problem {
         ret = ret.concat(" ");
         ret = ret.concat(Boolean.toString(first_turn));
         return ret;
+    }
+    
+    public void addToRanking(String PlayerName, long time){
+        Pair<Long, String> e;
+        e = new Pair<>(time, PlayerName);
+        System.out.println(e);
+        Ranking.add(e);
+        Ranking.sort(new Comparator<Pair<Long, String>>() {
+            @Override
+            public int compare(Pair<Long, String> o1, Pair<Long, String> o2){
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        });
+    }
+    
+    public Pair<Long, String> getRankingPossition(int index) throws chessException{
+        try{
+            return Ranking.get(index);
+        }
+        catch(Exception e){
+            throw new chessException("Out of range");
+        }
     }
 }

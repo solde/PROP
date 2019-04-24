@@ -20,7 +20,7 @@ public class ProblemDriver {
         Scanner sc = new Scanner(System.in);
         Problem P;
         int i = sc.nextInt();
-        while (i <= 13) {
+        while (i <= 14) {
             switch (i) {
                 case 1: // Problem()
                     P = new Problem();
@@ -127,7 +127,12 @@ public class ProblemDriver {
                     System.out.println(P.getATK());
                     break;
 
-
+                case 14: // get/set stats
+                    P = new Problem();
+                    P.addToRanking("Pipo", 1);
+                    P.addToRanking("Pipo3", 3);
+                    P.addToRanking("Pipo2", 2);
+                    System.out.print(P.getRankingPossition(2));
             }
             i = sc.nextInt();
         }
@@ -148,6 +153,7 @@ public class ProblemDriver {
         System.out.println("Test 11: Get/set Fen code");
         System.out.println("Test 12: Get/set N");
         System.out.println("Test 13: Get/set atk");
+        System.out.println("Test 14: Get/set ranking");
 
         System.out.println("Para salir presione 14");
 

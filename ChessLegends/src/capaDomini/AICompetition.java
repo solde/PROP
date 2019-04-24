@@ -6,6 +6,7 @@
 package capaDomini;
 
 import Exception.chessException;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,13 +14,18 @@ import Exception.chessException;
  */
 public class AICompetition extends GameAbs{
     private int N;
+    private int WhiteWins;
+    private int BlackWins;
     
     public AICompetition(){
-        
+        WhiteWins = 0;
+        BlackWins = 0;
     }
 
     public AICompetition(int N) {
         this.N = N;
+        BlackWins = 0;
+        WhiteWins = 0;        
     }
     
     public void setN(int N){
@@ -30,22 +36,44 @@ public class AICompetition extends GameAbs{
         return N;
     }
     
+    public void resetWinCounters(){
+        WhiteWins = 0;
+        BlackWins = 0;
+    }
+    
+    public int getWhiteWins(){
+        return this.WhiteWins;
+    }
+    
+    public int getBlackWins(){
+        return this.BlackWins;
+    }
+    
     /**
      *
      * @return true if the winner is the white player, fals if the winner is the black player
      * @throws chessException
      */
     @Override
-    public boolean playMatch() throws chessException{
-        if(N == 0) throw new chessException("Competition is done");
-        else{
-            while(N > 0 && !B.isCheckMate(turn)){
+    public void playMatch() throws chessException{
+        for(int i = 0; i < this.N; ++i){
+            int turn_cont = 0;
+            while(turn_cont < this.P.getN_mov()){
                 AI1.makeMove(B, turn, N, 3);
+                AI1.makeMove(B, !turn, N, 3);
+                turn_cont += 1;
+            }
+            if(B.isCheckMate(true)){
+                WhiteWins += 1;
+            }
+            else if(B.isCheckMate(false)){
+                WhiteWins += 1;
+            }
+            else{
+                if(P.getATK()) BlackWins += 1;
+                else WhiteWins += 1;
             }
         }
-        if(B.isCheckMate(true)){}
-        return true;
-          
     }
 
     @Override
@@ -56,6 +84,11 @@ public class AICompetition extends GameAbs{
     @Override
     public void resetTimers() {
         throw new UnsupportedOperationException("AI"); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<int[]> possibleMovements(boolean color) {
+        throw new UnsupportedOperationException("You are a mere spectator"); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

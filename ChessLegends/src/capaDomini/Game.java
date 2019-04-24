@@ -9,6 +9,7 @@ import Exception.chessException;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.util.Pair;
 
 /**
  *
@@ -104,14 +105,15 @@ public class Game extends GameAbs {
     }
 
     /**
-     *
-     * @param sX
-     * @param sY
-     * @param dX
-     * @param dY
-     * @param color
-     * @param time
-     * @throws chessException
+     * Funciton to move a piece at board.
+     * 
+     * @param sX X index of source possition
+     * @param sY Y index of source possition
+     * @param dX X index of destination possition
+     * @param dY y index of destination possition
+     * @param color color of the player that moves (treu = white, false = black)
+     * @param time Time of the desicion
+     * @throws chessException when you are not de owner of the piece or when the piece cannot be moved.
      */
     @Override
     public void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException {
@@ -123,11 +125,36 @@ public class Game extends GameAbs {
             } catch (chessException e) {
                 throw new chessException("Can't move");
             }
+            turn = !turn;
         }
+    }
+    
+    @Override
+    public ArrayList<int[]> possibleMovements(boolean color){
+        ArrayList<int[]> ret = new ArrayList<>();
+        ArrayList<Piece> Pieces;
+        Pieces = new ArrayList<>();
+        if(color) Pieces = B.getWhitePiecesOnBoard();
+        else Pieces = B.getBlackPiecesOnBoard();
+        int[] to_add;
+        to_add = new int[4];
+        for(int i = 0; i < Pieces.size(); ++i){
+            Piece p = Pieces.get(i);
+            to_add[0] = p.getX();
+            to_add[1] = p.getY();
+            ArrayList<Pair<Integer, Integer>> pos_movs = p.get_poss_mov(B);
+            
+            for(int j = 0; j < pos_movs.size(); ++j){
+                to_add[2] = pos_movs.get(j).getKey();
+                to_add[3] = pos_movs.get(j).getValue();
+                ret.add(to_add);
+            }            
+        }
+        return ret;
     }
 
     @Override
-    public boolean playMatch() throws chessException {
+    public void playMatch() throws chessException {
         throw new UnsupportedOperationException("You have to play, slacker"); //To change body of generated methods, choose Tools | Templates.
     }
 }
