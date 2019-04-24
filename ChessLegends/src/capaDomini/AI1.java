@@ -22,7 +22,22 @@ public class AI1 extends Player {
     public AI1(){
         System.out.println("Not implemented");
     }
-
+    
+    public static void printBoard(Board B){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
+    
+    
     public static void makeMove(Board b, boolean color, int N, int depth) throws chessException {   //now incomplete. Needs to associate moves w/ possible boards.
                                                                                                     //nowadays possi
         
@@ -39,8 +54,8 @@ public class AI1 extends Player {
 			for(int j=0; j<8; j++){
                             Piece piece = b.getPieceAt(i,j);
                             if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ color)){
-                                for(int k=0; k<8; k++){
-                                    for(int l=0; l<8; l++){
+                               /* for(int k=0; k<8; k++){
+                                    for(int l=0; l<8; l++){*/
                                         ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
                                         for(int x = 0; x < possMovs.size(); ++x){
                                             int[] mov = new int[4];
@@ -49,13 +64,23 @@ public class AI1 extends Player {
                                             mov[2] = possMovs.get(x).getKey();
                                             mov[3] = possMovs.get(x).getValue();
                                             
+                                            //printBoard(b);
+                                            
                                             moves.add(mov); //Adds the possible movement to a poss. movs. list
                                             Board altBoard = new Board(b); //initialices an alternative space to evaluate
+                                            
+                                            System.out.println("altb before");
+                                            printBoard(altBoard);
+                                            
                                             altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                                            
+                                            System.out.println("altb after");
+                                            printBoard(altBoard);
+                                            
                                             possibleBoards.add(altBoard); //adds the alternative board to the possible boards list
                                         }
-                                    }
-                                }      
+                                   /* }
+                                }    */  
                             }
                             else {
                             }
@@ -88,7 +113,7 @@ public class AI1 extends Player {
 		}
 		//System.out.println(bestMove.toString()); same as in line ~66, to have a visual control
 		N++; //Change the turn to extend deep in search
-		b.movePiece(bestMove[0], bestMove[1] , bestMove[2], bestMove[3], true); //theorically now is well implemented, based on the best move (random or not)
+		b.movePiece(bestMove[0], bestMove[1] , bestMove[2], bestMove[3], color); //theorically now is well implemented, based on the best move (random or not)
 	}
 	
     /**
@@ -109,10 +134,10 @@ public class AI1 extends Player {
                                     
                                     for (int n = 0; n < llista.size(); ++n){
                                         int[] mov = new int[4];
-                                        mov[0] = i;
-                                        mov[1] = j;
-                                        mov[3] = llista.get(n).getKey();
-                                        mov[4] = llista.get(n).getValue();
+                                        mov[0] = piece.getX();
+                                        mov[1] = piece.getY();
+                                        mov[2] = llista.get(n).getKey();
+                                        mov[3] = llista.get(n).getValue();
                                         moves.add(mov); 
                                     }
                                 }
@@ -170,7 +195,13 @@ public class AI1 extends Player {
 				//System.out.println("Move to be evaluated: " + move.toString());
 				Board successorBoard = new Board(b);
                                 int[] aux= moves.get(i);
-				b.movePiece(aux[0], aux[1], aux[2], aux[3], color);
+                                
+                                System.out.println(aux[0]);
+                                System.out.println(aux[1]);
+                                System.out.println(aux[2]);
+                                System.out.println(aux[3]);
+                                
+				successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);
                             
 				newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
 				if(newBeta<= alpha) break;
@@ -195,7 +226,7 @@ public class AI1 extends Player {
 			//System.out.println("Move to be evaluated: " + move.toString());
 			Board successorBoard = new Board(b); 
                         int[] aux = moves.get(i);
-			b.movePiece(aux[0], aux[1], aux[2], aux[3], color);
+			successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);
 			newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
 			if(beta<= newAlpha) break;
 		}

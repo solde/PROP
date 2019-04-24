@@ -43,7 +43,9 @@ public class AICompetition extends GameAbs{
                 AI1.makeMove(B, turn, N, 3);
             }
         }
-        if(B.isCheckMate(true))
+        if(B.isCheckMate(true)){}
+        return true;
+          
     }
 
     @Override
