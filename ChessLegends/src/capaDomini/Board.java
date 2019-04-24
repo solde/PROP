@@ -87,6 +87,9 @@ public class Board {
      */
     public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
         boolean moved = false;
+        if(dY == sY && dX == sX){
+            throw new chessException("WTF");
+        }
         if(chessBoard[sX][sY].getTypeOfPiece() == -1){
             throw new chessException("No piece at Soruce");
         }
@@ -95,7 +98,9 @@ public class Board {
                 throw new chessException("Not your piece");
             } 
             else if(chessBoard[dX][dY].getTypeOfPiece() != -1 && !(chessBoard[dX][dY].isColor() ^ player)){
-                throw new chessException("Cannot move to dest");
+                System.out.println(sX + " " + sY);
+                System.out.println(dX + " " + dY);
+                throw new chessException("Color: " + player + chessBoard[dX][dY].isColor() + " Trying to move a piece of type " + chessBoard[sX][sY].getTypeOfPiece() + " to a cell with a piece " + chessBoard[dX][dY].getTypeOfPiece());
             }
             else{
                 switch(chessBoard[sX][sY].getTypeOfPiece()){

@@ -21,30 +21,10 @@ public class Game extends GameAbs {
     private long timerB;
     private String wPlayer;
     private String bPlayer;
-    private ArrayList<Human> listOfPlayers; //temp
-    private List<String> listOfProblems; //temp
-
-    public List<String> getListOfProblems() {
-        return listOfProblems;
-    }
-
-    public void setListOfProblems(List<String> listOfProblems) {
-        this.listOfProblems = listOfProblems;
-    }
-
-
-
-    public ArrayList<Human> getListOfPlayers() {
-        return listOfPlayers;
-    }
-
-    public void setListOfPlayers(ArrayList<Human> listOfPlayers) {
-        this.listOfPlayers = listOfPlayers;
-    }
 
     void Game(boolean initialTurn) {
         turn = initialTurn;
-
+        B = new Board();
         timerW = 0;
         timerB = 0;
     }
@@ -52,6 +32,7 @@ public class Game extends GameAbs {
     void Game() {
         timerW = 0;
         timerB = 0;
+        B = new Board();
         turn = true;
     }
 

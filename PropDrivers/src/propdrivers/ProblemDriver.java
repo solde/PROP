@@ -45,14 +45,14 @@ public class ProblemDriver {
                 case 4: //verify
                     System.out.println("Enter a fen Code");
                     //String fc3 = sc.nextLine();
-                    String fc3 = "4k3/8/3Q4/2B5/8/8/1K6/8";
+                    String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
                     System.out.println("Enter a name");
-                    String n3 = sc.nextLine();
+                    String n3 = "test";
                     System.out.println("Enter a difficulty");
-                    int d3 = sc.nextInt();
+                    int d3 = 3;
                     System.out.println("Enter a number of movs");
                     //4int nm3 = sc.nextInt();
-                    int nm3 = 1;
+                    int nm3 = 2;
                     System.out.println("Enter a theme");
                     String t3 = sc.nextLine();
                     System.out.println("Enter the player who atacks");

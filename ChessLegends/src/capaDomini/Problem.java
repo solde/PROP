@@ -162,11 +162,12 @@ public class Problem {
     }
     
     private boolean deep_verify(Board b, int n, boolean color) throws chessException{
+        //System.out.println(color);
         ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
         boolean can_solve = false;
         
-        if(n == 1){
-            printBoard(b);
+        if(n == 0){
+            //printBoard(b);
             for(int i = 0; i < 8; ++i){
                 for(int j = 0; j < 8; ++j){
                     if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && !(b.getPieceAt(i, j).isColor()^color)) return false;

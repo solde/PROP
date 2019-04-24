@@ -19,7 +19,7 @@ public class GameDriver {
         Scanner sc = new Scanner(System.in);
         Game G;
         int i = sc.nextInt();
-        while (i <= 13) {
+        while (i <= 8) {
             switch (i) {
                 case 1: // Problem()
                     
@@ -52,28 +52,6 @@ public class GameDriver {
                 case 8: //Get/set Name
 
                     break;       
-                
-                case 9: //Get/set FirstTurn
-
-                    break;
-                
-                case 10: //Get/set Theme
-
-                    break;       
-                
-                case 11: //Get/set Fen code
-
-                    break;      
-                
-                case 12: //Get/set N
-
-                    break;      
-                
-                case 13: //Get/set atk
-
-                    break;
-
-
             }
             i = sc.nextInt();
         }
@@ -81,19 +59,14 @@ public class GameDriver {
 
     public static void display_menu() {
         System.out.println("Menu de opciones:");
-        System.out.println("Test 1: Problem Constuctor Creator");
-        System.out.println("Test 2 :Problem Constuctor Loader Test");
-        System.out.println("Test 3: Problem Constuctor Loader String Info");
-        System.out.println("Test 4: verify ");
-        System.out.println("Test 5: numberPiecesOf  ");
-        System.out.println("Test 6: calculateDiff/getDiff  ");
-        System.out.println("Test 7: getProblemInfo  ");
-        System.out.println("Test 8: Get/set Name");
-        System.out.println("Test 9: Get/set FirstTurn");
-        System.out.println("Test 10: Get/set Theme");
-        System.out.println("Test 11: Get/set Fen code");
-        System.out.println("Test 12: Get/set N");
-        System.out.println("Test 13: Get/set atk");
+        System.out.println("Test 1: Empty game");
+        System.out.println("Test 2 :set/isTurn");
+        System.out.println("Test 3: resetTimers/addTimerX/GetTimerX");
+        System.out.println("Test 4: setProblem");
+        System.out.println("Test 5: setPlayers");
+        System.out.println("Test 6: reset/add/getTimerX");
+        System.out.println("Test 7: movePiece");
+        System.out.println("Test 8: possibleMovements");
 
         System.out.println("Para salir presione 14");
 
