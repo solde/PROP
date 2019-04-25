@@ -45,7 +45,7 @@ public class ProblemDriver {
                 case 4: //verify
                     System.out.println("Enter a fen Code");
                     //String fc3 = sc.nextLine();
-                    String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
+                    String fc3 = "r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R";
                     System.out.println("Enter a name");
                     String n3 = "problem_test";
                     System.out.println("Enter a difficulty");
