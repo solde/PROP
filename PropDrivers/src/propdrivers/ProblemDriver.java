@@ -47,19 +47,20 @@ public class ProblemDriver {
                     //String fc3 = sc.nextLine();
                     String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
                     System.out.println("Enter a name");
-                    String n3 = "test";
+                    String n3 = "problem_test";
                     System.out.println("Enter a difficulty");
                     int d3 = 3;
                     System.out.println("Enter a number of movs");
                     //4int nm3 = sc.nextInt();
                     int nm3 = 2;
                     System.out.println("Enter a theme");
-                    String t3 = sc.nextLine();
+                    String t3 = "test";
                     System.out.println("Enter the player who atacks");
                     boolean a3 = sc.nextBoolean();
                     System.out.println("Enter a the player who starts the game");
                     boolean ft3 = sc.nextBoolean();
                     P = new Problem(fc3, n3, d3, nm3, t3, a3, ft3);
+                    //System.out.println(P.getProblemInfo());
                     System.out.println(P.verify());
                     break;       
                 
