@@ -130,7 +130,7 @@ public abstract class Piece {
         int y_temp = (int) p.getValue();
         List<Piece> whites = b.getWhitePiecesOnBoard();
         List<Piece> blacks = b.getBlackPiecesOnBoard();
-
+        if(x_temp==this.getX() && y_temp==this.getY()) return true;
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
 
             for (Piece white : whites) {
