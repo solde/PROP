@@ -6,7 +6,7 @@
 package capaDomini;
 
 import Exception.chessException;
-import static capaDomini.AI1.evaluatePosition;
+//import static capaDomini.AI1.evaluatePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

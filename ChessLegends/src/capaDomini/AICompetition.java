@@ -59,8 +59,8 @@ public class AICompetition extends GameAbs{
         for(int i = 0; i < this.N; ++i){
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
-                AI1.makeMove(B, turn, 3);
-                AI1.makeMove(B, !turn, 3);
+                B = AI1.makeMove(B, turn, 3);
+                B = AI1.makeMove(B, !turn, 3);
                 turn_cont += 1;
             }
             if(B.isCheckMate(true)){

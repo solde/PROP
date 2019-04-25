@@ -83,14 +83,6 @@ public abstract class GameAbs {
     public void setB(Board B) {
         this.B = B;
     }
-
-    public Problem getP() {
-        return P;
-    }
-
-    public void setP(Problem P) {
-        this.P = P;
-    }
     
     public String getPlayer1Info(){
         return "";
