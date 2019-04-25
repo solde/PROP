@@ -64,8 +64,8 @@ public class CtrlDomainGame {
         //Fer coses d'estadistiques
     }
     
-    public ArrayList<int[]> getBoardInfo(){
-        G.
+    public char[][] getBoardInfo(){
+        return G.getBoard();
     }
    
 }

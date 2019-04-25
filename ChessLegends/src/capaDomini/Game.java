@@ -120,13 +120,42 @@ public class Game extends GameAbs {
         return P.getProblemInfo();
     }
     
-    public ArrayList<int[]> getPieces(){
-        ArrayList<int[]> ret = new ArrayList<>();
-        ArrayList<Piece> pieces = B.getBlackPiecesOnBoard();
-        pieces.addAll(B.getWhitePiecesOnBoard());
-        for(int i = 0; i < pieces.size(); ++i){
-            int[] toAdd = new int[4];
+    public char[][] getBoard(){
+        char[][] chessBoard = new char[8][8];
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                switch(B.getPieceAt(i, j).getTypeOfPiece()){
+                    case 0:
+                        if(B.getPieceAt(i, j).isColor()) chessBoard[i][j] = 'K';
+                        else chessBoard[i][j] = 'k';
+                        break;
+                    case 1:
+                        if(B.getPieceAt(i, j).isColor()) chessBoard[i][j] = 'P';
+                        else chessBoard[i][j] = 'p';
+                        break;
+                    case 5:
+                        if(B.getPieceAt(i, j).isColor()) chessBoard[i][j] = 'R';
+                        else chessBoard[i][j] = 'r';
+                        break;
+                    case 3:
+                        if(B.getPieceAt(i, j).isColor()) chessBoard[i][j] = 'B';
+                        else chessBoard[i][j] = 'b';
+                        break;
+                    case 4:
+                        if(B.getPieceAt(i, j).isColor()) chessBoard[i][j] = 'N';
+                        else chessBoard[i][j] = 'n';
+                        break;
+                    case 7:
+                        if(B.getPieceAt(i, j).isColor()) chessBoard[i][j] = 'Q';
+                        else chessBoard[i][j] = 'q';
+                        break;
+                    case -1:
+                        chessBoard[i][j] = ' ';
+                        break;
+                }
+            }
         }
+        return chessBoard;
     }
 
     @Override
