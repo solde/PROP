@@ -177,7 +177,7 @@ public abstract class Piece {
                 if (x_check == x_temp && y_check == y_temp && !color) {
                     ret = true;
 
-                }
+                } 
             }
             for (Piece black : blacks) {
                 int x_check = black.getX();
