@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
+/**
+ *
+ * @author Daniel Palomo
+ *
+ */
 public abstract class Piece {
 
     private final int id;
@@ -12,11 +17,23 @@ public abstract class Piece {
     private int y;
     private boolean color; //TRUE WHITE FALSE BLACK
 
+    /**
+     * Basic Constructor
+     */
     public Piece() {
         this.value = 0;
         this.id = -1;
     }
 
+    /**
+     * Constructor with parameters
+     *
+     * @param id
+     * @param val
+     * @param x
+     * @param y
+     * @param color
+     */
     public Piece(int id, int val, int x, int y, boolean color) {
         this.id = id;
         this.value = val;
@@ -25,20 +42,40 @@ public abstract class Piece {
         this.y = y;
     }
 
+    /**
+     * Retruns X
+     *
+     * @return
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Changes x of the piece
+     *
+     * @param x
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * Retruns color of the piece
+     *
+     * @return
+     */
     public boolean isColor() {
         return color;
     }
 
+    /**
+     * Changes color of the piece
+     *
+     * @param color
+     */
     public void setColor(boolean color) {
         this.color = color;
-    }
-
-    public void setX(int x) {
-        this.x = x;
     }
 
     public int getY() {
@@ -49,6 +86,11 @@ public abstract class Piece {
         this.y = y;
     }
 
+    /**
+     * Returns a Pair with the position of the piece
+     *
+     * @return
+     */
     public int[] getXY() {
         int a[] = new int[2];
         a[0] = this.x;
@@ -56,6 +98,13 @@ public abstract class Piece {
         return a;
     }
 
+    /**
+     * Retruns if the (x,y) passed is equal with the position of the piece
+     *
+     * @param X
+     * @param Y
+     * @return
+     */
     public boolean equalXY(int X, int Y) {
         return (X == this.x && Y == this.y);
     }
@@ -69,12 +118,12 @@ public abstract class Piece {
     }
 
     /**
-     *
+     * Checks if the Pair p represents an empty space in the board.
      * @param p
      * @param b
      * @return
      */
-    public boolean pos_taken(Pair p, Board b) {  //FALSE = LLIURE  TRUE = OCUPADA
+    public boolean pos_Taken(Pair p, Board b) {  //FALSE = LLIURE  TRUE = OCUPADA
         boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
@@ -102,10 +151,19 @@ public abstract class Piece {
         }
         return ret;
     }
-    
-    public boolean pos_killable(Pair p, Board b,boolean color){ //TRUE= KILLABLE  FALSE=FRIENDLY //tbd
-        
-     boolean ret = false;
+
+    /**
+     * This Funciton detects if the position in Pair p has a piece that can be
+     * killed.
+     *
+     * @param p Pair of coords
+     * @param b Board where the game is taking place
+     * @param color Color of the piece
+     * @return
+     */
+    public boolean pos_Killable(Pair p, Board b, boolean color) { //TRUE= KILLABLE  FALSE=FRIENDLY
+
+        boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
         List<Piece> whites = b.getWhitePiecesOnBoard();
@@ -118,7 +176,7 @@ public abstract class Piece {
                 int y_check = white.getY();
                 if (x_check == x_temp && y_check == y_temp && !color) {
                     ret = true;
-                    
+
                 }
             }
             for (Piece black : blacks) {

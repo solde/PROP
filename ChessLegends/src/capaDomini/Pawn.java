@@ -1,6 +1,7 @@
 package capaDomini;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javafx.util.Pair;
 
@@ -31,29 +32,29 @@ public class Pawn extends Piece {
 
         if (isColor()) {
             tmp = new Pair<>(x_temp - 1, y_temp);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp - 1, y_temp - 1);
-            if (pos_killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b, isColor())) {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp - 1, y_temp + 1);
-            if (pos_killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b, isColor())) {
                 mov.add(tmp);
             }
 
             if (x_temp == 6) {
                 tmp = new Pair<>(x_temp - 2, y_temp);
-                if (!pos_taken(tmp, b)) {
+                if (!pos_Taken(tmp, b)) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp - 2, y_temp - 1);
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp - 2, y_temp + 1);
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
             }
@@ -61,28 +62,29 @@ public class Pawn extends Piece {
 
         if (!isColor()) {
             tmp = new Pair<>(x_temp + 1, y_temp);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
+                System.out.println(x_temp + " " + y_temp + " " + Arrays.toString(b.getPieceAt(tmp.getKey(), tmp.getValue()).getXY()));
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp + 1);
-            if (pos_killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b, isColor())) {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp - 1);
-            if (pos_killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b, isColor())) {
                 mov.add(tmp);
             }
             if (x_temp == 1) {
                 tmp = new Pair<>(x_temp + 2, y_temp);
-                if (!pos_taken(tmp, b)) {
+                if (!pos_Taken(tmp, b)) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp + 2, y_temp - 1);
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp + 2, y_temp + 1);
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
             }

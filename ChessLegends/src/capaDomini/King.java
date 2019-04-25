@@ -57,62 +57,62 @@ public class King extends Piece {
         int y_temp = getY();
 
         tmp = new Pair<>(x_temp - 1, y_temp - 1);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
 
         tmp = new Pair<>(x_temp + 1, y_temp - 1);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
 
         tmp = new Pair<>(x_temp - 1, y_temp + 1);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
 
         tmp = new Pair<>(x_temp + 1, y_temp + 1);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
         tmp = new Pair<>(x_temp, y_temp - 1);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
         tmp = new Pair<>(x_temp, y_temp + 1);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
         tmp = new Pair<>(x_temp + 1, y_temp);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
         tmp = new Pair<>(x_temp - 1, y_temp);
-        if (!pos_taken(tmp, b)) {
+        if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b, isColor())) {
             mov.add(tmp);
         }
         return mov;

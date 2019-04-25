@@ -1,10 +1,8 @@
 package capaDomini;
-
 import Exception.chessException;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import static java.lang.System.in;
@@ -59,8 +57,8 @@ public class Human extends Player {
 
         password = null;
     }
-
-    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) {  //constructor amb parametres
+//constructor amb parametres
+    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) {  
         //Create a human player by entering the stats
         this.id = id;
         this.wins = wins;

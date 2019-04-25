@@ -53,7 +53,7 @@ public class Statistics {
         System.out.println(p.getWins());
 
     }
-
+/*
     public void showStatsGame(Game g) {
         //Donde sea que esta nuestro main, tiene que tener una lista de jugadores existentes
 
@@ -187,5 +187,5 @@ public class Statistics {
             max5 = 0;
         }
     }
-
+*/
 }

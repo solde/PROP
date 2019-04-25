@@ -35,10 +35,10 @@ public class Queen extends Piece {
 
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -46,10 +46,10 @@ public class Queen extends Piece {
         }
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -57,10 +57,10 @@ public class Queen extends Piece {
         }
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp, y_temp + i);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -68,10 +68,10 @@ public class Queen extends Piece {
         }
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp, y_temp - i);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -79,10 +79,10 @@ public class Queen extends Piece {
         }
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp - i);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -91,10 +91,10 @@ public class Queen extends Piece {
 
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp + i);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -103,10 +103,10 @@ public class Queen extends Piece {
 
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp + i);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
@@ -115,10 +115,10 @@ public class Queen extends Piece {
 
         for (int i = 0; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp - i);
-            if (!pos_taken(tmp, b)) {
+            if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b, isColor())) {
                     mov.add(tmp);
                 }
                 break;
