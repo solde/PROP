@@ -90,9 +90,9 @@ public class Problem {
         i += 1;
         while(i < info.length() && info.charAt(i) != ' '){
             System.out.println("Debug: " + info.charAt(i));
-            aux = aux.concat(Character.toString(info.charAt(i)));
             i += 1;
         }
+        System.out.println(aux);
         N_mov = Integer.parseInt(aux);
         System.out.println(N_mov);
         
