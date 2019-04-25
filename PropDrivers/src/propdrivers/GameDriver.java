@@ -21,26 +21,26 @@ public class GameDriver {
         int i = sc.nextInt();
         while (i <= 8) {
             switch (i) {
-                case 1: // Problem()
+                case 1: //Empty game
                     G = new Game();
                     System.out.println(G.isTurn());
                     break;
                     
-                case 2: // Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn)
+                case 2: //Game with turn
                     System.out.println("Enter ''true'' for white or 'false'' for black");
                     boolean t = sc.nextBoolean();
                     G = new Game(t);
                     System.out.println(G.isTurn());
                     break;
 
-                case 3: //Creator with string with DL info
+                case 3: //set/isTurn
                     G = new Game();
                     boolean t2 = sc.nextBoolean();
                     G.setTurn(t2);
                     System.out.println(G.isTurn());
                     break;       
                 
-                case 4: //verify
+                case 4: //resetTimers/addTimerX/GetTimerX
                     G = new Game();
                     G.addTimeB(5);
                     G.addTimeW(5);
@@ -51,24 +51,24 @@ public class GameDriver {
                     System.out.println(G.getTimerB());
                     break;       
                 
-                case 5: //numberPiecesOf
+                case 5: //setProblem
                     G = new Game();
                     G.setProblem(fenCode, Name, i, i, Theme, t2, t2);
                     break;       
                 
-                case 6: //calculateDiff/getDiff
+                case 6: //setPlayers
+                    
+                    break;
+                
+                case 7: //reset/add/getTimerX
 
                     break;
                 
-                case 7: //getProblemInfo
-
-                    break;
-                
-                case 8: //Get/set Name
+                case 8: //movePiece
 
                     break;   
                     
-                case 9: //Get/set Name
+                case 9: //possibleMovements
 
                     break;   
             }
