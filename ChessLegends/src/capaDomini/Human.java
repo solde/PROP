@@ -14,7 +14,7 @@ public class Human extends Player {
     //private
     private String password; //TEMP, ja millorarem la seguritat
     //Funció temporal per la primera entrega 
-
+ 
     /**
      * Checks if a the string pass is equal to the password in player.
      *
