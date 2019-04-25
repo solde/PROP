@@ -45,14 +45,14 @@ public class ProblemDriver {
                 case 4: //verify
                     System.out.println("Enter a fen Code");
                     //String fc3 = sc.nextLine();
-                    String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
+                    String fc3 = "4k3/4B3/4K3/8/4N3/8/8/3q4";
                     System.out.println("Enter a name");
                     String n3 = "problem_test";
                     System.out.println("Enter a difficulty");
                     int d3 = 3;
                     System.out.println("Enter a number of movs");
                     //int nm3 = sc.nextInt();
-                    int nm3 = 2;
+                    int nm3 = 1;
                     System.out.println("Enter a theme");
                     String t3 = "test";
                     System.out.println("Enter the player who atacks");
@@ -81,8 +81,9 @@ public class ProblemDriver {
                     break;
                 
                 case 7: //getProblemInfo
-                    String i7 = sc.nextLine();
-                    P = new Problem(i7);
+                    System.out.println("Enter problem info");
+                    //String i7 = sc.next();
+                    P = new Problem("4k3/4B3/4K3/8/4N3/8/8/3q4 problem_test theme_test 3 1 true true");
                     System.out.println(P.getProblemInfo());
                     break;
                 

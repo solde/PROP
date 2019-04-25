@@ -116,6 +116,10 @@ public class Game extends GameAbs {
         }
         return ret;
     }
+    
+    public String getProblemInfo(){
+        return P.getProblemInfo();
+    }
 
     @Override
     public void playMatch() throws chessException {
