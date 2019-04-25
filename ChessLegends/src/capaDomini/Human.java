@@ -127,7 +127,7 @@ public class Human extends Player {
      *
      * @return password
      */
-    private String getPassword() {
+    public String getPassword() {
         return this.password;
     }
 

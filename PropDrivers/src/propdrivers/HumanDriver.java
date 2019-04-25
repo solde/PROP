@@ -9,6 +9,11 @@ package propdrivers;
 import capaDomini.Human;
 import java.util.Scanner;
 import Exception.chessException;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import capaDomini.Human;
+import java.util.Scanner;
+import Exception.chessException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,78 +28,76 @@ public class HumanDriver {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
         Human h = new Human("pepe", "loco");
         int i = sc.nextInt();
-        /*while (i <= 7) { // ( o el que sea
+        while (i <= 7) { // ( o el que sea
             switch (i) {
-                case 0: {
-                    try {
-                        Human p = new Human();
-                        Human p2 = new Human("nom", "password");
-                        Human p3 = new Human("nom", "pass", 2, 3, 1520, 8965);
-                    } catch (chessException k) {
-                        String p = k.getMessage();
-                        System.out.println(p);
-                    }
-                }
+                case 0:
+                    Human p = new Human();
+                    Human p2 = new Human("nom", "password");
+                    Human p3 = new Human("nom", "pass", 2, 3, 1520, 8965);
+                    System.out.println(p);
+                    break;
+
                 case 1: {
                     String pass = "yah";
-                    System.out.println("Provando autenticate");
+                    System.out.println("Testing autenticate");
                     try {
-                        System.out.println("Provando contraseña incorrecta");
+                        System.out.println("Testing incorrect password");
                         h.autenticate(pass);
                     } catch (chessException e) {
-                        String p = e.getMessage();
-                        System.out.println(p);
-                        
+                        String p4 = e.getMessage();
+                        System.out.println(p4);
 
                     }
                     try {
                         pass = "";
-                        System.out.println("Provando contraseña vacia");
+                        System.out.println("Testing null password");
                         h.autenticate(pass);
                     } catch (chessException a) {
-                        String p = a.getMessage();
-                        System.out.println(p);
-                        
-                    }
-                    String p = "Passed";
-                    System.out.println(p);
-                    TimeUnit.SECONDS.sleep(3); //Para poder leer la salida mejor
-                    display_menu();
+                        String o = a.getMessage();
+                        System.out.println(o);
 
+                    }
+                    String r = "Passed";
+                    System.out.println(r);
+                    TimeUnit.SECONDS.sleep(2); //Para poder leer la salida mejor
+                    display_menu();
+                    break;
                 }
-                break;
-                case 2: {
-                    System.out.println("Provando getPassword");
-                    String p = h.getPassword();
-                    if (!p.equals("loco")) {
-                        System.out.println("getter no funciona");
+
+                case 2:
+                    System.out.println("Testing getPassword");
+                    String w = h.getPassword();
+                    if (!w.equals("loco")) {
+                        System.out.println("Getter doesn't work");
                         break;
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
                     display_menu();//Para poder leer la salida mejor
-                }
+                    break;
+
                 case 3: {
-                    System.out.println("provando setPassword");
+                    System.out.println("Testing setPassword");
                     h.setPassword("yaya");
                     String k = h.getPassword();
                     if (k.equals("loco")) {
-                        System.out.println("Setter no funciona");
+                        System.out.println("Setter doesn't work");
                         break;
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
 
                     display_menu();//Para poder leer la salida mejor
                     h.setPassword("loco"); // reinstaurar el estado anterior para multiples tests
+                    break;
                 }
 
                 default:
@@ -102,12 +105,12 @@ public class HumanDriver {
 
             }
             i = sc.nextInt();
-        }*/
+        }  
     }
 
     public static void display_menu() {
-        System.out.println("Menu de opciones:");
-        System.out.println("Test 0: Creadora (Automatico) ");
+        System.out.println("Option menu:");
+        System.out.println("Test 0: Creadora ");
         System.out.println("Test 1: Authenticate  ");
         System.out.println("Test 2: getPassword   ");
         System.out.println("Test 3: setPassword  ");
@@ -117,9 +120,9 @@ public class HumanDriver {
           System.out.println("Test 7:   ");
           System.out.println("Test 8:   ");
          */
-        System.out.println("Para salir presione 8");
+        System.out.println("For exit press 6");
 
-        System.out.println("Inserte opcion: ");
+        System.out.println("Insert option: ");
 
     }
 }

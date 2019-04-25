@@ -21,8 +21,11 @@ import static java.lang.System.in;
 
 /**
  *
- * @author Familia
+ * @author Daniel Palomo
  */
+
+//--THIS WHOLE CLASS IS WORK IN PROGRESS AND IS NOT EXPECTED TO WORK OR BE FINAL--
+
 public class CtrlDades {
     //Move this to ctrl ficheros
 
