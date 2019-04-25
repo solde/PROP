@@ -6,6 +6,7 @@
 package propdrivers;
 
 import capaDomini.Game;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,6 +36,7 @@ public class GameDriver {
 
                 case 3: //set/isTurn
                     G = new Game();
+                    System.out.println("Enter ''true'' for white or 'false'' for black");
                     boolean t2 = sc.nextBoolean();
                     G.setTurn(t2);
                     System.out.println(G.isTurn());
@@ -52,26 +54,69 @@ public class GameDriver {
                     break;       
                 
                 case 5: //setProblem
-                    System.out.println("Inset a problem description");
-                    String problemInfo = sc.nextLine();
+                    //System.out.println("Inset a problem description");
+                    String problemInfo = "4k3/4B3/4K3/8/4N3/8/8/3q4 problem_test test 3 1 true true";
                     G = new Game();
                     G.setProblem(problemInfo);
+                    System.out.println(G.getProblemInfo());
                     break;       
                 
                 case 6: //setPlayers
+                    //String playerId, int wins, int loses, int ELO, int OP_rating
+                    G = new Game();
+                    System.out.println("Enter player 1 anme");
+                    String player1Id = sc.nextLine();
+                    System.out.println("Enter number of wins for player 1");
+                    int wins = sc.nextInt();
+                    System.out.println("Enter number of loses for player 1");
+                    int loses = sc.nextInt();
+                    System.out.println("Enter ELO for player 1");
+                    int ELO = sc.nextInt();
+                    System.out.println("Enter OP rating for player 1 (OP rating is the sum of ELO of all oponents)");
+                    int OP_rating = sc.nextInt();
+                    G.setPlayer1(player1Id, wins, loses, ELO, OP_rating);
                     
+                    System.out.println(G.getPlayer1Info());
+                    
+                    System.out.println("Enter player 2 anme");
+                    player1Id = sc.nextLine();
+                    System.out.println("Enter number of wins for player 2");
+                    wins = sc.nextInt();
+                    System.out.println("Enter number of loses for player 2");
+                    loses = sc.nextInt();
+                    System.out.println("Enter ELO for player 2");
+                    ELO = sc.nextInt();
+                    System.out.println("Enter OP rating for player 2 (OP rating is the sum of ELO of all oponents)");
+                    OP_rating = sc.nextInt();
+                    G.setPlayer2(player1Id, wins, loses, ELO, OP_rating);
+                    
+                    System.out.println(G.getPlayer2Info());
                     break;
                 
                 case 7: //reset/add/getTimerX
-
+                    G = new Game();
+                    System.out.println("Enter a tiem to add");
+                    long time = sc.nextLong();
+                    G.addTimeB(time);
+                    G.addTimeW(time);
+                    System.out.println(G.getTimerB() + " " + G.getTimerW());
+                    G.resetTimers();
+                    System.out.println(G.getTimerB() + " " + G.getTimerW());
                     break;
                 
                 case 8: //movePiece
-
+                    System.out.println("Directly calls to board");
                     break;   
                     
                 case 9: //possibleMovements
-
+                    G = new Game();
+                    System.out.print("Enter problem info");
+                    String prob = sc.nextLine();
+                    G.setProblem(prob);
+                    System.out.println("Enter your color (true for white, false for black)");
+                    boolean c = sc.nextBoolean();
+                    ArrayList<int[]> result = G.possibleMovements(c);
+                    System.out.println(result);
                     break;   
             }
             i = sc.nextInt();

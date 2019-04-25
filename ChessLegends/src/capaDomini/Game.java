@@ -8,7 +8,6 @@ package capaDomini;
 import Exception.chessException;
 
 import java.util.ArrayList;
-import java.util.List;
 import javafx.util.Pair;
 
 /**
@@ -115,6 +114,10 @@ public class Game extends GameAbs {
             }            
         }
         return ret;
+    }
+    
+    public String getProblemInfo(){
+        return P.getProblemInfo();
     }
 
     @Override

@@ -61,39 +61,65 @@ public class Problem {
      * @param info
      */
     public Problem(String info) {
+        System.out.println(info);
         int i = 0;
         fenCode = "";
-        while(info.charAt(i) != ' ' && i < info.length()){
+        while(i < info.length() && info.charAt(i) != ' '){
             this.fenCode = fenCode.concat(Character.toString(info.charAt(i)));
+            i += 1;
         }
+        System.out.println(fenCode);
         
         Name = "";
-        while(info.charAt(i) != ' ' && i < info.length()){
+        i += 1;
+        while(i < info.length() && info.charAt(i) != ' '){
             this.Name = Name.concat(Character.toString(info.charAt(i)));
+            i += 1;
         }
-        
-        String aux = "";
-        while(info.charAt(i) != ' ' && i < info.length()){
-            aux = aux.concat(Character.toString(info.charAt(i)));
-        }
-        N_mov = Integer.getInteger(aux);
+        System.out.println(Name);
         
         this.Theme = "";
-        while(info.charAt(i) != ' ' && i < info.length()){
+        i += 1;
+        while(i < info.length() && info.charAt(i) != ' '){
             this.Theme = Theme.concat(Character.toString(info.charAt(i)));
+            i += 1;
         }
+        System.out.println(Theme);
+        
+        String aux = "";
+        i += 1;
+        while(i < info.length() && info.charAt(i) != ' '){
+            aux = aux.concat(Character.toString(info.charAt(i)));
+            i += 1;
+        }
+        N_mov = Integer.parseInt(aux);
+        System.out.println(N_mov);
+        
+        i += i;
+        while(i < info.length() && info.charAt(i) != ' '){
+            aux = aux.concat(Character.toString(info.charAt(i)));
+            i += 1;
+        }
+        diff = Integer.parseInt(aux);
+        System.out.println(diff);
         
         aux = "";
-        while(info.charAt(i) != ' ' && i < info.length()){
+        i += 1;
+        while(i < info.length() && info.charAt(i) != ' '){
             aux = aux.concat(Character.toString(info.charAt(i)));
+            i += 1;
         }
         atk = Boolean.valueOf(aux);
+        System.out.println(atk);
         
         aux = "";
-        while(info.charAt(i) != ' ' && i < info.length()){
+        i += 1;
+        while(i < info.length() && info.charAt(i) != ' '){
             aux = aux.concat(Character.toString(info.charAt(i)));
+            i += 1;
         }
         first_turn = Boolean.valueOf(aux);
+        System.out.println(first_turn);
         Ranking = new ArrayList<Pair<Long, String>>();
     }
 

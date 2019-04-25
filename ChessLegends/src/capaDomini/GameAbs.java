@@ -17,7 +17,7 @@ public abstract class GameAbs {
     private Player P2;
     
     Board B;
-    private Problem P;
+    Problem P;
     
     protected boolean turn;
 
