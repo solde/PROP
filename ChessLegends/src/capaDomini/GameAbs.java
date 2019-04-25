@@ -111,4 +111,5 @@ public abstract class GameAbs {
     public abstract void playMatch() throws chessException;
     public abstract void resetTimers();
     public abstract ArrayList<int[]> possibleMovements(boolean color);
+    public abstract char[][] getBoard();
 }

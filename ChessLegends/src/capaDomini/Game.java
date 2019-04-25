@@ -120,6 +120,7 @@ public class Game extends GameAbs {
         return P.getProblemInfo();
     }
     
+    @Override
     public char[][] getBoard(){
         char[][] chessBoard = new char[8][8];
         for(int i = 0; i < 8; ++i){

@@ -70,6 +70,7 @@ public class CtrlDomainGame {
     }
     
     public char[][] getBoardInfo(){
+        char[][] ret = G.getBoard();
         return G.getBoard();
     }
    
