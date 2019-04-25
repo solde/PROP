@@ -84,14 +84,6 @@ public abstract class GameAbs {
     public void setB(Board B) {
         this.B = B;
     }
-
-    public Problem getP() {
-        return P;
-    }
-
-    public void setP(Problem P) {
-        this.P = P;
-    }
     
     public String getPlayer1Info(){
         return "";
@@ -99,6 +91,10 @@ public abstract class GameAbs {
     
     public String getPlayer2Info(){
         return "";
+    }
+    
+    public void resetBoard(){
+        this.B.setFEN_code(this.P.getFenCode());
     }
     
     /**

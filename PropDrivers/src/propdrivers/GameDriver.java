@@ -57,7 +57,7 @@ public class GameDriver {
                     //System.out.println("Inset a problem description");
                     String problemInfo = "4k3/4B3/4K3/8/4N3/8/8/3q4 problem_test test 3 1 true true";
                     G = new Game();
-                    G.setProblem(problemInfo);
+                    //G.setProblem(problemInfo);
                     System.out.println(G.getProblemInfo());
                     break;       
                 
@@ -112,7 +112,7 @@ public class GameDriver {
                     G = new Game();
                     System.out.print("Enter problem info");
                     String prob = sc.nextLine();
-                    G.setProblem(prob);
+                    //G.setProblem(prob);
                     System.out.println("Enter your color (true for white, false for black)");
                     boolean c = sc.nextBoolean();
                     ArrayList<int[]> result = G.possibleMovements(c);
