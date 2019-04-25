@@ -94,7 +94,8 @@ public abstract class GameAbs {
     }
     
     public void resetBoard(){
-        this.B.setFEN_code(this.P.getFenCode());
+        Board bAux = new Board(this.P.getFenCode());
+        this.setB(bAux);
     }
     
     /**
@@ -111,5 +112,5 @@ public abstract class GameAbs {
     public abstract void playMatch() throws chessException;
     public abstract void resetTimers();
     public abstract ArrayList<int[]> possibleMovements(boolean color);
-    public abstract char[][] getBoard();
+    public abstract char[][] getBoard() throws chessException;
 }

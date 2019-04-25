@@ -4,6 +4,7 @@ package propdrivers;
  *
  * @author Daniel Palomo
  */
+import Exception.chessException;
 import capaDomini.Board;
 import capaDomini.CtrlDomainGame;
 import capaDomini.Game;
@@ -25,7 +26,7 @@ public class CtrlDomainGameDriver {
             System.out.println(" ");
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         CtrlDomainGame ChessLegends = new CtrlDomainGame();
         int input;
         Scanner sc = new Scanner(System.in);

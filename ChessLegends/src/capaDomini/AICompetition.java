@@ -51,6 +51,16 @@ public class AICompetition extends GameAbs{
     
     /**
      *
+     * @return
+     * @throws chessException
+     */
+    @Override
+    public char[][] getBoard() throws chessException{
+        throw new chessException("you cannot get a board from an AI competition");
+    }
+    
+    /**
+     *
      * @return true if the winner is the white player, fals if the winner is the black player
      * @throws chessException
      */
@@ -59,8 +69,11 @@ public class AICompetition extends GameAbs{
         for(int i = 0; i < this.N; ++i){
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
-                B = AI1.makeMove(B, turn, 3);
-                B = AI1.makeMove(B, !turn, 3);
+                System.out.println(turn_cont);
+                B = AI1.makeMove(B, turn, 2);
+                System.out.println("move 1 done");                
+                B = AI1.makeMove(B, !turn, 2);
+                System.out.println("move 2 done");
                 turn_cont += 1;
             }
             if(B.isCheckMate(true)){

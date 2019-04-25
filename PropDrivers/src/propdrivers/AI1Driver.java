@@ -29,7 +29,7 @@ public class AI1Driver {
         System.out.println(" ");
     }
     public static void main(String[] args) throws chessException {
-        String FENi = "1r6/5kp1/5p1p/p2b4/PP4P1/2B3K1/5PP1/1R6" ; //extret de Kasparov vs Carlsen, 2004
+        String FENi = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B" ; //extret de Kasparov vs Carlsen, 2004
         System.out.println(FENi);
         Board b = new Board(FENi);
         printBoard(b);

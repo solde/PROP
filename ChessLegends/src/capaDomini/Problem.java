@@ -146,7 +146,7 @@ public class Problem {
                             mov[3] = movs.get(x).getValue();
                             Board altBoard = new Board(b);
                             altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color);
-                            printBoard(altBoard);
+                            //printBoard(altBoard);
                             can_solve = deep_verify(altBoard, n-1, !color);
                             if(can_solve) return can_solve;
                         }

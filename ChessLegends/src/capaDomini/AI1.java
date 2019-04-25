@@ -203,9 +203,7 @@ public class AI1 extends Player {
 	public static int evaluate(Board b, boolean color) throws chessException{
 		int attackScore = 0;
 		int defendScore = 0;
-
-		if (b.isCheckMate(color)) return Integer.MAX_VALUE;
-                else{
+                
                         for(int i = 0; i<8; i++){
                             for(int j=0; j<8; j++){
                                     if(b.getPieceAt(i, j).getTypeOfPiece() != -1){
@@ -222,6 +220,6 @@ public class AI1 extends Player {
                     }
                     return attackScore-defendScore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
                 }
-	}
+	
 
 }
