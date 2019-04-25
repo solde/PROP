@@ -8,7 +8,6 @@ package propdrivers;
 import java.util.Scanner;
 import capaDomini.Bishop;
 import capaDomini.Board;
-import capaDomini.King;
 import capaDomini.Piece;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,74 +30,73 @@ public class BishopDriver {
         Scanner sc = new Scanner(System.in);
         Bishop h = new Bishop();
         int i = sc.nextInt();
-        while (i <= 7) { // ( o el que sea
+        while (i <= 6) {
             switch (i) {
                 case 1:
-                    System.out.println("Provando getMax");
+                    System.out.println("Testing getMax");
                     int p = h.getMax();
                     if (p != 2) {
-                        System.out.println("getter no funciona");
+                        System.out.println("getter doesen't work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
-                    display_menu();//Para poder leer la salida mejor
+                    TimeUnit.SECONDS.sleep(2);
+                    display_menu();
                     break;
 
                 case 2:
-                    System.out.println("provando setMax");
+                    System.out.println("Testing setMax");
                     h.setMax(7);
                     int k = h.getMax();
                     if (k != 7) {
-                        System.out.println("Setter no funciona");
+                        System.out.println("Setter doesen`t work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
-                    display_menu();//Para poder leer la salida mejor
+                    TimeUnit.SECONDS.sleep(2);
+                    display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
 
                 case 3:
-                    System.out.println("provando getValue");
+                    System.out.println("testnig getValue");
                     h.setValue(7);
                     int value;
                     value = h.getValue();
                     if (value == 7) {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     } else {
-                        System.out.println("Getter no funciona");
+                        System.out.println("Getter doesen't work");
                     }
-                    TimeUnit.SECONDS.sleep(3);
-                    display_menu();//Para poder leer la salida mejor
+                    TimeUnit.SECONDS.sleep(2);
+                    display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
 
                 case 4:
-                    System.out.println("provando setValue");
+                    System.out.println("testing setValue");
                     h.setValue(7);
                     double k1 = h.getValue();
                     if (k1 != 7) {
-                        System.out.println("setter no funciona");
+                        System.out.println("setter doesen't work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
 
-                    display_menu();//Para poder leer la salida mejor
+                    display_menu();
                     h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
 
                 case 5:
-                    System.out.println("Probando get_poss_mov");
-                    System.out.println("Pieza en X:0 Y:7:");
-                    //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
+                    System.out.println("Testing get_poss_mov...");
+                    System.out.println("Piece en X:0 Y:7 (Empty Board)");
                     Board b = new Board();
                     Piece p1 = new Bishop(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p1.get_poss_mov(b);
                     if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        System.out.println("There aren't any possible movements");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -108,11 +106,11 @@ public class BishopDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Pieza en X:3 Y:4");
+                    System.out.println("Piece on X:3 Y:4 (Empty Board)");
                     p1 = new Bishop(3, 4, true);
                     mov = p1.get_poss_mov(b);
                     if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        System.out.println("There aren't any possible movements");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -122,11 +120,11 @@ public class BishopDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                      System.out.println("Pieza en X:3 Y:4 con board no vacio");
-                     b = new Board("7K/ppppkkkk/k1P5/7p/8/8/kkppkkpp/8");
-                     mov=p1.get_poss_mov(b);
-                      if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                    System.out.println("Piece on X:3 Y:4 (Board not Empty)");
+                    b = new Board("7K/PPPPKKKK/k1P5/7p/8/8/kkppkkpp/8");
+                    mov = p1.get_poss_mov(b);
+                    if (mov.isEmpty()) {
+                        System.out.println("There aren't any possible movements");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -136,58 +134,33 @@ public class BishopDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-             for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
-                        Pair movl = it.next();
-                        System.out.print("X: ");
-                        System.out.print(movl.getKey());
-                        System.out.print(" Y: ");
-                        System.out.println(movl.getValue());
-                    }
-                                      System.out.println("Pieza en X:3 Y:4 con board no vacio");
-                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-                     mov=p1.get_poss_mov(b);
-                      if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
-                        break;
-                    }
-                    for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
-                        Pair movl = it.next();
-                        System.out.print("X: ");
-                        System.out.print(movl.getKey());
-                        System.out.print(" Y: ");
-                        System.out.println(movl.getValue());
-                    }
-                    TimeUnit.SECONDS.sleep(3);
-                    display_menu();//Para poder leer la salida mejor
+                    TimeUnit.SECONDS.sleep(2);
+                    display_menu();
                     break;
 
             }
             i = sc.nextInt();
         }
+
     }
 
     /**
-     *
+     * This function shows the set of options avalible in this driver
      */
     public static void display_menu() {
-        System.out.println("Menu de opciones:");
+        System.out.println("Option menu:");
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4:  setValue ");
+        System.out.println("Test 4: setValue ");
         System.out.println("Test 5: get_poss_mov  ");/*
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
           System.out.println("Test 8:   ");
          */
-        System.out.println("Para salir presione 8");
+        System.out.println("For exit press 6");
 
-        System.out.println("Inserte opcion: ");
+        System.out.println("Insert option: ");
 
     }
 }
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */

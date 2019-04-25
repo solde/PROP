@@ -1,0 +1,20 @@
+Joc De Prova per: Human
+
+Classe a provar : Human
+
+Classes addicionals:Player, chessException
+
+Driver: HumanDriver
+
+
+Funcionalitats:
+L'executable presenta un menu d'opcions les quals s'escullen a traves del teclat, prement la tecla numerica que es desitxi. 
+
+Test 0: Constructora. Prova la constructora.
+
+Test 1: Autenticate. Prova la funcionalitat de autenticar la contrasenya. Es proven dues opcions, contrasenya buida e incorrecta. El driver esta programat  perque  fallin.
+
+Test 2: Get Password. Testeja el funcionament de getPassword comparant la contrasenya amb una incorrecta
+
+Test 3: Set Password. Comprova setPassword. Canvia la contrasenya i l'equipara amb l'anterior
+

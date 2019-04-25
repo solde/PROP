@@ -38,73 +38,73 @@ public class KingDriver {
             switch (i) {
 
                 case 1: {
-                    System.out.println("Provando getMax");
+                    System.out.println("Testing getMax");
                     int p = h.getMax();
                     if (p != 2) {
-                        System.out.println("getter no funciona");
+                        System.out.println("Getter doesn't work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
                     TimeUnit.SECONDS.sleep(3);
-                    display_menu();//Para poder leer la salida mejor
+                    display_menu();
                     break;
                 }
                 case 2: {
-                    System.out.println("provando setMax");
+                    System.out.println("Testing setMax");
                     h.setMax(7);
                     int k = h.getMax();
                     if (k != 7) {
-                        System.out.println("Setter no funciona");
+                        System.out.println("Setter doesn't work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
                     TimeUnit.SECONDS.sleep(3);
 
-                    display_menu();//Para poder leer la salida mejor
+                    display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
                 case 3: {
-                    System.out.println("provando getValue");
+                    System.out.println("Testing getValue");
                     h.setValue(7);
                     double k = h.getValue();
                     if (k != 7) {
-                        System.out.println("Getter no funciona");
+                        System.out.println("Getter doesn't work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
                     TimeUnit.SECONDS.sleep(3);
 
-                    display_menu();//Para poder leer la salida mejor
+                    display_menu();
                     h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
                 case 4: {
-                    System.out.println("provando setValue");
+                    System.out.println("Testing setValue");
                     h.setValue(7);
                     double k = h.getValue();
                     if (k != 7) {
-                        System.out.println("setter no funciona");
+                        System.out.println("Setter doesn't work");
                     } else {
-                        System.out.println("passed");
+                        System.out.println("Passed");
                     }
                     TimeUnit.SECONDS.sleep(3);
 
-                    display_menu();//Para poder leer la salida mejor
+                    display_menu();
                     h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
 
                 case 5: {
-                    System.out.println("Probando get_poss_mov");
-                    System.out.println("Pieza en X:0 Y:7:");
+                    System.out.println("Testing get_poss_mov");
+                    System.out.println("Piece on X:0 Y:7:");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
                     Board b = new Board();
                     Piece p = new King(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        System.out.println("There aren't any possible movements");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -114,11 +114,11 @@ public class KingDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Pieza en X:0 Y:4");
+                    System.out.println("Piece on X:0 Y:4");
                     p = new King(0, 4, false);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                        System.out.println("There aren't any possible movements");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -128,11 +128,11 @@ public class KingDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                                      System.out.println("Pieza en X:3 Y:4 con board no vacio");
-                     b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
-                     mov=p.get_poss_mov(b);
-                      if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                    System.out.println("Piece on X:3 Y:4 con board no vacio");
+                    b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
+                    mov = p.get_poss_mov(b);
+                    if (mov.isEmpty()) {
+                        System.out.println("There aren't any possible movements");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -143,7 +143,7 @@ public class KingDriver {
                         System.out.println(movl.getValue());
                     }
                     TimeUnit.SECONDS.sleep(3);
-                    display_menu();//Para poder leer la salida mejor
+                    display_menu();
                     break;
                 }
 
@@ -155,21 +155,23 @@ public class KingDriver {
         }
     }
 
+    /**
+     * This function shows the set of options avalible in this driver
+     */
     public static void display_menu() {
-        System.out.println("Menu de opciones:");
+        System.out.println("Option menu:");
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
         System.out.println("Test 4: setValue ");
-        System.out.println("Test 5: get_poss_mov  ");
-        /*
+        System.out.println("Test 5: get_poss_mov  ");/*
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
           System.out.println("Test 8:   ");
          */
-        System.out.println("Para salir presione 8");
+        System.out.println("For exit press 6");
 
-        System.out.println("Inserte opcion: ");
+        System.out.println("Insert option: ");
 
     }
 }
