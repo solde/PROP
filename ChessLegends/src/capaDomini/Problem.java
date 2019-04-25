@@ -180,23 +180,19 @@ public class Problem {
             for(int j=0; j<8; j++){
                 Piece piece = b.getPieceAt(i,j);
                 if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ color)){
-                    for(int k=0; k<8; k++){
-                        for(int l=0; l<8; l++){
-                            ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
-                            for(int x = 0; x < possMovs.size(); ++x){
-                                int[] mov = new int[4];
-                                mov[0] = piece.getX();
-                                mov[1] = piece.getY();
-                                mov[2] = possMovs.get(x).getKey();
-                                mov[3] = possMovs.get(x).getValue();
-                                //printBoard(b);
-                                Board altBoard = new Board(b); //initialices an alternative space to evaluate
-                                altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
-                                can_solve = deep_verify(altBoard, n-1, !color);
-                                if(can_solve) return true;
-                            }
-                        }
-                    }      
+                    ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
+                    int[] mov = new int[4];
+                    mov[0] = piece.getX();
+                    mov[1] = piece.getY();
+                    for(int x = 0; x < possMovs.size(); ++x){
+                        mov[2] = possMovs.get(x).getKey();
+                        mov[3] = possMovs.get(x).getValue();
+                        //printBoard(b);
+                        Board altBoard = new Board(b); //initialices an alternative space to evaluate
+                        altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                        can_solve = deep_verify(altBoard, n-1, !color);
+                        if(can_solve) return true;
+                    }     
                 }
             }
         }
