@@ -45,7 +45,7 @@ public abstract class Piece {
     /**
      * Retruns X
      *
-     * @return
+     * @return int
      */
     public int getX() {
         return x;
@@ -63,7 +63,7 @@ public abstract class Piece {
     /**
      * Retruns color of the piece
      *
-     * @return
+     * @return boolean
      */
     public boolean isColor() {
         return color;
@@ -89,7 +89,7 @@ public abstract class Piece {
     /**
      * Returns a Pair with the position of the piece
      *
-     * @return
+     * @return int[]
      */
     public int[] getXY() {
         int a[] = new int[2];
@@ -103,7 +103,7 @@ public abstract class Piece {
      *
      * @param X
      * @param Y
-     * @return
+     * @return boolean
      */
     public boolean equalXY(int X, int Y) {
         return (X == this.x && Y == this.y);
@@ -138,26 +138,6 @@ public abstract class Piece {
         return true;
     }
 
-    /*
-            for (Piece white : whites) {
-                int x_check = white.getX();
-                int y_check = white.getY();
-                if (x_check == x_temp && y_check == y_temp) {
-                    ret = true;
-                }
-            }
-            for (Piece black : blacks) {
-                int x_check = black.getX();
-                int y_check = black.getY();
-                if (x_check == x_temp && y_check == y_temp) {
-                    ret = true;
-                }
-            }
-        } else {
-            return true;
-        }
-        return ret;*/
-
     /**
      * This Funciton detects if the position in Pair p represents a piece on
      * board that can be killed by the piece .
@@ -172,7 +152,7 @@ public abstract class Piece {
         int y_temp = (int) p.getValue();
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
             Piece k = b.getPieceAt(x_temp, y_temp);
-            if (k.getTypeOfPiece() != -1 && this.isColor() !=k.isColor()) {
+            if (k.getTypeOfPiece() != -1 && this.isColor() != k.isColor()) {
                 return true;
             } else {
                 return false;
@@ -180,36 +160,14 @@ public abstract class Piece {
         } else {
             return false;
         }
-        /*
-        boolean ret = false;
-        int x_temp = (int) p.getKey();
-        int y_temp = (int) p.getValue();
-        List<Piece> whites = b.getWhitePiecesOnBoard();
-        List<Piece> blacks = b.getBlackPiecesOnBoard();
-
-        if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
-
-            for (Piece white : whites) {
-                int x_check = white.getX();
-                int y_check = white.getY();
-                if (x_check == x_temp && y_check == y_temp && !color) {
-                    ret = true;
-
-                } 
-            }
-            for (Piece black : blacks) {
-                int x_check = black.getX();
-                int y_check = black.getY();
-                if (x_check == x_temp && y_check == y_temp && color) {
-                    ret = true;
-                }
-            }
-        } else {
-            return false;
-        }
-        return ret;*/
     }
 
+    /**
+     * Checks if Piece p is the same piece as the caller
+     *
+     * @param p
+     * @return boolean
+     */
     public boolean equals(Piece p) {
         boolean ret = this.color == p.color && this.value == p.value && this.equalXY(p.getX(), p.y) && this.id == p.getTypeOfPiece();
         return ret;
@@ -217,11 +175,19 @@ public abstract class Piece {
 
 //This method will always be overwritten
     /**
+     * This function searches on all the possible movement locations of piece, which
+     * depends of every type(i.e a stright line for rock...) and returns a list
+     * with the empty or killable positions avaliable.
      *
-     * @param b
-     * @return
+     * @param b board
+     * @return ArrayList<Pair<Integer,Integer>>
      */
-    public abstract ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b); //CHANGE IN UML
+    public abstract ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b);
 
+    /**
+     * Retruns the type of piece, this helps to identify what kind of piece is.
+     *
+     * @return type of piece
+     */
     public abstract int getTypeOfPiece();
 }

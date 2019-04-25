@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
+/**
+ *
+ * @author Daniel Palomo
+ */
 public class King extends Piece {
 
     private int max;
 
     /**
-     *
+     * Basic constructors
      */
     public King() {
         super(0, 1000, 0, 0, true);
@@ -17,6 +21,7 @@ public class King extends Piece {
     }
 
     /**
+     * Constructor with parameters
      *
      * @param x
      * @param y
@@ -28,14 +33,16 @@ public class King extends Piece {
     }
 
     /**
+     * Returns the max variable for King
      *
-     * @return
+     * @return int
      */
     public int getMax() {
         return this.max;
     }
 
     /**
+     * Sets the max variable for King
      *
      * @param max
      */

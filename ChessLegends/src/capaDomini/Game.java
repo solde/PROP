@@ -8,7 +8,6 @@ package capaDomini;
 import Exception.chessException;
 
 import java.util.ArrayList;
-import java.util.List;
 import javafx.util.Pair;
 
 /**
@@ -23,7 +22,7 @@ public class Game extends GameAbs {
     public Game() {
         timerW = 0;
         timerB = 0;
-        B = new Board();
+         B = new Board();
         turn = true;
     }
     

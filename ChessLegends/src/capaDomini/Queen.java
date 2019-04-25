@@ -8,20 +8,40 @@ public class Queen extends Piece {
 
     private int max;
 
+    /**
+     * constructor without parameters
+     */
     public Queen() {
         super(7, 7, 0, 0, true);
         this.max = 9;
     }
 
+    /**
+     * Costructor with parameters
+     *
+     * @param x
+     * @param y
+     * @param color
+     */
     public Queen(int x, int y, boolean color) {
         super(7, 7, x, y, color);
         this.max = 9;
     }
 
+    /**
+     * Retruns the max variable for Queen
+     *
+     * @return int
+     */
     public int getMax() {
         return this.max;
     }
 
+    /**
+     * Sets the max variable for Queen
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }

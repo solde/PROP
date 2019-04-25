@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * @author David Soldevila
  */
 public abstract class GameAbs {
-    protected Player P1;
-    protected Player P2;
+    private Player P1;
+    private Player P2;
     
-    protected Board B;
-    protected Problem P;
+    Board B;
+    Problem P;
     
     protected boolean turn;
 
@@ -58,6 +58,38 @@ public abstract class GameAbs {
         else{
             P2 = new Human(playerId, wins, loses, ELO, OP_rating);
         }
+    }
+
+    public Player getP1() {
+        return P1;
+    }
+
+    public void setP1(Player P1) {
+        this.P1 = P1;
+    }
+
+    public Player getP2() {
+        return P2;
+    }
+
+    public void setP2(Player P2) {
+        this.P2 = P2;
+    }
+
+    public Board getB() {
+        return B;
+    }
+
+    public void setB(Board B) {
+        this.B = B;
+    }
+
+    public Problem getP() {
+        return P;
+    }
+
+    public void setP(Problem P) {
+        this.P = P;
     }
     
     public String getPlayer1Info(){

@@ -74,6 +74,15 @@ public class CtrlDomainGame {
         }
         return 0;
     }
+
+    public GameAbs getG() {
+        return G;
+    }
+
+    public void setG(GameAbs G) {
+        this.G = G;
+    }
+    
     
     public void initGame(){
         G = new Game();
