@@ -33,7 +33,7 @@ public class Queen extends Piece {
         int x_temp = getX();
         int y_temp = getY();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -44,7 +44,7 @@ public class Queen extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -55,7 +55,7 @@ public class Queen extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -66,7 +66,7 @@ public class Queen extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -77,7 +77,7 @@ public class Queen extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -89,7 +89,7 @@ public class Queen extends Piece {
             }
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -101,7 +101,7 @@ public class Queen extends Piece {
             }
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -113,7 +113,7 @@ public class Queen extends Piece {
             }
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);

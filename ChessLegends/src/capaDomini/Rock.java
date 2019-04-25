@@ -34,7 +34,7 @@ public class Rock extends Piece {
         int x_temp = getX();
         int y_temp = getY();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<Integer, Integer>(x_temp - i, y_temp);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -45,7 +45,7 @@ public class Rock extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<Integer, Integer>(x_temp + i, y_temp);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -56,7 +56,7 @@ public class Rock extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<Integer, Integer>(x_temp, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -67,7 +67,7 @@ public class Rock extends Piece {
                 break;
             }
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<Integer, Integer>(x_temp, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);

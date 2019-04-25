@@ -46,7 +46,7 @@ public class Bishop extends Piece {
             }
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -58,7 +58,7 @@ public class Bishop extends Piece {
             }
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp - i, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
@@ -70,7 +70,7 @@ public class Bishop extends Piece {
             }
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             tmp = new Pair<>(x_temp + i, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
