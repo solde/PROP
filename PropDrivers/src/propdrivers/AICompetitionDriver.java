@@ -5,9 +5,11 @@
  */
 package propdrivers;
 
-import capaDomini.Game;
+import Exception.chessException;
+import capaDomini.AICompetition;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 /**
  *
@@ -17,13 +19,14 @@ public class AICompetitionDriver {
 
     /**
      * @param args the command line arguments
+     * @throws Exception.chessException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws chessException {
         
         Scanner sc = new Scanner(System.in);
         
         
-        Game G = new Game();
+        AICompetition G = new AICompetition();
         G.setPlayer1("IA1", 0, 0, 0, 0);
         G.setPlayer2("IA1", 0, 0, 0, 0);
         
@@ -47,10 +50,16 @@ public class AICompetitionDriver {
         System.out.println("The name:");
         String na = sc.nextLine();
         
-        Problem problema = new Problem(FENc, na, en, them, attack, start);
+        System.out.println("The difficulty:");
+        int dif = sc.nextInt();
         
-        G.setProblem(them);
-
+        
+        G.setProblem(FENc, na, en, dif ,them, attack, start);
+        
+        G.setN(5);
+        
+        G.playMatch();
+        
         
         
     }

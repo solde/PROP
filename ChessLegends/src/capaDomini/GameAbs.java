@@ -93,6 +93,10 @@ public abstract class GameAbs {
         return "";
     }
     
+    public void resetBoard(){
+        this.B.setFEN_code(this.P.getFenCode());
+    }
+    
     /**
      *
      * @param sX
