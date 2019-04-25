@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Random;
 import javafx.util.Pair;
 
@@ -20,7 +19,6 @@ import javafx.util.Pair;
  * @author David Soldevila
  */
 public class Problem {
-
     private String fenCode;
     private String Name;
     private String Theme;
@@ -28,11 +26,11 @@ public class Problem {
     private int N_mov;
     private boolean atk; //True = white, False = black
     private boolean first_turn;
-
+    
     private ArrayList<Pair<Long, String>> Ranking;
 
     public Problem() {
-        this.fenCode = "8/8/8/8/8/8/8/8";
+        this. fenCode = "8/8/8/8/8/8/8/8";
         Ranking = new ArrayList<Pair<Long, String>>();
     }
 
@@ -46,7 +44,7 @@ public class Problem {
         this.atk = atk;
         this.first_turn = first_turn;
     }
-
+    
     public Problem(String fenCode, String Name, int N_mov, String Theme, boolean atk, boolean first_turn) {
         Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
@@ -57,7 +55,7 @@ public class Problem {
         this.first_turn = first_turn;
         calculateDiff();
     }
-
+    
     /**
      *
      * @param info
@@ -65,44 +63,44 @@ public class Problem {
     public Problem(String info) {
         int i = 0;
         fenCode = "";
-        while (info.charAt(i) != ' ' && i < info.length()) {
+        while(info.charAt(i) != ' ' && i < info.length()){
             this.fenCode = fenCode.concat(Character.toString(info.charAt(i)));
         }
-
+        
         Name = "";
-        while (info.charAt(i) != ' ' && i < info.length()) {
+        while(info.charAt(i) != ' ' && i < info.length()){
             this.Name = Name.concat(Character.toString(info.charAt(i)));
         }
-
+        
         String aux = "";
-        while (info.charAt(i) != ' ' && i < info.length()) {
+        while(info.charAt(i) != ' ' && i < info.length()){
             aux = aux.concat(Character.toString(info.charAt(i)));
         }
         N_mov = Integer.getInteger(aux);
-
+        
         this.Theme = "";
-        while (info.charAt(i) != ' ' && i < info.length()) {
+        while(info.charAt(i) != ' ' && i < info.length()){
             this.Theme = Theme.concat(Character.toString(info.charAt(i)));
         }
-
+        
         aux = "";
-        while (info.charAt(i) != ' ' && i < info.length()) {
+        while(info.charAt(i) != ' ' && i < info.length()){
             aux = aux.concat(Character.toString(info.charAt(i)));
         }
         atk = Boolean.valueOf(aux);
-
+        
         aux = "";
-        while (info.charAt(i) != ' ' && i < info.length()) {
+        while(info.charAt(i) != ' ' && i < info.length()){
             aux = aux.concat(Character.toString(info.charAt(i)));
         }
         first_turn = Boolean.valueOf(aux);
         Ranking = new ArrayList<Pair<Long, String>>();
     }
 
-    public boolean getFirstTurn() {
+    public boolean getFirstTurn(){
         return this.first_turn;
     }
-
+    
     public String getFenCode() {
         return fenCode;
     }
@@ -118,12 +116,12 @@ public class Problem {
     public int getN_mov() {
         return N_mov;
     }
-
-    public String getTheme() {
+    
+    public String getTheme(){
         return this.Theme;
     }
-
-    public void setTheme(String Theme) {
+    
+    public void setTheme(String Theme){
         this.Theme = Theme;
     }
 
@@ -138,73 +136,68 @@ public class Problem {
     public void setN_mov(int N_mov) {
         this.N_mov = N_mov;
     }
-
-    public void setFirstTurn(boolean firstTurn) {
+    
+    public void setFirstTurn(boolean firstTurn){
         this.first_turn = firstTurn;
     }
-
-    public boolean verify() throws chessException {
+        
+    public boolean verify() throws chessException{
         Board b = new Board(this.getFenCode());
         boolean color = this.first_turn;
 
-        return deep_verify(b, 2 * (this.N_mov), this.first_turn);
+        return deep_verify(b, 2*(this.N_mov), this.first_turn);
     }
-
-    public static void printBoard(Board B) {
+    
+    public static void printBoard(Board B){
         System.out.println("   0  1  2  3  4  5  6  7");
-        for (int x = 0; x < 8; ++x) {
+        for(int x = 0; x < 8; ++x){
             System.out.print(x + "|");
-            for (int y = 0; y < 8; ++y) {
-                if (B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1) {
-                    System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
-                } else if (!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1) {
-                    System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
-                } else {
-                    System.out.print("  " + "|");
-                }
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
             }
             System.out.println(" ");
         }
         System.out.println(" ");
     }
-
-    private boolean deep_verify(Board b, int n, boolean color) throws chessException {
-        //System.out.println(color);
-        ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
+    
+    private boolean deep_verify(Board b, int n, boolean color) throws chessException{
+        //System.out.println("Debug: " + n + " " + color);
         boolean can_solve = false;
-
-        if (n == 0) {
+        
+        if(n == -1){
             //printBoard(b);
-            for (int i = 0; i < 8; ++i) {
-                for (int j = 0; j < 8; ++j) {
-                    if (b.getPieceAt(i, j).getTypeOfPiece() == 0 && !(b.getPieceAt(i, j).isColor() ^ color)) {
-                        return false;
-                    }
+            for(int i = 0; i < 8; ++i){
+                for(int j = 0; j < 8; ++j){
+                    if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && (b.getPieceAt(i, j).isColor() == color)) return false;
                 }
             }
             return true;
         }
-
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Piece piece = b.getPieceAt(i, j);
-                if (piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ color)) {
-                    ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
-                    int[] mov = new int[4];
-                    mov[0] = piece.getX();
-                    mov[1] = piece.getY();
-
-                    for (int x = 0; x < possMovs.size(); ++x) {
-                        //System.out.println(x + " " + piece.getTypeOfPiece() + " " + Arrays.toString(piece.getXY()));
-                        //printBoard(b);
-                        mov[2] = possMovs.get(x).getKey();
-                        mov[3] = possMovs.get(x).getValue();
-                        //printBoard(b);
-                        Board altBoard = new Board(b); //initialices an alternative space to evaluate
-                        altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
-                        can_solve = deep_verify(altBoard, n - 1, !color);
-                        if (can_solve) {
-                            return true;
+        else{
+            for(int i = 0; i < 8; ++i){
+                for(int j = 0; j < 8; ++j){
+                    if(b.getPieceAt(i, j).getTypeOfPiece() != -1 && b.getPieceAt(i, j).isColor() == color){
+                        Piece p = b.getPieceAt(i, j);
+                        int[] mov;
+                        mov = new int[4];
+                        mov[0] = i;
+                        mov[1] = j;
+                        ArrayList<Pair<Integer, Integer>> movs = p.get_poss_mov(b);
+                        System.out.println(movs.size());
+                        for(int x = 0; x < movs.size(); ++x){
+                            mov[2] = movs.get(x).getKey();
+                            mov[3] = movs.get(x).getValue();
+                            Board altBoard = new Board(b);
+                            altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color);
+                            try{
+                                can_solve = deep_verify(altBoard, n-1, !color);
+                            }
+                            catch(chessException e){
+                                //System.out.println(e.getMessage());
+                            }
+                            if(can_solve) return can_solve;
                         }
                     }
                 }
@@ -212,51 +205,52 @@ public class Problem {
         }
         return can_solve;
     }
-
-    public boolean getATK() {
+    
+    public boolean getATK(){
         return this.atk;
     }
-
-    public void setATK(boolean atk) {
+    
+    public void setATK(boolean atk){
         this.atk = atk;
     }
-
-    public int numberPiecesOf(boolean bw) {
+    
+    public int numberPiecesOf(boolean bw){
         char i, e;
         int cont = 0;
-        if (bw) {
+        if(bw){
             i = 'A';
             e = 'Z';
-        } else {
-            i = 'a';
-            e = 'z';
         }
-        for (int j = 0; j < fenCode.length(); ++j) {
-            if (fenCode.charAt(j) >= i && fenCode.charAt(j) <= e) {
+        else{
+            i = 'a';
+            e = 'z'; 
+        }
+        for(int j = 0; j < fenCode.length(); ++j){
+            if( fenCode.charAt(j) >= i && fenCode.charAt(j) <= e ){
                 ++cont;
             }
         }
         return cont;
     }
-
+    
     /**
      * @Pre true
      * @Post diff get the value of the difficulty of the problem.
      */
-    public void calculateDiff() {
+    public void calculateDiff(){
         int x = numberPiecesOf(atk);
-        this.diff = (5 * (16 - x)) * N_mov;
+        this.diff = (5*(16-x))*N_mov;
     }
-
-    private boolean comp(Pair<Long, String> a, Pair<Long, String> b) {
+    
+    private boolean comp(Pair<Long, String> a, Pair<Long, String>b){
         return true;
     }
-
+    
     /**
      *
      * @return
      */
-    public String getProblemInfo() {
+    public String getProblemInfo(){
         String ret = "";
         ret = ret.concat(fenCode);
         ret = ret.concat(" ");
@@ -273,24 +267,25 @@ public class Problem {
         ret = ret.concat(Boolean.toString(first_turn));
         return ret;
     }
-
-    public void addToRanking(String PlayerName, long time) {
+    
+    public void addToRanking(String PlayerName, long time){
         Pair<Long, String> e;
         e = new Pair<>(time, PlayerName);
         System.out.println(e);
         Ranking.add(e);
         Ranking.sort(new Comparator<Pair<Long, String>>() {
             @Override
-            public int compare(Pair<Long, String> o1, Pair<Long, String> o2) {
+            public int compare(Pair<Long, String> o1, Pair<Long, String> o2){
                 return o1.getKey().compareTo(o2.getKey());
             }
         });
     }
-
-    public Pair<Long, String> getRankingPossition(int index) throws chessException {
-        try {
+    
+    public Pair<Long, String> getRankingPossition(int index) throws chessException{
+        try{
             return Ranking.get(index);
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             throw new chessException("Out of range");
         }
     }

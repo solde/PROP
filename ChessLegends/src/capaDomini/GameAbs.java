@@ -38,8 +38,8 @@ public abstract class GameAbs {
         return turn;
     }
     
-    public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
-        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+    public void setProblem(String problemInfo){
+        P = new Problem(problemInfo);
     }
     
     public void setPlayer1(String playerId, int wins, int loses, int ELO, int OP_rating){
@@ -90,6 +90,14 @@ public abstract class GameAbs {
 
     public void setP(Problem P) {
         this.P = P;
+    }
+    
+    public String getPlayer1Info(){
+        return "";
+    }
+    
+    public String getPlayer2Info(){
+        return "";
     }
     
     /**

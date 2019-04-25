@@ -52,8 +52,10 @@ public class GameDriver {
                     break;       
                 
                 case 5: //setProblem
+                    System.out.println("Inset a problem description");
+                    String problemInfo = sc.nextLine();
                     G = new Game();
-                    G.setProblem(fenCode, Name, i, i, Theme, t2, t2);
+                    G.setProblem(problemInfo);
                     break;       
                 
                 case 6: //setPlayers
