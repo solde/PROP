@@ -8,6 +8,7 @@ package capaDomini;
 import Exception.chessException;
 import static capaDomini.AI1.evaluatePosition;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
@@ -185,6 +186,8 @@ public class Problem {
                     mov[0] = piece.getX();
                     mov[1] = piece.getY();
                     for(int x = 0; x < possMovs.size(); ++x){
+                        //System.out.println(x + " " + piece.getTypeOfPiece() + " " + Arrays.toString(piece.getXY()));
+                        //printBoard(b);
                         mov[2] = possMovs.get(x).getKey();
                         mov[3] = possMovs.get(x).getValue();
                         //printBoard(b);
