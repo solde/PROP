@@ -38,91 +38,81 @@ public class AI1 extends Player {
     }
     
     
-    public static void makeMove(Board b, boolean color, int N, int depth) throws chessException {   //now incomplete. Needs to associate moves w/ possible boards.
-                                                                                                    //nowadays possi
+    public static Board makeMove(Board b, boolean color, int depth) throws chessException {   
         
 		int[] bestMove; //keeps track of the best possible move AI has available
 		int bestMoveScore; //score of that best move
 		
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
 		ArrayList<int[]> moves = new ArrayList<>(); //keeps track of all possible moves 
+                ArrayList<Integer> moveScore = new ArrayList<Integer>();
 		
-		/*
-		 * iterates through board, generates all possible moves and saves them in moves
-                	 */
                 for(int i = 0; i<8; i++){
 			for(int j=0; j<8; j++){
                             Piece piece = b.getPieceAt(i,j);
-                            if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ color)){
-                               /* for(int k=0; k<8; k++){
-                                    for(int l=0; l<8; l++){*/
-                                        ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
-                                        for(int x = 0; x < possMovs.size(); ++x){
-                                            int[] mov = new int[4];
-                                            mov[0] = piece.getX();
-                                            mov[1] = piece.getY();
-                                            mov[2] = possMovs.get(x).getKey();
-                                            mov[3] = possMovs.get(x).getValue();
-                                            
-                                            //printBoard(b);
-                                            
-                                            moves.add(mov); //Adds the possible movement to a poss. movs. list
-                                            Board altBoard = new Board(b); //initialices an alternative space to evaluate
-                                            
-                                            System.out.println("altb before");
-                                            printBoard(altBoard);
-                                            
-                                            altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
-                                            
-                                            System.out.println("altb after");
-                                            printBoard(altBoard);
-                                            
-                                            possibleBoards.add(altBoard); //adds the alternative board to the possible boards list
-                                        }
-                                   /* }
-                                }    */  
+                            if(piece.getTypeOfPiece() != -1 && (piece.isColor() == color)){
+
+                                ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
+                                for(int x = 0; x < possMovs.size(); ++x){
+                                    int[] mov = new int[4];
+                                    mov[0] = piece.getX();
+                                    mov[1] = piece.getY();
+                                    mov[2] = possMovs.get(x).getKey();
+                                    mov[3] = possMovs.get(x).getValue();
+
+
+                                    moves.add(mov); //Adds the possible movement to a poss. movs. list
+                                    Board altBoard = new Board(b); //initialices an alternative space to evaluate
+
+                                    altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+
+                                    possibleBoards.add(altBoard); //adds the alternative board to the possible boards list
+                                }
+                                    
                             }
                             else {
                             }
                         }
 		}
-		//initializes bestMove to the first move in the 
-		bestMove = moves.get(0);
-		bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, false); //1 is the depth, explained in evaluate position "header"
-		
+		//initializes bestMoveScore to compare
+                bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); //1 is the depth, explained in evaluate position "header"
+		moveScore.add(bestMoveScore);
 		//call evaluateposition on each move
 		//keep track of the move with the best score
-		if(N > 0){
-			for(int i = 1; i<possibleBoards.size(); i++){
-				//System.out.println("Evaluating move: " + moves.get(i).toString()); this is made to have a visual control
-				/*
-				 * calls evaluatePosition on each possible board and if the score is higher than previous,
-				 * reset the bestMove
-				 */
-				int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, false); 
-				if(j >= bestMoveScore){
-					bestMove = moves.get(i);
-					bestMoveScore = j;
-				}
-	
-			}
-		}else{
-			Random generator = new Random();
-			int randnum = generator.nextInt(moves.size());
-			bestMove = moves.get(randnum);
+		
+                //It's important to know that moveScore is aligned with move.
+                
+                for(int i = 1; i<possibleBoards.size(); i++){
+  
+                            int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); 
+                            moveScore.add(j);
+                            if(j >= bestMoveScore){
+                                    bestMoveScore = j;
+                            }
+
 		}
-		//System.out.println(bestMove.toString()); same as in line ~66, to have a visual control
-		N++; //Change the turn to extend deep in search
+                ArrayList<int[]> bestMoves = new ArrayList<>(); //keeps track of all possible moves 
+                
+                for (int i = 0; i < moveScore.size(); ++i){
+                    if (moveScore.get(i) == bestMoveScore) {
+                        bestMoves.add(moves.get(i));
+                        System.out.println("move added");
+                    }
+                }
+                
+                Random generator = new Random();
+                int index = generator.nextInt(bestMoves.size());
+		bestMove = bestMoves.get(index);
+                
+                
+                
+		
 		b.movePiece(bestMove[0], bestMove[1] , bestMove[2], bestMove[3], color); //theorically now is well implemented, based on the best move (random or not)
+                return b;
 	}
 	
-    /**
-     *
-     * @param b
-     * @param color
-     * @return
-     */
-    public static ArrayList <int[]> deepEvaluate( Board b, boolean color){
+ 
+    private static ArrayList <int[]> deepEvaluate( Board b, boolean color){
             ArrayList<int[]> moves = new ArrayList<>();
             for(int i = 0; i<8; i++){
                     for(int j=0; j<8; j++){
@@ -139,6 +129,8 @@ public class AI1 extends Player {
                                         mov[2] = llista.get(n).getKey();
                                         mov[3] = llista.get(n).getValue();
                                         moves.add(mov); 
+                                       
+
                                     }
                                 }
                             }
@@ -147,125 +139,89 @@ public class AI1 extends Player {
             return moves;
         }
         
-	/**
-	 * The evaluatePosition function takes a board, initial alpha, initial beta, depth, and color as parameters
-	 * and The function is 
- recursive, and every time it evaluates itself it decreases the depth by 1.coWhen the depth reaches 0, the
- function returns the result of running the evaluate function on the board.  If the depth is not 0, the function
- generates all possible moves from that position for the color specified, and then runs evaluatePosition for 
- each of the boards generated by each possible move. runs evaluatePosition for 
-	 * each of the boards generated by each possible move. 
-	 * @param b
-	 * @param alpha
-	 * @param beta 
-	 * @param depth
-	 * @param color
-	 * @return an int giving a score of how good a particular board is, with higher numbers corresponding to better boards for the AI
-         * @throws Exception.chessException 
-	 */
-	public static int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color) throws chessException{ 
-		System.out.println("Begin evaluating position: depth-" + depth + "for- "+ color);
-		/*
-		 * Base case: when depth is decremented to 0, evaluatePosition simply returns the result
-		 * of the evaluate function
-		 */
-		if(depth == 0){
-			int evaluation = evaluate(b);
-			System.out.println("Evaluated to: " + evaluation);
-			return evaluation;
-		}
-		
-		if(!color){ //minimizing player--sequence of events that occurs
-			ArrayList <int[]> moves = deepEvaluate(b, color);
-			
-                        /*
-			 * Iterate through the board, collect all possible moves of the minimizing player
-			 */
-
-			/*
-			 * This for loop goes through all possible moves and calls evaluatePosition on them,
-			 * changing the color.  Alpha-beta pruning is used here to remove obviously poor moves.
-			 * These are determined by the variables alpha and beta.  All moves where the beta,
-			 * which is the score of the minimizing (in this case white player) is less than or
-			 * equal to alpha are discarded.  
-			 */
-			
-                        int newBeta = beta;
-			for(int i = 0; i < moves.size(); ++i){
-				//System.out.println("Move to be evaluated: " + move.toString());
-				Board successorBoard = new Board(b);
-                                int[] aux= moves.get(i);
-                                
-                                System.out.println(aux[0]);
-                                System.out.println(aux[1]);
-                                System.out.println(aux[2]);
-                                System.out.println(aux[3]);
-                                
-				successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);
-                            
-				newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
-				if(newBeta<= alpha) break;
-			}
-			return newBeta; //returns the highest score of the possible moves
-		}else{ //maximizing player--this is the course of action determined if this is the maximizing player, or black
-			/*
-			 * These for loops iterate through the board and add all possible pieces to the ArrayList of
-			 * moves.  
-			 */
-                        //AQUI VA LA DEEP_EVALUATE
-                       List<int[]> moves = deepEvaluate(b, color);
-			
-		/*
-		 * This for loop cycles through all possible moves and 
-		 * calculates a new alpha if the successor board evaluates
-		 * to a higher number than what is currently the highest score,
-		 * which is stored in alpha.  
-		 */
-		int newAlpha = alpha;
-		for(int i = 0; i < moves.size(); ++i){
-			//System.out.println("Move to be evaluated: " + move.toString());
-			Board successorBoard = new Board(b); 
-                        int[] aux = moves.get(i);
-			successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);
-			newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color)); //think about how to change moves
-			if(beta<= newAlpha) break;
-		}
-		return newAlpha; //returns the highest score of the possible moves
-		}
-	}
 	
-	/**
-	 * The evaluate(Board b) function is an evaluation function that returns a number based on
-	 * how advantageous a board is for the maximizing, black in this case, player. This function
-	 * simply iterates through the whole board and gives a weighted number to each piece on the board,
-	 * kings naturally yielding the highest number, queens the second, and so on.  The total white score
-	 * is subtracted from the total black score to give a full picture of how advantageous the board is 
-	 * for a black player.  
-	 * @param b
-	 * @return int that represents how advantageous a board is
-	 */
-	public static int evaluate(Board b){
-		int ws = 0;
-		int bs = 0;
 
-		/*
-		 * Iterates through entire board.   
-		 */
-		for(int i = 0; i<8; i++){
-			for(int j=0; j<8; j++){
-				if(b.getPieceAt(i, j).getTypeOfPiece() != -1){
-                                    Piece piece = b.getPieceAt(i,j);
-					if(piece.isColor()){ //true es blanc perqu� som racistes
-                                                ws += piece.getValue();
-                                        }
-					
-                                        else { //fals es negre, perque aixi hauria de ser la seva exist�ncia
-                                                bs += piece.getValue();
-					}
-				}
-			}
-		}
-		return bs-ws; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+        private static int evaluatePosition(Board bo, int alpha, int beta, int depth, boolean color, boolean especulativeTurn, boolean attackColor) throws chessException{ 
+
+           if (depth == 0){
+               int evaluation = evaluate(bo, attackColor);
+               //System.out.println("Puntuació: "+ evaluation);
+               return evaluation;
+           }
+           
+           //especulativeTurn will always be true for beta, false otherwise
+           if (especulativeTurn){ //enter the beta section
+               ArrayList<int[]> moves = deepEvaluate(bo, color);  
+               int newBeta = beta;
+               for (int i = 0; i < moves.size(); ++i){
+                    Board successorBoard = new Board(bo); //Copy of the "original" board
+                    int[] aux= moves.get(i); //Get a possible movement
+                    try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
+                   
+                    catch(chessException e){
+                       
+                        System.out.println("Ooops. Move tried:");
+                        System.out.println(aux[0]+" "+ aux[1]);
+                        System.out.println(aux[2]+" "+ aux[3]);
+                        System.out.println("the board was:");
+                        printBoard(successorBoard);
+                        if (especulativeTurn) System.out.println("beta situation");
+                        else System.out.println("alpha situation");
+                        throw new chessException(e.getMessage());
+                    }
+                    newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor)); 
+                    if(newBeta<= alpha) break;
+                }
+                return newBeta; //returns the highest score of the possible moves
+            }
+           else{ //alpha situation
+               ArrayList<int[]> moves = deepEvaluate(bo, color);
+               int newAlpha = alpha;
+               for (int i = 0; i < moves.size(); ++i){
+                   Board successorBoard = new Board(bo);
+                   int[] aux= moves.get(i);
+                   try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
+                   
+                    catch(chessException e){
+                        System.out.println("Ooops. Move tried:");
+                        System.out.println(aux[0]+" "+ aux[1]);
+                        System.out.println(aux[2]+" "+ aux[3]);
+                        System.out.println("the board was:");
+                        printBoard(successorBoard);
+                        if (especulativeTurn) System.out.println("beta situation");
+                        else System.out.println("alpha situation");
+                        throw new chessException(e.getMessage());
+                    }
+                   newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor));
+                   if(beta<= newAlpha) break;
+               }
+               return newAlpha;
+           }
+           }
+   
+
+	public static int evaluate(Board b, boolean color) throws chessException{
+		int attackScore = 0;
+		int defendScore = 0;
+
+		if (b.isCheckMate(color)) return Integer.MAX_VALUE;
+                else{
+                        for(int i = 0; i<8; i++){
+                            for(int j=0; j<8; j++){
+                                    if(b.getPieceAt(i, j).getTypeOfPiece() != -1){
+                                        Piece piece = b.getPieceAt(i,j);
+                                            if(piece.isColor() == color){ //true es blanc perqu� som racistes
+                                                    attackScore += piece.getValue();
+                                            }
+
+                                            else { //fals es negre, perque aixi hauria de ser la seva exist�ncia
+                                                    defendScore += piece.getValue();
+                                            }
+                                    }
+                            }
+                    }
+                    return attackScore-defendScore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+                }
 	}
 
 }

@@ -15,15 +15,28 @@ import capaDomini.Board;
  */
 public class AI1Driver {
     //De moment només teniu aquest bonic missatge UwU
+    public static void printBoard(Board B){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
     public static void main(String[] args) throws chessException {
         String FENi = "1r6/5kp1/5p1p/p2b4/PP4P1/2B3K1/5PP1/1R6" ; //extret de Kasparov vs Carlsen, 2004
         System.out.println(FENi);
         Board b = new Board(FENi);
+        printBoard(b);
 
 
-        AI1.makeMove(b, false, 1, 1); //b de board, false mouen les negres, la ia funcionarà amb profunditat 1 del minmax, un torn.
-        //For some reason, this doesn't work
-
+        b = AI1.makeMove(b, false, 2); //1: Board, 2: fitxa, 3: depth
+        printBoard(b);
         String FENf = b.fenToString();
         System.out.println(FENf);
         if (FENi != FENf) System.out.println("Ha mogut.");

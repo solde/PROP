@@ -12,7 +12,7 @@ public class Knight extends Piece {
      * Basic constructor
      */
     public Knight() {  //Per defecte son whites
-        super(4, 4, 0, 0, true);
+        super(4, 3, 0, 0, true);
         this.max = 10;
     }
 
@@ -24,7 +24,7 @@ public class Knight extends Piece {
      * @param color
      */
     public Knight(int x, int y, boolean color) {
-        super(4, 4, x, y, color);
+        super(4, 3, x, y, color);
         this.max = 10;
     }
 

@@ -16,7 +16,7 @@ public class King extends Piece {
      * Basic constructors
      */
     public King() {
-        super(0, 1000, 0, 0, true);
+        super(0, 100000, 0, 0, true);
         this.max = 2;
     }
 
@@ -28,7 +28,7 @@ public class King extends Piece {
      * @param color
      */
     public King(int x, int y, boolean color) {
-        super(3, 1000, x, y, color);
+        super(3, 100000, x, y, color);
         this.max = 2;
     }
 

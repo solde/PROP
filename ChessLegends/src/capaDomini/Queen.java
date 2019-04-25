@@ -12,7 +12,7 @@ public class Queen extends Piece {
      * constructor without parameters
      */
     public Queen() {
-        super(7, 7, 0, 0, true);
+        super(7, 9, 0, 0, true);
         this.max = 9;
     }
 
@@ -24,7 +24,7 @@ public class Queen extends Piece {
      * @param color
      */
     public Queen(int x, int y, boolean color) {
-        super(7, 7, x, y, color);
+        super(7, 9, x, y, color);
         this.max = 9;
     }
 
