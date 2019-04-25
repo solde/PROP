@@ -39,7 +39,7 @@ public class Bishop extends Piece {
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 break;
@@ -51,7 +51,7 @@ public class Bishop extends Piece {
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 break;
@@ -63,7 +63,7 @@ public class Bishop extends Piece {
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 break;
@@ -75,7 +75,7 @@ public class Bishop extends Piece {
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 break;

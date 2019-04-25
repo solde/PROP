@@ -45,11 +45,11 @@ public class Pawn extends Piece {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp - 1, y_temp - 1);
-            if (pos_Killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b)) {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp - 1, y_temp + 1);
-            if (pos_Killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b)) {
                 mov.add(tmp);
             }
 
@@ -59,11 +59,11 @@ public class Pawn extends Piece {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp - 2, y_temp - 1);
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp - 2, y_temp + 1);
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
             }
@@ -76,11 +76,11 @@ public class Pawn extends Piece {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp + 1);
-            if (pos_Killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b)) {
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp - 1);
-            if (pos_Killable(tmp, b, isColor())) {
+            if (pos_Killable(tmp, b)) {
                 mov.add(tmp);
             }
             if (x_temp == 1) {
@@ -89,11 +89,11 @@ public class Pawn extends Piece {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp + 2, y_temp - 1);
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp + 2, y_temp + 1);
-                if (pos_Killable(tmp, b, isColor())) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
             }

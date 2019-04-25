@@ -125,13 +125,20 @@ public abstract class Piece {
      * @return
      */
     public boolean pos_Taken(Pair p, Board b) {  //FALSE = LLIURE  TRUE = OCUPADA
-        boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
-        List<Piece> whites = b.getWhitePiecesOnBoard();
-        List<Piece> blacks = b.getBlackPiecesOnBoard();
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
+            Piece k = b.getPieceAt(x_temp, y_temp);
+            if (k.getTypeOfPiece() != -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    /*
             for (Piece white : whites) {
                 int x_check = white.getX();
                 int y_check = white.getY();
@@ -149,8 +156,7 @@ public abstract class Piece {
         } else {
             return true;
         }
-        return ret;
-    }
+        return ret;*/
 
     /**
      * This Funciton detects if the position in Pair p represents a piece on
@@ -158,16 +164,15 @@ public abstract class Piece {
      *
      * @param p Pair of coords
      * @param b Board where the game is taking place
-     * @param color Color of the piece
      * @return
      */
-    public boolean pos_Killable(Pair p, Board b, boolean color) { //TRUE= KILLABLE  FALSE=FRIENDLY
+    public boolean pos_Killable(Pair p, Board b) { //TRUE= KILLABLE  FALSE=FRIENDLY
 
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
             Piece k = b.getPieceAt(x_temp, y_temp);
-            if (k.getTypeOfPiece() != -1 && !(color ^ k.isColor())) {
+            if (k.getTypeOfPiece() != -1 && this.isColor() !=k.isColor()) {
                 return true;
             } else {
                 return false;

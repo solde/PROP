@@ -116,7 +116,7 @@ public class QueenDriver {
                         System.out.println(movl.getValue());
                     }
                     System.out.println("Pieza en X:3 Y:4");
-                    p = new Queen(3, 4, true);
+                    p = new Queen(0, 3, true);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
@@ -130,7 +130,7 @@ public class QueenDriver {
                         System.out.println(movl.getValue());
                     }
                                       System.out.println("Pieza en X:3 Y:4 con board no vacio");
-                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                     b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
                      mov=p.get_poss_mov(b);
                       if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");

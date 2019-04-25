@@ -115,8 +115,8 @@ public class RockDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Pieza en X:3 Y:4");
-                    p = new Rock(3, 4, true);
+                    System.out.println("Pieza en X:0 Y:0");
+                    p = new Rock(0, 0, true);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
@@ -129,11 +129,12 @@ public class RockDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                      System.out.println("Pieza en X:3 Y:4 con board no vacio");
-                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-                     mov=p.get_poss_mov(b);
-                      if (mov.isEmpty()) {
-                        System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
+                    System.out.println("Pieza en X:0 Y:0 con board no vacio");
+                    b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
+                   
+                    mov = p.get_poss_mov(b);
+                    if (mov.isEmpty()) {
+                        System.out.println("No hay movimientos possibles");
                         break;
                     }
                     for (Iterator<Pair<Integer, Integer>> it = mov.iterator(); it.hasNext();) {
@@ -148,8 +149,6 @@ public class RockDriver {
                     break;
                 }
 
-                
-
                 default:
                     break;
 
@@ -163,9 +162,9 @@ public class RockDriver {
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4:  setValue ");
+        System.out.println("Test 4: setValue ");
+        System.out.println("Test 5: get_pos_mov ");
         /*
-          System.out.println("Test 5:   ");
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
           System.out.println("Test 8:   ");

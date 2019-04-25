@@ -37,7 +37,7 @@ public class Knight extends Piece {
         if (!pos_Taken(tmp, b)) {
             mov.add(tmp);
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
 
@@ -46,7 +46,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp - 2);
@@ -54,7 +54,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp + 1, y_temp + 2);
@@ -62,7 +62,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
 
@@ -71,7 +71,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp + 2, y_temp - 1);
@@ -79,7 +79,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp - 2, y_temp + 1);
@@ -87,7 +87,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
         tmp = new Pair<Integer, Integer>(x_temp + 2, y_temp + 1);
@@ -95,7 +95,7 @@ public class Knight extends Piece {
             mov.add(tmp);
 
         }
-        if (pos_Killable(tmp, b, isColor())) {
+        if (pos_Killable(tmp, b)) {
             mov.add(tmp);
         }
 
