@@ -21,9 +21,9 @@ public class CtrlDomainGame {
         G = new AICompetition(N);
     }
     
-    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
+    public void loadProblemTest(String problemInfo){
         //(fenCode, Name, diff, N_mov, Theme, atk)
-        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+        G.setProblem(problemInfo);
     }
     
     public void authPlayer1Test(String playerId, String playerPassword, int wins, int loses, int ELO, int OP_rating){

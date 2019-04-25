@@ -89,13 +89,14 @@ public class Problem {
         String aux = "";
         i += 1;
         while(i < info.length() && info.charAt(i) != ' '){
+            System.out.println("Debug: " + info.charAt(i));
             aux = aux.concat(Character.toString(info.charAt(i)));
             i += 1;
         }
         N_mov = Integer.parseInt(aux);
         System.out.println(N_mov);
         
-        i += i;
+        i += 1;
         while(i < info.length() && info.charAt(i) != ' '){
             aux = aux.concat(Character.toString(info.charAt(i)));
             i += 1;
@@ -109,7 +110,7 @@ public class Problem {
             aux = aux.concat(Character.toString(info.charAt(i)));
             i += 1;
         }
-        atk = Boolean.valueOf(aux);
+        atk = Boolean.parseBoolean(aux);
         System.out.println(atk);
         
         aux = "";
@@ -118,7 +119,7 @@ public class Problem {
             aux = aux.concat(Character.toString(info.charAt(i)));
             i += 1;
         }
-        first_turn = Boolean.valueOf(aux);
+        first_turn = Boolean.parseBoolean(aux);
         System.out.println(first_turn);
         Ranking = new ArrayList<Pair<Long, String>>();
     }
@@ -189,14 +190,12 @@ public class Problem {
     }
     
     private boolean deep_verify(Board b, int n, boolean color) throws chessException{
-        //System.out.println("Debug: " + n + " " + color);
         boolean can_solve = false;
-        
         if(n == -1){
-            //printBoard(b);
+            
             for(int i = 0; i < 8; ++i){
                 for(int j = 0; j < 8; ++j){
-                    if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && (b.getPieceAt(i, j).isColor() == color)) return false;
+                    if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && (b.getPieceAt(i, j).isColor() != this.atk)) return false;
                 }
             }
             return true;
@@ -211,18 +210,13 @@ public class Problem {
                         mov[0] = i;
                         mov[1] = j;
                         ArrayList<Pair<Integer, Integer>> movs = p.get_poss_mov(b);
-                        System.out.println(movs.size());
                         for(int x = 0; x < movs.size(); ++x){
                             mov[2] = movs.get(x).getKey();
                             mov[3] = movs.get(x).getValue();
                             Board altBoard = new Board(b);
                             altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color);
-                            try{
-                                can_solve = deep_verify(altBoard, n-1, !color);
-                            }
-                            catch(chessException e){
-                                //System.out.println(e.getMessage());
-                            }
+                            printBoard(altBoard);
+                            can_solve = deep_verify(altBoard, n-1, !color);
                             if(can_solve) return can_solve;
                         }
                     }
