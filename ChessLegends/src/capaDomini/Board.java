@@ -88,7 +88,7 @@ public class Board {
     public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
         boolean moved = false;
         if(dY == sY && dX == sX){
-            throw new chessException("WTF");
+            throw new chessException("You are moving at the same cell");
         }
         if(chessBoard[sX][sY].getTypeOfPiece() == -1){
             throw new chessException("No piece at Soruce");
