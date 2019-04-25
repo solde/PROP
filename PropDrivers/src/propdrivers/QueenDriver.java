@@ -129,7 +129,7 @@ public class QueenDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:3 Y:4 con board no vacio");
+                    System.out.println("Piece on X:0 Y:3 con board no vacio");
                     b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
