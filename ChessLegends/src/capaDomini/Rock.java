@@ -8,20 +8,40 @@ public class Rock extends Piece {
 
     private int max;
 
+    /**
+     * Basic constructor
+     */
     public Rock() {
         super(5, 5, 0, 0, true);
         this.max = 10; //for each player
     }
 
+    /**
+     * Constructor with parameters
+     *
+     * @param x
+     * @param y
+     * @param color
+     */
     public Rock(int x, int y, boolean color) {
         super(5, 5, x, y, color);
         this.max = 10; //for each player
     }
 
+    /**
+     * Sets the max variable for Rock
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /**
+     * Retruns the max variable of Rock
+     *
+     * @return int
+     */
     public int getMax() {
         return this.max;
     }
@@ -61,7 +81,7 @@ public class Rock extends Piece {
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
-                if (pos_Killable(tmp,b)) {
+                if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 break;

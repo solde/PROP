@@ -1,5 +1,9 @@
 package capaDomini;
 
+/**
+ *
+ * @author Daniel Palomo
+ */
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +14,7 @@ public class Pawn extends Piece {
     private int max;
 
     /**
-     *Basic constructor
+     * Basic constructor
      */
     public Pawn() {
         super(1, 1, 0, 0, true);
@@ -19,6 +23,7 @@ public class Pawn extends Piece {
 
     /**
      * Constrcutor with parameters
+     *
      * @param x
      * @param y
      * @param color
@@ -28,6 +33,11 @@ public class Pawn extends Piece {
         this.max = 16;
     }
 
+    /**
+     * Retruns max varialbe for Pawn
+     *
+     * @return int
+     */
     public int getMax() {
         return this.max;
     }
@@ -72,7 +82,7 @@ public class Pawn extends Piece {
         if (!isColor()) {
             tmp = new Pair<>(x_temp + 1, y_temp);
             if (!pos_Taken(tmp, b)) {
-             //   System.out.println(x_temp + " " + y_temp + " " + Arrays.toString(b.getPieceAt(tmp.getKey(), tmp.getValue()).getXY()));
+                //   System.out.println(x_temp + " " + y_temp + " " + Arrays.toString(b.getPieceAt(tmp.getKey(), tmp.getValue()).getXY()));
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp + 1);
@@ -102,6 +112,11 @@ public class Pawn extends Piece {
         return mov;
     }
 
+    /**
+     * Sets the max variable for Pawn
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }

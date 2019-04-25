@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Daniel Palomo
+ */
 package capaDomini;
 
 import java.util.ArrayList;
@@ -8,20 +12,40 @@ public class Bishop extends Piece {
 
     private int max;
 
+    /**
+     * Basic constructor
+     */
     public Bishop() {
         super(3, 3, 0, 0, true);
         this.max = 10;
     }
 
+    /**
+     * Constructor with parameters
+     *
+     * @param x
+     * @param y
+     * @param color
+     */
     public Bishop(int x, int y, boolean color) {
         super(3, 3, x, y, color);
         this.max = 10;
     }
 
+    /**
+     * Sets the max variable for Bishop
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /**
+     * Retruns the max variable for Bishop
+     *
+     * @return int
+     */
     public int getMax() {
         return this.max;
     }

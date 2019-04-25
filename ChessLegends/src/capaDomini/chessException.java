@@ -5,9 +5,10 @@
  */
 package capaDomini;
 
+
 /**
  *
- * @author Familia
+ * @author Daniel Palomo
  */
 public class chessException extends Exception {
 

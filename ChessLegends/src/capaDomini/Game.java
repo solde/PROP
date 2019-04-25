@@ -25,7 +25,7 @@ public class Game extends GameAbs {
     public Game() {
         timerW = 0;
         timerB = 0;
-        B = new Board();
+         B = new Board();
         turn = true;
     }
     

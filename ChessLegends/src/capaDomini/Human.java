@@ -1,11 +1,8 @@
 package capaDomini;
+
 import Exception.chessException;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import static java.lang.System.in;
 import java.util.Map;
 
 /**
@@ -46,7 +43,10 @@ public class Human extends Player {
     }
     //public constructors & get/set
 
-    public Human() { //basic constructor
+    /**
+     * basic constructor without parametres
+     */
+    public Human() {
         this.id = null;
         this.wins = 0;
         this.loses = 0;
@@ -57,9 +57,18 @@ public class Human extends Player {
 
         password = null;
     }
-//constructor amb parametres
-    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) {  
-        //Create a human player by entering the stats
+
+    /**
+     * constructor with parametres
+     *
+     * @param id
+     * @param pass
+     * @param wins
+     * @param loses
+     * @param ELO
+     * @param OP_rating
+     */
+    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) {
         this.id = id;
         this.wins = wins;
         this.loses = loses;
@@ -69,8 +78,17 @@ public class Human extends Player {
         setPassword(pass);
     }
 
-    public Human(String id, int wins, int loses, float ELO, float OP_rating) {  //constructor amb parametres
-        //Create a human player by entering the stats
+    /**
+     * constructor with parametres
+     *
+     * @param id
+     * @param wins
+     * @param loses
+     * @param ELO
+     * @param OP_rating
+     */
+    public Human(String id, int wins, int loses, float ELO, float OP_rating) {
+
         this.id = id;
         this.wins = wins;
         this.loses = loses;
@@ -78,8 +96,14 @@ public class Human extends Player {
         this.OP_rating = OP_rating;
     }
 
+    /**
+     * constructor with parametres
+     *
+     * @param id
+     * @param pass
+     */
     public Human(String id, String pass) {
-        // Create a new default human player
+
         this.id = id;
         this.wins = 0;
         this.loses = 0;
@@ -88,11 +112,21 @@ public class Human extends Player {
         setPassword(pass);
     }
 
+    /**
+     * Changes the password in human
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         //Funció del controlador de ficheros (2 entrega)
         this.password = password;
     }
 
+    /**
+     * returns the password in human
+     *
+     * @return password
+     */
     private String getPassword() {
         return this.password;
     }

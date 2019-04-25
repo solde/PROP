@@ -114,8 +114,8 @@ public class KingDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Pieza en X:2 Y:4");
-                    p = new King(2, 4, true);
+                    System.out.println("Pieza en X:0 Y:4");
+                    p = new King(0, 4, false);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
@@ -129,7 +129,7 @@ public class KingDriver {
                         System.out.println(movl.getValue());
                     }
                                       System.out.println("Pieza en X:3 Y:4 con board no vacio");
-                     b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                     b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
                      mov=p.get_poss_mov(b);
                       if (mov.isEmpty()) {
                         System.out.println("Hay movimientos possibles pero la funcion no los detecta, fail");
