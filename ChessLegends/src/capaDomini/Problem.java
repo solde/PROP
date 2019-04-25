@@ -163,39 +163,43 @@ public class Problem {
     }
     
     private boolean deep_verify(Board b, int n, boolean color) throws chessException{
-        //System.out.println(color);
-        ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
+        //System.out.println("Debug: " + n + " " + color);
         boolean can_solve = false;
         
-        if(n == 0){
+        if(n == -1){
             //printBoard(b);
             for(int i = 0; i < 8; ++i){
                 for(int j = 0; j < 8; ++j){
-                    if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && !(b.getPieceAt(i, j).isColor()^color)) return false;
+                    if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && (b.getPieceAt(i, j).isColor() == color)) return false;
                 }
             }
             return true;
         }
-
-        for(int i = 0; i<8; i++){
-            for(int j=0; j<8; j++){
-                Piece piece = b.getPieceAt(i,j);
-                if(piece.getTypeOfPiece() != -1 && !(piece.isColor() ^ color)){
-                    ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
-                    int[] mov = new int[4];
-                    mov[0] = piece.getX();
-                    mov[1] = piece.getY();
-                    for(int x = 0; x < possMovs.size(); ++x){
-                        System.out.println(x + " " + piece.getTypeOfPiece() + " " + Arrays.toString(piece.getXY()));
-                        mov[2] = possMovs.get(x).getKey();
-                        mov[3] = possMovs.get(x).getValue();
-                        //printBoard(b);
-                        Board altBoard = new Board(b); //initialices an alternative space to evaluate
-                        altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
-                        if(b.fenToString().equals(altBoard.fenToString())) System.out.println("jasñdf");
-                        can_solve = deep_verify(altBoard, n-1, !color);
-                        if(can_solve) return true;
-                    }     
+        else{
+            for(int i = 0; i < 8; ++i){
+                for(int j = 0; j < 8; ++j){
+                    if(b.getPieceAt(i, j).getTypeOfPiece() != -1 && b.getPieceAt(i, j).isColor() == color){
+                        Piece p = b.getPieceAt(i, j);
+                        int[] mov;
+                        mov = new int[4];
+                        mov[0] = i;
+                        mov[1] = j;
+                        ArrayList<Pair<Integer, Integer>> movs = p.get_poss_mov(b);
+                        System.out.println(movs.size());
+                        for(int x = 0; x < movs.size(); ++x){
+                            mov[2] = movs.get(x).getKey();
+                            mov[3] = movs.get(x).getValue();
+                            Board altBoard = new Board(b);
+                            altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color);
+                            try{
+                                can_solve = deep_verify(altBoard, n-1, !color);
+                            }
+                            catch(chessException e){
+                                //System.out.println(e.getMessage());
+                            }
+                            if(can_solve) return can_solve;
+                        }
+                    }
                 }
             }
         }

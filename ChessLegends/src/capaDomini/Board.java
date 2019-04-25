@@ -57,7 +57,7 @@ public class Board {
         chessBoard = new Piece[8][8];
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
-                chessBoard[i][j] = new NullPiece(i, j, false);
+                chessBoard[i][j] = new NullPiece(i, j, true);
             }
         }
         this.Default_FEN_code = "8/8/8/8/8/8/8/8"; 
@@ -88,59 +88,56 @@ public class Board {
     public void movePiece(int sX, int sY, int dX, int dY, boolean player) throws chessException {
         boolean moved = false;
         if(dY == sY && dX == sX){
-            throw new chessException("You are moving at the same cell");
+            throw new chessException("You are moving the piece at the same cell");
         }
         if(chessBoard[sX][sY].getTypeOfPiece() == -1){
             throw new chessException("No piece at Soruce");
         }
-        else{
-            if(chessBoard[sX][sY].isColor() ^ player){
-                throw new chessException("Not your piece");
-            } 
-            else if(chessBoard[dX][dY].getTypeOfPiece() != -1 && !(chessBoard[dX][dY].isColor() ^ player)){
-                /*System.out.println(sX + " " + sY);
-                System.out.println(dX + " " + dY);
-                System.out.println("   0  1  2  3  4  5  6  7");
-                for(int x = 0; x < 8; ++x){
-                    System.out.print(x + "|");
-                    for(int y = 0; y < 8; ++y){
-                        if(getPieceAt(x, y).isColor() && getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + getPieceAt(x, y).getTypeOfPiece() + "|");
-                        else if(!getPieceAt(x, y).isColor() && getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + getPieceAt(x, y).getTypeOfPiece() + "|");
-                        else System.out.print("  " + "|");
-                    }
-                    System.out.println(" ");
+        if(chessBoard[sX][sY].isColor() != player){
+            throw new chessException("Not your piece");
+        } 
+        if(chessBoard[dX][dY].getTypeOfPiece() != -1 && (chessBoard[dX][dY].isColor() == chessBoard[sX][sY].isColor())){
+            /*System.out.println(sX + " " + sY);
+            System.out.println(dX + " " + dY);
+            System.out.println("   0  1  2  3  4  5  6  7");
+            for(int x = 0; x < 8; ++x){
+                System.out.print(x + "|");
+                for(int y = 0; y < 8; ++y){
+                    if(getPieceAt(x, y).isColor() && getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + getPieceAt(x, y).getTypeOfPiece() + "|");
+                    else if(!getPieceAt(x, y).isColor() && getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + getPieceAt(x, y).getTypeOfPiece() + "|");
+                    else System.out.print("  " + "|");
                 }
-                System.out.println(" ");*/
-                throw new chessException("Color: " + player + chessBoard[dX][dY].isColor() + " Trying to move a piece of type " + chessBoard[sX][sY].getTypeOfPiece() + " to a cell with a piece " + chessBoard[dX][dY].getTypeOfPiece());
+                System.out.println(" ");
             }
-            else{
-                switch(chessBoard[sX][sY].getTypeOfPiece()){
-                    case 0:
-                        chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                    case 1:
-                        chessBoard[dX][dY] = new Pawn( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                    case 2:
-                        chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                    case 3:
-                        chessBoard[dX][dY] = new Bishop( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                    case 4:
-                        chessBoard[dX][dY] = new Knight( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                    case 5:
-                        chessBoard[dX][dY] = new Rock( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                    case 7:
-                        chessBoard[dX][dY] = new Queen( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
-                        break;
-                       
-                }
-                chessBoard[sX][sY] = new NullPiece(sX, sY, true);
-            }
+            System.out.println(" ");*/
+            throw new chessException("Color: " + player + " " + chessBoard[dX][dY].isColor() + " Trying to move a piece of type " + chessBoard[sX][sY].getTypeOfPiece() + " to a cell with a piece " + chessBoard[dX][dY].getTypeOfPiece());
         }
+        switch(chessBoard[sX][sY].getTypeOfPiece()){
+            case 0:
+                chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+            case 1:
+                chessBoard[dX][dY] = new Pawn( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+            case 2:
+                chessBoard[dX][dY] = new King( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+            case 3:
+                chessBoard[dX][dY] = new Bishop( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+            case 4:
+                chessBoard[dX][dY] = new Knight( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+            case 5:
+                chessBoard[dX][dY] = new Rock( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+            case 7:
+                chessBoard[dX][dY] = new Queen( chessBoard[sX][sY].getX(), chessBoard[sX][sY].getY(), chessBoard[sX][sY].isColor());
+                break;
+
+        }
+        chessBoard[sX][sY] = new NullPiece(sX, sY, true);
+        this.FEN_code = this.fenToString();
     }
 
     protected Piece[][] getchessBoard(){
