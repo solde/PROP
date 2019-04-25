@@ -9,11 +9,20 @@ public class Pawn extends Piece {
 
     private int max;
 
+    /**
+     *Basic constructor
+     */
     public Pawn() {
         super(1, 1, 0, 0, true);
         this.max = 16;
     }
 
+    /**
+     * Constrcutor with parameters
+     * @param x
+     * @param y
+     * @param color
+     */
     public Pawn(int x, int y, boolean color) {
         super(1, 1, x, y, color);
         this.max = 16;
@@ -63,7 +72,7 @@ public class Pawn extends Piece {
         if (!isColor()) {
             tmp = new Pair<>(x_temp + 1, y_temp);
             if (!pos_Taken(tmp, b)) {
-                System.out.println(x_temp + " " + y_temp + " " + Arrays.toString(b.getPieceAt(tmp.getKey(), tmp.getValue()).getXY()));
+             //   System.out.println(x_temp + " " + y_temp + " " + Arrays.toString(b.getPieceAt(tmp.getKey(), tmp.getValue()).getXY()));
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp + 1);

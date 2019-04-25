@@ -119,6 +119,7 @@ public abstract class Piece {
 
     /**
      * Checks if the Pair p represents an empty space in the board.
+     *
      * @param p
      * @param b
      * @return
@@ -153,8 +154,8 @@ public abstract class Piece {
     }
 
     /**
-     * This Funciton detects if the position in Pair p has a piece that can be
-     * killed.
+     * This Funciton detects if the position in Pair p represents a piece on
+     * board that can be killed by the piece .
      *
      * @param p Pair of coords
      * @param b Board where the game is taking place
@@ -163,6 +164,19 @@ public abstract class Piece {
      */
     public boolean pos_Killable(Pair p, Board b, boolean color) { //TRUE= KILLABLE  FALSE=FRIENDLY
 
+        int x_temp = (int) p.getKey();
+        int y_temp = (int) p.getValue();
+        if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
+            Piece k = b.getPieceAt(x_temp, y_temp);
+            if (k.getTypeOfPiece() != -1 && !(color ^ k.isColor())) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        /*
         boolean ret = false;
         int x_temp = (int) p.getKey();
         int y_temp = (int) p.getValue();
@@ -189,7 +203,7 @@ public abstract class Piece {
         } else {
             return false;
         }
-        return ret;
+        return ret;*/
     }
 
     public boolean equals(Piece p) {
