@@ -5,6 +5,7 @@
  */
 package capaDomini;
 import Exception.chessException;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,11 +22,11 @@ public class CtrlDomainGame {
         G = new AICompetition(N);
     }
     
+
     public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
         //(fenCode, Name, diff, N_mov, Theme, atk)
-        //G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
     }
-    
     public void authPlayer1Test(String playerId, String playerPassword, int wins, int loses, int ELO, int OP_rating){
         G.setPlayer1(playerId, wins, loses, ELO, OP_rating);
     }
@@ -35,54 +36,27 @@ public class CtrlDomainGame {
     }
     
     /**
-     *
+     * Funciton to move a piece, the move must be from result of getPossibleMovments
      * @param sX
      * @param sY
      * @param dX
      * @param dY
+     * @param color
      * @param time
-     * @return
      */
-    public int moveWhitePiece(int sX, int sY, int dX, int dY, long time){
+    public void movePiece(int sX, int sY, int dX, int dY, boolean color ,long time){
         try{
-            if(G.isTurn()){
-                G.movePiece(sX, sY, dX, dY, true, time);
-            }
-            else return -1;
+            G.movePiece(sX, sY, dX, dY, color, time);
+            G.setTurn(!color);
         }
         catch(chessException e){
-            System.out.println("Can't move");
+            System.out.println(e.getMessage());
         }
-        return 0;
     }
     
-    /**
-     *
-     * @param sX
-     * @param sY
-     * @param dX
-     * @param dY
-     * @param time
-     * @return
-     */
-    public int moveBlackPiece(int sX, int sY, int dX, int dY, long time){
-        try{
-            G.movePiece(sX, sY, dX, dY, false, time);
-        }
-        catch(chessException e){
-            System.out.println("Can't move");
-        }
-        return 0;
+    public ArrayList<int[]> getPossibleMovements(boolean color){
+        return G.possibleMovements(color);
     }
-
-    public GameAbs getG() {
-        return G;
-    }
-
-    public void setG(GameAbs G) {
-        this.G = G;
-    }
-    
     
     public void initGame(){
         G = new Game();
@@ -93,6 +67,10 @@ public class CtrlDomainGame {
         G.setPlayer1("AI1", 0, 0, 1000, 1000);
         G.setPlayer2("AI1", 0, 0, 1000, 1000);
         //Fer coses d'estadistiques
+    }
+    
+    public ArrayList<int[]> getBoardInfo(){
+        G.
     }
    
 }

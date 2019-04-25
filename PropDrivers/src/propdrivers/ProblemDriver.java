@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package propdrivers;
 
 import Exception.chessException;
@@ -39,13 +34,13 @@ public class ProblemDriver {
 
                 case 3: //Creator with string with DL info
                     String info = sc.nextLine();
-                    P = new Problem(info);
+                    P = new Problem();
                     break;       
                 
                 case 4: //verify
                     System.out.println("Enter a fen Code");
                     //String fc3 = sc.nextLine();
-                    String fc3 = "4k3/4B3/4K3/8/4N3/8/8/3q4";
+                    String fc3 = "7k/R7/6Q1/8/8/8/8/3K4";
                     System.out.println("Enter a name");
                     String n3 = "problem_test";
                     System.out.println("Enter a difficulty");
@@ -83,7 +78,7 @@ public class ProblemDriver {
                 case 7: //getProblemInfo
                     System.out.println("Enter problem info");
                     //String i7 = sc.next();
-                    P = new Problem("4k3/4B3/4K3/8/4N3/8/8/3q4 problem_test theme_test 3 1 true true");
+                    P = new Problem();
                     System.out.println(P.getProblemInfo());
                     break;
                 

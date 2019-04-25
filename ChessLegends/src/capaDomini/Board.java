@@ -215,17 +215,46 @@ public class Board {
     
     /**
      * @param color
+     * @throws Exception.chessException
      * @Pre True
-     * @Post Returns if any of the kings is in check mate
+     * @Post Returns if player color is in checkmate
      * @return if player color is doing a checkmate to the other player
      */
     public boolean isCheckMate(boolean color) throws chessException{
-        Problem P = new Problem();
-        P.setFenCode(fenToString());
-        P.setATK(color);
-        P.setFirstTurn(color);
-        P.setN_mov(0);
-        return P.verify();
+        Piece p = new NullPiece(0, 0, true);
+        for(int i = 0; i < 8; ++i){
+            for(int j = 0; j < 8; ++j){
+                if(chessBoard[i][j].getTypeOfPiece() == 0 && chessBoard[i][j].isColor() == color){
+                    p = chessBoard[i][j];
+                }
+            }
+        }
+        ArrayList<Pair<Integer, Integer>> pos_movs = p.get_poss_mov(this);
+        for(int i = 0; i < pos_movs.size(); ++i){
+            Board newb = new Board(this);
+            newb.movePiece(p.getX(), p.getY(), pos_movs.get(i).getKey(), pos_movs.get(i).getValue(), color);
+            Problem P = new Problem();
+            P.setFenCode(newb.getFEN_code());
+            P.setN_mov(1);
+            P.setATK(!color);
+            P.setFirstTurn(!color);
+            if(!P.verify()){
+                System.out.println(P.getFenCode());
+                System.out.println("   0  1  2  3  4  5  6  7");
+                for(int x = 0; x < 8; ++x){
+                    System.out.print(x + "|");
+                    for(int y = 0; y < 8; ++y){
+                        if(newb.getPieceAt(x, y).isColor() && newb.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + newb.getPieceAt(x, y).getTypeOfPiece() + "|");
+                        else if(!newb.getPieceAt(x, y).isColor() && newb.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + newb.getPieceAt(x, y).getTypeOfPiece() + "|");
+                        else System.out.print("  " + "|");
+                    }
+                    System.out.println(" ");
+                }
+                System.out.println(" ");
+                return false;
+            }
+        }
+        return true;
     }
     
     /**
