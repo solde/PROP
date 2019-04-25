@@ -3,7 +3,6 @@ package capaDomini;
 import Exception.chessException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  *
@@ -14,22 +13,17 @@ public class Human extends Player {
     //Basicament tot lo relacionat amb password es temporal 
     //private
     private String password; //TEMP, ja millorarem la seguritat
-    private Map<String, Float> times;
-    //public methods
-
-    public Map<String, Float> getTimes() {
-        return times;
-    }
-
-    public void setTimes(Map<String, Float> times) {
-        this.times = times;
-    }
-
-    public void addTime(String prob, Float time) {
-        times.put(prob, time);
-    }
-
     //Funció temporal per la primera entrega 
+
+    /**
+     * Checks if a the string pass is equal to the password in player.
+     *
+     * @param pass
+     * @return int
+     * @throws chessException
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public int autenticate(String pass) throws chessException, FileNotFoundException, IOException {
         String truePass = this.getPassword();
         if (pass.isEmpty()) {
