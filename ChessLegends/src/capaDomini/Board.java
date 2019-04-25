@@ -5,8 +5,8 @@
  */
 package capaDomini;
 
-import java.util.*; 
 import Exception.chessException;
+import java.util.*; 
 import javafx.util.Pair;
 
 /**

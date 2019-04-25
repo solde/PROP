@@ -22,19 +22,20 @@ public class Game extends GameAbs {
     private String wPlayer;
     private String bPlayer;
 
-    void Game(boolean initialTurn) {
+    public Game() {
+        timerW = 0;
+        timerB = 0;
+        B = new Board();
+        turn = true;
+    }
+    
+    public Game(boolean initialTurn) {
         turn = initialTurn;
         B = new Board();
         timerW = 0;
         timerB = 0;
     }
 
-    void Game() {
-        timerW = 0;
-        timerB = 0;
-        B = new Board();
-        turn = true;
-    }
 
     /**
      *
