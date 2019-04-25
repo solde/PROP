@@ -6,7 +6,6 @@
 package capaDomini;
 
 import Exception.chessException;
-import static capaDomini.AI1.evaluatePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,74 +53,6 @@ public class Problem {
         this.atk = atk;
         this.first_turn = first_turn;
         calculateDiff();
-    }
-    
-    /**
-     *
-     * @param info
-     */
-    public Problem(String info) {
-        System.out.println(info);
-        int i = 0;
-        fenCode = "";
-        while(i < info.length() && info.charAt(i) != ' '){
-            this.fenCode = fenCode.concat(Character.toString(info.charAt(i)));
-            i += 1;
-        }
-        System.out.println(fenCode);
-        
-        Name = "";
-        i += 1;
-        while(i < info.length() && info.charAt(i) != ' '){
-            this.Name = Name.concat(Character.toString(info.charAt(i)));
-            i += 1;
-        }
-        System.out.println(Name);
-        
-        this.Theme = "";
-        i += 1;
-        while(i < info.length() && info.charAt(i) != ' '){
-            this.Theme = Theme.concat(Character.toString(info.charAt(i)));
-            i += 1;
-        }
-        System.out.println(Theme);
-        
-        String aux = "";
-        i += 1;
-        while(i < info.length() && info.charAt(i) != ' '){
-            System.out.println("Debug: " + info.charAt(i));
-            i += 1;
-        }
-        System.out.println(aux);
-        N_mov = Integer.parseInt(aux);
-        System.out.println(N_mov);
-        
-        i += 1;
-        while(i < info.length() && info.charAt(i) != ' '){
-            aux = aux.concat(Character.toString(info.charAt(i)));
-            i += 1;
-        }
-        diff = Integer.parseInt(aux);
-        System.out.println(diff);
-        
-        aux = "";
-        i += 1;
-        while(i < info.length() && info.charAt(i) != ' '){
-            aux = aux.concat(Character.toString(info.charAt(i)));
-            i += 1;
-        }
-        atk = Boolean.parseBoolean(aux);
-        System.out.println(atk);
-        
-        aux = "";
-        i += 1;
-        while(i < info.length() && info.charAt(i) != ' '){
-            aux = aux.concat(Character.toString(info.charAt(i)));
-            i += 1;
-        }
-        first_turn = Boolean.parseBoolean(aux);
-        System.out.println(first_turn);
-        Ranking = new ArrayList<Pair<Long, String>>();
     }
 
     public boolean getFirstTurn(){

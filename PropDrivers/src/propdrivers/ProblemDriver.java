@@ -34,7 +34,7 @@ public class ProblemDriver {
 
                 case 3: //Creator with string with DL info
                     String info = sc.nextLine();
-                    P = new Problem(info);
+                    P = new Problem();
                     break;       
                 
                 case 4: //verify
@@ -78,7 +78,7 @@ public class ProblemDriver {
                 case 7: //getProblemInfo
                     System.out.println("Enter problem info");
                     //String i7 = sc.next();
-                    P = new Problem("4k3/4B3/4K3/8/4N3/8/8/3q4 problem_test theme_test 3 1 true true");
+                    P = new Problem();
                     System.out.println(P.getProblemInfo());
                     break;
                 

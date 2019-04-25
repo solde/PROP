@@ -119,6 +119,15 @@ public class Game extends GameAbs {
     public String getProblemInfo(){
         return P.getProblemInfo();
     }
+    
+    public ArrayList<int[]> getPieces(){
+        ArrayList<int[]> ret = new ArrayList<>();
+        ArrayList<Piece> pieces = B.getBlackPiecesOnBoard();
+        pieces.addAll(B.getWhitePiecesOnBoard());
+        for(int i = 0; i < pieces.size(); ++i){
+            int[] toAdd = new int[4];
+        }
+    }
 
     @Override
     public void playMatch() throws chessException {
