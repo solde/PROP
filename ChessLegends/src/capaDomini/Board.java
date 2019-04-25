@@ -98,7 +98,7 @@ public class Board {
                 throw new chessException("Not your piece");
             } 
             else if(chessBoard[dX][dY].getTypeOfPiece() != -1 && !(chessBoard[dX][dY].isColor() ^ player)){
-                System.out.println(sX + " " + sY);
+                /*System.out.println(sX + " " + sY);
                 System.out.println(dX + " " + dY);
                 System.out.println("   0  1  2  3  4  5  6  7");
                 for(int x = 0; x < 8; ++x){
@@ -110,7 +110,7 @@ public class Board {
                     }
                     System.out.println(" ");
                 }
-                System.out.println(" ");
+                System.out.println(" ");*/
                 throw new chessException("Color: " + player + chessBoard[dX][dY].isColor() + " Trying to move a piece of type " + chessBoard[sX][sY].getTypeOfPiece() + " to a cell with a piece " + chessBoard[dX][dY].getTypeOfPiece());
             }
             else{

@@ -186,13 +186,13 @@ public class Problem {
                     mov[0] = piece.getX();
                     mov[1] = piece.getY();
                     for(int x = 0; x < possMovs.size(); ++x){
-                        //System.out.println(x + " " + piece.getTypeOfPiece() + " " + Arrays.toString(piece.getXY()));
-                        //printBoard(b);
+                        System.out.println(x + " " + piece.getTypeOfPiece() + " " + Arrays.toString(piece.getXY()));
                         mov[2] = possMovs.get(x).getKey();
                         mov[3] = possMovs.get(x).getValue();
                         //printBoard(b);
                         Board altBoard = new Board(b); //initialices an alternative space to evaluate
                         altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                        if(b.fenToString().equals(altBoard.fenToString())) System.out.println("jasñdf");
                         can_solve = deep_verify(altBoard, n-1, !color);
                         if(can_solve) return true;
                     }     

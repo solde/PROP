@@ -19,8 +19,6 @@ public class Game extends GameAbs {
 
     private long timerW;
     private long timerB;
-    private String wPlayer;
-    private String bPlayer;
 
     public Game() {
         timerW = 0;
@@ -62,28 +60,12 @@ public class Game extends GameAbs {
         return timerB;
     }
 
-    public String getwPlayer() {
-        return wPlayer;
-    }
-
-    public String getbPlayer() {
-        return bPlayer;
-    }
-
     public void setTimerW(long timerW) {
         this.timerW = timerW;
     }
 
     public void setTimerB(long timerB) {
         this.timerB = timerB;
-    }
-
-    public void setwPlayer(String wPlayer) {
-        this.wPlayer = wPlayer;
-    }
-
-    public void setbPlayer(String bPlayer) {
-        this.bPlayer = bPlayer;
     }
 
     /**

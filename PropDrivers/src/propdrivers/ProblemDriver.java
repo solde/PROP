@@ -51,7 +51,7 @@ public class ProblemDriver {
                     System.out.println("Enter a difficulty");
                     int d3 = 3;
                     System.out.println("Enter a number of movs");
-                    //4int nm3 = sc.nextInt();
+                    //int nm3 = sc.nextInt();
                     int nm3 = 2;
                     System.out.println("Enter a theme");
                     String t3 = "test";
