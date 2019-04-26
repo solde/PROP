@@ -1,0 +1,304 @@
+
+
+
+
+
+
+
+
+
+
+Projecte De Programació
+ChessLegends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Daniel Palomo Cabrera            daniel.palomo
+Arnau Santos Ferrnandez	   arnau.santos.ferrnadez
+David Soldevila Puigbi             david.soldevila.puigbi
+												Versió 1.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Index:
+
+Especificació de clases....................................................,...............................3
+Llista de repartició de treball...........................................................................6
+Algorismes.......................................................................................................7
+Diagrama de clases .........................................................................................8
+Diagrama de casos d'us................................................................................... 9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Especificació de classes
+
+## Problem
+
+Classe per representar un problema. Permet la visualització i modificació de les dades, la verificació del mateix i la gestió del ranking de jugadors d'aquell problema.
+
+## GameAbs
+
+Classe per gestionar un joc. Permet veure les peces que té la taula i moure-les.
+
+### Game
+
+Classe per gestionar un joc on hi juga minim una persona. Aquesta té en compte el temps de decissió per fer les rankings dels problemes.
+
+### AICompetition
+
+Classe per gestionar pertides entre les IAs. Es juguen K partides i despres es poden adquirir els resultats, nombre de partides gunyades per cada color.
+
+## Player
+
+Classe per representar els jugadors (usuaris). Guarda l'inforamció necessaria per representar un usuari i permet calcular el seu ELO.
+
+### Human
+
+Classe per representar un jugador humà. Aquest permet guardar una password per autenticar-se.
+
+### AI
+
+Classe que conte l'algoritme del jugador maquina.
+
+
+
+#### AI1
+
+Classe amb l'algorisme de IA de dificultat fàcil.
+
+## Board
+
+Classe per representar un taulell d'escacs i gestiolar-lo. Permet moure i afegir peces i codificar el contingut de la taula en codificació fen.
+
+## Piece
+
+Classe per representar una peça. Dona informació dels possibles moviments que pot fer.
+
+Té una subclasse per cada tipus de peça i una per representar una peça buida.
+Totes les subclasses utilitzen el seu propi moviment per calcular els possibles posicions.
+
+###King
+
+Classe que representa la peça Rey.
+
+###Pawn
+
+Classe que representa la peça Peo.
+
+###Queen
+
+Classe que representa la peça Reina.
+
+###Rock
+
+Classe que representa la peça Torre.
+
+###Bishop
+
+Classe que representa la peça Alfil.
+
+###nullPiece
+
+Classe que representa una peça buida.
+
+
+
+###Knight
+
+Classe que representa la peça Cavall.
+
+##CtrlDomainCreator
+
+Controladora que s'encarrega de crear instancies.
+
+##CtrlDomainGame
+
+Controladora que maneja el Game.
+
+ ##chessException
+
+Classe derivada d'Exception la que utilitzem per llançar les nostres propies excepcions personalitzades.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Repartició de treball:
+
+Problem       
+David Soldevila
+GameAbs   
+David Soldevila
+Game
+David Soldevila
+AICompetition
+Arnau Santos
+Player
+Daniel Palomo
+Human
+Daniel Palomo
+AI
+Arnau Santos
+AI
+Arnau Santos
+Board
+Arnau Santos
+Piece
+Daniel Palomo
+King
+Daniel Palomo
+Pawn
+Daniel Palomo
+Queen
+Daniel Palomo
+Rock
+Daniel Palomo
+nullPiece
+David Soldevila
+Bishop
+Daniel Palomo
+Knight
+Daniel Palomo
+CtrlDomainCreator
+David Soldevila
+CtrDomainGame
+Arnau Santos
+ChessException
+Daniel Palomo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Algorismes
+Problem verifier
+Per verificar un problema fem servir un algorisme DFS (Depth First Search) per buscar una possible taula en la quan al cap de N+1 torns s'arriba a matar el rei significa que existeix, com a mínim, una solució.
+AI players
+Les dues IAs implementen l'algorisme MinMax, que consisteix en la cerca en arbre consultant tots els possibles moviments de les peces, guiada per funa funció heuristica que retonra un valor en funció de la situació del taulell: les peces atacants sumen punts mentre que les peces defensores resten punts.
+Player ranking
+$$Performance\ rating = \frac{Total\ of\ oponents'\ ratings + 400(Wins-Losses)}{Number\ of\ Games}$$
+Problem Ranking
+Es guarda una llista ordenada amb la llista amb la suma dels temps de cada jugada que ha fet i el nom del jugador.
+FEN "encoder"
+Es recorrerà la taula i es completa una string amb els espais en blanc i les peces.
+FEN "decoder"
+Es recorre el fen i es va completant la taula a la vegada es es verifica que no s'accedeix el nombre maxim de fitxes d'un mateix tipus i que hi hagi exactament vuit cel·les representades en cada sagment.
+

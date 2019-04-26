@@ -1,9 +1,0 @@
-Projecte De Programació
-ChessSolver
-
-Daniel Palomo Cabrera daniel.palomo
-Arnau Santos		    arnau.santos
-David Soldevila             david.soldevila
-Versio 1,0
-
-
