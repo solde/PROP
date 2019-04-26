@@ -189,6 +189,9 @@ public class Problem {
     public String getProblemInfo(){
         String ret = "";
         ret = ret.concat(fenCode);
+        if(atk) ret = ret.concat(" w");
+        else ret = ret.concat(" b");
+        ret = ret.concat(" - - 0 1");
         ret = ret.concat(" ");
         ret = ret.concat(Name);
         ret = ret.concat(" ");
@@ -198,9 +201,6 @@ public class Problem {
         ret = ret.concat(" ");
         ret = ret.concat(Integer.toString(N_mov));
         ret = ret.concat(" ");
-        ret = ret.concat(Boolean.toString(atk));
-        ret = ret.concat(" ");
-        ret = ret.concat(Boolean.toString(first_turn));
         return ret;
     }
     

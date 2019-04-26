@@ -22,11 +22,11 @@ public class ProblemDriver {
                     break;
                     
                 case 2: // Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn)
-                    String fc2 = sc.nextLine();
-                    String n2 = sc.nextLine();
+                    String fc2 = sc.next();
+                    String n2 = sc.next();
                     int d2 = sc.nextInt();
                     int nm2 = sc.nextInt();
-                    String t2 = sc.nextLine();
+                    String t2 = sc.next();
                     boolean a2 = sc.nextBoolean();
                     boolean ft2 = sc.nextBoolean();
                     P = new Problem(fc2, n2, d2, nm2, t2, a2, ft2);
@@ -39,8 +39,8 @@ public class ProblemDriver {
                 
                 case 4: //verify
                     System.out.println("Enter a fen Code");
-                    //String fc3 = sc.nextLine();
-                    String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
+                    String fc3 = sc.next();
+                    //String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
                     System.out.println("Enter a name");
                     String n3 = "problem_test";
                     System.out.println("Enter a difficulty");
@@ -68,8 +68,15 @@ public class ProblemDriver {
                 
                 case 6: //calculateDiff/getDiff
                     P = new Problem();
-                    P.setFenCode("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B");
-                    P.setATK(true);
+                    boolean atk = false;
+                    System.out.println("Enter fen");
+                    String f6 = sc.next();
+                    P.setFenCode(f6);
+                    for(int x = 0; x < 5; ++x){
+                        String aux = sc.next();
+                        if(x == 0 && aux == "w") atk = true;
+                    }
+                    P.setATK(atk);
                     P.setN_mov(3);
                     P.calculateDiff();
                     System.out.println(P.getDiff());
