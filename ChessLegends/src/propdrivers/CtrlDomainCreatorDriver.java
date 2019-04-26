@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author Daniel Palomo
  */
-public class CtrlDomainCreratorDriver {
+public class CtrlDomainCreatorDriver {
     
     public static void printBoard(char[][] board){
             System.out.println("   0  1  2  3  4  5  6  7");
