@@ -242,18 +242,6 @@ public class Board {
             P.setATK(!color);
             P.setFirstTurn(!color);
             if(!P.verify()){
-                System.out.println(P.getFenCode());
-                System.out.println("   0  1  2  3  4  5  6  7");
-                for(int x = 0; x < 8; ++x){
-                    System.out.print(x + "|");
-                    for(int y = 0; y < 8; ++y){
-                        if(newb.getPieceAt(x, y).isColor() && newb.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + newb.getPieceAt(x, y).getTypeOfPiece() + "|");
-                        else if(!newb.getPieceAt(x, y).isColor() && newb.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + newb.getPieceAt(x, y).getTypeOfPiece() + "|");
-                        else System.out.print("  " + "|");
-                    }
-                    System.out.println(" ");
-                }
-                System.out.println(" ");
                 return false;
             }
         }
