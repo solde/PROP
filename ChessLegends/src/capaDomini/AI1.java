@@ -83,6 +83,8 @@ public class AI1 extends Player {
                         }
 		}
 		//initializes bestMoveScore to compare
+                //System.out.println(possibleBoards.size());
+                if (possibleBoards.size() == 0) printBoard(b);
                 bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); //1 is the depth, explained in evaluate position "header"
 		moveScore.add(bestMoveScore);
 		//call evaluateposition on each move

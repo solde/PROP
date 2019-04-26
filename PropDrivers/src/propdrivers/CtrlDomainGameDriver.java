@@ -5,6 +5,7 @@ package propdrivers;
  * @author Daniel Palomo
  */
 import Exception.chessException;
+import capaDomini.AICompetition;
 import capaDomini.Board;
 import capaDomini.CtrlDomainGame;
 import capaDomini.Game;
@@ -34,11 +35,12 @@ public class CtrlDomainGameDriver {
         System.out.println("1: you vs AI/human");
         System.out.println("2: AI competition");
         input = sc.nextInt();
+        String fenCode, Name, Theme;
+        int N, diff;
+        boolean atk;
         if(input == 1){
             ChessLegends.initGame();
-            String fenCode, Name, Theme;
-            int N, diff;
-            boolean atk;
+
             
             System.out.println("Enter a fen code");
             fenCode = sc.next();
@@ -61,11 +63,40 @@ public class CtrlDomainGameDriver {
             ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
             printBoard(ChessLegends.getBoardInfo());
             
-          /*  while()
+        
         }
-        else{
+        else if (input == 2){
+            AICompetition G = new AICompetition();
+            G.setPlayer1("IA1", 0, 0, 0, 0);
+            G.setPlayer2("IA1", 0, 0, 0, 0);
             
-        }*/
-    }
+            System.out.println("Enter a fen code");
+            fenCode = sc.next();
+            
+            System.out.println("Enter problem name");
+            Name = sc.next();
+            
+            System.out.println("Enter the tehme for the problem");
+            Theme = sc.next();
+            
+            System.out.println("Enter number of turns");
+            N = sc.nextInt();
+            
+            System.out.println("Enter difficulty level (number)");
+            diff = sc.nextInt();
+            
+            System.out.println("Enter the attacker (true for white, false for black)");
+            atk = sc.nextBoolean();
+            
+            int games;
+            System.out.println("Enter which qtt of games do you wanna play");
+            games = sc.nextInt();
+            
+            G.setProblem(fenCode, Name, diff, N, Theme, atk, atk);
+            G.setN(games);
+            G.setTurn(atk);
+            
+            G.playMatch();
+        }
     }
 }

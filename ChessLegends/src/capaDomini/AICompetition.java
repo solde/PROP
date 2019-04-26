@@ -79,14 +79,17 @@ public class AICompetition extends GameAbs{
                 turn_cont += 1;
                 
             }
-            if(B.isCheckMate(false)){
-                WhiteWins += 1;
-                System.out.println("WhiteWins");
-            }
-            else if(B.isCheckMate(true)){
-                BlackWins += 1;
-                System.out.println("BlackWins");
-
+            if(B.isCheckMate(!P.getATK())){
+                
+                if (P.getATK()){
+                    WhiteWins += 1;
+                    System.out.println("WhiteWins");
+                }
+                else{
+                    BlackWins += 1;
+                    System.out.println("BlackWins");
+                }
+                
             }
             else{
                 if(P.getATK()) {
