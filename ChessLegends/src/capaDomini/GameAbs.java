@@ -21,11 +21,20 @@ public abstract class GameAbs {
     
     protected boolean turn;
 
+    /**
+     * Constructor with parameters
+     *
+     * @param turn
+     */
     public GameAbs(boolean turn) {
         this.turn = turn;
         B = new Board();
     }
 
+    /**
+     * basic constructor
+     *
+     */
     public GameAbs() {
         B = new Board();
     }
@@ -34,15 +43,41 @@ public abstract class GameAbs {
         this.turn = turn;
     }
 
+    /**
+     * Return whose turn is
+     *
+     * @return boolean
+     */
     public boolean isTurn() {
         return turn;
     }
     
+    /**
+     * Set a problem with the desired parmeters
+     *
+     * @param fenCode
+     * @param Name
+     * @param diff
+     * @param N_mov
+     * @param Theme
+     * @param atk
+     * @param first_turn
+     * @throws chessException
+     */
     public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
         B = new Board(fenCode);
     }
     
+    /**
+     * Set the player 1 with the desired parameters
+     *
+     * @param playerId
+     * @param wins
+     * @param loses
+     * @param ELO
+     * @param OP_rating
+     */
     public void setPlayer1(String playerId, int wins, int loses, int ELO, int OP_rating){
         if(playerId.equalsIgnoreCase("AI1")){
             P1 = new AI1();
@@ -52,6 +87,15 @@ public abstract class GameAbs {
         }
     }
     
+    /**
+     * Set the player 2 with the desired parameters
+     *
+     * @param playerId
+     * @param wins
+     * @param loses
+     * @param ELO
+     * @param OP_rating
+     */
     public void setPlayer2(String playerId, int wins, int loses, int ELO, int OP_rating){
         if(playerId.equalsIgnoreCase("AI1")){
             P2 = new AI1();
@@ -96,12 +140,18 @@ public abstract class GameAbs {
         throw new chessException("No hace falta cambiar los turnos aqui");
     }
     
+    /**
+     * Set the board with the initial conditions, the initial FEN
+     *
+     * @throws chessException
+     */
     public void resetBoard() throws chessException{
         Board bAux = new Board(this.P.getFenCode());
         this.setB(bAux);
     }
     
     /**
+     *
      *
      * @param sX
      * @param sY
@@ -117,6 +167,11 @@ public abstract class GameAbs {
     public abstract ArrayList<int[]> possibleMovements(boolean color);
     public abstract char[][] getBoard() throws chessException;
     
+    /**
+     * Return a Board on the standard input
+     *
+     * @param B
+     */
     public static void printBoard(Board B){
         System.out.println("   0  1  2  3  4  5  6  7");
         for(int x = 0; x < 8; ++x){
