@@ -13,7 +13,7 @@ import javafx.util.Pair;
 
 /**
  *
- * @author David Soldevila <3
+ * @author David Soldevila 
  */
 public class Game extends GameAbs {
 
@@ -21,6 +21,9 @@ public class Game extends GameAbs {
     private long timerB;
     private int movCounter;
 
+    /**
+     * Basic constructor
+     */
     public Game() {
         timerW = 0;
         timerB = 0;
@@ -29,6 +32,11 @@ public class Game extends GameAbs {
         movCounter = 0;
     }
     
+    /**
+     * Constructor with parameter
+     *
+     * @param initialTurn
+     */
     public Game(boolean initialTurn) {
         turn = initialTurn;
         B = new Board();
@@ -46,26 +54,55 @@ public class Game extends GameAbs {
         timerB = 0;
     }
 
+    /**
+     * Add time to the white time
+     * @param t
+     */
     public void addTimeW(long t) {
         timerW += t;
     }
-
+    
+    /**
+     * Add time to the black time
+     *
+     * @param t
+     */
     public void addTimeB(long t) {
         timerB += t;
     }
 
+    /**
+     * Get the white time
+     *
+     * @return double
+     */
     public double getTimerW() {
         return timerW;
     }
 
+    /**
+     * Get the black time
+     *
+     * @return double
+     */
     public double getTimerB() {
         return timerB;
     }
 
+    /**
+     * Set the white timer
+     *
+     * @param timerW
+     */
     public void setTimerW(long timerW) {
         this.timerW = timerW;
     }
-
+    
+    /**
+     * Set the black timer
+     *
+     * @param timerB
+     */
     public void setTimerB(long timerB) {
         this.timerB = timerB;
     }
@@ -123,6 +160,11 @@ public class Game extends GameAbs {
         return moves;
     }
     
+    /**
+     * Get information of the desired problem
+     *
+     * @return String
+     */
     public String getProblemInfo(){
         return P.getProblemInfo();
     }
@@ -166,6 +208,11 @@ public class Game extends GameAbs {
         return chessBoard;
     }
     
+    /**
+     * Check how turns are missing to finish the problem
+     *
+     * @return
+     */
     public int leftTurn(){
         return ((2*P.getN_mov()) - movCounter)/2;
     }

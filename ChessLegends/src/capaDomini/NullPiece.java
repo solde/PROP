@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.util.Pair;
 /**
  *
- * @author David Soldevila
+ * @author Daniel Palomo
  *
  */
 public class NullPiece extends Piece {

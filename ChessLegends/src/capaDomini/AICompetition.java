@@ -17,11 +17,20 @@ public class AICompetition extends GameAbs{
     private int WhiteWins;
     private int BlackWins;
     
+    
+    /**
+     * Basic constructors
+     */
     public AICompetition(){
         WhiteWins = 0;
         BlackWins = 0;
     }
-
+    
+    /**
+     *Constructor with parameter
+     * 
+     * @param N
+     */
     public AICompetition(int N) {
         this.N = N;
         BlackWins = 0;
@@ -33,19 +42,38 @@ public class AICompetition extends GameAbs{
         this.N = N;
     }
     
+    /**
+     * Returns the quantity of games that AI will play
+     *
+     * @return int
+     */
     public int getN(){
         return N;
     }
     
+    /**
+     *Set the counter of winned games to 0
+     * 
+     */
     public void resetWinCounters(){
         WhiteWins = 0;
         BlackWins = 0;
     }
     
+    /**
+     * return white winned games counter
+     *
+     * @return integer
+     */
     public int getWhiteWins(){
         return this.WhiteWins;
     }
     
+    /**
+     *  return black winned games counter
+     * 
+     * @return integer
+     */
     public int getBlackWins(){
         return this.BlackWins;
     }
@@ -60,12 +88,7 @@ public class AICompetition extends GameAbs{
         throw new chessException("you cannot get a board from an AI competition");
     }
     
-    /**
-     *
-     * @param color
-     * @return true if the winner is the white player, fals if the winner is the black player
-     * @throws chessException
-     */
+ 
     @Override
     public void playMatch(Boolean color) throws chessException{
         for(int i = 0; i < this.N; ++i){
