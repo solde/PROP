@@ -145,6 +145,7 @@ public class Board {
 
     private void processFEN(){
         int i = 0, j = 0;
+        int verifyer = 0;
         while(i < 8){
             int cont = 0;
             while(j < FEN_code.length()){
@@ -154,8 +155,10 @@ public class Board {
                 }
                 if(FEN_code.charAt(j) >= '0' && FEN_code.charAt(j) <= '9'){
                     cont = cont + Character.getNumericValue(FEN_code.charAt(j));
+                    verifyer = verifyer + Character.getNumericValue(FEN_code.charAt(j));
                 }
                 else{
+                    verifyer += 1;
                     switch(FEN_code.charAt(j)){
                         case 'Q': 
                             chessBoard[i][cont] = new Queen(i, cont, true);
