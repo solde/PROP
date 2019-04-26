@@ -67,7 +67,7 @@ public class CtrlDomainGame {
         //Fer coses d'estadistiques
     }
     
-    public char[][] getBoardInfo(){
+    public char[][] getBoardInfo() throws chessException{
         char[][] ret = G.getBoard();
         return G.getBoard();
     }
