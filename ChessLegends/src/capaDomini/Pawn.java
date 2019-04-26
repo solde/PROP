@@ -18,7 +18,7 @@ public class Pawn extends Piece {
      */
     public Pawn() {
         super(1, 1, 0, 0, true);
-        this.max = 16;
+        this.max = 8;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Pawn extends Piece {
      */
     public Pawn(int x, int y, boolean color) {
         super(1, 1, x, y, color);
-        this.max = 16;
+        this.max = 8;
     }
 
     /**

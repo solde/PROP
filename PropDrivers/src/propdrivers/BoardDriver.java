@@ -56,11 +56,7 @@ public class BoardDriver {
                     String newFen = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
                     B = new Board(newFen);
                     System.out.println(newFen);
-                    for(int x = 0; x < 8; ++x){
-                        System.out.print("|");
-                        printBoard(B);
-                        System.out.println(" ");
-                    }
+                    printBoard(B);
                     break;
 
                 case 3:

@@ -73,7 +73,7 @@ public class CtrlDomainCreator {
      * @param Password
      * @throws chessException
      */
-    public void createNewPlayer(String Name, String Password) throws chessException{
+    public void createNewPlayerTest(String Name, String Password) throws chessException{
         Pl = new Human(Name, Password, 0, 0, 1000, 0);
     }
     

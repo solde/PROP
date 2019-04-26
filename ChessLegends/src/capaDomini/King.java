@@ -17,7 +17,7 @@ public class King extends Piece {
      */
     public King() {
         super(0, 100000, 0, 0, true);
-        this.max = 2;
+        this.max = 1;
     }
 
     /**
@@ -29,7 +29,7 @@ public class King extends Piece {
      */
     public King(int x, int y, boolean color) {
         super(3, 100000, x, y, color);
-        this.max = 2;
+        this.max = 1;
     }
 
     /**

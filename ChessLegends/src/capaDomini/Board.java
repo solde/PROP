@@ -41,7 +41,7 @@ public class Board {
      * @Post Create a board with fen code equals to FEN_code
      * @param FEN_code 
      */
-    public Board(String FEN_code) {  
+    public Board(String FEN_code) throws chessException {  
         this.Default_FEN_code = "8/8/8/8/8/8/8/8";
         chessBoard = new Piece[8][8];
         for(int i = 0; i < 8; ++i){
@@ -53,7 +53,7 @@ public class Board {
         processFEN();
     }
     
-    public Board(Board b) {  
+    public Board(Board b) throws chessException {  
         chessBoard = new Piece[8][8];
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
@@ -143,14 +143,24 @@ public class Board {
         return FEN_code;
     }
 
-    private void processFEN(){
+    private void processFEN() throws chessException{
         int i = 0, j = 0;
         int verifyer = 0;
+        int[] piecesOfWhite;
+        piecesOfWhite = new int[6];
+        int[] piecesOfBlack;
+        piecesOfBlack = new int[6];
+        for(int x = 0; x < 6; ++x){
+            piecesOfWhite[x] = 0;
+            piecesOfBlack[x] = 0;
+        }
         while(i < 8){
             int cont = 0;
             while(j < FEN_code.length()){
                 if(FEN_code.charAt(j) == '/'){
+                    if(verifyer != 8) throw new chessException("Invalid FEN code");
                     ++j;
+                    verifyer = 0;
                     break;
                 }
                 if(FEN_code.charAt(j) >= '0' && FEN_code.charAt(j) <= '9'){
@@ -161,39 +171,51 @@ public class Board {
                     verifyer += 1;
                     switch(FEN_code.charAt(j)){
                         case 'Q': 
+                            piecesOfWhite[0] += 1;
                             chessBoard[i][cont] = new Queen(i, cont, true);
                             break;
                         case 'K': 
+                            piecesOfWhite[1] += 1;
                             chessBoard[i][cont] = new King(i, cont, true);
                             break;
                         case 'B':
+                            piecesOfWhite[2] += 1;
                             chessBoard[i][cont] = new Bishop(i, cont, true);
                             break;
                         case 'R': 
+                            piecesOfWhite[3] += 1;
                             chessBoard[i][cont] = new Rock(i, cont, true);
                             break;
                         case 'N': 
+                            piecesOfWhite[4] += 1;
                             chessBoard[i][cont] = new Knight(i, cont, true);
                             break;
                         case 'P': 
+                            piecesOfWhite[5] += 1;
                             chessBoard[i][cont] = new Pawn(i, cont, true);
                             break;
                         case 'q': 
+                            piecesOfBlack[0] += 1;
                             chessBoard[i][cont] = new Queen(i, cont, false);
                             break;
                         case 'k': 
+                            piecesOfBlack[1] += 1;
                             chessBoard[i][cont] = new King(i, cont, false);
                             break;
                         case 'b': 
+                            piecesOfBlack[2] += 1;
                             chessBoard[i][cont] = new Bishop(i, cont, false);
                             break;
                         case 'r': 
+                            piecesOfBlack[3] += 1;
                             chessBoard[i][cont] = new Rock(i, cont, false);
                             break;
-                        case 'n': 
+                        case 'n':
+                            piecesOfBlack[4] += 1;
                             chessBoard[i][cont] = new Knight(i, cont, false);
                             break;
                         case 'p': 
+                            piecesOfBlack[5] += 1;
                             chessBoard[i][cont] = new Pawn(i, cont, false);
                             break;
                         default: chessBoard[i][cont] = new NullPiece(i, cont, true);
@@ -204,6 +226,42 @@ public class Board {
             }
             ++i;
         }
+        boolean need_throw = false;
+        for(int x = 0; x < 6; ++x){
+            switch(x){
+                case 0:
+                    Queen q = new Queen();
+                    if(piecesOfBlack[x] > q.getMax() || piecesOfWhite[x] > q.getMax()) need_throw = true;
+                    
+                    break;
+                    
+                case 1:
+                    King k = new King();
+                    if(piecesOfBlack[x] != k.getMax() || piecesOfWhite[x] != k.getMax()) need_throw = true;
+                    break;
+                    
+                case 2:
+                    Bishop b = new Bishop();
+                    if(piecesOfBlack[x] > b.getMax() || piecesOfWhite[x] > b.getMax()) need_throw = true;
+                    break;
+                    
+                case 3:
+                    Rock r = new Rock();
+                    if(piecesOfBlack[x] > r.getMax() || piecesOfWhite[x] > r.getMax()) need_throw = true;
+                    break;
+                    
+                case 4:
+                    Knight n = new Knight();
+                    if(piecesOfBlack[x] > n.getMax() || piecesOfWhite[x] > n.getMax()) need_throw = true;
+                    break;
+                    
+                case 5:
+                    Pawn p = new Pawn();
+                    if(piecesOfBlack[x] > p.getMax() || piecesOfWhite[x] > p.getMax()) need_throw = true;
+                    break;
+            }
+        }
+        if(need_throw) throw new chessException("Invalid FEN code");
     }
 
     /**
@@ -211,7 +269,7 @@ public class Board {
      * @Post: The board contains the piece distribution encoded at FEN_code
      * @param FEN_code 
      */
-    public void setFEN_code(String FEN_code) {
+    public void setFEN_code(String FEN_code) throws chessException {
         this.FEN_code = FEN_code;
         processFEN();
     }
