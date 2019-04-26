@@ -3,7 +3,11 @@ package capaDomini;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
-
+/**
+ *
+ * @author David Soldevila
+ *
+ */
 public class NullPiece extends Piece {
 
     private int max;

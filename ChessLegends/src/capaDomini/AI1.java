@@ -20,7 +20,7 @@ public class AI1 extends Player {
     private static final long serialVersionUID = 1L;
     
     public AI1(){
-        System.out.println("Not implemented");
+        
     }
     
     public static void printBoard(Board B){

@@ -72,10 +72,10 @@ public class AICompetition extends GameAbs{
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
                 
-                this.B = new Board(AI1.makeMove(this.B, turn, 2), false);
+                this.B = new Board(AI1.makeMove(this.B, turn, 2), true);
  
                 
-                this.B = new Board(AI1.makeMove(this.B, !turn, 2), false);
+                this.B = new Board(AI1.makeMove(this.B, !turn, 2), true);
  
                 
                 turn_cont += 1;
