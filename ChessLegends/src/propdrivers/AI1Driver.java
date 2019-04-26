@@ -34,11 +34,11 @@ public class AI1Driver {
         printBoard(b);
 
 
-        b = new Board(AI1.makeMove(b, true, 2), false); //1: Board, 2: fitxa, 3: depth
+        b = new Board(AI1.makeMove(b, true, 3), false); //1: Board, 2: fitxa, 3: depth
         printBoard(b);
-        b = new Board(AI1.makeMove(b, false, 2), false);
+        b = new Board(AI1.makeMove(b, false, 3), false);
         printBoard(b);
-        b = new Board(AI1.makeMove(b, true, 2), false);
+        b = new Board(AI1.makeMove(b, true, 3), false);
         printBoard(b);
         String FENf = b.fenToString();
         System.out.println(FENf);
