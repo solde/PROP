@@ -40,7 +40,33 @@ public class CtrlDomainGameDriver {
         boolean atk;
         if(input == 1){
             ChessLegends.initGame();
-
+            System.out.println("Enter your player data in this order:");
+            
+            System.out.println("id:");
+            String id;
+            id = sc.next();
+           
+            System.out.println("wins:");
+            int wins;
+            wins = sc.nextInt();
+            
+            System.out.println("loses:");
+            int loses;
+            loses = sc.nextInt();
+            
+            System.out.println("ELO:");
+            int ELO;
+            ELO = sc.nextInt();
+            
+            System.out.println("OP_rating");
+            int OPR;
+            OPR = sc.nextInt();
+            
+            System.out.println("color: this will define your color. true = white, false = black Ai will be the other");
+            Boolean color;
+            color = sc.nextBoolean();
+            
+            ChessLegends.initPlayer(id, wins, loses, ELO, OPR);
             
             System.out.println("Enter a fen code");
             fenCode = sc.next();
@@ -57,11 +83,11 @@ public class CtrlDomainGameDriver {
             System.out.println("Enter difficulty level (number)");
             diff = sc.nextInt();
             
-            System.out.println("Enter de attacker (true for white, false for black)");
+            System.out.println("Enter the attacker (true for white, false for black)");
             atk = sc.nextBoolean();
             
             ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
-            printBoard(ChessLegends.getBoardInfo());
+            ChessLegends.letsPlay(color);
             
         
         }
@@ -94,7 +120,7 @@ public class CtrlDomainGameDriver {
             ChessLegends.loadProblemTest(fenCode, Name, diff, N, Theme, atk, atk);
             ChessLegends.setGames(games);
             
-            ChessLegends.AIplay();
+            ChessLegends.AIplay(atk); //atk is useless here.
         }
     }
 }

@@ -80,9 +80,9 @@ public class CtrlDomainCreator {
         String newFen = B.toString();
     }
     
-    public String getPlayerInfo(){
+    /*public String getPlayerInfo(){
         return P1.getPlayerInfo();
-    }
+    }*/
     
     public String getProblemInfo(){
         return P.getProblemInfo();

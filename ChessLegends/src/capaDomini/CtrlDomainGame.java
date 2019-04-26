@@ -71,6 +71,10 @@ public class CtrlDomainGame {
         //Fer coses d'estadistiques
     }
     
+    public void initPlayer(String id, int wins, int loses, int elo, int op_r){
+        G.setPlayer1(id, wins, loses, elo, op_r);
+    }
+    
     public char[][] getBoardInfo() throws chessException{
         char[][] ret = G.getBoard();
         return G.getBoard();
@@ -80,8 +84,12 @@ public class CtrlDomainGame {
         G.setN(N);
     }
     
-    public void AIplay() throws chessException{
-        G.playMatch();
+    public void AIplay(Boolean color) throws chessException{
+        G.playMatch(color);
+    }
+    
+    public void letsPlay(Boolean color) throws chessException{
+        G.playMatch(color);
     }
     /*public int leftTurns(){
         return G.leftTurn();

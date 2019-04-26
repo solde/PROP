@@ -231,7 +231,7 @@ public class Board {
             switch(x){
                 case 0:
                     Queen q = new Queen();
-                    if(piecesOfBlack[x] >= q.getMax() || piecesOfWhite[x] >= q.getMax()) need_throw = true;
+                    if(piecesOfBlack[x] > q.getMax() || piecesOfWhite[x] > q.getMax()) need_throw = true;
                     
                     break;
                     
@@ -242,22 +242,22 @@ public class Board {
                     
                 case 2:
                     Bishop b = new Bishop();
-                    if(piecesOfBlack[x] >= b.getMax() || piecesOfWhite[x] >= b.getMax()) need_throw = true;
+                    if(piecesOfBlack[x] > b.getMax() || piecesOfWhite[x] > b.getMax()) need_throw = true;
                     break;
                     
                 case 3:
                     Rock r = new Rock();
-                    if(piecesOfBlack[x] >= r.getMax() || piecesOfWhite[x] >= r.getMax()) need_throw = true;
+                    if(piecesOfBlack[x] > r.getMax() || piecesOfWhite[x] > r.getMax()) need_throw = true;
                     break;
                     
                 case 4:
                     Knight n = new Knight();
-                    if(piecesOfBlack[x] >= n.getMax() || piecesOfWhite[x] >= n.getMax()) need_throw = true;
+                    if(piecesOfBlack[x] > n.getMax() || piecesOfWhite[x] > n.getMax()) need_throw = true;
                     break;
                     
                 case 5:
                     Pawn p = new Pawn();
-                    if(piecesOfBlack[x] >= p.getMax() || piecesOfWhite[x] >= p.getMax()) need_throw = true;
+                    if(piecesOfBlack[x] > p.getMax() || piecesOfWhite[x] > p.getMax()) need_throw = true;
                     break;
             }
         }

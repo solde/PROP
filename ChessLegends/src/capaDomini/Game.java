@@ -8,6 +8,7 @@ package capaDomini;
 import Exception.chessException;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.util.Pair;
 
 /**
@@ -97,26 +98,29 @@ public class Game extends GameAbs {
     
     @Override
     public ArrayList<int[]> possibleMovements(boolean color){
-        ArrayList<int[]> ret = new ArrayList<>();
-        ArrayList<Piece> Pieces;
-        Pieces = new ArrayList<>();
-        if(color) Pieces = B.getWhitePiecesOnBoard();
-        else Pieces = B.getBlackPiecesOnBoard();
-        int[] to_add;
-        to_add = new int[4];
-        for(int i = 0; i < Pieces.size(); ++i){
-            Piece p = Pieces.get(i);
-            to_add[0] = p.getX();
-            to_add[1] = p.getY();
-            ArrayList<Pair<Integer, Integer>> pos_movs = p.get_poss_mov(B);
-            
-            for(int j = 0; j < pos_movs.size(); ++j){
-                to_add[2] = pos_movs.get(j).getKey();
-                to_add[3] = pos_movs.get(j).getValue();
-                ret.add(to_add);
-            }            
+        ArrayList<int[]> moves = new ArrayList<>();
+
+        for(int i = 0; i<8; i++){
+                for(int j=0; j<8; j++){
+                    Piece piece = B.getPieceAt(i,j);
+                    if(piece.getTypeOfPiece() != -1 && (piece.isColor() == color)){
+
+                        ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(B);
+                        for(int x = 0; x < possMovs.size(); ++x){
+                            int[] mov = new int[4];
+                            mov[0] = piece.getX();
+                            mov[1] = piece.getY();
+                            mov[2] = possMovs.get(x).getKey();
+                            mov[3] = possMovs.get(x).getValue();
+
+
+                            moves.add(mov); //Adds the possible movement to a poss. movs. list
+                        }
+                    }
+                            
+                }
         }
-        return ret;
+        return moves;
     }
     
     public String getProblemInfo(){
@@ -167,7 +171,99 @@ public class Game extends GameAbs {
     }
 
     @Override
-    public void playMatch() throws chessException {
-        throw new UnsupportedOperationException("You have to play, slacker"); //To change body of generated methods, choose Tools | Templates.
+    public void playMatch(Boolean color) throws chessException {
+        Scanner sc = new Scanner(System.in);
+        int turn_cont = this.P.getN_mov();
+        Boolean turn = this.isTurn();
+        while(turn_cont > 0){
+            if (turn == color){
+               
+                
+                ArrayList<int[]> moves = new ArrayList<>();
+                moves = possibleMovements(color);
+                for (int i = 0; i < moves.size(); ++i){
+                    int[] aux = moves.get(i);
+                    System.out.println(aux[0] + " " + aux[1]);
+                    System.out.println(aux[2] + " " + aux[3]);
+                     System.out.println("");
+                }
+                
+                printBoard(this.B);
+                
+                System.out.println("Enter your x source");
+                int sX = sc.nextInt();
+                
+                System.out.println("Enter your y source");
+                int sY = sc.nextInt();
+                
+                System.out.println("Enter your x destination");
+                int dX = sc.nextInt();
+                
+                System.out.println("Enter your y destination");
+                int dY = sc.nextInt();
+
+                
+                movePiece(sX, sY, dX, dY, color, 0); //0 now unimplemented
+                this.B = new Board(AI1.makeMove(this.B, !turn, 2));
+            }
+           
+            else{
+                this.B = new Board(AI1.makeMove(this.B, turn, 2));
+               
+                
+                ArrayList<int[]> moves = new ArrayList<>();
+                moves = possibleMovements(color);
+                for (int i = 0; i < moves.size(); ++i){
+                    int[] aux = moves.get(i);
+                    System.out.println(aux[0] + " " + aux[1]);
+                    System.out.println(aux[2] + " " + aux[3]);
+                }
+                
+                printBoard(this.B);
+                
+                System.out.println("Enter your x source");
+                int sX = sc.nextInt();
+                
+                System.out.println("Enter your y source");
+                int sY = sc.nextInt();
+                
+                System.out.println("Enter your x destination");
+                int dX = sc.nextInt();
+                
+                System.out.println("Enter your y destination");
+                int dY = sc.nextInt();
+
+                
+                movePiece(sX, sY, dX, dY, color, 0); //0 now unimplemented
+                
+            }
+            
+
+            this.setTurn(!this.isTurn());
+            turn_cont -= 1;
+
+        }
+        if(B.isCheckMate(!P.getATK())){
+
+            if (P.getATK()){
+                System.out.println("WhiteWins");
+            }
+            else{
+                System.out.println("BlackWins");
+            }
+
+        }
+        
+        
+        else if(P.getATK()) {
+            System.out.println("BlackWins");
+        }
+        else {
+            System.out.println("WhiteWins");
+        }
+        
+
     }
+    
+    
 }

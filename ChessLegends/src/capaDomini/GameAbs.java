@@ -112,8 +112,23 @@ public abstract class GameAbs {
      * @throws chessException
      */
     public abstract void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException;
-    public abstract void playMatch() throws chessException;
+    public abstract void playMatch(Boolean color) throws chessException;
     public abstract void resetTimers();
     public abstract ArrayList<int[]> possibleMovements(boolean color);
     public abstract char[][] getBoard() throws chessException;
+    
+    public static void printBoard(Board B){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
+    
 }

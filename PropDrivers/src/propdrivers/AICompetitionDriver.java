@@ -65,7 +65,7 @@ public class AICompetitionDriver {
         
        
         
-        G.playMatch();
+        G.playMatch(attack); //in this case attack is useless
         
         
         

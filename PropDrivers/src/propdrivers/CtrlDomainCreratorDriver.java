@@ -34,7 +34,7 @@ public class CtrlDomainCreratorDriver {
             System.out.println("*" + Name + "* *" + Password+ "*");
             ChessLegends.createNewPlayerTest(Name, Password);
             System.out.println("Created user:");
-            System.out.println(ChessLegends.getPlayerInfo());
+            //System.out.println(ChessLegends.getPlayerInfo());
             
         }
         else if(sel == 2){
