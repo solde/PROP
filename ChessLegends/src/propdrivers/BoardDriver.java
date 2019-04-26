@@ -53,30 +53,33 @@ public class BoardDriver {
                     break;
                     
                 case 2:
-                    String newFen = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
+                    String newFen = sc.next();
+                    for(int x = 0; x < 5; ++x){
+                        String s = sc.next();
+                    }
                     B = new Board(newFen);
                     System.out.println(newFen);
                     printBoard(B);
                     break;
 
                 case 3:
-                    B = new Board("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B");
+                    String newFen3 = sc.next();
+                    for(int x = 0; x < 5; ++x){
+                        String s = sc.next();
+                    }
+                    B = new Board(newFen3);
                     printBoard(B);
                     Board B2 = new Board(B, false);
                     
                     printBoard(B2);
-                    
-                    if(B.getFEN_code().equals(B2.getFEN_code())){
-                        System.out.println("Boards are equal");
-                    }
-                    else{
-                        System.out.println("Boards are different");
-                    }
-                    break;       
+                    break;
                 
                 case 4:
-                    String Fen_test;
-                    Fen_test = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
+                    System.out.println("Enter fen code");
+                    String Fen_test = sc.next();
+                    for(int x = 0; x < 5; ++x){
+                        String s = sc.next();
+                    };
                     B = new Board(Fen_test);
                     if(B.getFEN_code().equals(Fen_test)){
                         System.out.println("Board is created with the ");
@@ -89,10 +92,23 @@ public class BoardDriver {
                 
                 case 5: //getWhitePiecesOnBoard
                     B = new Board();
-                    B.addPieceToBoard(0, 0, 0, true);
-                    B.addPieceToBoard(4, 7, 1, true);
-                    B.addPieceToBoard(2, 7, 1, true);
-                    B.addPieceToBoard(2, 6, 1, false);
+                    System.out.println("Enter pieces with possition and type");
+                    System.out.println("0->King, 1->Pawn, 3->Bishop, 4->Knight, 5->Rook, 7->Queen");
+                    int x = 0, y = 0, t = 0;
+                    boolean color = true;
+                    while(t != -1){
+                        System.out.println("X:");
+                        x = sc.nextInt();
+                        System.out.println("Y:");
+                        y = sc.nextInt();
+                        System.out.println("Type:");
+                        t = sc.nextInt();
+                        System.out.println("color");
+                        color = sc.nextBoolean();
+                        B.addPieceToBoard(x, y, t, color);
+                        if(t == -1) break;
+                    }
+                    
                     ArrayList<Piece> WPOB;
                     WPOB = B.getWhitePiecesOnBoard();  
                     for(int j = 0; j < WPOB.size(); ++j){
@@ -104,26 +120,39 @@ public class BoardDriver {
                 
                 case 6: //getBlackPiecesOnBoard
                     B = new Board();
-                    B.addPieceToBoard(0, 0, 0, false);
-                    B.addPieceToBoard(4, 7, 1, false);
-                    B.addPieceToBoard(2, 7, 1, false);
-                    B.addPieceToBoard(2, 6, 1, true);
+                    System.out.println("Enter pieces with possition and type");
+                    System.out.println("0->King, 1->Pawn, 2-> ");
+                    int X = 0, Y = 0, T = 0;
+                    boolean Color = true;
+                    while(T != -1){
+                        System.out.println("X:");
+                        X = sc.nextInt();
+                        System.out.println("Y:");
+                        Y = sc.nextInt();
+                        System.out.println("Type:");
+                        T = sc.nextInt();
+                        System.out.println("color");
+                        Color = sc.nextBoolean();
+                        B.addPieceToBoard(X, Y, T, Color);
+                        if(T == -1) break;
+                    }
+                    
                     ArrayList<Piece> BPOB;
                     BPOB = B.getBlackPiecesOnBoard();  
                     for(int j = 0; j < BPOB.size(); ++j){
                         System.out.println("You have a piece at:");
                         System.out.println(Integer.toString(BPOB.get(j).getX()));
                         System.out.println(Integer.toString(BPOB.get(j).getY()));
-                    }
-                    break;
+                    };
                 
                 case 7: //getPieceAt
                     B = new Board();
-                    B.addPieceToBoard(5, 5, 0, true);
-                    p = new King(5, 5, true);
-                    System.out.println(B.getPieceAt(5, 5).getTypeOfPiece());
-                    System.out.println(B.getPieceAt(5, 5).getX());
-                    System.out.print(B.getPieceAt(5, 5).getY());
+                    int sx = sc.nextInt();
+                    int sy = sc.nextInt();
+                    int st = sc.nextInt();
+                    boolean scolor = sc.nextBoolean();
+                    B.addPieceToBoard(sx, sy, st, scolor);
+                    printBoard(B);
                     break;
                 
                 case 8://movePiece
@@ -150,13 +179,6 @@ public class BoardDriver {
                     }
                     break;       
                 
-                case 10: //addPieceToBoard
-                    B = new Board();
-                    B.addPieceToBoard(5, 5, 0, true);
-                    p = new King(5, 5, true);
-                    System.out.println(B.getPieceAt(5, 5));
-                    break;       
-                
                 case 11: //fenToString
                     String fen_to_compare;
                     fen_to_compare = sc.nextLine();
@@ -167,7 +189,7 @@ public class BoardDriver {
                     System.out.println(ret_fen);
                     break;
                     
-                case 12:
+                case 10:
                     String mate_fen = "7k/R7/6Q1/8/8/8/8/3K4";
                     B = new Board(mate_fen);
                     printBoard(B);

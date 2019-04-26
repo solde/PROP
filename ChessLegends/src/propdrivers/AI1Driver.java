@@ -8,6 +8,7 @@ package propdrivers;
 import Exception.chessException;
 import capaDomini.AI1;
 import capaDomini.Board;
+import java.util.Scanner;
 
 /**
  *
@@ -28,7 +29,12 @@ public class AI1Driver {
         System.out.println(" ");
     }
     public static void main(String[] args) throws chessException {
-        String FENi = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B" ; 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a fern code");
+        String FENi = sc.next(); 
+        for(int x = 0; x < 5; ++x){
+            String s = sc.next();
+        }
         System.out.println(FENi);
         Board b = new Board(FENi);
         printBoard(b);

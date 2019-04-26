@@ -1,0 +1,8 @@
+Joc De Prova per: AICompetition
+
+Classe a provar : AICompetition
+Classes addicionals: 
+Driver: AICompetitiontDriver
+Funcionalitats:
+L'executable presenta un menu d'opcions les quals s'escullen a traves del teclat, prement la tecla numerica que es desitxi. 
+Test 1: Set fen code and a number of games and run the competition.

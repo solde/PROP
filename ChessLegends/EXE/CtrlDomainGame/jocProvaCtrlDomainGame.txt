@@ -1,0 +1,9 @@
+Joc De Prova per: CtrlDomainGame
+
+Classe a provar :CtrlDomainGame
+Classes addicionals:
+Driver: CtrlDomainGameDriver
+Funcionalitats:
+L'executable presenta un menu d'opcions les quals s'escullen a traves del teclat, prement la tecla numerica que es desitxi. 
+Test 1: Human vs Human
+Test 2: Human vs AI

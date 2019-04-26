@@ -40,14 +40,12 @@ public class ProblemDriver {
                 case 4: //verify
                     System.out.println("Enter a fen Code");
                     String fc3 = sc.next();
-                    //String fc3 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B";
                     System.out.println("Enter a name");
                     String n3 = "problem_test";
                     System.out.println("Enter a difficulty");
                     int d3 = 3;
                     System.out.println("Enter a number of movs");
-                    //int nm3 = sc.nextInt();
-                    int nm3 = 2;
+                    int nm3 = sc.nextInt();
                     System.out.println("Enter a theme");
                     String t3 = "test";
                     System.out.println("Enter the player who atacks");
@@ -55,13 +53,15 @@ public class ProblemDriver {
                     System.out.println("Enter a the player who starts the game");
                     boolean ft3 = sc.nextBoolean();
                     P = new Problem(fc3, n3, d3, nm3, t3, a3, ft3);
-                    //System.out.println(P.getProblemInfo());
                     System.out.println(P.verify());
                     break;       
                 
                 case 5: //numberPiecesOf
                     P = new Problem();
                     P.setFenCode("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B");
+                    for(int x = 0; x < 5; ++x){
+                        String s = sc.next();
+                    }
                     System.out.println(P.numberPiecesOf(true));
                     System.out.println(P.numberPiecesOf(false));
                     break;       
@@ -91,7 +91,7 @@ public class ProblemDriver {
                 
                 case 8: //Get/set Name
                     P = new Problem();
-                    String n8 = sc.nextLine();
+                    String n8 = sc.next();
                     P.setName(n8);
                     System.out.println(P.getName());
                     break;       
@@ -105,14 +105,14 @@ public class ProblemDriver {
                 
                 case 10: //Get/set Theme
                     P = new Problem();
-                    String t10 = sc.nextLine();
+                    String t10 = sc.next();
                     P.setTheme(t10);
                     System.out.println(P.getTheme());
                     break;       
                 
                 case 11: //Get/set Fen code
                     P = new Problem();
-                    String fen11 = sc.nextLine();
+                    String fen11 = sc.next();
                     P.setFenCode(fen11);
                     System.out.println(P.getFenCode());
                     break;      

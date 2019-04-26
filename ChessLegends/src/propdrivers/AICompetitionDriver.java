@@ -7,7 +7,6 @@ package propdrivers;
 
 import Exception.chessException;
 import capaDomini.AICompetition;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -35,6 +34,9 @@ public class AICompetitionDriver {
             
         System.out.println("FEN code for board:");
         String FENc = sc.nextLine();
+        for(int i = 0; i < 5; ++i){
+            String s = sc.next();
+        }
 
         System.out.println("The name:");
         String na = sc.nextLine();
@@ -42,7 +44,7 @@ public class AICompetitionDriver {
         System.out.println("N turns to checkmate:");
         int turns = sc.nextInt();
 
-        System.out.println("The difficulty:N turns to checkmate:");
+        System.out.println("The difficulty:");
         int dif = sc.nextInt();
 
         //System.out.println("The theme:");

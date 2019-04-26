@@ -1,0 +1,8 @@
+Joc De Prova per: AI1
+
+Classe a provar : AI1
+Classes addicionals: Board
+Driver: AI1Driver
+Funcionalitats:
+L'executable presenta un menu d'opcions les quals s'escullen a traves del teclat, prement la tecla numerica que es desitxi. 
+Test 1: Set fen code and make moves.

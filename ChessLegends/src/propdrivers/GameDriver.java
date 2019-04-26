@@ -20,7 +20,7 @@ public class GameDriver {
         Scanner sc = new Scanner(System.in);
         Game G;
         int i = sc.nextInt();
-        while (i <= 8) {
+        while (i <= 9) {
             switch (i) {
                 case 1: //Empty game
                     G = new Game();
