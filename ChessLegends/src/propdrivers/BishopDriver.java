@@ -5,11 +5,10 @@
  */
 package propdrivers;
 
-;
-
-import capaDomini.Board;
+import Exception.chessException;
 import java.util.Scanner;
-import capaDomini.King;
+import capaDomini.Bishop;
+import capaDomini.Board;
 import capaDomini.Piece;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,89 +19,83 @@ import javafx.util.Pair;
  *
  * @author Daniel Palomo
  */
-
-
-public class KingDriver {
+public class BishopDriver {
 
     /**
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        King h = new King();
+        Bishop h = new Bishop();
         int i = sc.nextInt();
-        while (i <= 7) { // ( o el que sea
+        while (i <= 6) {
             switch (i) {
-
-                case 1: {
+                case 1:
                     System.out.println("Testing getMax");
                     int p = h.getMax();
                     if (p != 2) {
-                        System.out.println("Getter doesn't work");
+                        System.out.println("getter doesen't work");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
                     display_menu();
                     break;
-                }
-                case 2: {
+
+                case 2:
                     System.out.println("Testing setMax");
                     h.setMax(7);
                     int k = h.getMax();
                     if (k != 7) {
-                        System.out.println("Setter doesn't work");
+                        System.out.println("Setter doesen`t work");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
-
+                    TimeUnit.SECONDS.sleep(2);
                     display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
-                }
-                case 3: {
-                    System.out.println("Testing getValue");
+
+                case 3:
+                    System.out.println("testnig getValue");
                     h.setValue(7);
-                    double k = h.getValue();
-                    if (k != 7) {
-                        System.out.println("Getter doesn't work");
+                    int value;
+                    value = h.getValue();
+                    if (value == 7) {
+                        System.out.println("Passed");
+                    } else {
+                        System.out.println("Getter doesen't work");
+                    }
+                    TimeUnit.SECONDS.sleep(2);
+                    display_menu();
+                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
+                    break;
+
+                case 4:
+                    System.out.println("testing setValue");
+                    h.setValue(7);
+                    double k1 = h.getValue();
+                    if (k1 != 7) {
+                        System.out.println("setter doesen't work");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
 
                     display_menu();
                     h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
-                }
-                case 4: {
-                    System.out.println("Testing setValue");
-                    h.setValue(7);
-                    double k = h.getValue();
-                    if (k != 7) {
-                        System.out.println("Setter doesn't work");
-                    } else {
-                        System.out.println("Passed");
-                    }
-                    TimeUnit.SECONDS.sleep(3);
 
-                    display_menu();
-                    h.setValue(3); // reinstaurar el estado anterior para multiples tests
-                    break;
-                }
-
-                case 5: {
-                    System.out.println("Testing get_poss_mov");
-                    System.out.println("Piece on X:0 Y:7:");
-                    //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
+                case 5:
+                    System.out.println("Testing get_poss_mov...");
+                    System.out.println("Piece en X:0 Y:7 (Empty Board)");
                     Board b = new Board();
-                    Piece p = new King(0, 7, true);
+                    Piece p1 = new Bishop(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
-                    mov = p.get_poss_mov(b);
+                    mov = p1.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
                         break;
@@ -114,9 +107,9 @@ public class KingDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:0 Y:4");
-                    p = new King(0, 4, false);
-                    mov = p.get_poss_mov(b);
+                    System.out.println("Piece on X:3 Y:4 (Empty Board)");
+                    p1 = new Bishop(3, 4, true);
+                    mov = p1.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
                         break;
@@ -128,9 +121,9 @@ public class KingDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:3 Y:4 con board no vacio");
-                    b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
-                    mov = p.get_poss_mov(b);
+                    System.out.println("Piece on X:3 Y:4 (Board not Empty)");
+                    b = new Board("7K/PPPPKKKK/k1P5/7p/8/8/kkppkkpp/8");
+                    mov = p1.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
                         break;
@@ -142,17 +135,14 @@ public class KingDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
                     display_menu();
-                    break;
-                }
-
-                default:
                     break;
 
             }
             i = sc.nextInt();
         }
+
     }
 
     /**
@@ -175,8 +165,3 @@ public class KingDriver {
 
     }
 }
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */

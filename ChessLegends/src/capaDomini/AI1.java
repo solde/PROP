@@ -20,7 +20,7 @@ public class AI1 extends Player {
     private static final long serialVersionUID = 1L;
     
     public AI1(){
-        System.out.println("Not implemented");
+        
     }
     
     public static void printBoard(Board B){
@@ -62,7 +62,7 @@ public class AI1 extends Player {
 
 
                                     moves.add(mov); //Adds the possible movement to a poss. movs. list
-                                    Board altBoard = new Board(b); //initialices an alternative space to evaluate
+                                    Board altBoard = new Board(b, true); //initialices an alternative space to evaluate
 
                                     try{altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
                                     }
@@ -164,7 +164,7 @@ public class AI1 extends Player {
                ArrayList<int[]> moves = deepEvaluate(bo, color);  
                int newBeta = beta;
                for (int i = 0; i < moves.size(); ++i){
-                    Board successorBoard = new Board(bo); //Copy of the "original" board
+                    Board successorBoard = new Board(bo, true); //Copy of the "original" board
                     int[] aux= moves.get(i); //Get a possible movement
                     try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
                    
@@ -188,7 +188,8 @@ public class AI1 extends Player {
                ArrayList<int[]> moves = deepEvaluate(bo, color);
                int newAlpha = alpha;
                for (int i = 0; i < moves.size(); ++i){
-                   Board successorBoard = new Board(bo);
+                   //System.out.println(bo.getFEN_code());
+                   Board successorBoard = new Board(bo, true);
                    int[] aux= moves.get(i);
                    try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
                    

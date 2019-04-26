@@ -14,7 +14,6 @@ import capaDomini.Board;
  * @author Arnau Santos
  */
 public class AI1Driver {
-    //De moment només teniu aquest bonic missatge UwU
     public static void printBoard(Board B){
         System.out.println("   0  1  2  3  4  5  6  7");
         for(int x = 0; x < 8; ++x){
@@ -35,11 +34,11 @@ public class AI1Driver {
         printBoard(b);
 
 
-        b = AI1.makeMove(b, true, 2); //1: Board, 2: fitxa, 3: depth
+        b = new Board(AI1.makeMove(b, true, 2), false); //1: Board, 2: fitxa, 3: depth
         printBoard(b);
-        b = AI1.makeMove(b, false, 2);
+        b = new Board(AI1.makeMove(b, false, 2), false);
         printBoard(b);
-        b = AI1.makeMove(b, true, 2);
+        b = new Board(AI1.makeMove(b, true, 2), false);
         printBoard(b);
         String FENf = b.fenToString();
         System.out.println(FENf);

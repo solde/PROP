@@ -7,10 +7,21 @@ package propdrivers;
 
 ;
 
+import Exception.chessException;
 import capaDomini.Board;
+import capaDomini.King;
 import capaDomini.Piece;
 import java.util.Scanner;
-import capaDomini.Rock;
+import capaDomini.Queen;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+import javafx.util.Pair;
+import capaDomini.Board;
+import capaDomini.King;
+import capaDomini.Piece;
+import java.util.Scanner;
+import capaDomini.Queen;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -22,17 +33,17 @@ import javafx.util.Pair;
  */
 
 
-public class RockDriver {
+public class QueenDriver {
 
     /**
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Rock h = new Rock();
+        Queen h = new Queen();
         int i = sc.nextInt();
         while (i <= 6) { // ( o el que sea
             switch (i) {
@@ -45,7 +56,7 @@ public class RockDriver {
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
                     display_menu(); 
                     break;
                 }
@@ -54,14 +65,14 @@ public class RockDriver {
                     h.setMax(7);
                     int k = h.getMax();
                     if (k != 7) {
-                        System.out.println("Setter doesn't work");
+                        System.out.println("Setter no funciona");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
 
                     display_menu(); 
-                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
+                    h.setMax(2); // reinstaurar el estado anterior para multiples testsb
                     break;
                 }
                 case 3: {
@@ -69,11 +80,11 @@ public class RockDriver {
                     h.setValue(7);
                     double k = h.getValue();
                     if (k != 7) {
-                        System.out.println("Getter doesn't work");
+                        System.out.println("Getter no funciona");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
 
                     display_menu(); 
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
@@ -96,11 +107,11 @@ public class RockDriver {
                 }
 
                 case 5: {
-                    System.out.println("Testing get_poss_mov");
-                    System.out.println("Piece on X:0 Y:7:");
+                    System.out.println("Probando get_poss_mov");
+                    System.out.println("Piece on X:0 Y:7: (Empty Board)");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
                     Board b = new Board();
-                    Piece p = new Rock(0, 7, true);
+                    Piece p = new Queen(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
@@ -114,8 +125,8 @@ public class RockDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:0 Y:0");
-                    p = new Rock(0, 0, true);
+                    System.out.println("Piece on X:0 Y:3 (Empty Board)");
+                    p = new Queen(0, 3, true);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -128,9 +139,8 @@ public class RockDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:0 Y:0 (Board Not Empty)");
+                    System.out.println("Piece on X:0 Y:3 con board no vacio");
                     b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
-
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -143,7 +153,7 @@ public class RockDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(2);
                     display_menu(); 
                     break;
                 }
@@ -164,7 +174,7 @@ public class RockDriver {
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4:  setValue ");
+        System.out.println("Test 4: setValue ");
         System.out.println("Test 5: get_poss_mov  ");/*
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
@@ -176,3 +186,8 @@ public class RockDriver {
 
     }
 }
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */

@@ -7,11 +7,19 @@ package propdrivers;
 
 ;
 
+import Exception.chessException;
 import capaDomini.Board;
-import capaDomini.King;
-import capaDomini.Piece;
 import java.util.Scanner;
-import capaDomini.Queen;
+import capaDomini.Knight;
+import capaDomini.Piece;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+import javafx.util.Pair;
+import capaDomini.Board;
+import java.util.Scanner;
+import capaDomini.Knight;
+import capaDomini.Piece;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -23,17 +31,17 @@ import javafx.util.Pair;
  */
 
 
-public class QueenDriver {
+public class KnightDriver {
 
     /**
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Queen h = new Queen();
+        Knight h = new Knight();
         int i = sc.nextInt();
         while (i <= 6) { // ( o el que sea
             switch (i) {
@@ -46,8 +54,8 @@ public class QueenDriver {
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(2);
-                    display_menu(); 
+                    TimeUnit.SECONDS.sleep(3);
+                    display_menu();
                     break;
                 }
                 case 2: {
@@ -55,14 +63,14 @@ public class QueenDriver {
                     h.setMax(7);
                     int k = h.getMax();
                     if (k != 7) {
-                        System.out.println("Setter no funciona");
+                        System.out.println("Setter doesn't work");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(3);
 
-                    display_menu(); 
-                    h.setMax(2); // reinstaurar el estado anterior para multiples testsb
+                    display_menu();
+                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
                 case 3: {
@@ -70,13 +78,13 @@ public class QueenDriver {
                     h.setValue(7);
                     double k = h.getValue();
                     if (k != 7) {
-                        System.out.println("Getter no funciona");
+                        System.out.println("Getter doesn't work");
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(3);
 
-                    display_menu(); 
+                    display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
@@ -91,17 +99,17 @@ public class QueenDriver {
                     }
                     TimeUnit.SECONDS.sleep(3);
 
-                    display_menu(); 
+                    display_menu();
                     h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
 
                 case 5: {
                     System.out.println("Probando get_poss_mov");
-                    System.out.println("Piece on X:0 Y:7: (Empty Board)");
+                    System.out.println("Piece on X:0 Y:7 (Empty Board)");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
                     Board b = new Board();
-                    Piece p = new Queen(0, 7, true);
+                    Piece p = new Knight(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
@@ -115,8 +123,8 @@ public class QueenDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:0 Y:3 (Empty Board)");
-                    p = new Queen(0, 3, true);
+                    System.out.println("Piece on X:3 Y:4 (Empty Board)");
+                    p = new Knight(3, 4, true);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -129,8 +137,8 @@ public class QueenDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:0 Y:3 con board no vacio");
-                    b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
+                    System.out.println("Piece on X:3 Y:4  (Board not empty)");
+                    b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -143,8 +151,9 @@ public class QueenDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    TimeUnit.SECONDS.sleep(2);
-                    display_menu(); 
+
+                    TimeUnit.SECONDS.sleep(3);
+                    display_menu();
                     break;
                 }
 

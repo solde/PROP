@@ -7,11 +7,19 @@ package propdrivers;
 
 ;
 
+import Exception.chessException;
 import capaDomini.Board;
-
-import java.util.Scanner;
-import capaDomini.Pawn;
 import capaDomini.Piece;
+import java.util.Scanner;
+import capaDomini.Rock;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+import javafx.util.Pair;
+import capaDomini.Board;
+import capaDomini.Piece;
+import java.util.Scanner;
+import capaDomini.Rock;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -23,19 +31,19 @@ import javafx.util.Pair;
  */
 
 
-public class PawnDriver {
+public class RockDriver {
 
     /**
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Pawn h = new Pawn();
+        Rock h = new Rock();
         int i = sc.nextInt();
-        while (i <= 7) { // ( o el que sea
+        while (i <= 6) { // ( o el que sea
             switch (i) {
 
                 case 1: {
@@ -46,7 +54,7 @@ public class PawnDriver {
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(3);
                     display_menu(); 
                     break;
                 }
@@ -59,7 +67,7 @@ public class PawnDriver {
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(3);
 
                     display_menu(); 
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
@@ -74,7 +82,7 @@ public class PawnDriver {
                     } else {
                         System.out.println("Passed");
                     }
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(3);
 
                     display_menu(); 
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
@@ -97,11 +105,11 @@ public class PawnDriver {
                 }
 
                 case 5: {
-                    System.out.println("Probando get_poss_mov");
-                    System.out.println("Piece on X:2 Y:1:");
+                    System.out.println("Testing get_poss_mov");
+                    System.out.println("Piece on X:0 Y:7:");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
                     Board b = new Board();
-                    Piece p = new Pawn(2, 1, true);
+                    Piece p = new Rock(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
@@ -115,8 +123,8 @@ public class PawnDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:5 Y:4");
-                    p = new Pawn(5, 4, false);
+                    System.out.println("Piece on X:0 Y:0");
+                    p = new Rock(0, 0, true);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -129,8 +137,9 @@ public class PawnDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:5 Y:4 con board no vacio");
-                    b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPppppPP/RNBQKBNR");
+                    System.out.println("Piece on X:0 Y:0 (Board Not Empty)");
+                    b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
+
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -164,7 +173,7 @@ public class PawnDriver {
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4: setValue ");
+        System.out.println("Test 4:  setValue ");
         System.out.println("Test 5: get_poss_mov  ");/*
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
@@ -176,9 +185,3 @@ public class PawnDriver {
 
     }
 }
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */

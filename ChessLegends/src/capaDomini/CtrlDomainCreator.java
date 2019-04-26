@@ -76,9 +76,9 @@ public class CtrlDomainCreator {
     }
     
 
-    public String getPlayerInfo(){
+    /*public String getPlayerInfo(){
         return P1.getPlayerInfo();
-    }
+    }*/
 
     
     public String getProblemInfo(){
@@ -102,6 +102,9 @@ public class CtrlDomainCreator {
                 break;
             case 'b': 
                 iType = 3;
+                break;
+            case 'd':
+                iType = -1;
                 break;
         }
         B.addPieceToBoard(x, y, iType, color);
@@ -162,8 +165,9 @@ public class CtrlDomainCreator {
         return P.verify();
     }
     
-    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
+    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+        B = new Board(fenCode);
     }
 
 }

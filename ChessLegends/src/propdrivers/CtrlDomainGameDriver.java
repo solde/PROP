@@ -37,12 +37,12 @@ public class CtrlDomainGameDriver {
         input = sc.nextInt();
         String fenCode, Name, Theme;
         int N, diff;
-        boolean atk;
+        boolean atk = false;
         if(input == 1){
             ChessLegends.initGame();
             System.out.println("Enter your player data in this order:");
             
-            System.out.println("id:");
+            System.out.println("id1");
             String id;
             id = sc.next();
            
@@ -70,6 +70,11 @@ public class CtrlDomainGameDriver {
             
             System.out.println("Enter a fen code");
             fenCode = sc.next();
+            for(int i = 0; i < 5; ++i){
+                String aux = sc.next();
+                if(i == 0 && aux == "w") atk = true;
+                
+            }
             
             System.out.println("Enter problem name");
             Name = sc.next();
@@ -82,10 +87,7 @@ public class CtrlDomainGameDriver {
             
             System.out.println("Enter difficulty level (number)");
             diff = sc.nextInt();
-            
-            System.out.println("Enter the attacker (true for white, false for black)");
-            atk = sc.nextBoolean();
-            
+
             ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
             ChessLegends.letsPlay(color);
             
@@ -97,6 +99,10 @@ public class CtrlDomainGameDriver {
             
             System.out.println("Enter a fen code");
             fenCode = sc.next();
+            for(int i = 0; i < 5; ++i){
+                String aux = sc.next();
+                if(i == 0 && aux == "w") atk = true;
+            }
             
             System.out.println("Enter problem name");
             Name = sc.next();
@@ -109,9 +115,6 @@ public class CtrlDomainGameDriver {
             
             System.out.println("Enter difficulty level (number)");
             diff = sc.nextInt();
-            
-            System.out.println("Enter the attacker (true for white, false for black)");
-            atk = sc.nextBoolean();
             
             int games;
             System.out.println("Enter which qtt of games do you wanna play");

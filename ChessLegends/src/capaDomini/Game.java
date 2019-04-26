@@ -204,11 +204,11 @@ public class Game extends GameAbs {
 
                 
                 movePiece(sX, sY, dX, dY, color, 0); //0 now unimplemented
-                this.B = new Board(AI1.makeMove(this.B, !turn, 2));
+                this.B = new Board(AI1.makeMove(this.B, !turn, 2), false);
             }
            
             else{
-                this.B = new Board(AI1.makeMove(this.B, turn, 2));
+                this.B = new Board(AI1.makeMove(this.B, turn, 2), false);
                
                 
                 ArrayList<int[]> moves = new ArrayList<>();

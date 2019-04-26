@@ -130,7 +130,7 @@ public class Problem {
                         for(int x = 0; x < movs.size(); ++x){
                             mov[2] = movs.get(x).getKey();
                             mov[3] = movs.get(x).getValue();
-                            Board altBoard = new Board(b);
+                            Board altBoard = new Board(b, true);
                             altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color);
                             can_solve = deep_verify(altBoard, n-1, !color);
                             if(can_solve) return can_solve;

@@ -7,9 +7,18 @@ package propdrivers;
 
 ;
 
+import Exception.chessException;
 import capaDomini.Board;
 import java.util.Scanner;
-import capaDomini.Knight;
+import capaDomini.King;
+import capaDomini.Piece;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+import javafx.util.Pair;
+import capaDomini.Board;
+import java.util.Scanner;
+import capaDomini.King;
 import capaDomini.Piece;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,19 +31,19 @@ import javafx.util.Pair;
  */
 
 
-public class KnightDriver {
+public class KingDriver {
 
     /**
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
-        Knight h = new Knight();
+        King h = new King();
         int i = sc.nextInt();
-        while (i <= 6) { // ( o el que sea
+        while (i <= 7) { // ( o el que sea
             switch (i) {
 
                 case 1: {
@@ -76,7 +85,7 @@ public class KnightDriver {
                     TimeUnit.SECONDS.sleep(3);
 
                     display_menu();
-                    h.setMax(2); // reinstaurar el estado anterior para multiples tests
+                    h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
                 case 4: {
@@ -96,11 +105,11 @@ public class KnightDriver {
                 }
 
                 case 5: {
-                    System.out.println("Probando get_poss_mov");
-                    System.out.println("Piece on X:0 Y:7 (Empty Board)");
+                    System.out.println("Testing get_poss_mov");
+                    System.out.println("Piece on X:0 Y:7:");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
                     Board b = new Board();
-                    Piece p = new Knight(0, 7, true);
+                    Piece p = new King(0, 7, true);
                     ArrayList<Pair<Integer, Integer>> mov;
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
@@ -114,8 +123,8 @@ public class KnightDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:3 Y:4 (Empty Board)");
-                    p = new Knight(3, 4, true);
+                    System.out.println("Piece on X:0 Y:4");
+                    p = new King(0, 4, false);
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -128,8 +137,8 @@ public class KnightDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-                    System.out.println("Piece on X:3 Y:4  (Board not empty)");
-                    b = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+                    System.out.println("Piece on X:3 Y:4 con board no vacio");
+                    b = new Board("r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R");
                     mov = p.get_poss_mov(b);
                     if (mov.isEmpty()) {
                         System.out.println("There aren't any possible movements");
@@ -142,7 +151,6 @@ public class KnightDriver {
                         System.out.print(" Y: ");
                         System.out.println(movl.getValue());
                     }
-
                     TimeUnit.SECONDS.sleep(3);
                     display_menu();
                     break;
