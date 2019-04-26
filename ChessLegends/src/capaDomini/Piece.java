@@ -146,10 +146,10 @@ public abstract class Piece {
      * @param b Board where the game is taking place
      * @return
      */
-    public boolean pos_Killable(Pair p, Board b) { //TRUE= KILLABLE  FALSE=FRIENDLY
+    public boolean pos_Killable(Pair<Integer, Integer> p, Board b) { //TRUE= KILLABLE  FALSE=FRIENDLY
 
-        int x_temp = (int) p.getKey();
-        int y_temp = (int) p.getValue();
+        int x_temp = p.getKey();
+        int y_temp = p.getValue();
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
             Piece k = b.getPieceAt(x_temp, y_temp);
             if (k.getTypeOfPiece() != -1 && this.isColor() != k.isColor()) {
