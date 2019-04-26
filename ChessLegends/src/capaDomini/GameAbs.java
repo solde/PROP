@@ -38,7 +38,7 @@ public abstract class GameAbs {
         return turn;
     }
     
-    public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
+    public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
         B = new Board(fenCode);
     }
@@ -92,8 +92,11 @@ public abstract class GameAbs {
     public String getPlayer2Info(){
         return "";
     }
+    public void setN(int N) throws chessException{
+        throw new chessException("No hace falta cambiar los turnos aqui");
+    }
     
-    public void resetBoard(){
+    public void resetBoard() throws chessException{
         Board bAux = new Board(this.P.getFenCode());
         this.setB(bAux);
     }

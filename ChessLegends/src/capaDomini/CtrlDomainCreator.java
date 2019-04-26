@@ -77,7 +77,7 @@ public class CtrlDomainCreator {
         Pl = new Human(Name, Password, 0, 0, 1000, 0);
     }
     
-    public void modifyProblemTest(String Name, String FEN_code, int N_mov, String Theme, boolean atk, boolean first_turn){
+    public void modifyProblemTest(String Name, String FEN_code, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         B.setFEN_code(FEN_code);
     }
     

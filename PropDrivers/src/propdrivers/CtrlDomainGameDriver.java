@@ -66,9 +66,8 @@ public class CtrlDomainGameDriver {
         
         }
         else if (input == 2){
-            AICompetition G = new AICompetition();
-            G.setPlayer1("IA1", 0, 0, 0, 0);
-            G.setPlayer2("IA1", 0, 0, 0, 0);
+            ChessLegends.initAIComp();
+            ChessLegends.initCompetition();
             
             System.out.println("Enter a fen code");
             fenCode = sc.next();
@@ -92,11 +91,10 @@ public class CtrlDomainGameDriver {
             System.out.println("Enter which qtt of games do you wanna play");
             games = sc.nextInt();
             
-            G.setProblem(fenCode, Name, diff, N, Theme, atk, atk);
-            G.setN(games);
-            G.setTurn(atk);
+            ChessLegends.loadProblemTest(fenCode, Name, diff, N, Theme, atk, atk);
+            ChessLegends.setGames(games);
             
-            G.playMatch();
+            ChessLegends.AIplay();
         }
     }
 }
