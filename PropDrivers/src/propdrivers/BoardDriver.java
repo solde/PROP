@@ -62,7 +62,7 @@ public class BoardDriver {
                 case 3:
                     B = new Board("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B");
                     printBoard(B);
-                    Board B2 = new Board(B);
+                    Board B2 = new Board(B, false);
                     
                     printBoard(B2);
                     

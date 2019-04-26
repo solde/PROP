@@ -50,10 +50,10 @@ public class Board {
             }
         }
         this.FEN_code = FEN_code;
-        processFEN();
+        processFEN(false);
     }
     
-    public Board(Board b) throws chessException {  
+    public Board(Board b, Boolean searching) throws chessException {  
         chessBoard = new Piece[8][8];
         for(int i = 0; i < 8; ++i){
             for(int j = 0; j < 8; ++j){
@@ -62,7 +62,7 @@ public class Board {
         }
         this.Default_FEN_code = "8/8/8/8/8/8/8/8"; 
         this.FEN_code = b.getFEN_code();
-        processFEN();
+        processFEN(searching);
     }
 
     /*Board() {
@@ -143,7 +143,7 @@ public class Board {
         return FEN_code;
     }
 
-    private void processFEN() throws chessException{
+    private void processFEN(Boolean searching) throws chessException{
         int i = 0, j = 0;
         int verifyer = 0;
         int[] piecesOfWhite;
@@ -237,7 +237,7 @@ public class Board {
                     
                 case 1:
                     King k = new King();
-                    if(piecesOfBlack[x] != k.getMax() || piecesOfWhite[x] != k.getMax()) need_throw = true;
+                    if((piecesOfBlack[x] != k.getMax() || piecesOfWhite[x] != k.getMax()) && !searching) need_throw = true;
                     break;
                     
                 case 2:
@@ -261,7 +261,11 @@ public class Board {
                     break;
             }
         }
-        if(need_throw) throw new chessException("Invalid FEN code");
+        if(need_throw) {
+            System.out.print(this.getFEN_code());
+            printBoard();
+            throw new chessException("Invalid FEN code");
+        }
     }
 
     /**
@@ -271,7 +275,7 @@ public class Board {
      */
     public void setFEN_code(String FEN_code) throws chessException {
         this.FEN_code = FEN_code;
-        processFEN();
+        processFEN(false);
     }
     
     /**
@@ -292,7 +296,7 @@ public class Board {
         }
         ArrayList<Pair<Integer, Integer>> pos_movs = p.get_poss_mov(this);
         for(int i = 0; i < pos_movs.size(); ++i){
-            Board newb = new Board(this);
+            Board newb = new Board(this, true);
             newb.movePiece(p.getX(), p.getY(), pos_movs.get(i).getKey(), pos_movs.get(i).getValue(), color);
             Problem P = new Problem();
             P.setFenCode(newb.getFEN_code());
@@ -444,4 +448,19 @@ public class Board {
     public Piece getPieceAt(int x, int y){
         return chessBoard[x][y];
     }
+    
+    public void printBoard(/*Board B*/){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(this.getPieceAt(x, y).isColor() && this.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + this.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!this.getPieceAt(x, y).isColor() && this.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + this.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
+    
 }

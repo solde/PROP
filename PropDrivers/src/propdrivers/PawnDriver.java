@@ -7,6 +7,16 @@ package propdrivers;
 
 ;
 
+import Exception.chessException;
+import capaDomini.Board;
+
+import java.util.Scanner;
+import capaDomini.Pawn;
+import capaDomini.Piece;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
+import javafx.util.Pair;
 import capaDomini.Board;
 
 import java.util.Scanner;
@@ -29,7 +39,7 @@ public class PawnDriver {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);

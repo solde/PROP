@@ -48,10 +48,10 @@ public class CtrlDomainCreratorDriver {
             
             System.out.println("*" + Name + "* *" + Password+ "*");
             ChessLegends.createNewPlayerTest(Name, Password);
-            String info = ChessLegends.getPlayerInfo();
+            //String info = ChessLegends.getPlayerInfo();
             System.out.println("Created user:");
-            System.out.println(ChessLegends.getPlayerInfo());
-            System.out.println(info);
+            //System.out.println(ChessLegends.getPlayerInfo());
+            //System.out.println(info);
             
         }
         else if(sel == 2){ //falta calcular la diff

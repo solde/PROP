@@ -77,9 +77,9 @@ public class CtrlDomainCreator {
     }
     
 
-    public String getPlayerInfo(){
+    /*public String getPlayerInfo(){
         return P1.getPlayerInfo();
-    }
+    }*/
 
     
     public String getProblemInfo(){

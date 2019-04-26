@@ -42,7 +42,7 @@ public class CtrlDomainGameDriver {
             ChessLegends.initGame();
             System.out.println("Enter your player data in this order:");
             
-            System.out.println("id:");
+            System.out.println("id1");
             String id;
             id = sc.next();
            

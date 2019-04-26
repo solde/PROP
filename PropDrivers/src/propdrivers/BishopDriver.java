@@ -5,6 +5,7 @@
  */
 package propdrivers;
 
+import Exception.chessException;
 import java.util.Scanner;
 import capaDomini.Bishop;
 import capaDomini.Board;
@@ -24,7 +25,7 @@ public class BishopDriver {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, chessException {
         // TODO code application logic here
         display_menu();
         Scanner sc = new Scanner(System.in);
