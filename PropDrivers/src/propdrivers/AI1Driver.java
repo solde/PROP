@@ -29,13 +29,17 @@ public class AI1Driver {
         System.out.println(" ");
     }
     public static void main(String[] args) throws chessException {
-        String FENi = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B" ; //extret de Kasparov vs Carlsen, 2004
+        String FENi = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B" ; 
         System.out.println(FENi);
         Board b = new Board(FENi);
         printBoard(b);
 
 
-        b = AI1.makeMove(b, false, 2); //1: Board, 2: fitxa, 3: depth
+        b = AI1.makeMove(b, true, 2); //1: Board, 2: fitxa, 3: depth
+        printBoard(b);
+        b = AI1.makeMove(b, false, 2);
+        printBoard(b);
+        b = AI1.makeMove(b, true, 2);
         printBoard(b);
         String FENf = b.fenToString();
         System.out.println(FENf);

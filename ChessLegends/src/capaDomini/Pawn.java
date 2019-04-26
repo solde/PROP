@@ -68,14 +68,14 @@ public class Pawn extends Piece {
                 if (!pos_Taken(tmp, b)) {
                     mov.add(tmp);
                 }
-                tmp = new Pair<>(x_temp - 2, y_temp - 1);
+                /*tmp = new Pair<>(x_temp - 2, y_temp - 1);
                 if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp - 2, y_temp + 1);
                 if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
-                }
+                }*/
             }
         }
 
@@ -98,14 +98,14 @@ public class Pawn extends Piece {
                 if (!pos_Taken(tmp, b)) {
                     mov.add(tmp);
                 }
-                tmp = new Pair<>(x_temp + 2, y_temp - 1);
+                /*tmp = new Pair<>(x_temp + 2, y_temp - 1);
                 if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
                 }
                 tmp = new Pair<>(x_temp + 2, y_temp + 1);
                 if (pos_Killable(tmp, b)) {
                     mov.add(tmp);
-                }
+                }*/
             }
         }
 

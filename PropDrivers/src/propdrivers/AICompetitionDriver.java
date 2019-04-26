@@ -30,33 +30,40 @@ public class AICompetitionDriver {
         G.setPlayer1("IA1", 0, 0, 0, 0);
         G.setPlayer2("IA1", 0, 0, 0, 0);
         
-        System.out.println("Welcome. Please set");
-        
+        System.out.println("Please set");
+     
+            
         System.out.println("FEN code for board:");
         String FENc = sc.nextLine();
-        
-        System.out.println("Who attacks: (true/false)");
-        Boolean attack = sc.nextBoolean();
-        
-        System.out.println("Who starts: (true/false)");
-        Boolean start = sc.nextBoolean();
-        
-        System.out.println("N turns to checkmate:");
-        int en = sc.nextInt();
-        
-        System.out.println("The theme:");
-        String them = sc.nextLine();
-        
+
         System.out.println("The name:");
         String na = sc.nextLine();
-        
+
         System.out.println("The difficulty:");
         int dif = sc.nextInt();
+
+        System.out.println("N turns to checkmate:");
+        int turns = sc.nextInt();
+
+        //System.out.println("The theme:");
+        //String them = sc.nextLine();
+
+        System.out.println("Who attacks: (true/false)");
+        Boolean attack = sc.nextBoolean();
+
+        System.out.println("Games will play");
+        int probnum = sc.nextInt();
+
+
+
+        G.setProblem(FENc, na, dif, turns ,"test makes checkmate", attack, attack);
+        G.setN(probnum);
+        G.setTurn(attack);
         
         
-        G.setProblem(FENc, na, en, dif ,them, attack, start);
+        //G.setProblem("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B", "Test", 34, 2 ,"Blanques fan mat en 2", true, true);
         
-        G.setN(5);
+       
         
         G.playMatch();
         

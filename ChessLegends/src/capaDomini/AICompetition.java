@@ -69,20 +69,23 @@ public class AICompetition extends GameAbs{
         for(int i = 0; i < this.N; ++i){
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
-                System.out.println(turn_cont);
-                B = AI1.makeMove(B, turn, 2);
-                System.out.println("move 1 done");                
-                B = AI1.makeMove(B, !turn, 2);
-                System.out.println("move 2 done");
+                
+                this.B = new Board(AI1.makeMove(this.B, turn, 2));
+ 
+                
+                this.B = new Board(AI1.makeMove(this.B, !turn, 2));
+ 
+                
                 turn_cont += 1;
+                
             }
-            if(B.isCheckMate(true)){
-                BlackWins += 1;
-                System.out.println("BlackWins");
-            }
-            else if(B.isCheckMate(false)){
+            if(B.isCheckMate(false)){
                 WhiteWins += 1;
                 System.out.println("WhiteWins");
+            }
+            else if(B.isCheckMate(true)){
+                BlackWins += 1;
+                System.out.println("BlackWins");
 
             }
             else{
@@ -97,9 +100,10 @@ public class AICompetition extends GameAbs{
             }
             
             resetBoard();
-            int aux = this.getN();
-            aux+=1;
+            int aux = i;
+            ++aux;
             System.out.println("Gamesplayed: " + aux);
+            
         }
     }
 
@@ -118,4 +122,17 @@ public class AICompetition extends GameAbs{
         throw new UnsupportedOperationException("You are a mere spectator"); //To change body of generated methods, choose Tools | Templates.
     }
     
+     public static void printBoard(Board B){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
 }

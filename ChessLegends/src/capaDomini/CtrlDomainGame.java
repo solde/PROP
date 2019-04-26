@@ -72,7 +72,7 @@ public class CtrlDomainGame {
         return G.getBoard();
     }
     
-    public int leftTurns(){
+    /*public int leftTurns(){
         return G.leftTurn();
-    }
+    }*/
 }

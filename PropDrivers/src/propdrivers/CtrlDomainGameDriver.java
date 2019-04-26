@@ -61,10 +61,11 @@ public class CtrlDomainGameDriver {
             ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
             printBoard(ChessLegends.getBoardInfo());
             
-            while()
+          /*  while()
         }
         else{
             
-        }
+        }*/
+    }
     }
 }

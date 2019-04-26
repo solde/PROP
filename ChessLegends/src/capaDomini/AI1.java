@@ -45,7 +45,7 @@ public class AI1 extends Player {
 		
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
 		ArrayList<int[]> moves = new ArrayList<>(); //keeps track of all possible moves 
-                ArrayList<Integer> moveScore = new ArrayList<Integer>();
+                ArrayList<Integer> moveScore = new ArrayList<>();
 		
                 for(int i = 0; i<8; i++){
 			for(int j=0; j<8; j++){
@@ -64,7 +64,15 @@ public class AI1 extends Player {
                                     moves.add(mov); //Adds the possible movement to a poss. movs. list
                                     Board altBoard = new Board(b); //initialices an alternative space to evaluate
 
-                                    altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                                    try{altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                                    }
+                                    catch(chessException exc){
+                                        System.out.println("Oops.");
+                                        System.out.println("Source: "+ mov[0] + " " + mov[1]);
+                                        System.out.println("Destination: "+ mov[2] + " " + mov[3]);
+                                        printBoard(altBoard);
+                                        throw new chessException(exc.getMessage());
+                                    }
 
                                     possibleBoards.add(altBoard); //adds the alternative board to the possible boards list
                                 }
@@ -96,7 +104,7 @@ public class AI1 extends Player {
                 for (int i = 0; i < moveScore.size(); ++i){
                     if (moveScore.get(i) == bestMoveScore) {
                         bestMoves.add(moves.get(i));
-                        System.out.println("move added");
+                        //System.out.println("move added");
                     }
                 }
                 
