@@ -28,6 +28,7 @@ public class AICompetition extends GameAbs{
         WhiteWins = 0;        
     }
     
+    @Override
     public void setN(int N){
         this.N = N;
     }

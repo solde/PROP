@@ -20,7 +20,7 @@ public class CtrlDomainGame {
         movCounter = 0;
     }
 
-    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
+    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         //(fenCode, Name, diff, N_mov, Theme, atk)
         G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
     }
@@ -61,7 +61,11 @@ public class CtrlDomainGame {
         G.resetTimers();
     }
     
-    public void initCompetition(boolean player1, boolean player2){
+    public void initAIComp(){
+        G = new AICompetition();
+    }
+    
+    public void initCompetition(){
         G.setPlayer1("AI1", 0, 0, 1000, 1000);
         G.setPlayer2("AI1", 0, 0, 1000, 1000);
         //Fer coses d'estadistiques
@@ -72,6 +76,13 @@ public class CtrlDomainGame {
         return G.getBoard();
     }
     
+    public void setGames(int N) throws chessException{
+        G.setN(N);
+    }
+    
+    public void AIplay() throws chessException{
+        G.playMatch();
+    }
     /*public int leftTurns(){
         return G.leftTurn();
     }*/
