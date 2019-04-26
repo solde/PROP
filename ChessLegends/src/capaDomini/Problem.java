@@ -107,6 +107,7 @@ public class Problem {
     }
     
     private boolean deep_verify(Board b, int n, boolean color) throws chessException{
+        //System.out.println(n);
         boolean can_solve = false;
         if(n == -1){
             for(int i = 0; i < 8; ++i){
