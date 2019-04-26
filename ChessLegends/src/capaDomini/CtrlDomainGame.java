@@ -13,15 +13,12 @@ import java.util.ArrayList;
  */
 public class CtrlDomainGame {
     private GameAbs G;
+    private int movCounter;
         
     public CtrlDomainGame() {
         G = new Game();
+        movCounter = 0;
     }
-    
-    public CtrlDomainGame(int N){
-        G = new AICompetition(N);
-    }
-    
 
     public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn){
         //(fenCode, Name, diff, N_mov, Theme, atk)
@@ -48,6 +45,7 @@ public class CtrlDomainGame {
         try{
             G.movePiece(sX, sY, dX, dY, color, time);
             G.setTurn(!color);
+            this.movCounter += 1;
         }
         catch(chessException e){
             System.out.println(e.getMessage());
@@ -73,5 +71,8 @@ public class CtrlDomainGame {
         char[][] ret = G.getBoard();
         return G.getBoard();
     }
-   
+    
+    public int leftTurns(){
+        return G.leftTurn();
+    }
 }

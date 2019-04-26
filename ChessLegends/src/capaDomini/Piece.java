@@ -124,9 +124,9 @@ public abstract class Piece {
      * @param b
      * @return
      */
-    public boolean pos_Taken(Pair p, Board b) {  //FALSE = LLIURE  TRUE = OCUPADA
-        int x_temp = (int) p.getKey();
-        int y_temp = (int) p.getValue();
+    public boolean pos_Taken(Pair<Integer, Integer> p, Board b) {  //FALSE = LLIURE  TRUE = OCUPADA
+        int x_temp = p.getKey();
+        int y_temp = p.getValue();
         if (x_temp >= 0 && x_temp < 8 && y_temp >= 0 && y_temp < 8) {
             Piece k = b.getPieceAt(x_temp, y_temp);
             if (k.getTypeOfPiece() != -1) {

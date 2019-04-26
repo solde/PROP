@@ -18,12 +18,14 @@ public class Game extends GameAbs {
 
     private long timerW;
     private long timerB;
+    private int movCounter;
 
     public Game() {
         timerW = 0;
         timerB = 0;
-         B = new Board();
+        B = new Board();
         turn = true;
+        movCounter = 0;
     }
     
     public Game(boolean initialTurn) {
@@ -85,6 +87,7 @@ public class Game extends GameAbs {
         } else {
             try {
                 B.movePiece(sX, sY, dX, dY, color);
+                movCounter += 1;
             } catch (chessException e) {
                 throw new chessException("Can't move");
             }
@@ -157,6 +160,10 @@ public class Game extends GameAbs {
             }
         }
         return chessBoard;
+    }
+    
+    public int leftTurn(){
+        return ((2*P.getN_mov()) - movCounter)/2;
     }
 
     @Override

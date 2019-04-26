@@ -106,24 +106,9 @@ public class Problem {
         return deep_verify(b, 2*(this.N_mov), this.first_turn);
     }
     
-    public static void printBoard(Board B){
-        System.out.println("   0  1  2  3  4  5  6  7");
-        for(int x = 0; x < 8; ++x){
-            System.out.print(x + "|");
-            for(int y = 0; y < 8; ++y){
-                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
-                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
-                else System.out.print("  " + "|");
-            }
-            System.out.println(" ");
-        }
-        System.out.println(" ");
-    }
-    
     private boolean deep_verify(Board b, int n, boolean color) throws chessException{
         boolean can_solve = false;
         if(n == -1){
-            
             for(int i = 0; i < 8; ++i){
                 for(int j = 0; j < 8; ++j){
                     if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && (b.getPieceAt(i, j).isColor() != this.atk)) return false;
@@ -146,7 +131,6 @@ public class Problem {
                             mov[3] = movs.get(x).getValue();
                             Board altBoard = new Board(b);
                             altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color);
-                            printBoard(altBoard);
                             can_solve = deep_verify(altBoard, n-1, !color);
                             if(can_solve) return can_solve;
                         }
