@@ -23,6 +23,13 @@ public class AI1 extends Player {
         
     }
     
+    /**
+     *
+     * printBoard: print a board on the standard output
+     * 
+     * @param B
+     * 
+    */
     public static void printBoard(Board B){
         System.out.println("   0  1  2  3  4  5  6  7");
         for(int x = 0; x < 8; ++x){
@@ -37,7 +44,15 @@ public class AI1 extends Player {
         System.out.println(" ");
     }
     
-    
+    /**
+     * makeMove: moves the ideal piece on a given board 
+     *
+     * @param b
+     * @param color
+     * @param depth
+     * @return
+     * @throws chessException
+     */
     public static Board makeMove(Board b, boolean color, int depth) throws chessException {   
         
 		int[] bestMove; //keeps track of the best possible move AI has available
@@ -83,7 +98,7 @@ public class AI1 extends Player {
                         }
 		}
 		//initializes bestMoveScore to compare
-                //System.out.println(possibleBoards.size());
+                
                 if (possibleBoards.size() == 0) printBoard(b);
                 bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); //1 is the depth, explained in evaluate position "header"
 		moveScore.add(bestMoveScore);
@@ -106,7 +121,7 @@ public class AI1 extends Player {
                 for (int i = 0; i < moveScore.size(); ++i){
                     if (moveScore.get(i) == bestMoveScore) {
                         bestMoves.add(moves.get(i));
-                        //System.out.println("move added");
+                        
                     }
                 }
                 
@@ -121,7 +136,16 @@ public class AI1 extends Player {
                 return b;
 	}
 	
- 
+    
+    
+    /**
+     *
+     * deepEvaluate: calculates all possible movements of an any board given
+     * 
+     * @param bo
+     * @param color
+     * @return ArrayList<>
+     */
     private static ArrayList <int[]> deepEvaluate( Board b, boolean color){
             ArrayList<int[]> moves = new ArrayList<>();
             for(int i = 0; i<8; i++){
@@ -150,68 +174,88 @@ public class AI1 extends Player {
         }
         
 	
+    /**
+     *
+     * Evaluate position: returns best score of any board given
+     * 
+     * @param bo
+     * @param alpha
+     * @param beta
+     * @param depth
+     * @param color
+     * @param especulativeTurn
+     * @param attackColor
+     * @return int
+     * @throws chessException
+     */
+    private static int evaluatePosition(Board bo, int alpha, int beta, int depth, boolean color, boolean especulativeTurn, boolean attackColor) throws chessException{ 
 
-        private static int evaluatePosition(Board bo, int alpha, int beta, int depth, boolean color, boolean especulativeTurn, boolean attackColor) throws chessException{ 
+    if (depth == 0){
+        int evaluation = evaluate(bo, attackColor);
+        //System.out.println("Puntuació: "+ evaluation);
+        return evaluation;
+    }
 
-           if (depth == 0){
-               int evaluation = evaluate(bo, attackColor);
-               //System.out.println("Puntuació: "+ evaluation);
-               return evaluation;
-           }
-           
-           //especulativeTurn will always be true for beta, false otherwise
-           if (especulativeTurn){ //enter the beta section
-               ArrayList<int[]> moves = deepEvaluate(bo, color);  
-               int newBeta = beta;
-               for (int i = 0; i < moves.size(); ++i){
-                    Board successorBoard = new Board(bo, true); //Copy of the "original" board
-                    int[] aux= moves.get(i); //Get a possible movement
-                    try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
-                   
-                    catch(chessException e){
-                       
-                        System.out.println("Ooops. Move tried:");
-                        System.out.println(aux[0]+" "+ aux[1]);
-                        System.out.println(aux[2]+" "+ aux[3]);
-                        System.out.println("the board was:");
-                        printBoard(successorBoard);
-                        if (especulativeTurn) System.out.println("beta situation");
-                        else System.out.println("alpha situation");
-                        throw new chessException(e.getMessage());
-                    }
-                    newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor)); 
-                    if(newBeta<= alpha) break;
-                }
-                return newBeta; //returns the highest score of the possible moves
-            }
-           else{ //alpha situation
-               ArrayList<int[]> moves = deepEvaluate(bo, color);
-               int newAlpha = alpha;
-               for (int i = 0; i < moves.size(); ++i){
-                   //System.out.println(bo.getFEN_code());
-                   Board successorBoard = new Board(bo, true);
-                   int[] aux= moves.get(i);
-                   try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
-                   
-                    catch(chessException e){
-                        System.out.println("Ooops. Move tried:");
-                        System.out.println(aux[0]+" "+ aux[1]);
-                        System.out.println(aux[2]+" "+ aux[3]);
-                        System.out.println("the board was:");
-                        printBoard(successorBoard);
-                        if (especulativeTurn) System.out.println("beta situation");
-                        else System.out.println("alpha situation");
-                        throw new chessException(e.getMessage());
-                    }
-                   newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor));
-                   if(beta<= newAlpha) break;
-               }
-               return newAlpha;
-           }
-           }
+    //especulativeTurn will always be true for beta, false otherwise
+    if (especulativeTurn){ //enter the beta section
+        ArrayList<int[]> moves = deepEvaluate(bo, color);  
+        int newBeta = beta;
+        for (int i = 0; i < moves.size(); ++i){
+             Board successorBoard = new Board(bo, true); //Copy of the "original" board
+             int[] aux= moves.get(i); //Get a possible movement
+             try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
+
+             catch(chessException e){
+
+                 System.out.println("Ooops. Move tried:");
+                 System.out.println(aux[0]+" "+ aux[1]);
+                 System.out.println(aux[2]+" "+ aux[3]);
+                 System.out.println("the board was:");
+                 printBoard(successorBoard);
+                 if (especulativeTurn) System.out.println("beta situation");
+                 else System.out.println("alpha situation");
+                 throw new chessException(e.getMessage());
+             }
+             newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor)); 
+             if(newBeta<= alpha) break;
+         }
+         return newBeta; //returns the highest score of the possible moves
+     }
+    else{ //alpha situation
+        ArrayList<int[]> moves = deepEvaluate(bo, color);
+        int newAlpha = alpha;
+        for (int i = 0; i < moves.size(); ++i){
+            //System.out.println(bo.getFEN_code());
+            Board successorBoard = new Board(bo, true);
+            int[] aux= moves.get(i);
+            try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
+
+             catch(chessException e){
+                 System.out.println("Ooops. Move tried:");
+                 System.out.println(aux[0]+" "+ aux[1]);
+                 System.out.println(aux[2]+" "+ aux[3]);
+                 System.out.println("the board was:");
+                 printBoard(successorBoard);
+                 if (especulativeTurn) System.out.println("beta situation");
+                 else System.out.println("alpha situation");
+                 throw new chessException(e.getMessage());
+             }
+            newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor));
+            if(beta<= newAlpha) break;
+        }
+        return newAlpha;
+     }
+    }
    
-
-	public static int evaluate(Board b, boolean color) throws chessException{
+    /**
+     *evaluate: heuristic function: calculates score of a board based on pieces' position
+     * 
+     * @param b
+     * @param color
+     * @return
+     * @throws chessException
+     */
+    public static int evaluate(Board b, boolean color) throws chessException{
 		int attackScore = 0;
 		int defendScore = 0;
                 

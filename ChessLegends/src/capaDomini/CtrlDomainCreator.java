@@ -18,7 +18,7 @@ public class CtrlDomainCreator {
     private Player Pl;
         
     /**
-     *
+     * Basic Creator
      */
     public CtrlDomainCreator() {
         B = new Board();
@@ -27,14 +27,15 @@ public class CtrlDomainCreator {
     }
     
     /**
-     *
+     *  Assign a new board to the creator
      */
     public void createNewCustomBoard(){
         B = new Board();
     }
 
     /**
-     *
+     * Changes the piece layout on the creator board 
+     * 
      * @param X
      * @param Y
      * @param Type
@@ -45,6 +46,7 @@ public class CtrlDomainCreator {
     }
     
     /**
+     * Assign a problem to the creator with the parameters given
      *
      * @param fen
      * @param Name
@@ -58,7 +60,8 @@ public class CtrlDomainCreator {
     }
     
     /**
-     *
+     * Assign a player to the creator with the parameters given 
+     * 
      * @param Name
      * @param Password
      */
@@ -66,25 +69,55 @@ public class CtrlDomainCreator {
         Pl = new Human(Name, Password, 0, 0, 1000, 0);
     }
     
+    /**
+     * Assign a problem to the creator with the parameters given
+     * @param fen
+     * @param Name
+     * @param N_mov
+     * @param Theme
+     * @param atk
+     * @param first_turn
+     * @throws chessException
+     */
     public void modifyProblemTest(String fen, String Name, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         P = new Problem();
         P.setFenCode(fen);
     }
     
+    /**
+     *  Returns the FEN of a board
+     * @param newName
+     */
     public void saveProblemAsCopy(String newName){
-        String newFen = B.toString();
+        String newfen = B.toString();
     }
     
+    /**
+     * Returns information of the player
+     * 
+     * @return String
+     */
+    public String getPlayerInfo(){
+        return Pl.getPlayerInfo();
+    }
 
-    /*public String getPlayerInfo(){
-        return P1.getPlayerInfo();
-    }*/
-
-    
+    /**
+     * Returns information of the problem
+     * 
+     * @return String
+     */
     public String getProblemInfo(){
         return P.getProblemInfo();
     }
     
+    /**
+     * Adds a piece to the board with the desired parameters
+     * 
+     * @param x
+     * @param y
+     * @param type
+     * @param color
+     */
     public void addPieceAt(int x, int y, char type, boolean color){
         int iType = -1;
         switch(type){
@@ -110,6 +143,12 @@ public class CtrlDomainCreator {
         B.addPieceToBoard(x, y, iType, color);
     }
     
+    /**
+     * Returns the "uncompressed" board, all the positions without the FEN
+     * 
+     * @return char[][]
+     * @throws chessException
+     */
     public char[][] getBoardInfo() throws chessException{
         char[][] chessBoard = new char[8][8];
         for(int i = 0; i < 8; ++i){
@@ -148,6 +187,12 @@ public class CtrlDomainCreator {
         return chessBoard;
     }
     
+    /**
+     * Check if the given FEN is valid
+     * 
+     * @param fen
+     * @return boolean
+     */
     public boolean verifyFen(String fen){
         try {
             Board testB = new Board(fen);
@@ -157,14 +202,38 @@ public class CtrlDomainCreator {
         return true;
     }
     
+    /**
+     * Return the FEN code of a board
+     * 
+     * @return String
+     * @throws chessException
+     */
     public String getFenCodeOfBoard() throws chessException{
         return B.fenToString();
     }
     
+    /**
+     * Check if a problem has a solution
+     *
+     * @return boolean
+     * @throws chessException
+     */
     public boolean verifyProblem() throws chessException{
         return P.verify();
     }
     
+    /**
+     * Set the problem with the desired parameters 
+     * 
+     * @param fenCode
+     * @param Name
+     * @param diff
+     * @param N_mov
+     * @param Theme
+     * @param atk
+     * @param first_turn
+     * @throws chessException
+     */
     public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
         P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
         B = new Board(fenCode);

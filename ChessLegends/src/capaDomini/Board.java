@@ -11,7 +11,7 @@ import javafx.util.Pair;
 
 /**
  *
- * @author Arnau Santos
+ * @author Daniel Palomo
  */
 public class Board {
 
@@ -37,6 +37,7 @@ public class Board {
     }
 
     /**
+     * Constructor with operands: FEN
      * @Pre FEN_code contains a correct fen code
      * @Post Create a board with fen code equals to FEN_code
      * @param FEN_code 
@@ -53,6 +54,13 @@ public class Board {
         processFEN(false);
     }
     
+    /**
+     *  Constructor based on a copy of other board
+     * 
+     * @param b
+     * @param searching
+     * @throws chessException
+     */
     public Board(Board b, Boolean searching) throws chessException {  
         chessBoard = new Piece[8][8];
         for(int i = 0; i < 8; ++i){
@@ -65,14 +73,11 @@ public class Board {
         processFEN(searching);
     }
 
-    /*Board() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 
-    //public methods	
+	
     /**
      * @throws Exception.chessException
-     * @Pre Movment follows de rules for the piece.
+     * @Pre Movment follows the rules for the piece.
      * @Post Piece has de new location.
      * 
      * @brief Function to move a piece. toDo is a string with two board cord. (ex: A3),
@@ -142,7 +147,13 @@ public class Board {
     public String getFEN_code() {
         return FEN_code;
     }
-
+    
+    /**
+     * Converts the FEN code to a char matrix and checks if the FEN is valid 
+     * 
+     * @param searching
+     * @throws chessException
+     */
     private void processFEN(Boolean searching) throws chessException{
         int i = 0, j = 0;
         int verifyer = 0;
@@ -311,8 +322,9 @@ public class Board {
     }
     
     /**
+     * Return the quantity of white pieces on the board
      *
-     * @return
+     * @return ArrayList<>
      */
     public ArrayList<Piece> getWhitePiecesOnBoard(){
         ArrayList<Piece> ret = new ArrayList<>();
@@ -326,6 +338,11 @@ public class Board {
         return ret;
     }
 
+    /**
+     * Return the quantity of black pieces on the board  
+     * 
+     * @return
+     */
     public ArrayList<Piece> getBlackPiecesOnBoard(){
         ArrayList<Piece> ret = new ArrayList<>();
         for(int i = 0; i < 8; ++i){
@@ -338,6 +355,14 @@ public class Board {
         return ret;
     }
     
+    /**
+     * Add a new piece to the board 
+     * 
+     * @param x
+     * @param y
+     * @param value
+     * @param color
+     */
     public void addPieceToBoard(int x, int y, int value, boolean color){
         Piece p;
         switch(value){
@@ -365,8 +390,9 @@ public class Board {
     }
     
     /**
-     *
-     * @return
+     * Return the FEN code 
+     * 
+     * @return String
      * @throws Exception.chessException
      */
     public String fenToString() throws chessException {
@@ -445,10 +471,20 @@ public class Board {
         return str;
     }
     
+    /**
+     * Return the piece located at the given position 
+     * 
+     * @param x
+     * @param y
+     * @return
+     */
     public Piece getPieceAt(int x, int y){
         return chessBoard[x][y];
     }
     
+    /**
+     * printBoard: print a board on the standard output
+     */
     public void printBoard(/*Board B*/){
         System.out.println("   0  1  2  3  4  5  6  7");
         for(int x = 0; x < 8; ++x){

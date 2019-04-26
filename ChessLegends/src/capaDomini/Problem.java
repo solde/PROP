@@ -28,11 +28,25 @@ public class Problem {
     
     private ArrayList<Pair<Long, String>> Ranking;
 
+    /**
+     *  Basic constructor
+     */
     public Problem() {
         this. fenCode = "8/8/8/8/8/8/8/8";
         Ranking = new ArrayList<Pair<Long, String>>();
     }
 
+    /**
+     * Constructor with parameters
+     *
+     * @param fenCode
+     * @param Name
+     * @param diff
+     * @param N_mov
+     * @param Theme
+     * @param atk
+     * @param first_turn
+     */
     public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) {
         Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
@@ -44,6 +58,16 @@ public class Problem {
         this.first_turn = first_turn;
     }
     
+    /**
+     * Constructor with parameters
+     *
+     * @param fenCode
+     * @param Name
+     * @param N_mov
+     * @param Theme
+     * @param atk
+     * @param first_turn
+     */
     public Problem(String fenCode, String Name, int N_mov, String Theme, boolean atk, boolean first_turn) {
         Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
@@ -55,10 +79,20 @@ public class Problem {
         calculateDiff();
     }
 
+    /**
+     * Check who starts 
+     *
+     * @return boolean
+     */
     public boolean getFirstTurn(){
         return this.first_turn;
     }
     
+    /**
+     * Returns the FEN of a board
+     *
+     * @return String
+     */
     public String getFenCode() {
         return fenCode;
     }
@@ -99,6 +133,12 @@ public class Problem {
         this.first_turn = firstTurn;
     }
         
+    /**
+     * Check if a problem has solution
+     *
+     * @return boolean
+     * @throws chessException
+     */
     public boolean verify() throws chessException{
         Board b = new Board(this.getFenCode());
         boolean color = this.first_turn;
@@ -150,6 +190,12 @@ public class Problem {
         this.atk = atk;
     }
     
+    /**
+     * Return the quantity of pieces on a board of the color given
+     *
+     * @param bw
+     * @return
+     */
     public int numberPiecesOf(boolean bw){
         char i, e;
         int cont = 0;
@@ -183,8 +229,9 @@ public class Problem {
     }
     
     /**
+     * Returns information of the problem
      *
-     * @return
+     * @return String
      */
     public String getProblemInfo(){
         String ret = "";
@@ -204,6 +251,12 @@ public class Problem {
         return ret;
     }
     
+    /**
+     * Add a time of a player (and the player) to a problem ranking
+     *
+     * @param PlayerName
+     * @param time
+     */
     public void addToRanking(String PlayerName, long time){
         Pair<Long, String> e;
         e = new Pair<>(time, PlayerName);
@@ -217,6 +270,13 @@ public class Problem {
         });
     }
     
+    /**
+     * Get the ranking of a problem
+     *
+     * @param index
+     * @return
+     * @throws chessException
+     */
     public Pair<Long, String> getRankingPossition(int index) throws chessException{
         try{
             return Ranking.get(index);
