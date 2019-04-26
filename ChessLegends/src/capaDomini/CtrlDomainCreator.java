@@ -6,8 +6,7 @@
 package capaDomini;
 
 import Exception.chessException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *

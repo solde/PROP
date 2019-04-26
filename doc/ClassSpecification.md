@@ -1,4 +1,4 @@
-# Especificació de classes
+﻿# Especificació de classes
 
 ## Problem
 
@@ -32,10 +32,6 @@ Classe que conte l'algoritme del jugador maquina.
 
 Classe amb l'algorisme de IA de dificultat fàcil.
 
-#### AI2 
-
-Classe amb l'algorisme de IA de dificultat alta.
-
 ## Board
 
 Classe per representar un taulell d'escacs i gestiolar-lo. Permet moure i afegir peces i codificar el contingut de la taula en codificació fen.
@@ -45,3 +41,44 @@ Classe per representar un taulell d'escacs i gestiolar-lo. Permet moure i afegir
 Classe per representar una peça. Dona informació dels possibles moviments que pot fer.
 
 Té una subclasse per cada tipus de peça i una per representar una peça buida.
+Totes les subclasses utilitzen el seu propi moviment per calcular els possibles posicions.
+
+###King
+
+Classe que representa la peça Rey.
+
+###Pawn
+
+Classe que representa la peça Peo
+.
+###Queen
+
+Classe que representa la peça Reina.
+
+###Rock
+
+Classe que representa la peça Torre.
+
+###Bishop
+
+Classe que representa la peça Alfil.
+
+###nullPiece
+
+Classe que representa una peça buida.
+
+###Knight
+
+Classe que representa la peça Cavall
+
+##CtrlDomainCreator
+
+Controladora que s'encarrega de crear instancies 
+
+##CtrlDomainGame
+
+Controladora que maneja el Game
+
+##chessException
+
+Classe derivada d'Exception la que utilitzem per llançar les nostres propies excepcions personalitzades
