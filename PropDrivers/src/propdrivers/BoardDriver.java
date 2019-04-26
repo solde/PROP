@@ -175,7 +175,7 @@ public class BoardDriver {
                     String mate_fen = "7k/R7/6Q1/8/8/8/8/3K4";
                     B = new Board(mate_fen);
                     printBoard(B);
-                    if(B.isCheckMate(false)) System.out.println("C'murio");
+                    if(B.isCheckMate(true)) System.out.println("C'murio");
                     else System.out.println("Es dios y no muere");
                     break;
                     
