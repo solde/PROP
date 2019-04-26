@@ -39,11 +39,11 @@ public class AICompetitionDriver {
         System.out.println("The name:");
         String na = sc.nextLine();
 
-        System.out.println("The difficulty:");
-        int dif = sc.nextInt();
-
         System.out.println("N turns to checkmate:");
         int turns = sc.nextInt();
+
+        System.out.println("The difficulty:N turns to checkmate:");
+        int dif = sc.nextInt();
 
         //System.out.println("The theme:");
         //String them = sc.nextLine();
