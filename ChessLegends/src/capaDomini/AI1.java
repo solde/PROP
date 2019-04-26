@@ -188,7 +188,7 @@ public class AI1 extends Player {
                ArrayList<int[]> moves = deepEvaluate(bo, color);
                int newAlpha = alpha;
                for (int i = 0; i < moves.size(); ++i){
-                   System.out.println(bo.getFEN_code());
+                   //System.out.println(bo.getFEN_code());
                    Board successorBoard = new Board(bo, true);
                    int[] aux= moves.get(i);
                    try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
