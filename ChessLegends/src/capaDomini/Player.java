@@ -163,4 +163,18 @@ public abstract class Player {
         double new_elo = (OP_rating + (400.0 * ((double) wins + (double) loses))) / ((double) wins + (double) loses);
         this.ELO = new_elo;
     }
+    
+    public String getPlayerInfo(){
+        String ret = "";
+        
+        ret = ret.concat(this.id);
+        ret = ret.concat(" ");
+        ret = ret.concat(String.valueOf(ELO));
+        ret = ret.concat(" ");
+        ret = ret.concat(String.valueOf(wins));
+        ret = ret.concat(" ");
+        ret = ret.concat(String.valueOf(loses));
+        
+        return ret;
+    }
 }

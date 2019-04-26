@@ -37,6 +37,7 @@ public class CtrlDomainCreator {
      * @param X
      * @param Y
      * @param Type
+     * @param color
      */
     public void modifyBoardCell(int X, int Y, int Type, boolean color){
         B.addPieceToBoard(X, Y, Type, color);
@@ -59,12 +60,6 @@ public class CtrlDomainCreator {
             System.out.println("Unexpected Error");
         }
         P = new Problem(fenCode, Name, N_mov, Theme, atk, first_turn);
-        /*if(P.verify()){
-            CD.storeProblemVerifyed( P.getProblemInfo() );
-        }
-        else{
-            CD.storeProblemNotVerifyed( P.getProblemInfo() )
-        }*/
     }
     
     /**
@@ -73,7 +68,7 @@ public class CtrlDomainCreator {
      * @param Password
      * @throws chessException
      */
-    public void createNewPlayerTest(String Name, String Password) throws chessException{
+    public void createNewPlayerTest(String Name, String Password){
         Pl = new Human(Name, Password, 0, 0, 1000, 0);
     }
     
@@ -83,5 +78,13 @@ public class CtrlDomainCreator {
     
     public void saveProblemAsCopy(String newName){
         String newFen = B.toString();
+    }
+    
+    public String getPlayerInfo(){
+        return P1.getPlayerInfo();
+    }
+    
+    public String getProblemInfo(){
+        return P.getProblemInfo();
     }
 }
