@@ -23,7 +23,26 @@ public class AI1 extends Player {
         
     }
     
-
+    /**
+     *
+     * printBoard: print a board on the standard output
+     * 
+     * @param B
+     * 
+    */
+    public static void printBoard(Board B){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!B.getPieceAt(x, y).isColor() && B.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + B.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
     
     /**
      * makeMove: moves the ideal piece on a given board 
@@ -66,6 +85,7 @@ public class AI1 extends Player {
                                         System.out.println("Oops.");
                                         System.out.println("Source: "+ mov[0] + " " + mov[1]);
                                         System.out.println("Destination: "+ mov[2] + " " + mov[3]);
+                                        printBoard(altBoard);
                                         throw new chessException(exc.getMessage());
                                     }
 
@@ -79,6 +99,7 @@ public class AI1 extends Player {
 		}
 		//initializes bestMoveScore to compare
                 
+                if (possibleBoards.size() == 0) printBoard(b);
                 bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); //1 is the depth, explained in evaluate position "header"
 		moveScore.add(bestMoveScore);
 		//call evaluateposition on each move
@@ -189,6 +210,8 @@ public class AI1 extends Player {
                  System.out.println("Ooops. Move tried:");
                  System.out.println(aux[0]+" "+ aux[1]);
                  System.out.println(aux[2]+" "+ aux[3]);
+                 System.out.println("the board was:");
+                 printBoard(successorBoard);
                  if (especulativeTurn) System.out.println("beta situation");
                  else System.out.println("alpha situation");
                  throw new chessException(e.getMessage());
@@ -211,6 +234,8 @@ public class AI1 extends Player {
                  System.out.println("Ooops. Move tried:");
                  System.out.println(aux[0]+" "+ aux[1]);
                  System.out.println(aux[2]+" "+ aux[3]);
+                 System.out.println("the board was:");
+                 printBoard(successorBoard);
                  if (especulativeTurn) System.out.println("beta situation");
                  else System.out.println("alpha situation");
                  throw new chessException(e.getMessage());
@@ -238,11 +263,11 @@ public class AI1 extends Player {
                             for(int j=0; j<8; j++){
                                     if(b.getPieceAt(i, j).getTypeOfPiece() != -1){
                                         Piece piece = b.getPieceAt(i,j);
-                                            if(piece.isColor() == color){ //true es blanc
+                                            if(piece.isColor() == color){ //true es blanc perqu� som racistes
                                                     attackScore += piece.getValue();
                                             }
 
-                                            else { //fals es negre
+                                            else { //fals es negre, perque aixi hauria de ser la seva exist�ncia
                                                     defendScore += piece.getValue();
                                             }
                                     }

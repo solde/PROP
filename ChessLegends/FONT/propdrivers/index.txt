@@ -1,0 +1,16 @@
+Directori amb les implementacions dels drivers de les classes del projecte
+
+AICompetitionDriver
+BishopDriver
+BoardDriver
+CtrlDomainCreator
+CtrlDomainGame
+GameDriver
+HumanDriver
+KingDriver
+KnightDriver
+nullPieceDriver
+PawnDriver
+ProblemDriver
+QueenDriver
+RookDriver

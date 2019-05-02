@@ -1,0 +1,7 @@
+Documentacio del projecte
+
+casos_Us.png
+ClassSpecification.pdf
+DocAPaper.pdf
+UML_Diagram.png
+UseCaseEsp.pdf

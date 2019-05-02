@@ -235,6 +235,8 @@ public class Game extends GameAbs {
                      System.out.println("");
                 }
                 
+                printBoard(this.B);
+                
                 System.out.println("Enter your x source");
                 int sX = sc.nextInt();
                 
@@ -263,6 +265,8 @@ public class Game extends GameAbs {
                     System.out.println(aux[0] + " " + aux[1]);
                     System.out.println(aux[2] + " " + aux[3]);
                 }
+                
+                printBoard(this.B);
                 
                 System.out.println("Enter your x source");
                 int sX = sc.nextInt();

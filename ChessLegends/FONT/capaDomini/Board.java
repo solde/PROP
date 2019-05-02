@@ -274,6 +274,7 @@ public class Board {
         }
         if(need_throw) {
             System.out.print(this.getFEN_code());
+            printBoard();
             throw new chessException("Invalid FEN code");
         }
     }
@@ -480,6 +481,22 @@ public class Board {
     public Piece getPieceAt(int x, int y){
         return chessBoard[x][y];
     }
-
+    
+    /**
+     * printBoard: print a board on the standard output
+     */
+    public void printBoard(/*Board B*/){
+        System.out.println("   0  1  2  3  4  5  6  7");
+        for(int x = 0; x < 8; ++x){
+            System.out.print(x + "|");
+            for(int y = 0; y < 8; ++y){
+                if(this.getPieceAt(x, y).isColor() && this.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print(" " + this.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else if(!this.getPieceAt(x, y).isColor() && this.getPieceAt(x, y).getTypeOfPiece() != -1)System.out.print("-" + this.getPieceAt(x, y).getTypeOfPiece() + "|");
+                else System.out.print("  " + "|");
+            }
+            System.out.println(" ");
+        }
+        System.out.println(" ");
+    }
     
 }
