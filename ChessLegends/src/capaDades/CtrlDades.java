@@ -27,52 +27,46 @@ import static java.lang.System.in;
 //--THIS WHOLE CLASS IS WORK IN PROGRESS AND IS NOT EXPECTED TO WORK OR BE FINAL--
 
 public class CtrlDades {
-    //Move this to ctrl ficheros
-
-    public int autenticateFICH(String pass, Human h) throws chessException, FileNotFoundException, IOException {
-        try {
-            FileInputStream fs = new FileInputStream("Passwords.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(fs));
-            for (int i = 0; i <= h.getLineID(); ++i) { //Read all the lines untill the correct line is readed.
-                br.readLine();
-            }
-            String truePass = br.readLine();
-            in.close();
-            if (pass.isEmpty()) {
-                throw new chessException("No password introduced");
-            } else if (!pass.equals(truePass)) {
-                throw new chessException("Bad password");
-            }
-        } catch (FileNotFoundException e) {
-            throw new chessException("Fichero De Contraseñas No Encontrado");
-        }
-        return 0;
-
+    private ProblemManager PM;
+    private PlayerManager PlM;
+    private StatisticsManager SM;
+    
+    public CtrlDades() throws IOException{
+        PM = new ProblemManager();
+        PlM = new PlayerManager();
+        SM = new StatisticsManager();
     }
-
-    public void setPasswordFICH(String pass, Human h) throws FileNotFoundException, chessException, IOException {
-
-        int linenum = h.getLineID();
-        BufferedReader br = null;
-        FileReader reader = null;
-        try {
-            reader = new FileReader("password.txt");
-            br = new BufferedReader(reader);
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("passtemp.txt")));
-            String line;
-            int i = 0;
-            while ((line = br.readLine()) != null) {
-                if (linenum == i) {
-                    line = pass;
-                }
-                writer.println(line);
-            }
-            File password = new File("password.txt");
-            password.delete(); // remove the old file
-            new File("passtemp.txt").renameTo(password); // Rename temp file
-        } catch (FileNotFoundException e) {
-            throw new chessException("Fichero De Contraseñas No Encontrado");
-
+    
+    public void destructor() throws IOException{
+        PM.destructor();
+        PlM.destructor();
+        SM.destructor();
+    }
+    
+    public String getProblem(String id) throws IOException, FileNotFoundException, chessException{
+        return PM.loadProblem(id);
+    }
+    
+    public String getPlayer(String id, String password) throws IOException, FileNotFoundException, chessException{
+        return PlM.loadPlayer(id, password);
+    }
+    
+    public String getStatistics(String id) throws IOException, FileNotFoundException, chessException{
+        return SM.loadStatistics(id);
+    }
+    
+    public void storePlayer(String info) throws chessException{
+        int cont = 0, word_counter = 0;
+        String infoArray[] = info.split(" ");
+        if(infoArray.length > 7) throw new chessException("Too much info");
+        for(int i = 0; i < infoArray.length; ++i){
+           switch(i){
+                case 0:
+                   if(infoArray[i].length() < 4) throw new chessException("Username mush has more than 3 character");
+                   break;
+                case 1:
+                    if(Integer.ge)
+           }
         }
     }
 }

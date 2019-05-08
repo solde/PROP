@@ -17,12 +17,12 @@ import java.io.IOException;
  *
  * @author David Soldevila
  */
-public class ProblemManager {
-    
+public class PlayerManager {
+        
     private BufferedWriter writer;
     private FileReader fr;
     
-    public ProblemManager() throws IOException{
+    public PlayerManager() throws IOException{
         writer = new BufferedWriter(new FileWriter("problemsP.txt", true));
         fr = new FileReader("problemsP.txt");
     }
@@ -35,27 +35,28 @@ public class ProblemManager {
         fr.close();
     }
     
-    public void storeProblem(String info) throws IOException, chessException{
-        String id = new String();
-        int cont = 0;
-        while(cont != ' '){
-            id = id.concat(String.valueOf(info.charAt(cont)));
-        }
-        if(existProblem(id)) throw new chessException("Problem already exists");
+    public void storePlayer(String info) throws IOException, chessException{
+        String infoArray[] = info.split(" ");
+        if(existPlayer(infoArray[0])) throw new chessException("Username already exists");
         writer.append(info);
-        StatisticsManager SM = new StatisticsManager();
-        if(!SM.existStatistics(id)){
-            SM.createStatistics(id);
-        }
     }
     
     private boolean isId(String str, String toFind){
         int cont = 0;
-        String result[] = str.split(" ");
-        return result[0].equals(toFind);
+        String result = new String();
+        while(str.charAt(cont) != ' '){
+            result = result.concat(String.valueOf(str.charAt(cont)));
+        }
+        return result.equals(toFind);
     }
     
-    public String loadProblem(String id) throws FileNotFoundException, IOException, chessException{
+    private boolean checkPassword(String str, String password){
+        // Password is the last word of the string, then we can use endsWith
+        // funciton to check if password is in the entry.
+        return str.endsWith(" " + password);
+    }
+    
+    public String loadPlayer(String id, String password) throws FileNotFoundException, IOException, chessException{
         BufferedReader br;
         br = new BufferedReader(fr);
         boolean find = false;
@@ -68,11 +69,12 @@ public class ProblemManager {
                 }
         }
         br.close();
-        if(!find) throw new chessException("No problem with id: " + id);
+        if(!find) throw new chessException("No player with user name: " + id);
+        if(!checkPassword(line, password)) throw new chessException("Wrong password");
         return line;
     }
     
-    public boolean existProblem(String id) throws IOException{
+    public boolean existPlayer(String id) throws IOException{
         BufferedReader br;
         br = new BufferedReader(fr);
         boolean find = false;
@@ -87,5 +89,4 @@ public class ProblemManager {
         br.close();
         return find;
     }
-    
 }
