@@ -89,4 +89,12 @@ public class PlayerManager {
         br.close();
         return find;
     }
+    
+    public void changePassword(String id, String oldPassword, String newPassword){
+        
+    }
+    
+    public void createPlayer(){
+        
+    }
 }
