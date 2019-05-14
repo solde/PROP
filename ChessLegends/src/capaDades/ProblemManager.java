@@ -8,6 +8,7 @@ package capaDades;
 import Exception.chessException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,8 +24,7 @@ public class ProblemManager {
     private FileReader fr;
     
     public ProblemManager() throws IOException{
-        writer = new BufferedWriter(new FileWriter("problemsP.txt", true));
-        fr = new FileReader("problemsP.txt");
+
     }
     
     /*
@@ -36,17 +36,12 @@ public class ProblemManager {
     }
     
     public void storeProblem(String info) throws IOException, chessException{
-        String id = new String();
-        int cont = 0;
-        while(cont != ' '){
-            id = id.concat(String.valueOf(info.charAt(cont)));
-        }
-        if(existProblem(id)) throw new chessException("Problem already exists");
+        writer = new BufferedWriter(new FileWriter("Problems.txt", true));
+        String infoArray[] = info.split(" ");
+        if(existProblem(infoArray[0])) throw new chessException("Problem already exists");
         writer.append(info);
-        StatisticsManager SM = new StatisticsManager();
-        if(!SM.existStatistics(id)){
-            SM.createStatistics(id);
-        }
+        writer.append('\n');
+        writer.close();
     }
     
     private boolean isId(String str, String toFind){
@@ -57,35 +52,68 @@ public class ProblemManager {
     
     public String loadProblem(String id) throws FileNotFoundException, IOException, chessException{
         BufferedReader br;
+        fr = new FileReader("Problem.txt");
         br = new BufferedReader(fr);
         boolean find = false;
         String line;
         while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 if(isId(line, id)){
                     find = true;
                     break;
                 }
-        }
+        }        
+        if(!find) throw new chessException("No problem with user name: " + id);
         br.close();
-        if(!find) throw new chessException("No problem with id: " + id);
+        fr.close();
         return line;
     }
     
     public boolean existProblem(String id) throws IOException{
         BufferedReader br;
+        fr = new FileReader("Problem.txt");
         br = new BufferedReader(fr);
         boolean find = false;
         String line;
         while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 if(isId(line, id)){
                     find = true;
                     break;
                 }
         }
         br.close();
+        fr.close();
         return find;
+    }
+    
+    public void eraseProblem(String id) throws IOException, chessException{
+        BufferedWriter writerAux;
+        writerAux = new BufferedWriter(new FileWriter("ProblemAux.txt", true));
+        BufferedReader br;
+        fr = new FileReader("Problem.txt");
+        String line;
+        br = new BufferedReader(fr);
+        while ((line = br.readLine()) != null) {
+            if(!isId(line, id)){
+                writerAux.append(line);
+                writerAux.append('\n');
+            }
+        }
+        br.close();
+        fr.close();
+        writerAux.close();
+        File file = new File("./Problem.txt");
+        if(!file.delete()) throw new chessException("WTF");
+        writer = new BufferedWriter(new FileWriter("Problem.txt", true));
+        fr = new FileReader("ProblemAux.txt");
+        br = new BufferedReader(fr);
+        while((line = br.readLine()) != null){
+            writer.append(line+'\n');
+        }
+        file = new File("./ProblemAux.txt");
+        if(!file.delete()) throw new chessException("WTF");
+        br.close();
+        fr.close();
+        writer.close();
     }
     
 }
