@@ -18,18 +18,17 @@ public class CtrlPresentacio {
     private CtrlDomainGame cg;
     private CtrlDomainCreator cc;
     //private CtrlDades cd;
-    private LoginUI lui;
-    private ProblemSelectorUI psui;
+    private BaseUI bui;
 
     public CtrlPresentacio(CtrlDomainGame g) {
         this.cg = g;
-        lui = new LoginUI(this);
-        psui = new ProblemSelectorUI(this);
+
+        bui = new BaseUI(this);
     }
 
     public CtrlPresentacio() {
-        lui = new LoginUI(this);
-        psui = new ProblemSelectorUI(this);
+
+        bui = new BaseUI(this);
     }
 
     public void createPlayer(String id, String pass) {
@@ -38,16 +37,12 @@ public class CtrlPresentacio {
 
     }
 
+    public void view() {
+        bui.view();
+    }
+
     public boolean passwordsMatch(String p, String x) {
         return p.equals(x);
-    }
-
-    void setVisiblePS(boolean b) {
-        psui.setVisible(b);
-    }
-
-    void setVisibleLOG(boolean b) {
-        lui.setVisible(b);
     }
 
 }
