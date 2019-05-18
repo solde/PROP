@@ -5,6 +5,9 @@
  */
 package capaDomini;
 import Exception.chessException;
+import capaDades.CtrlDades;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +17,8 @@ import java.util.ArrayList;
 public class CtrlDomainGame {
     private GameAbs G;
     private int movCounter;
+    
+    private CtrlDades CD;
         
     /**
      * Basic constructor
@@ -35,37 +40,78 @@ public class CtrlDomainGame {
      * @param first_turn
      * @throws chessException
      */
-    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
+    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) throws chessException{
         //(fenCode, Name, diff, N_mov, Theme, atk)
-        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
+    }
+    
+    public void loadProblem(String id) throws IOException, FileNotFoundException, chessException{
+        String problemInfo = CD.getProblem(id);
+        String aProblemInfo[] = problemInfo.split(" ");
+        if(aProblemInfo.length != 8) throw new chessException("Unexpected error, failed while loading problem");
+
+        String fenCode = aProblemInfo[1];
+        String Name = aProblemInfo[0];
+        String Theme = aProblemInfo[2].replace("_", " ");
+        int diff = Integer.parseInt(aProblemInfo[3]);
+        int N_mov = Integer.parseInt(aProblemInfo[4]);
+        boolean atk = Boolean.parseBoolean(aProblemInfo[5]);
+        boolean first_trun = Boolean.parseBoolean(aProblemInfo[6]);
+        boolean verified = Boolean.parseBoolean(aProblemInfo[7]);
+        
+        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_trun, verified);
     }
 
     /**
      * Set the player 1 to play a game with the desired parameters
      *
-     * @param playerId
-     * @param playerPassword
-     * @param wins
-     * @param loses
-     * @param ELO
-     * @param OP_rating
+     * @param username
+     * @param password
+     * @throws java.io.FileNotFoundException
+     * @throws Exception.chessException
      */
-    public void authPlayer1Test(String playerId, String playerPassword, int wins, int loses, int ELO, int OP_rating){
-        G.setPlayer1(playerId, wins, loses, ELO, OP_rating);
+    public void authPlayer1(String username, String password) throws IOException, FileNotFoundException, chessException{
+        String playerInfo = CD.getPlayer(username, password);
+        String aPlayerInfo[] = playerInfo.split(" ");
+            /*protected String id;
+            protected int wins;
+            protected int loses;
+            protected double ELO;
+            protected float OP_rating;*/
+        if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
+        String id = aPlayerInfo[0];
+        int wins = Integer.parseInt(aPlayerInfo[1]);
+        int loses = Integer.parseInt(aPlayerInfo[2]);
+        double ELO = Double.parseDouble(aPlayerInfo[3]);
+        double OP_rating = Double.parseDouble(aPlayerInfo[4]);
+        
+        G.setPlayer1(playerInfo, wins, loses, loses, wins);
     }
     
     /**
-     * Set the player 2 to play a game with the desired parameters
+     * Set the player 1 to play a game with the desired parameters
      *
-     * @param playerId
-     * @param playerPassword
-     * @param wins
-     * @param loses
-     * @param ELO
-     * @param OP_rating
+     * @param username
+     * @param password
+     * @throws java.io.FileNotFoundException
+     * @throws Exception.chessException
      */
-    public void authPlayer2Test(String playerId, String playerPassword, int wins, int loses, int ELO, int OP_rating){
-        G.setPlayer2(playerId, wins, loses, ELO, OP_rating);
+    public void authPlayer2(String username, String password) throws IOException, FileNotFoundException, chessException{
+        String playerInfo = CD.getPlayer(username, password);
+        String aPlayerInfo[] = playerInfo.split(" ");
+            /*protected String id;
+            protected int wins;
+            protected int loses;
+            protected double ELO;
+            protected float OP_rating;*/
+        if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
+        String id = aPlayerInfo[0];
+        int wins = Integer.parseInt(aPlayerInfo[1]);
+        int loses = Integer.parseInt(aPlayerInfo[2]);
+        double ELO = Double.parseDouble(aPlayerInfo[3]);
+        double OP_rating = Double.parseDouble(aPlayerInfo[4]);
+        
+        G.setPlayer2(playerInfo, wins, loses, loses, wins);
     }
     
     /**

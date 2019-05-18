@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -52,7 +53,7 @@ public class ProblemManager {
     
     public String loadProblem(String id) throws FileNotFoundException, IOException, chessException{
         BufferedReader br;
-        fr = new FileReader("Problem.txt");
+        fr = new FileReader("Problems.txt");
         br = new BufferedReader(fr);
         boolean find = false;
         String line;
@@ -70,7 +71,7 @@ public class ProblemManager {
     
     public boolean existProblem(String id) throws IOException{
         BufferedReader br;
-        fr = new FileReader("Problem.txt");
+        fr = new FileReader("Problems.txt");
         br = new BufferedReader(fr);
         boolean find = false;
         String line;
@@ -89,7 +90,7 @@ public class ProblemManager {
         BufferedWriter writerAux;
         writerAux = new BufferedWriter(new FileWriter("ProblemAux.txt", true));
         BufferedReader br;
-        fr = new FileReader("Problem.txt");
+        fr = new FileReader("Problems.txt");
         String line;
         br = new BufferedReader(fr);
         while ((line = br.readLine()) != null) {
@@ -101,19 +102,34 @@ public class ProblemManager {
         br.close();
         fr.close();
         writerAux.close();
-        File file = new File("./Problem.txt");
+        File file = new File("./Problems.txt");
         if(!file.delete()) throw new chessException("WTF");
-        writer = new BufferedWriter(new FileWriter("Problem.txt", true));
+        writer = new BufferedWriter(new FileWriter("Problems.txt", true));
         fr = new FileReader("ProblemAux.txt");
         br = new BufferedReader(fr);
         while((line = br.readLine()) != null){
             writer.append(line+'\n');
         }
         file = new File("./ProblemAux.txt");
-        if(!file.delete()) throw new chessException("WTF");
         br.close();
         fr.close();
         writer.close();
+        if(!file.delete()) throw new chessException("WTF");
     }
     
+    public ArrayList<String> listProblems() throws FileNotFoundException, IOException{
+        BufferedReader br;
+        fr = new FileReader("Problems.txt");
+        br = new BufferedReader(fr);
+        boolean find = false;
+        ArrayList<String> ret = new ArrayList<String>();
+        String line;
+        while ((line = br.readLine()) != null) {
+            String aLine[] = line.split(" ");
+            ret.add(aLine[0]);
+        }        
+        br.close();
+        fr.close();
+        return ret; 
+    }
 }

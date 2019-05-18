@@ -6,4 +6,3 @@ k p uy 3 9 true true true
 k p uy 3 9 true true true
 k p uy 3 9 true true true
 k p uy 3 9 true true true
-t r t 1 1 true false false

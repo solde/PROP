@@ -25,6 +25,7 @@ public class Problem {
     private int N_mov;
     private boolean atk; //True = white, False = black
     private boolean first_turn;
+    private boolean verified;
     
     private ArrayList<Pair<Long, String>> Ranking;
 
@@ -47,7 +48,7 @@ public class Problem {
      * @param atk
      * @param first_turn
      */
-    public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) {
+    public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) {
         Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
         this.Name = Name;
@@ -56,6 +57,7 @@ public class Problem {
         this.Theme = Theme;
         this.atk = atk;
         this.first_turn = first_turn;
+        this.verified = verified;
     }
     
     /**
@@ -76,6 +78,7 @@ public class Problem {
         this.Theme = Theme;
         this.atk = atk;
         this.first_turn = first_turn;
+        this.verified = false;
         calculateDiff();
     }
 
@@ -131,6 +134,14 @@ public class Problem {
     
     public void setFirstTurn(boolean firstTurn){
         this.first_turn = firstTurn;
+    }
+    
+    public void setVerified(boolean v){
+        this.verified = v;
+    }
+    
+    public boolean isVerified(){
+        return this.verified;
     }
         
     /**

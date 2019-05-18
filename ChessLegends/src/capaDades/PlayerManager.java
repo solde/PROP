@@ -125,9 +125,9 @@ public class PlayerManager {
             writer.append(line+'\n');
         }
         file = new File("./PlayersAux.txt");
-        if(!file.delete()) throw new chessException("WTF");
         br.close();
         fr.close();
         writer.close();
+        if(!file.delete()) throw new chessException("WTF");
     }
 }

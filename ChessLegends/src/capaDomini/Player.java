@@ -12,28 +12,7 @@ public abstract class Player {
     protected int wins;
     protected int loses;
     protected double ELO;
-    protected float OP_rating;
-    protected int lineID; //linea del ficher on esta la password
-
-    /**
-     * Gets the lineID of player -This function will be used when the databases
-     * are inplemented-
-     *
-     * @return int
-     */
-    public int getLineID() {
-        return lineID;
-    }
-
-    /**
-     * Sets lineID of plyer -This function will be used when databases are
-     * inplemented-
-     *
-     * @param lineID
-     */
-    public void setLineID(int lineID) {
-        this.lineID = lineID;
-    }
+    protected double OP_rating;
 
     /**
      * Retruns the id on player
@@ -93,14 +72,14 @@ public abstract class Player {
      * increments the loses of player
      */
     public void incLoses() {
-        this.loses = this.loses + 1;
+        this.loses += 1;
     }
 
     /**
      * increments the wins on plalyer
      */
     public void incWinds() {
-        this.wins = this.wins + 1;
+        this.wins += 1;
     }
 
     /**
@@ -126,7 +105,7 @@ public abstract class Player {
      *
      * @return float
      */
-    public float getOP_rating() {
+    public double getOP_rating() {
         return OP_rating;
     }
 
@@ -151,8 +130,8 @@ public abstract class Player {
      *
      * @param OP_rating
      */
-    public void incOP_rating(float OP_rating) {
-        this.OP_rating = this.OP_rating + OP_rating;
+    public void incOP_rating(double OP_rating) {
+        this.OP_rating += OP_rating;
     }
 
     /**
@@ -160,7 +139,7 @@ public abstract class Player {
      * the Oponents elo
      */
     public void calcualteELO() {
-        double new_elo = (OP_rating + (400.0 * ((double) wins + (double) loses))) / ((double) wins + (double) loses);
+        double new_elo = (OP_rating + (400.0 * (wins + (double) loses))) / ((double) wins + (double) loses);
         this.ELO = new_elo;
     }
 

@@ -64,8 +64,8 @@ public abstract class GameAbs {
      * @param first_turn
      * @throws chessException
      */
-    public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
-        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+    public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) throws chessException{
+        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
         B = new Board(fenCode);
     }
     
@@ -78,7 +78,7 @@ public abstract class GameAbs {
      * @param ELO
      * @param OP_rating
      */
-    public void setPlayer1(String playerId, int wins, int loses, int ELO, int OP_rating){
+    public void setPlayer1(String playerId, int wins, int loses, double ELO, double OP_rating){
         if(playerId.equalsIgnoreCase("AI1")){
             P1 = new AI1();
         }

@@ -8,6 +8,7 @@ package capaDades;
 import Exception.chessException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,59 +29,13 @@ public class CtrlDades {
     }
 
     public String getPlayer(String id, String password) throws IOException, FileNotFoundException, chessException{
-        return PlM.loadPlayer(id, password);
+        String playerInfo = PlM.loadPlayer(id, password);
+        playerInfo = playerInfo.replaceFirst(password + " ", "");
+        return playerInfo;
     }
     
-    private void checkPlayerInfo(String info) throws chessException{
-        int cont = 0, word_counter = 0;
-        String infoArray[] = info.split(" ");
-        for(int i = 0; i < infoArray.length; ++i){
-           switch(i){
-                case 0:
-                   if(infoArray[i].length() <= 3) throw new chessException("Username mush has more than 3 character");
-                   break;
-                case 1:
-                    try{
-                        Integer.parseInt(infoArray[i]);
-                    }
-                    catch(Exception e){
-                        throw new chessException("Wins must be a number");
-                    }
-                    break;
-                case 2:
-                    try{
-                        Integer.parseInt(infoArray[i]);
-                    }
-                    catch(Exception e){
-                        throw new chessException("Loses must be a number");
-                    }
-                    break;
-                case 3:
-                    try{
-                        Integer.parseInt(infoArray[i]);
-                    }
-                    catch(Exception e){
-                        throw new chessException("ELO must be a number");
-                    }
-                    break;
-                case 4:
-                    try{
-                        Integer.parseInt(infoArray[i]);
-                    }
-                    catch(Exception e){
-                        throw new chessException("OP_rating must be a number");
-                    }
-                case 5:
-                    if(infoArray[i].length() <= 3) throw new chessException("Username mush has more than 3 character");
-                    break;
-                default:
-                    throw new chessException("Too much info");
-           }
-        }
-    }
     public void createPlayer(String id, String password) throws IOException, chessException{
         String info = id + " " + 0 + " " + 0 + " " + "1000.0" + " " + 0 + " " + password + " ";
-        checkPlayerInfo(info);
         PlM.storePlayer(info);
     }
     
@@ -128,6 +83,7 @@ public class CtrlDades {
         p = p.concat(String.valueOf(first_turn) + " ");
         p = p.concat(String.valueOf(verified));
         PM.storeProblem(p);
+        SM.createStatistics(Name);
     }
     
     public void eraseProblem(String Name) throws IOException, chessException, chessException, chessException{
@@ -137,6 +93,10 @@ public class CtrlDades {
     
     public String getStatistics(String id) throws IOException, FileNotFoundException, chessException{
         return SM.loadStatistics(id);
+    }
+    
+    public ArrayList<String> listProblmes() throws IOException{
+        return PM.listProblems();
     }
     
     public void eraseStatistics(String id) throws IOException, chessException{

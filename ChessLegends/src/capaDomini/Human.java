@@ -46,8 +46,6 @@ public class Human extends Player {
         this.loses = 0;
         this.ELO = 1000;
         this.OP_rating = 0;
-        lineID = 0;
-        setPassword(null);
 
         password = null;
     }
@@ -62,14 +60,12 @@ public class Human extends Player {
      * @param ELO
      * @param OP_rating
      */
-    public Human(String id, String pass, int wins, int loses, float ELO, float OP_rating) {
+    public Human(String id, String pass, int wins, int loses, double ELO, double OP_rating) {
         this.id = id;
         this.wins = wins;
         this.loses = loses;
         this.ELO = ELO;
         this.OP_rating = OP_rating;
-        lineID = 3; //SUPERTEMP
-        setPassword(pass);
     }
 
     /**
@@ -81,8 +77,7 @@ public class Human extends Player {
      * @param ELO
      * @param OP_rating
      */
-    public Human(String id, int wins, int loses, float ELO, float OP_rating) {
-
+    public Human(String id, int wins, int loses, double ELO, double OP_rating) {
         this.id = id;
         this.wins = wins;
         this.loses = loses;

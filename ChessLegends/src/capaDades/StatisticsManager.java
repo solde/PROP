@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +23,7 @@ public class StatisticsManager {
     private BufferedWriter writer;
     private FileReader fr;
     
-    public StatisticsManager() throws IOException{
+    public StatisticsManager(){
     }
 
     private boolean isId(String str, String toFind){
@@ -79,11 +80,29 @@ public class StatisticsManager {
             }
         }
         String aInfo[] = info.split(" ");
+        String aux = new String();
+        aux = aux.concat(id + " ");
+        boolean added = false;
         //Afegir o crear (falta)
+        for(int i = 1; i < aInfo.length; i += 2){
+            if(!added && (Integer.parseInt(time) >= Integer.parseInt(aInfo[i+1]))){
+                aux = aux.concat(playerName + " ");
+                aux = aux.concat(time + " ");
+                added = true;
+            }
+            aux = aux.concat(aInfo[i]);
+            aux = aux.concat(aInfo[i+1]);
+        }
+        eraseStatistics(id);
+        writer = new BufferedWriter(new FileWriter("Stats.txt", true));
+        writer.append(aux);
+        writer.close();
     }
     
     protected void createStatistics(String id) throws IOException{
+        writer = new BufferedWriter(new FileWriter("Stats.txt", true));
         writer.append(id + " ");
+        writer.close();
     }
     
     public void eraseStatistics(String id) throws IOException, chessException{
@@ -111,9 +130,9 @@ public class StatisticsManager {
             writer.append(line+'\n');
         }
         file = new File("./StatsAux.txt");
-        if(!file.delete()) throw new chessException("WTF");
         br.close();
         fr.close();
         writer.close();
+        if(!file.delete()) throw new chessException("WTF");
     }
 }
