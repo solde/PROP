@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Familia
+ * @author Daniel Palomo
  */
 public class LoginUI extends javax.swing.JPanel {
 
@@ -226,7 +226,7 @@ public class LoginUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        CtrlPresentacio p = b.getP();
+
 
         jLabel8.setForeground(Color.gray);
         jLabel9.setForeground(Color.gray);
@@ -239,7 +239,7 @@ public class LoginUI extends javax.swing.JPanel {
             jLabel9.setForeground(Color.red);
         }*/
 
-        if (!p.passwordsMatch(pass1, pass2)) {
+        if (!b.passwordsMatch(pass1, pass2)) {
             JOptionPane.showMessageDialog(null, "Passwords don`t match");
             jLabel8.setForeground(Color.red);
             //code for when the passwords don't match
@@ -247,7 +247,7 @@ public class LoginUI extends javax.swing.JPanel {
             jPasswordField3.setText("");
             return;
         }
-        p.createPlayer(id, pass1);
+        b.createPlayer(id, pass1);
         b.changeProblem();
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -257,9 +257,11 @@ public class LoginUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
         String pass1 = new String(jPasswordField1.getPassword());
         String id = jTextField1.getText();
         b.name = id;
+        
         //now you will enter with anything but autenticate is needed
         b.changeProblem();
     }//GEN-LAST:event_jButton2ActionPerformed

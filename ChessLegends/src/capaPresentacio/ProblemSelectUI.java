@@ -200,6 +200,7 @@ public class ProblemSelectUI extends javax.swing.JPanel {
         //load Problem
         String id = jList2.getSelectedValue();
         b.loadProblem(id);
+        b.changeBoardUI();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
