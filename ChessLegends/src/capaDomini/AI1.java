@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.util.Pair;
+import java.math.*;
 
 /**
  *
@@ -36,51 +37,36 @@ public class AI1 extends Player {
      */
     public static Board makeMove(Board b, boolean color, int depth) throws chessException {   
         
-		int[] bestMove; //keeps track of the best possible move AI has available
-		int bestMoveScore; //score of that best move
 		
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
-		ArrayList<int[]> moves = new ArrayList<>(); //keeps track of all possible moves 
-                ArrayList<Integer> moveScore = new ArrayList<>();
-		
-                for(int i = 0; i<8; i++){
-			for(int j=0; j<8; j++){
-                            Piece piece = b.getPieceAt(i,j);
-                            if(piece.getTypeOfPiece() != -1 && (piece.isColor() == color)){
+                ArrayList<int[]> moves = new ArrayList<>();
+                
+                
+                moves = deepEvaluate(b, color);
+                
+                for (int[] mov : moves) {
+                    Board altBoard = new Board(b, true);
+                    try{altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
+                    }
+                    catch(chessException exc){
+                        System.out.println("Oops.");
+                        System.out.println("Source: "+ mov[0] + " " + mov[1]);
+                        System.out.println("Destination: "+ mov[2] + " " + mov[3]);
+                        throw new chessException(exc.getMessage());
+                    }
 
-                                ArrayList<Pair<Integer, Integer>> possMovs = piece.get_poss_mov(b);
-                                for(int x = 0; x < possMovs.size(); ++x){
-                                    int[] mov = new int[4];
-                                    mov[0] = piece.getX();
-                                    mov[1] = piece.getY();
-                                    mov[2] = possMovs.get(x).getKey();
-                                    mov[3] = possMovs.get(x).getValue();
-
-
-                                    moves.add(mov); //Adds the possible movement to a poss. movs. list
-                                    Board altBoard = new Board(b, true); //initialices an alternative space to evaluate
-
-                                    try{altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
-                                    }
-                                    catch(chessException exc){
-                                        System.out.println("Oops.");
-                                        System.out.println("Source: "+ mov[0] + " " + mov[1]);
-                                        System.out.println("Destination: "+ mov[2] + " " + mov[3]);
-                                        throw new chessException(exc.getMessage());
-                                    }
-
-                                    possibleBoards.add(altBoard); //adds the alternative board to the possible boards list
-                                }
-                                    
-                            }
-                            else {
-                            }
-                        }
-		}
+                    possibleBoards.add(altBoard);
+                }
+                
+                 
+		int bestMoveScore; //score of that best move
+		ArrayList<Integer> moveScore = new ArrayList<>();
+                
 		//initializes bestMoveScore to compare
                 
                 bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); //1 is the depth, explained in evaluate position "header"
 		moveScore.add(bestMoveScore);
+                
 		//call evaluateposition on each move
 		//keep track of the move with the best score
 		
@@ -88,13 +74,13 @@ public class AI1 extends Player {
                 
                 for(int i = 1; i<possibleBoards.size(); i++){
   
-                            int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); 
-                            moveScore.add(j);
-                            if(j >= bestMoveScore){
-                                    bestMoveScore = j;
-                            }
+                    int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, depth, !color, true, color); 
+                    moveScore.add(j);
+                    bestMoveScore = Math.max(j, bestMoveScore);
 
 		}
+                
+                
                 ArrayList<int[]> bestMoves = new ArrayList<>(); //keeps track of all possible moves 
                 
                 for (int i = 0; i < moveScore.size(); ++i){
@@ -103,6 +89,9 @@ public class AI1 extends Player {
                         
                     }
                 }
+                
+                
+                int[] bestMove; //We choose a move randomly from the best moves pool
                 
                 Random generator = new Random();
                 int index = generator.nextInt(bestMoves.size());
@@ -114,45 +103,7 @@ public class AI1 extends Player {
 		b.movePiece(bestMove[0], bestMove[1] , bestMove[2], bestMove[3], color); //theorically now is well implemented, based on the best move (random or not)
                 return b;
 	}
-	
-    
-    
-    /**
-     *
-     * deepEvaluate: calculates all possible movements of an any board given
-     * 
-     * @param bo
-     * @param color
-     * @return ArrayList<>
-     */
-    private static ArrayList <int[]> deepEvaluate( Board b, boolean color){
-            ArrayList<int[]> moves = new ArrayList<>();
-            for(int i = 0; i<8; i++){
-                    for(int j=0; j<8; j++){
-                            if(b.getPieceAt(i,j).getTypeOfPiece() != -1){ 
-                                if(b.getPieceAt(i,j).isColor() == color){
-                                    Piece piece = b.getPieceAt(i,j);
-                                    ArrayList<Pair<Integer, Integer>> llista;
-                                    llista = piece.get_poss_mov(b);
-                                    
-                                    for (int n = 0; n < llista.size(); ++n){
-                                        int[] mov = new int[4];
-                                        mov[0] = piece.getX();
-                                        mov[1] = piece.getY();
-                                        mov[2] = llista.get(n).getKey();
-                                        mov[3] = llista.get(n).getValue();
-                                        moves.add(mov); 
-                                       
 
-                                    }
-                                }
-                            }
-                    }
-            }
-            return moves;
-        }
-        
-	
     /**
      *
      * Evaluate position: returns best score of any board given
@@ -248,8 +199,44 @@ public class AI1 extends Player {
                                     }
                             }
                     }
-                    return attackScore-defendScore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+                    return attackScore-defendScore; 
                 }
 	
 
+
+
+/**
+     *
+     * deepEvaluate: calculates all possible movements of an any board given
+     * 
+     * @param bo
+     * @param color
+     * @return ArrayList<>
+     */
+    private static ArrayList <int[]> deepEvaluate( Board b, boolean color){
+            ArrayList<int[]> moves = new ArrayList<>();
+            for(int i = 0; i<8; i++){
+                    for(int j=0; j<8; j++){
+                            if(b.getPieceAt(i,j).getTypeOfPiece() != -1){ 
+                                if(b.getPieceAt(i,j).isColor() == color){
+                                    Piece piece = b.getPieceAt(i,j);
+                                    ArrayList<Pair<Integer, Integer>> llista;
+                                    llista = piece.get_poss_mov(b);
+                                    
+                                    for (int n = 0; n < llista.size(); ++n){
+                                        int[] mov = new int[4];
+                                        mov[0] = piece.getX();
+                                        mov[1] = piece.getY();
+                                        mov[2] = llista.get(n).getKey();
+                                        mov[3] = llista.get(n).getValue();
+                                        moves.add(mov); 
+                                       
+
+                                    }
+                                }
+                            }
+                    }
+            }
+            return moves;
+        }
 }

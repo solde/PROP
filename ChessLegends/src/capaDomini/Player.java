@@ -13,7 +13,16 @@ public abstract class Player {
     protected int loses;
     protected double ELO;
     protected double OP_rating;
+    private String Password;
 
+    public void setPassword(String Password){
+        this.Password = Password; 
+    }
+    
+    public String getPassword(){
+        return this.Password;
+    }
+    
     /**
      * Retruns the id on player
      *

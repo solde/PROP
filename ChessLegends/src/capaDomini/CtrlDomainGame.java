@@ -9,6 +9,7 @@ import capaDades.CtrlDades;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.util.Pair;
 
 /**
  *
@@ -60,6 +61,20 @@ public class CtrlDomainGame {
         boolean verified = Boolean.parseBoolean(aProblemInfo[7]);
         
         G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_trun, verified);
+        
+        String rankingInfo = CD.getStatistics(id);
+        String aRankingInfo[] = rankingInfo.split(" ");
+        ArrayList<Pair<Long, String>> newRanking;
+        newRanking = new ArrayList<Pair<Long, String>>();
+        for(int i = 1; i < aRankingInfo.length; i+=2){
+            Pair<Long, String> aux = new Pair<Long, String>(Long.parseLong(aRankingInfo[i+1]), aRankingInfo[i]);
+            newRanking.add(aux);
+        }
+        G.setRanking(newRanking);
+    }
+    
+    public ArrayList<Pair<Long, String>> getRanking(){
+        return G.getRanking();
     }
 
     /**
@@ -73,11 +88,6 @@ public class CtrlDomainGame {
     public void authPlayer1(String username, String password) throws IOException, FileNotFoundException, chessException{
         String playerInfo = CD.getPlayer(username, password);
         String aPlayerInfo[] = playerInfo.split(" ");
-            /*protected String id;
-            protected int wins;
-            protected int loses;
-            protected double ELO;
-            protected float OP_rating;*/
         if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
         String id = aPlayerInfo[0];
         int wins = Integer.parseInt(aPlayerInfo[1]);
@@ -99,11 +109,7 @@ public class CtrlDomainGame {
     public void authPlayer2(String username, String password) throws IOException, FileNotFoundException, chessException{
         String playerInfo = CD.getPlayer(username, password);
         String aPlayerInfo[] = playerInfo.split(" ");
-            /*protected String id;
-            protected int wins;
-            protected int loses;
-            protected double ELO;
-            protected float OP_rating;*/
+        
         if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
         String id = aPlayerInfo[0];
         int wins = Integer.parseInt(aPlayerInfo[1]);

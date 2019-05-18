@@ -6,6 +6,9 @@
 package capaDomini;
 
 import Exception.chessException;
+import capaDades.CtrlDades;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 /**
@@ -16,14 +19,18 @@ public class CtrlDomainCreator {
     private Board B;
     private Problem P;
     private Player Pl;
+    
+    private CtrlDades CD;
         
     /**
      * Basic Creator
      */
-    public CtrlDomainCreator() {
+    public CtrlDomainCreator() throws IOException {
         B = new Board();
         P = new Problem();
         Pl = new Human();
+        
+        CD = new CtrlDades();
     }
     
     /**
@@ -234,9 +241,23 @@ public class CtrlDomainCreator {
      * @param first_turn
      * @throws chessException
      */
-    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn) throws chessException{
-        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn);
+    public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) throws chessException{
+        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
         B = new Board(fenCode);
+    }
+    
+    public void storeProblem() throws IOException, chessException{
+        String Theme = P.getTheme();
+        Theme = Theme.replace(" ", "_");
+        CD.createProblem(P.getName(), P.getFenCode(), Theme, P.getN_mov(), P.getDiff(), P.getATK(), P.getFirstTurn(), P.isVerified());
+    }
+    
+    public void storeNewPlayer() throws IOException, chessException{
+        CD.createPlayer(Pl.getId(), Pl.getPassword());
+    }
+    
+    public void updatePassword(String id, String oldPassword, String newPassword) throws IOException, IOException, FileNotFoundException, FileNotFoundException, chessException{
+        CD.updatePassword(id, oldPassword, newPassword);
     }
 
 }

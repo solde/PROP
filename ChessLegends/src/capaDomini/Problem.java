@@ -136,6 +136,10 @@ public class Problem {
         this.first_turn = firstTurn;
     }
     
+    public void setRanking(ArrayList<Pair<Long, String>> Ranking){
+        this.Ranking = Ranking;
+    }
+    
     public void setVerified(boolean v){
         this.verified = v;
     }
@@ -287,12 +291,7 @@ public class Problem {
      * @return
      * @throws chessException
      */
-    public Pair<Long, String> getRankingPossition(int index) throws chessException{
-        try{
-            return Ranking.get(index);
-        }
-        catch(Exception e){
-            throw new chessException("Out of range");
-        }
+    public ArrayList<Pair<Long, String>> getRanking(){
+        return this.Ranking;
     }
 }

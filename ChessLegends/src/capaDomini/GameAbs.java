@@ -7,6 +7,7 @@ package capaDomini;
 
 import Exception.chessException;
 import java.util.ArrayList;
+import javafx.util.Pair;
 
 /**
  *
@@ -167,5 +168,12 @@ public abstract class GameAbs {
     public abstract ArrayList<int[]> possibleMovements(boolean color);
     public abstract char[][] getBoard() throws chessException;
     
+    public void setRanking(ArrayList<Pair<Long, String>> Ranking){
+        P.setRanking(Ranking);
+    }
+    
+    public ArrayList<Pair<Long, String>> getRanking(){
+        return P.getRanking();
+    }
     
 }
