@@ -5,6 +5,8 @@
  */
 package capaPresentacio;
 
+import capaDomini.CtrlDomainCreator;
+
 /**
  *
  * @author Daniel Palomo
@@ -17,7 +19,8 @@ public class mainChessLegends {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new blank().setVisible(true);
-                CtrlPresentacio cp = new CtrlPresentacio();
+                CtrlDomainCreator cc= new CtrlDomainCreator();
+                CtrlPresentacio cp = new CtrlPresentacio(cc);
                 cp.view();
 
             }

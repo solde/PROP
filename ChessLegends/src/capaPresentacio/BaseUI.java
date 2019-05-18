@@ -5,6 +5,8 @@
  */
 package capaPresentacio;
 
+import Exception.chessException;
+
 /**
  *
  * @author Familia
@@ -43,7 +45,7 @@ public class BaseUI extends javax.swing.JFrame {
     }
 
     public void changeLog() {
-        
+
         log = new LoginUI(this);
         jScrollPane1.setViewportView(log);
     }
@@ -55,8 +57,31 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(psui);
     }
 
-    void close() {
+    public void close() {
         System.exit(0);
+    }
+
+    public void loadProblem(String id) {
+        p.loadProblem(id);
+    }
+
+    public void modifyProblem(String id) {
+        //whatever
+    }
+
+    public void changeNewProb() {
+        npui = new NewProblemUI(this);
+        npui.setname(name);
+        jScrollPane1.setViewportView(npui);
+    }
+
+    public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException {
+        p.createProblem(fen, name, theme, mov, turn, turn);
+        return p.verify();
+    }
+
+    public boolean verifyFEN(String fen) {
+        return p.verifyFEN(fen);
     }
 
     /**
@@ -99,5 +124,10 @@ public class BaseUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private LoginUI log;
     private ProblemSelectUI psui;
+    private NewProblemUI npui;
+
+    public void save(String fen, String id, String theme, int movs, boolean first, boolean turn) {
+        p.save(fen, id, theme, movs, turn, first);
+    }
 
 }
