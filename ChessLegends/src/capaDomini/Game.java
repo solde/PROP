@@ -19,6 +19,7 @@ public class Game extends GameAbs {
 
     private long timerW;
     private long timerB;
+    private boolean winner;
     private int movCounter;
 
     /**
@@ -106,6 +107,10 @@ public class Game extends GameAbs {
     public void setTimerB(long timerB) {
         this.timerB = timerB;
     }
+    
+    public boolean getWinner(){
+        return this.winner;
+    }
 
     /**
      * Funciton to move a piece at board.
@@ -130,6 +135,7 @@ public class Game extends GameAbs {
                 throw new chessException("Can't move");
             }
             turn = !turn;
+            if(B.isCheckMate(color)) winner = color;
         }
     }
     
@@ -304,8 +310,6 @@ public class Game extends GameAbs {
         else {
             System.out.println("WhiteWins");
         }
-        
-
     }
     
     
