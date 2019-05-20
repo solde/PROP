@@ -9,7 +9,7 @@ import Exception.chessException;
 
 /**
  *
- * @author Familia
+ * @author Daniel Palomo
  */
 public class BaseUI extends javax.swing.JFrame {
 
@@ -75,6 +75,13 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(npui);
     }
 
+    public void changeBoardUI() {
+        brui = new BoardUI();
+       // jScrollPane1.setViewportView(brui);
+       brui.see();
+      // close();
+    }
+
     public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException {
         p.createProblem(fen, name, theme, mov, turn, turn);
         return p.verify();
@@ -82,6 +89,18 @@ public class BaseUI extends javax.swing.JFrame {
 
     public boolean verifyFEN(String fen) {
         return p.verifyFEN(fen);
+    }
+
+    public void save(String fen, String id, String theme, int movs, boolean first, boolean turn) {
+        p.save(fen, id, theme, movs, turn, first);
+    }
+
+    void createPlayer(String id, String pass1) {
+        p.createPlayer(id, pass1);
+    }
+
+    boolean passwordsMatch(String pass1, String pass2) {
+        return p.passwordsMatch(pass2, pass1);
     }
 
     /**
@@ -125,9 +144,5 @@ public class BaseUI extends javax.swing.JFrame {
     private LoginUI log;
     private ProblemSelectUI psui;
     private NewProblemUI npui;
-
-    public void save(String fen, String id, String theme, int movs, boolean first, boolean turn) {
-        p.save(fen, id, theme, movs, turn, first);
-    }
-
+    private BoardUI brui;
 }

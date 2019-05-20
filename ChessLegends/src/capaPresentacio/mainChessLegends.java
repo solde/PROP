@@ -6,22 +6,24 @@
 package capaPresentacio;
 
 import capaDomini.CtrlDomainCreator;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author Daniel Palomo
- */
 public class mainChessLegends {
-
-    
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new blank().setVisible(true);
-                CtrlDomainCreator cc= new CtrlDomainCreator();
-                CtrlPresentacio cp = new CtrlPresentacio(cc);
-                cp.view();
+                CtrlDomainCreator cc;
+                try {
+                    cc = new CtrlDomainCreator();
+                    CtrlPresentacio cp = new CtrlPresentacio(cc);
+                    cp.view();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(mainChessLegends.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });

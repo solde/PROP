@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package capaPresentacio;
 
-//import capaDades.CtrlDades;
 import Exception.chessException;
 import capaDomini.CtrlDomainCreator;
 import capaDomini.CtrlDomainGame;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +35,12 @@ public class CtrlPresentacio {
     }
 
     public void createPlayer(String id, String pass) {
-        //  cc.createPlayerTest(id, pass);
+        cc.createNewPlayerTest(id, pass);
+        try {
+            cc.storeNewPlayer();
+        } catch (IOException | chessException ex) {
+            Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Player with name: " + id + " created.  Password: " + pass);
 
     }
@@ -57,11 +59,11 @@ public class CtrlPresentacio {
     }
 
     public void loadProblem(String id) {
-        //controldades getProblem(id);
+        //NOT DONE
     }
 
     public void createProblem(String fen, String name, String theme, int mov, boolean color, boolean turn) {
-//        cc.createNewProblemTest(fen,name,mov,theme,color,turn);
+        //       cc.createNewProblemTest(fen,name,mov,theme,color,turn);
     }
 
     public boolean verify() throws chessException {
@@ -79,6 +81,6 @@ public class CtrlPresentacio {
     }
 
     void save(String fen, String id, String theme, int movs, boolean turn, boolean first) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       //not done
     }
 }

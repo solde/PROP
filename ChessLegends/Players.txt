@@ -17,3 +17,4 @@ Userrr 0 0 1000 0 psw
 pipo 0 0 1000.0 0 1234 
 David 1 1 9.9 8.9 pipo 
 DavidSoldevila 0 0 1000.0 0 1234 
+po 0 0 1000.0 0 null 
