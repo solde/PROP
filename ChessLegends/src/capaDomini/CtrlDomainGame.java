@@ -225,7 +225,8 @@ public class CtrlDomainGame {
     public void letsPlay(Boolean color) throws chessException{
         G.playMatch(color);
     }
-    /*public int leftTurns(){
-        return G.leftTurn();
-    }*/
+    
+    public void updatePlayers(){
+        G.getW
+    }
 }
