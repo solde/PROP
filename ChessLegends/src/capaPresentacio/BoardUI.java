@@ -52,23 +52,30 @@ public class BoardUI {
         ROOK, KNIGHT, BISHOP, KING, QUEEN, BISHOP, KNIGHT, ROOK
     };
     public static final int BLACK = 0, WHITE = 1;
+    private BaseUI b;
+    private  JToolBar tools ;
+    public void BoardUI() {
+        initializeUi();
+    }
 
-    BoardUI() {
-        initializeGui();
+    public void BoardUI(BaseUI b) {
+        this.b = b;
+        initializeUi();
     }
 //ESTA CLASE ES COMPLETEMENTE TEMPORAL
-    public final void initializeGui() {
+
+    public final void initializeUi() {
         // create the images for the chess pieces
         createImages();
 
-        // set up the main GUI
+        // set up the main UI
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
-        JToolBar tools = new JToolBar();
+        tools = new JToolBar();
         tools.setFloatable(false);
         gui.add(tools, BorderLayout.PAGE_START);
 
-
-        tools.add(new JButton("Save")); // TODO - add functionality!
+        tools.add(new JButton("Exit"));
+        tools.getComponentAtIndex(0).addActionListener(this::ExitActionPerformed)); // TODO - add functionality!
         tools.add(new JButton("Restore")); // TODO - add functionality!
         tools.addSeparator();
         tools.add(new JButton("Resign")); // TODO - add functionality!
@@ -168,27 +175,30 @@ public class BoardUI {
     public final JComponent getGui() {
         return gui;
     }
-    public void see(){
-  
-                ChessGUI cg = new ChessGUI();
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) { 
+        b.close();
+    }
+    public void see() {
 
-                JFrame f = new JFrame("ChessChamp");
-                f.add(cg.getGui());
-                // Ensures JVM closes after frame(s) closed and
-                // all non-daemon threads are finished
-                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                // See https://stackoverflow.com/a/7143398/418556 for demo.
-                f.setLocationByPlatform(true);
+        ChessGUI cg = new ChessGUI();
 
-                // ensures the frame is the minimum size it needs to be
-                // in order display the components within it
-                f.pack();
-                // ensures the minimum size is enforced.
-                f.setMinimumSize(f.getSize());
-                f.setVisible(true);
+        JFrame f = new JFrame("ChessChamp");
+        f.add(cg.getGui());
+        // Ensures JVM closes after frame(s) closed and
+        // all non-daemon threads are finished
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // See https://stackoverflow.com/a/7143398/418556 for demo.
+        f.setLocationByPlatform(true);
+
+        // ensures the frame is the minimum size it needs to be
+        // in order display the components within it
+        f.pack();
+        // ensures the minimum size is enforced.
+        f.setMinimumSize(f.getSize());
+        f.setVisible(true);
 
     }
-    
+
     private final void createImages() {
         try {
             URL url = new URL("http://i.stack.imgur.com/memI0.png");
