@@ -79,7 +79,7 @@ public class BaseUI extends javax.swing.JFrame {
     }
 
     public void changeBoardUI() {
-        brui = new BoardUI();
+        brui = new BoardUI(p,this);
        // jScrollPane1.setViewportView(brui);
        brui.see();
       // close();
