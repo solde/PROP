@@ -149,6 +149,10 @@ public class AICompetition extends GameAbs{
     public ArrayList<int[]> possibleMovements(boolean color) {
         throw new UnsupportedOperationException("You are a mere spectator"); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void setProblem(String FENc, String na, int dif, int turns, String test_makes_checkmate, Boolean attack, Boolean attack0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      
 }

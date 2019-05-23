@@ -88,7 +88,7 @@ public class CtrlDomainGameDriver {
             System.out.println("Enter difficulty level (number)");
             diff = sc.nextInt();
 
-            ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
+            //ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
             ChessLegends.letsPlay(color);
             
         
@@ -120,7 +120,7 @@ public class CtrlDomainGameDriver {
             System.out.println("Enter which qtt of games do you wanna play");
             games = sc.nextInt();
             
-            ChessLegends.loadProblemTest(fenCode, Name, diff, N, Theme, atk, atk);
+            //ChessLegends.loadProblemTest(fenCode, Name, diff, N, Theme, atk, atk);
             ChessLegends.setGames(games);
             
             ChessLegends.AIplay(atk); //atk is useless here.

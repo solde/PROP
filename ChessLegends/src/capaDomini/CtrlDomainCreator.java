@@ -9,6 +9,7 @@ import Exception.chessException;
 import capaDades.CtrlDades;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -260,4 +261,7 @@ public class CtrlDomainCreator {
         CD.updatePassword(id, oldPassword, newPassword);
     }
 
+    public ArrayList<String> getProblemList() throws IOException{
+        return CD.listProblmes();
+    }
 }
