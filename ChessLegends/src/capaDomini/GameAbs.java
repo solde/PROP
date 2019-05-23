@@ -21,6 +21,7 @@ public abstract class GameAbs {
     Problem P;
     
     protected boolean turn;
+    protected boolean winner;
 
     /**
      * Constructor with parameters
@@ -151,6 +152,10 @@ public abstract class GameAbs {
         this.setB(bAux);
     }
     
+    public boolean getWinner(){
+        return winner;
+    }
+    
     /**
      *
      *
@@ -167,6 +172,7 @@ public abstract class GameAbs {
     public abstract void resetTimers();
     public abstract ArrayList<int[]> possibleMovements(boolean color);
     public abstract char[][] getBoard() throws chessException;
+    
     
     public void setRanking(ArrayList<Pair<Long, String>> Ranking){
         P.setRanking(Ranking);

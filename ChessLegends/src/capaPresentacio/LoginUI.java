@@ -5,7 +5,12 @@
  */
 package capaPresentacio;
 
+import Exception.chessException;
 import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,8 +47,8 @@ public class LoginUI extends javax.swing.JPanel {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
+        loginAsGuestButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
@@ -51,11 +56,11 @@ public class LoginUI extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        createButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(455, 338));
 
@@ -65,17 +70,17 @@ public class LoginUI extends javax.swing.JPanel {
 
         jLabel3.setText("Password:");
 
-        jButton2.setText("Login");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Login as Guest");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        loginAsGuestButton.setText("Login as Guest");
+        loginAsGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                loginAsGuestButtonActionPerformed(evt);
             }
         });
 
@@ -96,9 +101,9 @@ public class LoginUI extends javax.swing.JPanel {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(loginButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(loginAsGuestButton)
                         .addGap(50, 50, 50))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,8 +119,8 @@ public class LoginUI extends javax.swing.JPanel {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)))
+                    .addComponent(loginButton)
+                    .addComponent(loginAsGuestButton)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sign-Up", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -126,10 +131,10 @@ public class LoginUI extends javax.swing.JPanel {
 
         jLabel6.setText("Repeat Password:");
 
-        jButton4.setText("Create");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        createButton.setText("Create");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                createButtonActionPerformed(evt);
             }
         });
 
@@ -162,7 +167,7 @@ public class LoginUI extends javax.swing.JPanel {
                             .addComponent(jLabel9))
                         .addGap(73, 73, 73))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(createButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -183,16 +188,16 @@ public class LoginUI extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4))
+                .addComponent(createButton))
         );
 
         jLabel1.setFont(new java.awt.Font("Cambria Math", 1, 24)); // NOI18N
         jLabel1.setText("-ChessLegends-");
 
-        jButton1.setText("Exit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
 
@@ -205,7 +210,7 @@ public class LoginUI extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                 .addGap(142, 142, 142)
@@ -221,11 +226,11 @@ public class LoginUI extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(exitButton))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
 
 
         jLabel8.setForeground(Color.gray);
@@ -248,35 +253,50 @@ public class LoginUI extends javax.swing.JPanel {
             return;
         }
         b.createPlayer(id, pass1);
-        b.changeProblem();
+        try {
+            b.changeProblem();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_createButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         b.close();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         
         String pass1 = new String(jPasswordField1.getPassword());
         String id = jTextField1.getText();
         b.name = id;
-        
-        //now you will enter with anything but autenticate is needed
-        b.changeProblem();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        try {
+            if(b.autenticatePlayer(id, pass1)){
+                try {
+                    //now you will enter with anything but autenticate is needed
+                    b.changeProblem();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (IOException | chessException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void loginAsGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAsGuestButtonActionPerformed
         b.name = "Guest";
-        b.changeProblem();
-    }//GEN-LAST:event_jButton3ActionPerformed
+        try {
+            b.changeProblem();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loginAsGuestButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton createButton;
+    private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -292,5 +312,7 @@ public class LoginUI extends javax.swing.JPanel {
     private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton loginAsGuestButton;
+    private javax.swing.JButton loginButton;
     // End of variables declaration//GEN-END:variables
 }

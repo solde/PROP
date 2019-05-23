@@ -136,23 +136,8 @@
             <Component class="javax.swing.JList" name="jList2">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="16">
-                    <StringItem index="0" value="el gato loco"/>
-                    <StringItem index="1" value="aisla al rey"/>
-                    <StringItem index="2" value="no podes"/>
-                    <StringItem index="3" value="Stop now"/>
-                    <StringItem index="4" value="Busca y destruye"/>
-                    <StringItem index="5" value="nameSample"/>
-                    <StringItem index="6" value="me quedo sin nombres"/>
-                    <StringItem index="7" value="a"/>
-                    <StringItem index="8" value="aa"/>
-                    <StringItem index="9" value="aaa"/>
-                    <StringItem index="10" value="aaaa"/>
-                    <StringItem index="11" value="aaaaa"/>
-                    <StringItem index="12" value="aaaaaa"/>
-                    <StringItem index="13" value="aaaaaaaa"/>
-                    <StringItem index="14" value="shit"/>
-                    <StringItem index="15" value=" "/>
+                  <StringArray count="1">
+                    <StringItem index="0" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>

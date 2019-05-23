@@ -6,6 +6,9 @@
 package capaPresentacio;
 
 import Exception.chessException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,7 +53,7 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(log);
     }
 
-    public void changeProblem() {
+    public void changeProblem() throws IOException {
         psui = new ProblemSelectUI(this);
         psui.setname(name);
 
@@ -101,6 +104,14 @@ public class BaseUI extends javax.swing.JFrame {
 
     boolean passwordsMatch(String pass1, String pass2) {
         return p.passwordsMatch(pass2, pass1);
+    }
+    
+    ArrayList<String> getProblemList() throws IOException{
+        return p.getProblemList();
+    }
+    
+    boolean autenticatePlayer(String username, String Password) throws IOException, FileNotFoundException, chessException{
+        return p.authenticatePlayer(username, Password);
     }
 
     /**

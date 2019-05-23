@@ -3,6 +3,7 @@ package capaPresentacio;
 import Exception.chessException;
 import capaDomini.CtrlDomainCreator;
 import capaDomini.CtrlDomainGame;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -71,8 +72,9 @@ public class CtrlPresentacio {
         return false;
     }
 
-    public ArrayList<String> getProblemList() {
+    public ArrayList<String> getProblemList() throws IOException {
         ArrayList<String> a = new ArrayList();
+        a = cc.getProblemList();
         return a;
     }
 
@@ -82,5 +84,9 @@ public class CtrlPresentacio {
 
     void save(String fen, String id, String theme, int movs, boolean turn, boolean first) {
        //not done
+    }
+    
+    boolean authenticatePlayer(String Username, String Password) throws IOException, FileNotFoundException, chessException{
+        return cg.authPlayer1(Username, Password);
     }
 }

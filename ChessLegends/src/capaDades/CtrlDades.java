@@ -28,8 +28,14 @@ public class CtrlDades {
         SM = new StatisticsManager();
     }
 
-    public String getPlayer(String id, String password) throws IOException, FileNotFoundException, chessException{
-        String playerInfo = PlM.loadPlayer(id, password);
+    public String getPlayer(String id, String password) throws IOException, FileNotFoundException{
+        String playerInfo;
+        try{
+            playerInfo = PlM.loadPlayer(id, password);
+        }
+        catch(chessException e){
+            return "";
+        }
         playerInfo = playerInfo.replaceFirst(password + " ", "");
         return playerInfo;
     }
@@ -96,7 +102,10 @@ public class CtrlDades {
     }
     
     public ArrayList<String> listProblmes() throws IOException{
-        return PM.listProblems();
+        ArrayList<String> LP = PM.listProblems();
+        System.out.println(LP.size());
+        
+        return LP;
     }
     
     public void eraseStatistics(String id) throws IOException, chessException{

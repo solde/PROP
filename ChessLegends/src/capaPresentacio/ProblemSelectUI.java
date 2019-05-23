@@ -5,6 +5,9 @@
  */
 package capaPresentacio;
 
+import java.awt.PopupMenu;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -12,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Familia
  */
-public class ProblemSelectUI extends javax.swing.JPanel {
+public final class ProblemSelectUI extends javax.swing.JPanel {
 
     private BaseUI b;
 
@@ -23,13 +26,31 @@ public class ProblemSelectUI extends javax.swing.JPanel {
         initComponents();
     }
 
-    public ProblemSelectUI(BaseUI b) {
+    public ProblemSelectUI(BaseUI b) throws IOException {
         this.b = b;
         initComponents();
+        initListOfProblems();
     }
 
     public void setname(String Text) {
         jLabel1.setText(Text);
+    }
+    
+    public void initListOfProblems(){
+        ArrayList<String> problemList = new ArrayList<String>();
+        try{
+            problemList = b.getProblemList();
+        }
+        catch(Exception e){
+            System.out.println("pipo");
+            System.out.println(e.getMessage());
+        }
+        for(int i = 0;  i < problemList.size(); ++i){
+            System.out.println(i);
+            PopupMenu pm = new PopupMenu();
+            pm.add(problemList.get(i));
+            jList2.add(pm); 
+        }
     }
 
     /**
@@ -61,7 +82,7 @@ public class ProblemSelectUI extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Problem Selector", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "el gato loco", "aisla al rey", "no podes", "Stop now", "Busca y destruye", "nameSample", "me quedo sin nombres", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaaa", "shit", " " };
+            String[] strings = { " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

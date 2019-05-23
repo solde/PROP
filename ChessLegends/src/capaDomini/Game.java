@@ -19,7 +19,6 @@ public class Game extends GameAbs {
 
     private long timerW;
     private long timerB;
-    private boolean winner;
     private int movCounter;
 
     /**
@@ -106,10 +105,6 @@ public class Game extends GameAbs {
      */
     public void setTimerB(long timerB) {
         this.timerB = timerB;
-    }
-    
-    public boolean getWinner(){
-        return this.winner;
     }
 
     /**
@@ -311,6 +306,4 @@ public class Game extends GameAbs {
             System.out.println("WhiteWins");
         }
     }
-    
-    
 }

@@ -29,7 +29,7 @@ public class ProblemDriver {
                     String t2 = sc.next();
                     boolean a2 = sc.nextBoolean();
                     boolean ft2 = sc.nextBoolean();
-                    P = new Problem(fc2, n2, d2, nm2, t2, a2, ft2);
+                    //P = new Problem(fc2, n2, d2, nm2, t2, a2, ft2);
                     break;
 
                 case 3: //Creator with string with DL info
@@ -52,8 +52,8 @@ public class ProblemDriver {
                     boolean a3 = sc.nextBoolean();
                     System.out.println("Enter a the player who starts the game");
                     boolean ft3 = sc.nextBoolean();
-                    P = new Problem(fc3, n3, d3, nm3, t3, a3, ft3);
-                    System.out.println(P.verify());
+                    //P = new Problem(fc3, n3, d3, nm3, t3, a3, ft3);
+                    //System.out.println(P.verify());
                     break;       
                 
                 case 5: //numberPiecesOf
@@ -136,7 +136,7 @@ public class ProblemDriver {
                     P.addToRanking("Pipo", 1);
                     P.addToRanking("Pipo3", 3);
                     P.addToRanking("Pipo2", 2);
-                    System.out.print(P.getRankingPossition(2));
+                    //System.out.print(P.getRankingPossition(2));
             }
             i = sc.nextInt();
         }

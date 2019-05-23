@@ -6,6 +6,7 @@
 package capaPresentacio;
 
 import Exception.chessException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -262,8 +263,12 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // Back
-        b.changeProblem();
+        try {
+            // Back
+            b.changeProblem();
+        } catch (IOException ex) {
+            Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

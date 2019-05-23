@@ -7,6 +7,7 @@ package propdrivers;
 
 import Exception.chessException;
 import capaDomini.CtrlDomainCreator;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -28,7 +29,7 @@ public class CtrlDomainCreatorDriver {
     }
 
 
-    public static void main(String[] args) throws InterruptedException, chessException/*, Exception.chessException */{
+    public static void main(String[] args) throws InterruptedException, chessException, IOException/*, Exception.chessException */{
         // TODO code application logic here
         CtrlDomainCreator ChessLegends = new CtrlDomainCreator();
         Scanner sc = new Scanner(System.in);
@@ -122,7 +123,7 @@ public class CtrlDomainCreatorDriver {
             N = sc.nextInt();
             System.out.println("Enter diff.");
             diff = sc.nextInt();
-            ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
+            //ChessLegends.loadProblem(Name);
             int x = 0, y = 0;
             char t;
             boolean color;

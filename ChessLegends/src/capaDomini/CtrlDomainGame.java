@@ -25,7 +25,6 @@ public class CtrlDomainGame {
      * Basic constructor
      */
     public CtrlDomainGame() {
-        G = new Game();
         movCounter = 0;
     }
 
@@ -82,11 +81,13 @@ public class CtrlDomainGame {
      *
      * @param username
      * @param password
+     * @return 
      * @throws java.io.FileNotFoundException
      * @throws Exception.chessException
      */
-    public void authPlayer1(String username, String password) throws IOException, FileNotFoundException, chessException{
+    public boolean authPlayer1(String username, String password) throws IOException, FileNotFoundException, chessException{
         String playerInfo = CD.getPlayer(username, password);
+        if(playerInfo.length() == 0) return false;
         String aPlayerInfo[] = playerInfo.split(" ");
         if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
         String id = aPlayerInfo[0];
@@ -96,6 +97,7 @@ public class CtrlDomainGame {
         double OP_rating = Double.parseDouble(aPlayerInfo[4]);
         
         G.setPlayer1(playerInfo, wins, loses, loses, wins);
+        return true;
     }
     
     /**
@@ -103,13 +105,14 @@ public class CtrlDomainGame {
      *
      * @param username
      * @param password
+     * @return 
      * @throws java.io.FileNotFoundException
      * @throws Exception.chessException
      */
-    public void authPlayer2(String username, String password) throws IOException, FileNotFoundException, chessException{
+    public boolean authPlayer2(String username, String password) throws IOException, FileNotFoundException, chessException{
         String playerInfo = CD.getPlayer(username, password);
+        if(playerInfo.length() == 0) return false;
         String aPlayerInfo[] = playerInfo.split(" ");
-        
         if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
         String id = aPlayerInfo[0];
         int wins = Integer.parseInt(aPlayerInfo[1]);
@@ -118,6 +121,7 @@ public class CtrlDomainGame {
         double OP_rating = Double.parseDouble(aPlayerInfo[4]);
         
         G.setPlayer2(playerInfo, wins, loses, loses, wins);
+        return true;
     }
     
     /**
@@ -226,7 +230,12 @@ public class CtrlDomainGame {
         G.playMatch(color);
     }
     
-    public void updatePlayers(){
-        G.getW
-    }
+    /*public void updatePlayers(long time, boolean color){
+        boolean winner = G.getWinner();
+        String pl1, pl2;
+        pl2 = G.getPlayer1Info();
+        pl1 = G.getPlayer2Info();
+        String aPl[] = pl.split(" ");
+        
+    }*/
 }
