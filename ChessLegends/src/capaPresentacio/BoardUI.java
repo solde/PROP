@@ -75,7 +75,7 @@ public class BoardUI {
         gui.add(tools, BorderLayout.PAGE_START);
 
         tools.add(new JButton("Exit"));
-        tools.getComponentAtIndex(0).addActionListener(this::ExitActionPerformed)); // TODO - add functionality!
+       // tools.getComponentAtIndex(0).addActionListener(this::ExitActionPerformed)); // TODO - add functionality!
         tools.add(new JButton("Restore")); // TODO - add functionality!
         tools.addSeparator();
         tools.add(new JButton("Resign")); // TODO - add functionality!
