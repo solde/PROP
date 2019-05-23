@@ -11,7 +11,10 @@ package capaPresentacio;
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class testBoard extends JFrame implements MouseListener, MouseMotionListener {
@@ -64,7 +67,7 @@ public class testBoard extends JFrame implements MouseListener, MouseMotionListe
         });
         logout.setBounds(445, 0, 80, 24);
         layeredPane.add(logout, JLayeredPane.DEFAULT_LAYER);
-      
+
         //Resign button
         JButton resign = new JButton("Resign");
         resign.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +77,7 @@ public class testBoard extends JFrame implements MouseListener, MouseMotionListe
         });
         resign.setBounds(0, 0, 80, 24);
         layeredPane.add(resign, JLayeredPane.DEFAULT_LAYER);
-     
+
         //Clear button
         JButton clear = new JButton("Clear");
         clear.addActionListener(new java.awt.event.ActionListener() {
@@ -85,14 +88,12 @@ public class testBoard extends JFrame implements MouseListener, MouseMotionListe
 
         clear.setBounds(81, 0, 70, 24);
         layeredPane.add(clear, JLayeredPane.DEFAULT_LAYER);
-                
+
         //Name Problem
-        
-        JLabel nameP= new JLabel("NameSample");
-        nameP.setBounds(200,0,80,20);
+        JLabel nameP = new JLabel("NameSample");
+        nameP.setBounds(200, 0, 80, 20);
         layeredPane.add(nameP);
-        
-        
+
         //Add a chess board to the Layered Pane 
         chessBoard = new JPanel();
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
@@ -111,12 +112,25 @@ public class testBoard extends JFrame implements MouseListener, MouseMotionListe
                 square.setBackground(i % 2 == 0 ? Color.white : Color.black);
             }
         }
-
+        try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+            for (int ii = 0; ii < 2; ii++) {
+                for (int jj = 0; jj < 6; jj++) {
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
+                    JPanel panel = (JPanel) chessBoard.getComponent(3);
+                    panel.add(piece);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
         //Add a few pieces to the board
         JLabel piece = new JLabel(new ImageIcon("/home/vinod/amarexamples/chess.jpg"));
         JPanel panel = (JPanel) chessBoard.getComponent(0);
         panel.add(piece);
-        piece = new JLabel(new ImageIcon("/home/vinod/amarexamples/chess1.jpg"));
+        piece = new JLabel(new ImageIcon("/pieces/BK.png"));
         panel = (JPanel) chessBoard.getComponent(15);
         panel.add(piece);
         piece = new JLabel(new ImageIcon("/home/vinod/amarexamples/king.jpg"));
