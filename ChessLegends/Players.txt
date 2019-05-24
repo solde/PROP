@@ -19,4 +19,8 @@ David 1 1 9.9 8.9 pipo
 DavidSoldevila 0 0 1000.0 0 1234 
 po 0 0 1000.0 0 null 
 Adolfo 0 0 1000.0 0 espa�ita 
+<<<<<<< HEAD
 asfd 0 0 1000.0 0 1234 
+=======
+pos 0 0 1000.0 0 null 
+>>>>>>> dd56dc4091e751139b4ad3c2fee02041c9695a63
