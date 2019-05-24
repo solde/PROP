@@ -32,12 +32,7 @@ public class CDdriver {
                 case 1:
                     String un1 = sc.next();
                     String psw1 = sc.next();
-                    try{
-                        System.out.println(CD.getPlayer(un1, psw1));
-                    }
-                    catch(chessException e){
-                        System.out.println(e.getMessage());
-                    }
+                    System.out.println(CD.getPlayer(un1, psw1));
                     break;
                 case 3:
                     String un2 = sc.next();

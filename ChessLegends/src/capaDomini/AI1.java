@@ -239,4 +239,11 @@ public class AI1 extends Player {
             }
             return moves;
         }
+    
+    
+    
+    @Override
+    public String getPassword(){
+        return "";
+    }
 }

@@ -232,7 +232,6 @@ public class LoginUI extends javax.swing.JPanel {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
 
-
         jLabel8.setForeground(Color.gray);
         jLabel9.setForeground(Color.gray);
         String pass1 = new String(jPasswordField2.getPassword());
@@ -252,7 +251,23 @@ public class LoginUI extends javax.swing.JPanel {
             jPasswordField3.setText("");
             return;
         }
-        b.createPlayer(id, pass1);
+        try {
+            b.createPlayer(id, pass1);
+        } catch (chessException ex) {
+            JOptionPane.showMessageDialog(null, "Username is already used");
+            jLabel8.setForeground(Color.red);
+            //code for when the passwords don't match
+            System.out.println("Passwords didn't match. Try again");
+            jPasswordField3.setText("");
+            return;
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Unexpected error");
+            jLabel8.setForeground(Color.red);
+            //code for when the passwords don't match
+            System.out.println("Passwords didn't match. Try again");
+            jPasswordField3.setText("");
+            return;
+        }
         try {
             b.changeProblem();
         } catch (IOException ex) {
@@ -267,20 +282,37 @@ public class LoginUI extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         
-        String pass1 = new String(jPasswordField1.getPassword());
-        String id = jTextField1.getText();
-        b.name = id;
-        try {
-            if(b.autenticatePlayer(id, pass1)){
-                try {
-                    //now you will enter with anything but autenticate is needed
-                    b.changeProblem();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+        try {                                            
+            String pass1 = new String(jPasswordField1.getPassword());
+            String id = jTextField1.getText();
+            b.name = id;
+            if(!b.autenticatePlayer(id, pass1)){
+                JOptionPane.showMessageDialog(null, "Wrong username or password");
+                jLabel8.setForeground(Color.red);
+                //code for when the passwords don't match
+                System.out.println("Passwords didn't match. Try again");
+                jPasswordField3.setText("");
+                return;
             }
-        } catch (IOException | chessException ex) {
-            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                b.changeProblem();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } catch (IOException ex ) {
+            JOptionPane.showMessageDialog(null, "Unexpected error");
+            jLabel8.setForeground(Color.red);
+            //code for when the passwords don't match
+            System.out.println("Passwords didn't match. Try again");
+            jPasswordField3.setText("");
+            return;
+        } catch (chessException ex) {
+            JOptionPane.showMessageDialog(null, "Unexpected error");
+            jLabel8.setForeground(Color.red);
+            //code for when the passwords don't match
+            System.out.println("Passwords didn't match. Try again");
+            jPasswordField3.setText("");
+            return;
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

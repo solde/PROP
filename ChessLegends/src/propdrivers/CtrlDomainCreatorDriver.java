@@ -48,7 +48,7 @@ public class CtrlDomainCreatorDriver {
             Password = sc.next();
             
             System.out.println("*" + Name + "* *" + Password+ "*");
-            ChessLegends.createNewPlayerTest(Name, Password);
+            ChessLegends.createNewPlayer(Name, Password);
             //String info = ChessLegends.getPlayerInfo();
             System.out.println("Created user:");
             //System.out.println(ChessLegends.getPlayerInfo());

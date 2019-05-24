@@ -98,7 +98,8 @@ public class BaseUI extends javax.swing.JFrame {
         p.save(fen, id, theme, movs, turn, first);
     }
 
-    void createPlayer(String id, String pass1) {
+    void createPlayer(String id, String pass1) throws chessException, IOException {
+        System.out.println(id + " " + pass1);
         p.createPlayer(id, pass1);
     }
 
