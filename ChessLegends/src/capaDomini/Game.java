@@ -8,7 +8,6 @@ package capaDomini;
 import Exception.chessException;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import javafx.util.Pair;
 
 /**
