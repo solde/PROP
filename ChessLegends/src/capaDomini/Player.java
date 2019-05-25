@@ -97,7 +97,7 @@ public abstract class Player {
      *
      * @param ELO
      */
-    public void setELO(float ELO) {
+    public void setELO(double ELO) {
         this.ELO = ELO;
     }
 
@@ -122,7 +122,7 @@ public abstract class Player {
      *
      * @param OP_rating
      */
-    public void setOP_rating(float OP_rating) {
+    public void setOP_rating(double OP_rating) {
         this.OP_rating = OP_rating;
     }
 
@@ -164,4 +164,13 @@ public abstract class Player {
     }
     
     abstract String getPassword();
+    
+    public Board makeMove(Board b, boolean color, int depth) throws chessException {  
+        try{return null;}
+        catch (Exception e){
+            throw new chessException(e.getMessage());
+        }
+        
+    }
+    
 }

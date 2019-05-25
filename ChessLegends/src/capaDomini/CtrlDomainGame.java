@@ -17,15 +17,19 @@ import javafx.util.Pair;
  */
 public class CtrlDomainGame {
     private GameAbs G;
+    private Human P;
     private int movCounter;
     
     private CtrlDades CD;
         
     /**
      * Basic constructor
+     * @throws java.io.IOException
      */
-    public CtrlDomainGame() {
+    public CtrlDomainGame() throws IOException {
         movCounter = 0;
+        CD = new CtrlDades();
+        P = new Human();
     }
 
     /**
@@ -88,15 +92,18 @@ public class CtrlDomainGame {
     public boolean authPlayer1(String username, String password) throws IOException, FileNotFoundException, chessException{
         String playerInfo = CD.getPlayer(username, password);
         if(playerInfo.length() == 0) return false;
-        String aPlayerInfo[] = playerInfo.split(" ");
-        if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
-        String id = aPlayerInfo[0];
-        int wins = Integer.parseInt(aPlayerInfo[1]);
-        int loses = Integer.parseInt(aPlayerInfo[2]);
-        double ELO = Double.parseDouble(aPlayerInfo[3]);
-        double OP_rating = Double.parseDouble(aPlayerInfo[4]);
-        
-        G.setPlayer1(playerInfo, wins, loses, loses, wins);
+        else{
+            String aPlayerInfo[] = playerInfo.split(" ");
+            if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
+            String id = aPlayerInfo[0];
+            int wins = Integer.parseInt(aPlayerInfo[1]);
+            int loses = Integer.parseInt(aPlayerInfo[2]);
+            double ELO = Double.parseDouble(aPlayerInfo[3]);
+            double OP_rating = Double.parseDouble(aPlayerInfo[4]);
+            P.setId(id);
+            P.setWins(wins);
+            P.setLoses(loses);
+        }
         return true;
     }
     

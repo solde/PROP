@@ -26,8 +26,10 @@ public class CtrlPresentacio {
         bui = new BaseUI(this);
     }
 
-    public CtrlPresentacio() {
+    public CtrlPresentacio() throws IOException {
         bui = new BaseUI(this);
+        this.cc = new CtrlDomainCreator();
+        this.cg = new CtrlDomainGame();
     }
 
     public CtrlPresentacio(CtrlDomainCreator cdc) {
@@ -82,6 +84,8 @@ public class CtrlPresentacio {
     }
     
     boolean authenticatePlayer(String Username, String Password) throws IOException, FileNotFoundException, chessException{
-        return cg.authPlayer1(Username, Password);
+        boolean ret = cg.authPlayer1(Username, Password);
+        System.out.println(ret);
+        return ret;
     }
 }

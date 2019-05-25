@@ -15,10 +15,10 @@ public class mainChessLegends {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CtrlDomainCreator cc;
+                //CtrlDomainCreator cc;
                 try {
-                    cc = new CtrlDomainCreator();
-                    CtrlPresentacio cp = new CtrlPresentacio(cc);
+                    //cc = new CtrlDomainCreator();
+                    CtrlPresentacio cp = new CtrlPresentacio();
                     cp.view();
 
                 } catch (IOException ex) {
