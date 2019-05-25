@@ -194,7 +194,6 @@ public class AI extends Player {
             return moves;
         }
     
-<<<<<<< HEAD:ChessLegends/src/capaDomini/AI.java
     /**
      *
      * @return
@@ -205,14 +204,4 @@ public class AI extends Player {
         String s = null;
         return s;
     }
-    
-    
-=======
-    
-    
-    @Override
-    public String getPassword(){
-        return "";
-    }
->>>>>>> 0a63531a19beb6a5e9ca1b2e00cbbce5735d14ed:ChessLegends/src/capaDomini/AI1.java
 }
