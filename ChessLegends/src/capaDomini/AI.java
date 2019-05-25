@@ -37,9 +37,8 @@ public class AI extends Player {
      * @return
      * @throws chessException
      */
-    
     @Override
-    public Board makeMove(Board b, boolean color, int depth) throws chessException {   
+    public Board makeMove(Board b, boolean color, int depth) throws Exception {   
         
 		
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
