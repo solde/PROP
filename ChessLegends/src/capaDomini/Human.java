@@ -119,5 +119,5 @@ public class Human extends Player {
     public String getPassword() {
         return this.password;
     }
-
+    
 }

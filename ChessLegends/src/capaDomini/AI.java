@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package capaDomini;
+
 import Exception.chessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +18,15 @@ import java.math.*;
  *
  * @author Arnau Santos
  */
-public class AI1 extends Player {
-
-    private static int AI1_ID = 2;
+public class AI extends Player {
+    
+    private static int AI_ID = 2;
     private static final long serialVersionUID = 1L;
     
-    public AI1(){
+    public AI(){
         
     }
     
-
     
     /**
      * makeMove: moves the ideal piece on a given board 
@@ -35,7 +37,9 @@ public class AI1 extends Player {
      * @return
      * @throws chessException
      */
-    public static Board makeMove(Board b, boolean color, int depth) throws chessException {   
+    
+    @Override
+    public Board makeMove(Board b, boolean color, int depth) throws chessException {   
         
 		
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
@@ -118,59 +122,9 @@ public class AI1 extends Player {
      * @return int
      * @throws chessException
      */
-    private static int evaluatePosition(Board bo, int alpha, int beta, int depth, boolean color, boolean especulativeTurn, boolean attackColor) throws chessException{ 
-
-    if (depth == 0){
-        int evaluation = evaluate(bo, attackColor);
-        //System.out.println("Puntuació: "+ evaluation);
-        return evaluation;
-    }
-
-    //especulativeTurn will always be true for beta, false otherwise
-    if (especulativeTurn){ //enter the beta section
-        ArrayList<int[]> moves = deepEvaluate(bo, color);  
-        int newBeta = beta;
-        for (int i = 0; i < moves.size(); ++i){
-             Board successorBoard = new Board(bo, true); //Copy of the "original" board
-             int[] aux= moves.get(i); //Get a possible movement
-             try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
-
-             catch(chessException e){
-
-                 System.out.println("Ooops. Move tried:");
-                 System.out.println(aux[0]+" "+ aux[1]);
-                 System.out.println(aux[2]+" "+ aux[3]);
-                 if (especulativeTurn) System.out.println("beta situation");
-                 else System.out.println("alpha situation");
-                 throw new chessException(e.getMessage());
-             }
-             newBeta = Math.min(newBeta, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor)); 
-             if(newBeta<= alpha) break;
-         }
-         return newBeta; //returns the highest score of the possible moves
-     }
-    else{ //alpha situation
-        ArrayList<int[]> moves = deepEvaluate(bo, color);
-        int newAlpha = alpha;
-        for (int i = 0; i < moves.size(); ++i){
-            //System.out.println(bo.getFEN_code());
-            Board successorBoard = new Board(bo, true);
-            int[] aux= moves.get(i);
-            try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
-
-             catch(chessException e){
-                 System.out.println("Ooops. Move tried:");
-                 System.out.println(aux[0]+" "+ aux[1]);
-                 System.out.println(aux[2]+" "+ aux[3]);
-                 if (especulativeTurn) System.out.println("beta situation");
-                 else System.out.println("alpha situation");
-                 throw new chessException(e.getMessage());
-             }
-            newAlpha = Math.max(newAlpha, evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor));
-            if(beta<= newAlpha) break;
-        }
-        return newAlpha;
-     }
+    protected int evaluatePosition(Board bo, int alpha, int beta, int depth, boolean color, boolean especulativeTurn, boolean attackColor) throws chessException{ 
+       return 0; 
+    
     }
    
     /**
@@ -181,7 +135,7 @@ public class AI1 extends Player {
      * @return
      * @throws chessException
      */
-    public static int evaluate(Board b, boolean color) throws chessException{
+    protected static int evaluate(Board b, boolean color) throws chessException{
 		int attackScore = 0;
 		int defendScore = 0;
                 
@@ -213,7 +167,7 @@ public class AI1 extends Player {
      * @param color
      * @return ArrayList<>
      */
-    private static ArrayList <int[]> deepEvaluate( Board b, boolean color){
+    protected static ArrayList <int[]> deepEvaluate( Board b, boolean color){
             ArrayList<int[]> moves = new ArrayList<>();
             for(int i = 0; i<8; i++){
                     for(int j=0; j<8; j++){
@@ -239,4 +193,17 @@ public class AI1 extends Player {
             }
             return moves;
         }
+    
+    /**
+     *
+     * @return
+     * 
+     */
+    @Override
+    public String getPassword(){
+        String s = null;
+        return s;
+    }
+    
+    
 }

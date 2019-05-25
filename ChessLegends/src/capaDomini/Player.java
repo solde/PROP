@@ -170,4 +170,9 @@ public abstract class Player {
 
         return ret;
     }
+    
+        public Board makeMove(Board b, boolean color, int depth) throws Exception {
+            return null;
+        }
+
 }
