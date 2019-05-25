@@ -54,7 +54,6 @@ public class nullPieceDriver {
                 }
                 case 3: {
                     System.out.println("provando getValue");
-                    h.setValue(7);
                     double k = h.getValue();
                     if (k != 7) {
                         System.out.println("Getter no funciona");
@@ -65,21 +64,6 @@ public class nullPieceDriver {
 
                     display_menu();//Para poder leer la salida mejor
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
-                    break;
-                }
-                case 4: {
-                    System.out.println("provando setValue");
-                    h.setValue(7);
-                    double k = h.getValue();
-                    if (k != 7) {
-                        System.out.println("setter no funciona");
-                    } else {
-                        System.out.println("passed");
-                    }
-                    TimeUnit.SECONDS.sleep(3);
-
-                    display_menu();//Para poder leer la salida mejor
-                    h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
 
@@ -96,7 +80,6 @@ public class nullPieceDriver {
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4:  setValue ");
         /*System.out.println("Test 5: get_poss_movs   ");
           
           System.out.println("Test 6:   ");

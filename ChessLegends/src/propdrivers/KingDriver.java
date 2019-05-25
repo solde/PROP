@@ -75,7 +75,6 @@ public class KingDriver {
                 }
                 case 3: {
                     System.out.println("Testing getValue");
-                    h.setValue(7);
                     double k = h.getValue();
                     if (k != 7) {
                         System.out.println("Getter doesn't work");
@@ -85,26 +84,10 @@ public class KingDriver {
                     TimeUnit.SECONDS.sleep(3);
 
                     display_menu();
-                    h.setValue(3); // reinstaurar el estado anterior para multiples tests
                     break;
                 }
+
                 case 4: {
-                    System.out.println("Testing setValue");
-                    h.setValue(7);
-                    double k = h.getValue();
-                    if (k != 7) {
-                        System.out.println("Setter doesn't work");
-                    } else {
-                        System.out.println("Passed");
-                    }
-                    TimeUnit.SECONDS.sleep(3);
-
-                    display_menu();
-                    h.setValue(3); // reinstaurar el estado anterior para multiples tests
-                    break;
-                }
-
-                case 5: {
                     System.out.println("Testing get_poss_mov");
                     System.out.println("Piece on X:0 Y:7:");
                     //Board b = new Board("7K/8/k1P5/7p/8/8/8/8");
@@ -172,8 +155,7 @@ public class KingDriver {
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4: setValue ");
-        System.out.println("Test 5: get_poss_mov  ");/*
+        System.out.println("Test 4: get_poss_mov  ");/*
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
           System.out.println("Test 8:   ");

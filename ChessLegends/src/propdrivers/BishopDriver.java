@@ -58,10 +58,11 @@ public class BishopDriver {
                     display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
-
+                     
+                    
+                    
                 case 3:
                     System.out.println("testnig getValue");
-                    h.setValue(7);
                     int value;
                     value = h.getValue();
                     if (value == 7) {
@@ -73,23 +74,9 @@ public class BishopDriver {
                     display_menu();
                     h.setMax(2); // reinstaurar el estado anterior para multiples tests
                     break;
+                    
 
                 case 4:
-                    System.out.println("testing setValue");
-                    h.setValue(7);
-                    double k1 = h.getValue();
-                    if (k1 != 7) {
-                        System.out.println("setter doesen't work");
-                    } else {
-                        System.out.println("Passed");
-                    }
-                    TimeUnit.SECONDS.sleep(2);
-
-                    display_menu();
-                    h.setValue(3); // reinstaurar el estado anterior para multiples tests
-                    break;
-
-                case 5:
                     System.out.println("Testing get_poss_mov...");
                     System.out.println("Piece en X:0 Y:7 (Empty Board)");
                     Board b = new Board();
@@ -153,8 +140,7 @@ public class BishopDriver {
         System.out.println("Test 1: getMax  ");
         System.out.println("Test 2: setMax   ");
         System.out.println("Test 3: getValue  ");
-        System.out.println("Test 4: setValue ");
-        System.out.println("Test 5: get_poss_mov  ");/*
+        System.out.println("Test 4: get_poss_mov  ");/*
           System.out.println("Test 6:   ");
           System.out.println("Test 7:   ");
           System.out.println("Test 8:   ");
