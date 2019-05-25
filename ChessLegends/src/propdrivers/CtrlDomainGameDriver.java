@@ -10,6 +10,7 @@ import capaDomini.Board;
 import capaDomini.CtrlDomainGame;
 import capaDomini.Game;
 import capaDomini.GameAbs;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public class CtrlDomainGameDriver {
             System.out.println(" ");
     }
 
-    public static void main(String[] args) throws InterruptedException, chessException {
+    public static void main(String[] args) throws InterruptedException, chessException, IOException {
         CtrlDomainGame ChessLegends = new CtrlDomainGame();
         int input;
         Scanner sc = new Scanner(System.in);

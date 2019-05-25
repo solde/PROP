@@ -64,7 +64,7 @@ public class PlayerManager {
         fr = new FileReader("Players.txt");
         br = new BufferedReader(fr);
         boolean find = false;
-        String line;
+        String line = new String();
         while ((line = br.readLine()) != null) {
                 if(isId(line, id)){
                     find = true;
