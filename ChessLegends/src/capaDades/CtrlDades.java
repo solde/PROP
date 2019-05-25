@@ -82,6 +82,7 @@ public class CtrlDades {
         String p = new String();
         p = p.concat(Name + " ");
         p = p.concat(fenCode + " ");
+        Theme.replace(' ', '_');
         p = p.concat(Theme + " ");
         p = p.concat(String.valueOf(diff) + " ");
         p = p.concat(String.valueOf(N_mov) + " ");

@@ -63,6 +63,7 @@ public class ProblemManager {
                     break;
                 }
         }        
+        line.replace('_', ' ');
         if(!find) throw new chessException("No problem with user name: " + id);
         br.close();
         fr.close();

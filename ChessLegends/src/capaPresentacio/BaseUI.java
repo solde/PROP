@@ -94,8 +94,8 @@ public class BaseUI extends javax.swing.JFrame {
         return p.verifyFEN(fen);
     }
 
-    public void save(String fen, String id, String theme, int movs, boolean first, boolean turn) {
-        p.save(fen, id, theme, movs, turn, first);
+    public void saveProblem(String fen, String id, String theme, int movs, boolean first, boolean turn, boolean v) throws IOException, chessException {
+        p.saveProblem(fen, id, theme, movs, turn, first, v);
     }
 
     void createPlayer(String id, String pass1) throws chessException, IOException {
