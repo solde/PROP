@@ -165,7 +165,7 @@ public abstract class Player {
     
     abstract String getPassword();
     
-    public Board makeMove(Board b, boolean color, int depth) throws chessException {  
+    public Board makeMove(Board b, boolean color, int depth) throws Exception {  
         try{return null;}
         catch (Exception e){
             throw new chessException(e.getMessage());

@@ -12,7 +12,7 @@ import javafx.util.Pair;
 public abstract class Piece {
 
     private final int id;
-    private int value;
+    private final int value;
     private int x;
     private int y;
     private boolean color; //TRUE WHITE FALSE BLACK
@@ -113,9 +113,7 @@ public abstract class Piece {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
+
 
     /**
      * Checks if the Pair p represents an empty space in the board.

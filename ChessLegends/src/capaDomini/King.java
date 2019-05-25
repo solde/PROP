@@ -28,7 +28,7 @@ public class King extends Piece {
      * @param color
      */
     public King(int x, int y, boolean color) {
-        super(3, 100000, x, y, color);
+        super(0, 100000, x, y, color);
         this.max = 1;
     }
 

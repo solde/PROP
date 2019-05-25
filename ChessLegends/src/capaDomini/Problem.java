@@ -148,7 +148,7 @@ public class Problem {
         return this.verified;
     }
         
-    /**
+   /**
      * Check if a problem has solution
      *
      * @return boolean
@@ -163,13 +163,8 @@ public class Problem {
     
     private boolean deep_verify(Board b, int n, boolean color) throws chessException{
         boolean can_solve = false;
-        if(n == -1){
-            for(int i = 0; i < 8; ++i){
-                for(int j = 0; j < 8; ++j){
-                    if(b.getPieceAt(i, j).getTypeOfPiece() == 0 && (b.getPieceAt(i, j).isColor() != this.atk)) return false;
-                }
-            }
-            return true;
+        if(n == 0){
+            return b.isCheckMate(color);
         }
         else{
             for(int i = 0; i < 8; ++i){
@@ -195,6 +190,8 @@ public class Problem {
         }
         return can_solve;
     }
+    
+    
     
     public boolean getATK(){
         return this.atk;

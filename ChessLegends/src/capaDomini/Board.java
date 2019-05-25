@@ -288,36 +288,52 @@ public class Board {
         processFEN(false);
     }
     
-    /**
-     * @param color
-     * @throws Exception.chessException
-     * @Pre True
-     * @Post Returns if player color is in checkmate
-     * @return if player color is doing a checkmate to the other player
-     */
+    //color indica el color AL CUAL MATAN, no el que hace jaque mate
+    
     public boolean isCheckMate(boolean color) throws chessException{
-        Piece p = new NullPiece(0, 0, true);
-        for(int i = 0; i < 8; ++i){
-            for(int j = 0; j < 8; ++j){
-                if(chessBoard[i][j].getTypeOfPiece() == 0 && chessBoard[i][j].isColor() == color){
-                    p = chessBoard[i][j];
+        Piece king = new King();
+        for(int i = 0; i<8; i++){
+            for(int j=0; j<8; j++){
+                if (chessBoard[i][j].getValue() == king.getValue() && chessBoard[i][j].isColor() == color){
+                    king = new King(i,j,color);
                 }
             }
         }
-        ArrayList<Pair<Integer, Integer>> pos_movs = p.get_poss_mov(this);
-        for(int i = 0; i < pos_movs.size(); ++i){
-            Board newb = new Board(this, true);
-            newb.movePiece(p.getX(), p.getY(), pos_movs.get(i).getKey(), pos_movs.get(i).getValue(), color);
-            Problem P = new Problem();
-            P.setFenCode(newb.getFEN_code());
-            P.setN_mov(1);
-            P.setATK(!color);
-            P.setFirstTurn(!color);
-            if(!P.verify()){
-                return false;
+        
+        
+        ArrayList<Pair<Integer, Integer>> movesking = new ArrayList<>();
+        movesking = king.get_poss_mov(this);
+        Pair<Integer, Integer> init = new Pair<> (king.getX(), king.getY());
+        movesking.add(init);
+        
+//La idea es que haya una posicion en movesking que no tenga ninguna posicion en el que le maten
+        Boolean checkMate = true;
+        for (Pair<Integer, Integer> moves : movesking){ //lista posibles movs rey
+            Boolean checkmove = false;
+            for(int i = 0; i<8; i++){
+                for(int j=0; j<8; j++){
+                    if(this.getPieceAt(i,j).getTypeOfPiece() != -1 && this.getPieceAt(i,j).isColor() != color){ 
+                        Piece piece = this.getPieceAt(i,j); 
+                        ArrayList<Pair<Integer, Integer>> llista;
+                        llista = piece.get_poss_mov(this);
+                        for (Pair<Integer, Integer> movsllista : llista){ //lista atacantes
+                            if (!checkmove){
+                                checkmove = movsllista.equals(moves);
+                            }
+                            else break;
+                        }
+                    }
+                    if (checkmove) break;
+                }
+                if (checkmove) break;
             }
+           if (!checkmove){
+               checkMate = checkmove;
+               break;
+           }
+            
         }
-        return true;
+        return checkMate;
     }
     
     /**
