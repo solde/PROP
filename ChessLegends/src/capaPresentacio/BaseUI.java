@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class BaseUI extends javax.swing.JFrame {
 
     private CtrlPresentacio p;
-    String name = "popeye";
+    public String name = "popeye"; //this will indicate the name of the player, setting is public for easier code
+    public String pName ="MataReyes"; //same, but for problem name
 
     /**
      * Creates new form BaseUI
@@ -113,6 +114,9 @@ public class BaseUI extends javax.swing.JFrame {
     
     boolean autenticatePlayer(String username, String Password) throws IOException, FileNotFoundException, chessException{
         return p.authenticatePlayer(username, Password);
+    }
+    public String getProblemName(){
+        return this.pName;
     }
 
     /**
