@@ -14,14 +14,16 @@ import javafx.util.Pair;
  * @author David Soldevila
  */
 public abstract class GameAbs {
-    private Player P1;
-    private Player P2;
+    protected Player P1;
+    protected Player P2;
     
-    Board B;
-    Problem P;
+    protected Board B;
+    protected Problem P;
     
     protected boolean turn;
     protected boolean winner;
+    
+    
 
     /**
      * Constructor with parameters
@@ -81,8 +83,11 @@ public abstract class GameAbs {
      * @param OP_rating
      */
     public void setPlayer1(String playerId, int wins, int loses, double ELO, double OP_rating){
-        if(playerId.equalsIgnoreCase("AI1")){
-            P1 = new AI1();
+        if(playerId.equalsIgnoreCase("AIHard")){
+            P1 = new AIHard();
+        }
+        else if (playerId.equalsIgnoreCase("AIEasy")){
+            P1 = new AIEasy();
         }
         else{
             P1 = new Human(playerId, wins, loses, ELO, OP_rating);
@@ -99,8 +104,11 @@ public abstract class GameAbs {
      * @param OP_rating
      */
     public void setPlayer2(String playerId, int wins, int loses, int ELO, int OP_rating){
-        if(playerId.equalsIgnoreCase("AI1")){
-            P2 = new AI1();
+        if(playerId.equalsIgnoreCase("AIHard")){
+            P2 = new AIHard();
+        }
+        else if (playerId.equalsIgnoreCase("AIEasy")){
+            P2 = new AIEasy();
         }
         else{
             P2 = new Human(playerId, wins, loses, ELO, OP_rating);
@@ -181,5 +189,6 @@ public abstract class GameAbs {
     public ArrayList<Pair<Long, String>> getRanking(){
         return P.getRanking();
     }
+    
     
 }

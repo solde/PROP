@@ -220,90 +220,19 @@ public class Game extends GameAbs {
 
     @Override
     public void playMatch(Boolean color) throws chessException {
-        Scanner sc = new Scanner(System.in);
-        int turn_cont = this.P.getN_mov();
-        Boolean turn = this.isTurn();
-        while(turn_cont > 0){
-            if (turn == color){
-               
-                
-                ArrayList<int[]> moves = new ArrayList<>();
-                moves = possibleMovements(color);
-                for (int i = 0; i < moves.size(); ++i){
-                    int[] aux = moves.get(i);
-                    System.out.println(aux[0] + " " + aux[1]);
-                    System.out.println(aux[2] + " " + aux[3]);
-                     System.out.println("");
-                }
-                
-                System.out.println("Enter your x source");
-                int sX = sc.nextInt();
-                
-                System.out.println("Enter your y source");
-                int sY = sc.nextInt();
-                
-                System.out.println("Enter your x destination");
-                int dX = sc.nextInt();
-                
-                System.out.println("Enter your y destination");
-                int dY = sc.nextInt();
-
-                
-                movePiece(sX, sY, dX, dY, color, 0); //0 now unimplemented
-                this.B = new Board(AI1.makeMove(this.B, !turn, 2), false);
-            }
-           
-            else{
-                this.B = new Board(AI1.makeMove(this.B, turn, 2), false);
-               
-                
-                ArrayList<int[]> moves = new ArrayList<>();
-                moves = possibleMovements(color);
-                for (int i = 0; i < moves.size(); ++i){
-                    int[] aux = moves.get(i);
-                    System.out.println(aux[0] + " " + aux[1]);
-                    System.out.println(aux[2] + " " + aux[3]);
-                }
-                
-                System.out.println("Enter your x source");
-                int sX = sc.nextInt();
-                
-                System.out.println("Enter your y source");
-                int sY = sc.nextInt();
-                
-                System.out.println("Enter your x destination");
-                int dX = sc.nextInt();
-                
-                System.out.println("Enter your y destination");
-                int dY = sc.nextInt();
-
-                
-                movePiece(sX, sY, dX, dY, color, 0); //0 now unimplemented
-                
-            }
-            
-
-            this.setTurn(!this.isTurn());
-            turn_cont -= 1;
-
+        if (color){
+            try{
+                this.B = new Board(this.P1.makeMove(this.B, this.isTurn(), 2), true);}
+            catch (Exception e){
+                throw new chessException (e.getMessage());
+            }            
         }
-        if(B.isCheckMate(!P.getATK())){
-
-            if (P.getATK()){
-                System.out.println("WhiteWins");
+        else{
+            try{
+                this.B = new Board(this.P2.makeMove(this.B, this.isTurn(), 2), true);}
+            catch (Exception e){
+                throw new chessException (e.getMessage());
             }
-            else{
-                System.out.println("BlackWins");
-            }
-
-        }
-        
-        
-        else if(P.getATK()) {
-            System.out.println("BlackWins");
-        }
-        else {
-            System.out.println("WhiteWins");
         }
     }
 }

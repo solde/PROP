@@ -17,6 +17,8 @@ public class AICompetition extends GameAbs{
     private int WhiteWins;
     private int BlackWins;
     
+
+    
     
     /**
      * Basic constructors
@@ -95,10 +97,20 @@ public class AICompetition extends GameAbs{
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
                 
-                this.B = new Board(AI1.makeMove(this.B, turn, 2), true);
+                this.P1 = new AIHard();
+                this.P2 = new AIHard();
+                try{
+                    this.B = new Board(P1.makeMove(this.B, this.isTurn(), 2), true);}
+                catch (Exception e){
+                    throw new chessException (e.getMessage());
+                }
  
                 
-                this.B = new Board(AI1.makeMove(this.B, !turn, 2), true);
+                try{
+                    this.B = new Board(P2.makeMove(this.B, this.isTurn(), 2), true);}
+                catch (Exception e){
+                    throw new chessException (e.getMessage());
+                }
  
                 
                 turn_cont += 1;
@@ -108,29 +120,29 @@ public class AICompetition extends GameAbs{
                 
                 if (P.getATK()){
                     WhiteWins += 1;
-                    System.out.println("WhiteWins");
+                   
                 }
                 else{
                     BlackWins += 1;
-                    System.out.println("BlackWins");
+                    
                 }
                 
             }
             else{
                 if(P.getATK()) {
                     BlackWins += 1;
-                    System.out.println("BlackWins");
+                   
                 }
                 else {
                     WhiteWins += 1;
-                    System.out.println("WhiteWins");
+                    
                 }
             }
             
             resetBoard();
             int aux = i;
             ++aux;
-            System.out.println("Gamesplayed: " + aux);
+            
             
         }
     }

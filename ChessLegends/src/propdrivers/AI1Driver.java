@@ -6,7 +6,7 @@
 package propdrivers;
 
 import Exception.chessException;
-import capaDomini.AI1;
+import capaDomini.AIHard;
 import capaDomini.Board;
 import java.util.Scanner;
 
@@ -40,11 +40,11 @@ public class AI1Driver {
         printBoard(b);
 
 
-        b = new Board(AI1.makeMove(b, true, 3), false); //1: Board, 2: fitxa, 3: depth
+        b = new Board(AIHard.makeMove(b, true, 3), false); //1: Board, 2: fitxa, 3: depth
         printBoard(b);
-        b = new Board(AI1.makeMove(b, false, 3), false);
+        b = new Board(AIHard.makeMove(b, false, 3), false);
         printBoard(b);
-        b = new Board(AI1.makeMove(b, true, 3), false);
+        b = new Board(AIHard.makeMove(b, true, 3), false);
         printBoard(b);
         String FENf = b.fenToString();
         System.out.println(FENf);
