@@ -63,8 +63,9 @@ public class CtrlDomainCreator {
      * @param atk
      * @param first_turn
      */
-    public void createNewProblemTest(String fen, String Name, int N_mov, String Theme, boolean atk, boolean first_turn){
-        P = new Problem(fen, Name, N_mov, Theme, atk, first_turn);
+    public void createNewProblem(String fen, String Name, String Theme, int N_mov, boolean atk, boolean first_turn, boolean v) throws IOException, chessException{
+        P = new Problem();
+        CD.createProblem(fen, Name, Theme, N_mov, N_mov, atk, first_turn, v);
     }
     
     /**

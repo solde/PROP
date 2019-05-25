@@ -79,8 +79,8 @@ public class CtrlPresentacio {
         return cc.verifyFen(fen);
     }
 
-    void save(String fen, String id, String theme, int movs, boolean turn, boolean first) {
-       //not done
+    void saveProblem(String fen, String id, String theme, int movs, boolean turn, boolean first, boolean v) throws IOException, chessException {
+       cc.createNewProblem(fen, id, theme, movs, turn, first, v);
     }
     
     boolean authenticatePlayer(String Username, String Password) throws IOException, FileNotFoundException, chessException{

@@ -28,7 +28,7 @@ public class AI1Driver {
         }
         System.out.println(" ");
     }
-    public static void main(String[] args) throws chessException {
+    public static void main(String[] args) throws chessException, Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a fern code");
         String FENi = sc.next(); 
@@ -40,7 +40,7 @@ public class AI1Driver {
         printBoard(b);
 
 
-        b = new Board(AIHard.makeMove(b, true, 3), false); //1: Board, 2: fitxa, 3: depth
+        /*b = new Board(AIHard.makeMove(b, true, 3), false); //1: Board, 2: fitxa, 3: depth
         printBoard(b);
         b = new Board(AIHard.makeMove(b, false, 3), false);
         printBoard(b);
@@ -48,7 +48,7 @@ public class AI1Driver {
         printBoard(b);
         String FENf = b.fenToString();
         System.out.println(FENf);
-        if (FENi != FENf) System.out.println("Ha mogut.");
+        if (FENi != FENf) System.out.println("Ha mogut.");*/
     }
 }
 

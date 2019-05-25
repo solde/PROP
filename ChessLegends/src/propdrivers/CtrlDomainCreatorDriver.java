@@ -93,7 +93,7 @@ public class CtrlDomainCreatorDriver {
                 N = sc.nextInt();
                 System.out.println("Enter atk (true->white|false->black)");
                 atk = sc.nextBoolean();
-                ChessLegends.createNewProblemTest(fen, name, N, theme, atk, atk);
+                //ChessLegends.createNewProblem(fen, name, N, theme, atk, atk, false);
                 System.out.println("Problem created");
                 System.out.println(ChessLegends.getProblemInfo());
                 System.out.println("Do yo want to verify? (true->yes|false->no)");
@@ -158,7 +158,7 @@ public class CtrlDomainCreatorDriver {
                 N = sc.nextInt();
                 System.out.println("Enter atk (true->white|false->black)");
                 atk = sc.nextBoolean();
-                ChessLegends.createNewProblemTest(fen, name, N, theme, atk, atk);
+                //ChessLegends.createNewProblem(fen, name, N, theme, atk, atk, false);
                 System.out.println("Problem created");
                 System.out.println(ChessLegends.getProblemInfo());
                 System.out.println("Do yo want to verify? (true->yes|false->no)");
