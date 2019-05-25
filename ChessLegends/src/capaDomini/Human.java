@@ -12,7 +12,7 @@ public class Human extends Player {
 
     //Basicament tot lo relacionat amb password es temporal 
     //private
-    private String password; //TEMP, ja millorarem la seguritat
+    private String password;
     //Funció temporal per la primera entrega 
  
     /**
@@ -66,6 +66,7 @@ public class Human extends Player {
         this.loses = loses;
         this.ELO = ELO;
         this.OP_rating = OP_rating;
+        this.password = pass;
     }
 
     /**
@@ -98,7 +99,7 @@ public class Human extends Player {
         this.loses = 0;
         this.ELO = 1000;
         this.OP_rating = 0;
-        setPassword(pass);
+        this.password = pass;
     }
 
     /**
@@ -116,6 +117,7 @@ public class Human extends Player {
      *
      * @return password
      */
+    @Override
     public String getPassword() {
         return this.password;
     }

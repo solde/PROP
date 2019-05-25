@@ -35,13 +35,8 @@ public class CtrlPresentacio {
         bui = new BaseUI(this);
     }
 
-    public void createPlayer(String id, String pass) {
-        cc.createNewPlayerTest(id, pass);
-        try {
-            cc.storeNewPlayer();
-        } catch (IOException | chessException ex) {
-            Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void createPlayer(String id, String pass) throws chessException, IOException {
+        cc.createNewPlayer(id, pass);
         System.out.println("Player with name: " + id + " created.  Password: " + pass);
 
     }

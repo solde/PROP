@@ -13,15 +13,7 @@ public abstract class Player {
     protected int loses;
     protected double ELO;
     protected double OP_rating;
-    private String Password;
-
-    public void setPassword(String Password){
-        this.Password = Password; 
-    }
-    
-    public String getPassword(){
-        return this.Password;
-    }
+    protected String password;
     
     /**
      * Retruns the id on player
@@ -171,8 +163,5 @@ public abstract class Player {
         return ret;
     }
     
-        public Board makeMove(Board b, boolean color, int depth) throws Exception {
-            return null;
-        }
-
+    abstract String getPassword();
 }

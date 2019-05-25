@@ -24,6 +24,13 @@ public class PlayerManager {
     private FileReader fr;
     
     public PlayerManager() throws IOException{
+        try{
+            fr = new FileReader("Players.txt");
+            BufferedReader br = new BufferedReader(fr);
+        }
+        catch(IOException ex){
+            
+        }
     }
     
     /*

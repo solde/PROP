@@ -29,7 +29,7 @@ public class CtrlDomainCreator {
     public CtrlDomainCreator() throws IOException {
         B = new Board();
         P = new Problem();
-        Pl = new Human();
+        //Pl = new Human();
         
         CD = new CtrlDades();
     }
@@ -73,8 +73,9 @@ public class CtrlDomainCreator {
      * @param Name
      * @param Password
      */
-    public void createNewPlayerTest(String Name, String Password){
-        Pl = new Human(Name, Password, 0, 0, 1000, 0);
+    public void createNewPlayer(String Name, String Password) throws IOException, chessException{
+        Pl = new Human(Name, Password);
+        CD.createPlayer(Name, Password);
     }
     
     /**
@@ -251,10 +252,6 @@ public class CtrlDomainCreator {
         String Theme = P.getTheme();
         Theme = Theme.replace(" ", "_");
         CD.createProblem(P.getName(), P.getFenCode(), Theme, P.getN_mov(), P.getDiff(), P.getATK(), P.getFirstTurn(), P.isVerified());
-    }
-    
-    public void storeNewPlayer() throws IOException, chessException{
-        CD.createPlayer(Pl.getId(), Pl.getPassword());
     }
     
     public void updatePassword(String id, String oldPassword, String newPassword) throws IOException, IOException, FileNotFoundException, FileNotFoundException, chessException{
