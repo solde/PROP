@@ -8,3 +8,4 @@ k p uy 3 9 true true true
 k p uy 3 9 true true true
 t r t 1 1 true false false
 test 8/8/8/8/8/8/8/8 test 3 3 true true true
+   1 1 false false false
