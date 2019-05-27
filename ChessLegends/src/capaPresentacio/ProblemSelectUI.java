@@ -8,6 +8,9 @@ package capaPresentacio;
 import java.awt.PopupMenu;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -221,6 +224,7 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         int i = jProblemSelect.getSelectedIndex();
         id = jProblemSelect.getItemAt(i);
         System.out.println(id);
+        b.changeLoadUI();
         b.loadProblem(id);
         b.changeBoardUI();
     }//GEN-LAST:event_jButton5ActionPerformed
