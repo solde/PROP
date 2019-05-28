@@ -80,12 +80,25 @@ public class CtrlPresentacio {
     }
 
     void saveProblem(String fen, String id, String theme, int movs, boolean turn, boolean first, boolean v) throws IOException, chessException {
-       cc.createNewProblem(fen, id, theme, movs, turn, first, v);
+        cc.createNewProblem(fen, id, theme, movs, turn, first, v);
     }
-    
-    boolean authenticatePlayer(String Username, String Password) throws IOException, FileNotFoundException, chessException{
+
+    boolean authenticatePlayer(String Username, String Password) throws IOException, FileNotFoundException, chessException {
         boolean ret = cg.authPlayer1(Username, Password);
         System.out.println(ret);
         return ret;
+    }
+
+    void makeMove(int x, int y, int xnew, int ynew) {
+        //controler domain make move
+    }
+
+    public String updateBoard() throws chessException {
+        return cc.getFenCodeOfBoard();
+    }
+
+    public boolean canKill(int x, int y, int xnew, int ynew) {
+        //controler function check if xy piece can kill xynew piece
+       return false;
     }
 }

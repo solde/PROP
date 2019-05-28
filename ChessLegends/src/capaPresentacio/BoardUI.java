@@ -20,6 +20,7 @@ import capaDomini.Rock;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -36,10 +37,12 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     int yAdjustment;
     private CtrlPresentacio p;
     private BaseUI b;
+    // char realChessBoard[][];
     Timer time;
     JLabel timeLabel;
     double milis;
     int posX, posY;
+    boolean playing;
     String fen = ("rnbqkbnr/8/pppppppp/8/1p1p1p1Q/8/PPPPPPPP/RNBQKBNR");
 
     public BoardUI() {
@@ -55,7 +58,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     /*Aquesta Funcio crea els components de board*/
     private void initComp() {
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
-        Dimension boardSize2 = new Dimension(600, 630); //chessboaurd UI dimension
+        Dimension boardSize2 = new Dimension(600, 630); //chessboard UI dimension
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
         layeredPane = new JLayeredPane();
         getContentPane().add(layeredPane);
@@ -66,7 +69,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         //Exit button
         JButton exit = new JButton("Exit");
         exit.addActionListener(this::exit);
-        exit.setBounds(529, 0, 70, 24);
+        exit.setBounds(528, 0, 70, 24);
         layeredPane.add(exit, JLayeredPane.DEFAULT_LAYER);
 
         //Logout button
@@ -81,16 +84,21 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         resign.setBounds(0, 0, 80, 24);
         layeredPane.add(resign, JLayeredPane.DEFAULT_LAYER);
 
-        //Clear button
+        //Restart button
         JButton restart = new JButton("Restart");
         restart.addActionListener(this::restart);
-
-        restart.setBounds(81, 0, 75, 24);
+        restart.setBounds(81, 0, 80, 24);
         layeredPane.add(restart, JLayeredPane.DEFAULT_LAYER);
+
+        //play button
+        JButton play = new JButton("Start Game");
+        play.addActionListener(this::play);
+        play.setBounds(163, 0, 100, 24);
+        layeredPane.add(play, JLayeredPane.DEFAULT_LAYER);
 
         //Name Problem
         JLabel nameP = new JLabel("NameSample");
-        nameP.setBounds(250, 0, 80, 20);
+        nameP.setBounds(270, 0, 80, 20);
         layeredPane.add(nameP);
         nameP.setText(b.getProblemName());
 
@@ -98,10 +106,8 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         time = new Timer(1, (ActionEvent e) -> {
             actTime();
         });
-        time.start();
-
-        timeLabel = new JLabel("0");
-        timeLabel.setBounds(330, 0, 100, 20);
+        timeLabel = new JLabel("Time: 00:00");
+        timeLabel.setBounds(350, 0, 100, 20);
         layeredPane.add(timeLabel);
 
         //Acabem afegint el panel al layeradPane
@@ -125,7 +131,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
         setPieces(this.fen);
 
-        
+        //fill the logical chessboard
     }
 
     private void exit(java.awt.event.ActionEvent evt) {
@@ -143,12 +149,14 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     }
 
     private void resign(java.awt.event.ActionEvent evt) {
-
+        // b.changeNewProb();
+        this.setVisible(false);
     }
 
     private void logout(java.awt.event.ActionEvent evt) {
         b.changeLog();
         time.stop();
+        this.setVisible(false);
 
         // System.exit(0);
     }
@@ -167,11 +175,15 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     @Override
     public void mousePressed(MouseEvent e) {
         chessPiece = null;
+        //fixes ocasional nullpointer
+        if (e.getY() < 0 || e.getY() > 600) {
+            return;
+        }
         Component c = chessBoard.findComponentAt(e.getX(), e.getY());
         posX = e.getX();
         posY = e.getY();
         if (c instanceof JPanel) {
-            ((JPanel) c).setBorder(BorderFactory.createLineBorder(Color.green, 4));
+            // ((JPanel) c).setBorder(BorderFactory.createLineBorder(Color.green, 4));
 
             // c.setBackground(Color.yellow);
             return;
@@ -201,30 +213,39 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         if (chessPiece == null) {
             return;
         }
-
         chessPiece.setVisible(false);
         //-System.out.println("-------------");
         //-ç.println(e.getX());
         //-System.out.println(e.getY());
         Component c;
-        //Boundary Limits
+        boolean skip = false;
+        //Boundary Limits makes you return to the original panel
         if (e.getX() < 0 || e.getX() > 600) {
             c = chessBoard.findComponentAt(posX, posY);
+            skip = true;
 
         } else if (e.getY() < 0 || e.getY() > 600) {
+            skip = true;
             c = chessBoard.findComponentAt(posX, posY);
 
         } else {
             c = chessBoard.findComponentAt(e.getX(), e.getY());
         }
         if (c instanceof JLabel) {
-            Component d = chessBoard.findComponentAt(posX, posY);
-            Container parent = (Container) d;
-            // Container p=c.getParent();
-            // p.remove(0);
-            //p.add(chessPiece);
-            parent.add(chessPiece);
+            if (!p.canKill(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64)) {
+                Component d = chessBoard.findComponentAt(posX, posY);
+                Container parent = (Container) d;
+                parent.add(chessPiece);
+            } else {
+                Container p = c.getParent();
+                p.remove(0);
+                p.add(chessPiece);
+            }
         } else {
+            //pass the interactive movement  to the logical board
+            if (!skip) {
+                p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
+            }
             Container parent = (Container) c;
             parent.add(chessPiece);
         }
@@ -488,4 +509,18 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
 
     }
+
+    private void play(java.awt.event.ActionEvent evt) {
+
+        if (playing) {
+            return;
+        }
+        playing = true;
+        time.start();
+        //p.startGame();
+
+        // setPieces(p.updateBoard());
+        // TimeUnit.SECONDS.sleep(1);
+    }
+
 }

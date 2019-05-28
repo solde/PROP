@@ -61,7 +61,7 @@ public class LoadingUI extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 51, 51)));
 
         jLabel1.setFont(new java.awt.Font("Sitka Banner", 3, 18)); // NOI18N
-        jLabel1.setText("Loaded!");
+        jLabel1.setText("Loading...");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,13 +133,7 @@ public class LoadingUI extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         b.close();
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void loop() {
-        int i = 0;
-        while (i < 10) {
-            jProgressBar1.setValue(i / 10);
-  
-        }
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -152,5 +146,8 @@ public class LoadingUI extends javax.swing.JPanel {
 
     private void actTime() {
         jProgressBar1.setValue(i++);
+        if (jProgressBar1.getValue() == 100) {
+            jLabel1.setText("Loaded!");
+        }
     }
 }
