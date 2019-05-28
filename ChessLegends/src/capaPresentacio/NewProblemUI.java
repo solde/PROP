@@ -53,6 +53,8 @@ public class NewProblemUI extends javax.swing.JPanel {
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         fenCode = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -280,6 +282,14 @@ public class NewProblemUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void fenCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fenCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fenCodeActionPerformed
+
+    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameActionPerformed
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Verify
         String fen = fenCode.getText();
@@ -325,18 +335,12 @@ public class NewProblemUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void fenCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fenCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fenCodeActionPerformed
-
-    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NameActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Name;
     private javax.swing.JTextField Theme;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField fenCode;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
