@@ -180,10 +180,10 @@ public class DELETE {
     }
     public void see() {
 
-        ChessGUI cg = new ChessGUI();
+       // ChessGUI cg = new ChessGUI();
 
         JFrame f = new JFrame("ChessChamp");
-        f.add(cg.getGui());
+       // f.add(cg.getGui());
         // Ensures JVM closes after frame(s) closed and
         // all non-daemon threads are finished
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

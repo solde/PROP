@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class BaseUI extends javax.swing.JFrame {
 
     private CtrlPresentacio p;
-    String name = "popeye";
+    public String name = "popeye"; //this will indicate the name of the player, setting is public for easier code
+    public String pName = "MataReyes"; //same, but for problem name
 
     /**
      * Creates new form BaseUI
@@ -79,10 +80,16 @@ public class BaseUI extends javax.swing.JFrame {
     }
 
     public void changeBoardUI() {
-        brui = new BoardUI(p,this);
-       // jScrollPane1.setViewportView(brui);
-       brui.see();
-      // close();
+        brui = new BoardUI(p, this);
+        // jScrollPane1.setViewportView(brui);
+        brui.see();
+        // close();
+    }
+
+    public void changeLoadUI() {
+        loadUI = new LoadingUI(this);
+        jScrollPane1.setViewportView(loadUI);
+
     }
 
     public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException {
@@ -106,13 +113,17 @@ public class BaseUI extends javax.swing.JFrame {
     boolean passwordsMatch(String pass1, String pass2) {
         return p.passwordsMatch(pass2, pass1);
     }
-    
-    ArrayList<String> getProblemList() throws IOException{
+
+    ArrayList<String> getProblemList() throws IOException {
         return p.getProblemList();
     }
-    
-    boolean autenticatePlayer(String username, String Password) throws IOException, FileNotFoundException, chessException{
+
+    boolean autenticatePlayer(String username, String Password) throws IOException, FileNotFoundException, chessException {
         return p.authenticatePlayer(username, Password);
+    }
+
+    public String getProblemName() {
+        return this.pName;
     }
 
     /**
@@ -157,4 +168,6 @@ public class BaseUI extends javax.swing.JFrame {
     private ProblemSelectUI psui;
     private NewProblemUI npui;
     private BoardUI brui;
+
+    private LoadingUI loadUI;
 }
