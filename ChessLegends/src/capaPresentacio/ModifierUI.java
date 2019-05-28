@@ -58,7 +58,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     /*Aquesta Funcio crea els components de board*/
     private void initComp() {
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
-        Dimension boardSize2 = new Dimension(600, 630); //chessboard UI dimension
+        Dimension boardSize2 = new Dimension(700, 630); //chessboard UI dimension
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
         layeredPane = new JLayeredPane();
         getContentPane().add(layeredPane);
@@ -94,7 +94,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         JButton play = new JButton("Start Game");
         play.addActionListener(this::play);
         play.setBounds(163, 0, 100, 24);
-        play.setBounds(598, 0, 100, 100);
+        play.setBounds(605, 0, 90, 90);
         layeredPane.add(play, JLayeredPane.DEFAULT_LAYER);
 
         //Name Problem

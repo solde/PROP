@@ -94,7 +94,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         JButton play = new JButton("Start Game");
         play.addActionListener(this::play);
         play.setBounds(163, 0, 100, 24);
-        play.setBounds(598, 0, 100, 100);
+        play.setBounds(600, 0, 100, 100);
         layeredPane.add(play, JLayeredPane.DEFAULT_LAYER);
 
         //Name Problem
