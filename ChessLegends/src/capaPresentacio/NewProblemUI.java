@@ -148,6 +148,11 @@ public class NewProblemUI extends javax.swing.JPanel {
         jLabel9.setText("N_mov:");
 
         jButton5.setText("Interactive Creator");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Logout");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -334,6 +339,10 @@ public class NewProblemUI extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        b.changeModifyUI();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

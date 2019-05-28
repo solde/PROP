@@ -28,7 +28,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.Timer;
 
-public class BoardUI extends JFrame implements MouseListener, MouseMotionListener {
+public class ModifierUI extends JFrame implements MouseListener, MouseMotionListener {
 
     JLayeredPane layeredPane;
     JPanel chessBoard;
@@ -45,11 +45,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     boolean playing;
     String fen = ("rnbqkbnr/8/pppppppp/8/1p1p1p1Q/8/PPPPPPPP/RNBQKBNR");
 
-    public BoardUI() {
+    public ModifierUI() {
         initComp();
     }
 
-    public BoardUI(CtrlPresentacio p, BaseUI b) {
+    public ModifierUI(CtrlPresentacio p, BaseUI b) {
         this.b = b;
         this.p = p;
         initComp();
@@ -271,7 +271,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     }
 
     public void see() {
-        JFrame frame = new BoardUI(this.p, this.b);
+        JFrame frame = new ModifierUI(this.p, this.b);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setResizable(true);

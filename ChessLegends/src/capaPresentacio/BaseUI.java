@@ -61,6 +61,7 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(psui);
     }
 
+
     public void close() {
         System.exit(0);
     }
@@ -83,6 +84,13 @@ public class BaseUI extends javax.swing.JFrame {
         brui = new BoardUI(p, this);
         // jScrollPane1.setViewportView(brui);
         brui.see();
+        // close();
+    }
+    
+    public void changeModifyUI() {
+        modifUI = new ModifierUI(p, this);
+        // jScrollPane1.setViewportView(brui);
+        modifUI.see();
         // close();
     }
 
@@ -182,4 +190,5 @@ public class BaseUI extends javax.swing.JFrame {
     private BoardUI brui;
     private GameConfigUI gcui;
     private LoadingUI loadUI;
+    private ModifierUI modifUI;
 }
