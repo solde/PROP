@@ -138,7 +138,27 @@ public abstract class GameAbs {
     public void setB(Board B) {
         this.B = B;
     }
+    public void setAI1difficulty(int dif) throws chessException {
+        if (dif == 1){
+            this.P1 = new AIEasy();         
+        } 
+        else if (dif == 2){
+            this.P1 = new AIHard();
+        }
+        else throw new chessException("Dificultad incorrecta");
+        
+    }
     
+    public void setAI2difficulty(int dif) throws chessException {
+        if (dif == 1){
+            this.P2 = new AIEasy();         
+        } 
+        else if (dif == 2){
+            this.P2 = new AIHard();
+        }
+        else throw new chessException("Dificultad incorrecta");
+        
+    }
     public String getPlayer1Info(){
         return "";
     }

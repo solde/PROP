@@ -96,9 +96,7 @@ public class AICompetition extends GameAbs{
         for(int i = 0; i < this.N; ++i){
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
-                
-                this.P1 = new AIHard();
-                this.P2 = new AIHard();
+
                 try{
                     this.B = new Board(P1.makeMove(this.B, this.isTurn(), 2), true);}
                 catch (Exception e){
