@@ -25,18 +25,10 @@ public class Problem {
     private int N_mov;
     private boolean atk; //True = white, False = black
     private boolean first_turn;
-    private boolean verified;
+    private boolean v;
     
     private ArrayList<Pair<Long, String>> Ranking;
-
-    /**
-     *  Basic constructor
-     */
-    public Problem() {
-        this. fenCode = "8/8/8/8/8/8/8/8";
-        Ranking = new ArrayList<Pair<Long, String>>();
-    }
-
+    
     /**
      * Constructor with parameters
      *
@@ -47,8 +39,9 @@ public class Problem {
      * @param Theme
      * @param atk
      * @param first_turn
-     */
-    public Problem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) {
+     * @param verified
+    */
+    public Problem(String fenCode, String Name, String Theme, int diff, int N_mov, boolean atk, boolean first_turn, boolean v) {
         Ranking = new ArrayList<Pair<Long, String>>();
         this.fenCode = fenCode;
         this.Name = Name;
@@ -57,8 +50,16 @@ public class Problem {
         this.Theme = Theme;
         this.atk = atk;
         this.first_turn = first_turn;
-        this.verified = verified;
+        this.v = v;
     }
+
+    /**
+     *  Basic constructor
+     */
+    public Problem() {
+        this. fenCode = "8/8/8/8/8/8/8/8";
+        Ranking = new ArrayList<Pair<Long, String>>();
+    }    
     
     /**
      * Constructor with parameters
@@ -78,7 +79,19 @@ public class Problem {
         this.Theme = Theme;
         this.atk = atk;
         this.first_turn = first_turn;
-        this.verified = false;
+        this.v = false;
+        calculateDiff();
+    }
+    
+    public Problem(String fenCode, String Name, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) {
+        Ranking = new ArrayList<Pair<Long, String>>();
+        this.fenCode = fenCode;
+        this.Name = Name;
+        this.N_mov = N_mov;
+        this.Theme = Theme;
+        this.atk = atk;
+        this.first_turn = first_turn;
+        this.v = verified;
         calculateDiff();
     }
 
@@ -141,11 +154,11 @@ public class Problem {
     }
     
     public void setVerified(boolean v){
-        this.verified = v;
+        this.v = v;
     }
     
     public boolean isVerified(){
-        return this.verified;
+        return this.v;
     }
         
    /**

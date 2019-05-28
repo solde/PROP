@@ -56,8 +56,8 @@ public class CtrlPresentacio {
         return false;
     }
 
-    public void loadProblem(String id) {
-        //NOT DONE
+    public void loadProblem(String id) throws IOException, FileNotFoundException, chessException {
+        cg.loadProblem(id);
     }
 
     public void createProblem(String fen, String name, String theme, int mov, boolean color, boolean turn) {
@@ -87,5 +87,9 @@ public class CtrlPresentacio {
         boolean ret = cg.authPlayer1(Username, Password);
         System.out.println(ret);
         return ret;
+    }
+    
+    String getProblemInfo(String id) throws IOException, FileNotFoundException, chessException{
+        return cc.getProblemInfo(id);
     }
 }

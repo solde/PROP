@@ -31,8 +31,7 @@ public abstract class GameAbs {
      * @param turn
      */
     public GameAbs(boolean turn) {
-        this.turn = turn;
-        B = new Board();
+        this.turn = turn;       
     }
 
     /**
@@ -69,7 +68,7 @@ public abstract class GameAbs {
      * @throws chessException
      */
     public void setProblem(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) throws chessException{
-        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
+        P = new Problem(fenCode, Name, Theme, diff, N_mov, atk, first_turn, verified);
         B = new Board(fenCode);
     }
     

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class BaseUI extends javax.swing.JFrame {
 
     private CtrlPresentacio p;
-    public String name = "popeye"; //this will indicate the name of the player, setting is public for easier code
-    public String pName = "MataReyes"; //same, but for problem name
+    public String name = "Pipo"; //this will indicate the name of the player, setting is public for easier code
+    public String pName = "Memeverso"; //same, but for problem name
 
     /**
      * Creates new form BaseUI
@@ -65,7 +65,7 @@ public class BaseUI extends javax.swing.JFrame {
         System.exit(0);
     }
 
-    public void loadProblem(String id) {
+    public void loadProblem(String id) throws IOException, FileNotFoundException, chessException {
         p.loadProblem(id);
     }
 
@@ -89,7 +89,12 @@ public class BaseUI extends javax.swing.JFrame {
     public void changeLoadUI() {
         loadUI = new LoadingUI(this);
         jScrollPane1.setViewportView(loadUI);
-
+    }
+    
+    public void changeSettingsUI(){
+        gcui = new GameConfigUI(this);
+        gcui.setName(name);
+        jScrollPane1.setViewportView(gcui);
     }
 
     public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException {
@@ -124,6 +129,13 @@ public class BaseUI extends javax.swing.JFrame {
 
     public String getProblemName() {
         return this.pName;
+    }
+    
+    public String getProblemDiff(String id) throws IOException, FileNotFoundException, chessException{
+        String info = p.getProblemInfo(id);
+        String aInfo[] = info.split(" ");
+        System.out.println(aInfo[3]);
+        return aInfo[3];
     }
 
     /**
@@ -168,6 +180,6 @@ public class BaseUI extends javax.swing.JFrame {
     private ProblemSelectUI psui;
     private NewProblemUI npui;
     private BoardUI brui;
-
+    private GameConfigUI gcui;
     private LoadingUI loadUI;
 }

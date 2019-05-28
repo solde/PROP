@@ -95,14 +95,13 @@ public class CtrlDomainCreatorDriver {
                 atk = sc.nextBoolean();
                 //ChessLegends.createNewProblem(fen, name, N, theme, atk, atk, false);
                 System.out.println("Problem created");
-                System.out.println(ChessLegends.getProblemInfo());
+
                 System.out.println("Do yo want to verify? (true->yes|false->no)");
                 boolean b;
                 b = sc.nextBoolean();
                 if(b){
                     System.out.println(ChessLegends.verifyProblem());
                 }
-                System.out.println(ChessLegends.getProblemInfo());
             }
         }
         else if(sel == 3){ //falta el modificador
@@ -160,14 +159,12 @@ public class CtrlDomainCreatorDriver {
                 atk = sc.nextBoolean();
                 //ChessLegends.createNewProblem(fen, name, N, theme, atk, atk, false);
                 System.out.println("Problem created");
-                System.out.println(ChessLegends.getProblemInfo());
                 System.out.println("Do yo want to verify? (true->yes|false->no)");
                 boolean b;
                 b = sc.nextBoolean();
                 if(b){
                     System.out.println(ChessLegends.verifyProblem());
                 }
-                System.out.println(ChessLegends.getProblemInfo());
             }
         }       
     }

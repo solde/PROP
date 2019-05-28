@@ -18,6 +18,7 @@ import javafx.util.Pair;
 public class CtrlDomainGame {
     private GameAbs G;
     private Human P;
+    private Problem Prbl;
     private int movCounter;
     
     private CtrlDades CD;
@@ -30,6 +31,7 @@ public class CtrlDomainGame {
         movCounter = 0;
         CD = new CtrlDades();
         P = new Human();
+        Prbl = new Problem();
     }
 
     /**
@@ -60,10 +62,18 @@ public class CtrlDomainGame {
         int diff = Integer.parseInt(aProblemInfo[3]);
         int N_mov = Integer.parseInt(aProblemInfo[4]);
         boolean atk = Boolean.parseBoolean(aProblemInfo[5]);
-        boolean first_trun = Boolean.parseBoolean(aProblemInfo[6]);
+        boolean first_turn = Boolean.parseBoolean(aProblemInfo[6]);
         boolean verified = Boolean.parseBoolean(aProblemInfo[7]);
         
-        G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_trun, verified);
+        //Prbl = new Problem();
+        Prbl.setFenCode(fenCode);
+        Prbl.setName(Name);
+        Prbl.setTheme(Theme);
+        Prbl.calculateDiff();
+        Prbl.setN_mov(N_mov);
+        Prbl.setATK(atk);
+        Prbl.setFirstTurn(first_turn);
+        Prbl.setVerified(verified);
         
         String rankingInfo = CD.getStatistics(id);
         String aRankingInfo[] = rankingInfo.split(" ");
@@ -73,7 +83,7 @@ public class CtrlDomainGame {
             Pair<Long, String> aux = new Pair<Long, String>(Long.parseLong(aRankingInfo[i+1]), aRankingInfo[i]);
             newRanking.add(aux);
         }
-        G.setRanking(newRanking);
+        Prbl.setRanking(newRanking);
     }
     
     public ArrayList<Pair<Long, String>> getRanking(){

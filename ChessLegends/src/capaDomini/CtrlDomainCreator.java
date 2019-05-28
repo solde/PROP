@@ -64,8 +64,8 @@ public class CtrlDomainCreator {
      * @param first_turn
      */
     public void createNewProblem(String fen, String Name, String Theme, int N_mov, boolean atk, boolean first_turn, boolean v) throws IOException, chessException{
-        P = new Problem();
-        CD.createProblem(fen, Name, Theme, N_mov, N_mov, atk, first_turn, v);
+        P = new Problem(fen, Name, N_mov, Theme, atk, first_turn, v);
+        CD.createProblem(fen, Name, Theme, P.getDiff(), N_mov, atk, first_turn, v);
     }
     
     /**
@@ -116,8 +116,8 @@ public class CtrlDomainCreator {
      * 
      * @return String
      */
-    public String getProblemInfo(){
-        return P.getProblemInfo();
+    public String getProblemInfo(String id) throws IOException, FileNotFoundException, chessException{
+        return CD.getProblem(id);
     }
     
     /**
@@ -245,7 +245,7 @@ public class CtrlDomainCreator {
      * @throws chessException
      */
     public void loadProblemTest(String fenCode, String Name, int diff, int N_mov, String Theme, boolean atk, boolean first_turn, boolean verified) throws chessException{
-        P = new Problem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
+        P = new Problem(fenCode, Name, Theme, diff, N_mov, atk, first_turn, verified);
         B = new Board(fenCode);
     }
     

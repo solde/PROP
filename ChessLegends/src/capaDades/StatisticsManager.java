@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *
@@ -102,6 +101,7 @@ public class StatisticsManager {
     protected void createStatistics(String id) throws IOException{
         writer = new BufferedWriter(new FileWriter("Stats.txt", true));
         writer.append(id + " ");
+        writer.append('\n');
         writer.close();
     }
     
