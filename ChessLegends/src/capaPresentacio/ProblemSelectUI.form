@@ -103,7 +103,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelN" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTheme" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -152,12 +152,12 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jProblemSelect" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelTheme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelN" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -244,17 +244,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelDiff">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel7"/>
+            <Property name="text" type="java.lang.String" value="Error"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="labelTheme">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel8"/>
+            <Property name="text" type="java.lang.String" value="Error"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
+        <Component class="javax.swing.JLabel" name="labelN">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel9"/>
+            <Property name="text" type="java.lang.String" value="Error"/>
           </Properties>
         </Component>
       </SubComponents>

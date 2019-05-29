@@ -50,8 +50,8 @@ public class GameConfigUI extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        WPselect = new javax.swing.JComboBox<>();
+        BPselect = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
@@ -60,7 +60,7 @@ public class GameConfigUI extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonPlay = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -130,9 +130,9 @@ public class GameConfigUI extends javax.swing.JPanel {
 
         jLabel2.setText("Black player");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Human", "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
+        WPselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Human", "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Human", "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
+        BPselect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Human", "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("The Fight Club");
@@ -150,10 +150,10 @@ public class GameConfigUI extends javax.swing.JPanel {
 
         jLabel7.setText("Number of games");
 
-        jButton1.setText("Play");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonPlay.setText("Play");
+        buttonPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonPlayActionPerformed(evt);
             }
         });
 
@@ -177,14 +177,14 @@ public class GameConfigUI extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(WPselect, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BPselect, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(buttonPlay)
                         .addGap(18, 18, 18)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -226,13 +226,13 @@ public class GameConfigUI extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WPselect, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BPselect, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addComponent(jButton1)))
+                                .addComponent(buttonPlay)))
                         .addContainerGap(43, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -301,19 +301,19 @@ public class GameConfigUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
+        
+    }//GEN-LAST:event_buttonPlayActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> BPselect;
+    private javax.swing.JComboBox<String> WPselect;
+    private javax.swing.JButton buttonPlay;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JFrame jFrame1;

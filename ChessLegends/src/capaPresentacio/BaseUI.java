@@ -139,11 +139,16 @@ public class BaseUI extends javax.swing.JFrame {
         return this.pName;
     }
     
-    public String getProblemDiff(String id) throws IOException, FileNotFoundException, chessException{
+    public String getProblemBriefInfo(String id) throws IOException, FileNotFoundException, chessException{
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
         System.out.println(aInfo[3]);
-        return aInfo[3];
+        String ret = aInfo[3];
+        ret = ret.concat("#");
+        ret = ret.concat(aInfo[2]);
+        ret = ret.concat("#");
+        ret = ret.concat(aInfo[4]);
+        return ret;
     }
 
     /**

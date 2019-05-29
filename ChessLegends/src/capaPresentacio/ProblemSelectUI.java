@@ -78,8 +78,8 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         labelDiff = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        labelTheme = new javax.swing.JLabel();
+        labelN = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -134,11 +134,11 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
 
         jLabel6.setText("Theme:");
 
-        labelDiff.setText("jLabel7");
+        labelDiff.setText("Error");
 
-        jLabel8.setText("jLabel8");
+        labelTheme.setText("Error");
 
-        jLabel9.setText("jLabel9");
+        labelN.setText("Error");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,7 +158,7 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9))
+                                .addComponent(labelN))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,7 +166,7 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)))
+                                .addComponent(labelTheme)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,11 +196,11 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jProblemSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8))
+                            .addComponent(labelTheme))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel9))))
+                            .addComponent(labelN))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -314,14 +314,22 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         int i = jProblemSelect.getSelectedIndex();
         String id = jProblemSelect.getItemAt(i);
         String diff = "";
+        boolean done = true;
         try {
-            b.getProblemDiff(id);
+            diff = b.getProblemBriefInfo(id);
         } catch (IOException ex) {
+            done = false;
             Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (chessException ex) {
+            done = false;
             Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        labelDiff.setText(diff);
+        if(done){
+            String brief[] = diff.split("#");
+            labelDiff.setText(brief[0]);
+            labelTheme.setText(brief[1]);
+            labelN.setText(brief[2]);
+        }
     }//GEN-LAST:event_jProblemSelectItemStateChanged
 
 
@@ -337,12 +345,12 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jProblemSelect;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelDiff;
+    private javax.swing.JLabel labelN;
+    private javax.swing.JLabel labelTheme;
     // End of variables declaration//GEN-END:variables
 }
