@@ -71,7 +71,9 @@ public class BaseUI extends javax.swing.JFrame {
     }
 
     public void modifyProblem(String id) {
-        //whatever
+        npui = new NewProblemUI(this, id);
+        npui.setname(name);
+        jScrollPane1.setViewportView(npui);
     }
 
     public void changeNewProb() {
@@ -139,6 +141,10 @@ public class BaseUI extends javax.swing.JFrame {
         return this.pName;
     }
     
+    public String getPlayerName(){
+        return this.name;
+    }
+    
     public String getProblemBriefInfo(String id) throws IOException, FileNotFoundException, chessException{
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
@@ -149,6 +155,25 @@ public class BaseUI extends javax.swing.JFrame {
         ret = ret.concat("#");
         ret = ret.concat(aInfo[4]);
         return ret;
+    }
+    
+    public String getProblemFen(String id) throws IOException, FileNotFoundException, chessException{
+        String info = p.getProblemInfo(id);
+        String aInfo[] = info.split(" ");
+        return aInfo[1];
+        
+    }
+    
+    public void setPlayer1(int index){
+        p.setPlayer(0, index);
+    }
+    
+    public void setPlayer2(int index){
+        p.setPlayer(1, index);
+    }
+    
+    public void initGame() throws chessException{
+        p.initGame();
     }
 
     /**

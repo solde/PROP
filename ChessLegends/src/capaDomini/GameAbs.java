@@ -72,6 +72,11 @@ public abstract class GameAbs {
         B = new Board(fenCode);
     }
     
+    public void setProblem(Problem p) throws chessException{
+        this.P = p;
+        B = new Board(p.getFenCode());
+    }
+    
     /**
      * Set the player 1 with the desired parameters
      *

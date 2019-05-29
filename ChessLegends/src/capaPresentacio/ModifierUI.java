@@ -104,7 +104,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         nameP.setText(b.getProblemName());
 
         //Timer
-        time = new Timer(1, (ActionEvent e) -> {
+        time = new Timer(10, (ActionEvent e) -> {
             actTime();
         });
         timeLabel = new JLabel("Time: 00:00");
