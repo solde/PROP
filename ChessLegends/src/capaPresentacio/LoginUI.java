@@ -320,7 +320,7 @@ public class LoginUI extends javax.swing.JPanel {
         b.name = "Guest";
         try {
             b.changeProblem();
-          //  b.changeBoardUI();//just for quicker testing, DELETE
+            b.changeBoardUI();//just for quicker testing, DELETE
         } catch (IOException ex) {
             Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -20,6 +20,7 @@ public class BaseUI extends javax.swing.JFrame {
     private CtrlPresentacio p;
     public String name = "Pipo"; //this will indicate the name of the player, setting is public for easier code
     public String pName = "Memeverso"; //same, but for problem name
+    public boolean turn;
 
     /**
      * Creates new form BaseUI
@@ -62,7 +63,6 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(psui);
     }
 
-
     public void close() {
         System.exit(0);
     }
@@ -89,7 +89,7 @@ public class BaseUI extends javax.swing.JFrame {
         brui.see();
         // close();
     }
-    
+
     public void changeModifyUI() {
         modifUI = new ModifierUI(p, this);
         // jScrollPane1.setViewportView(brui);
@@ -101,8 +101,8 @@ public class BaseUI extends javax.swing.JFrame {
         loadUI = new LoadingUI(this);
         jScrollPane1.setViewportView(loadUI);
     }
-    
-    public void changeSettingsUI(){
+
+    public void changeSettingsUI() {
         gcui = new GameConfigUI(this);
         gcui.setName(name);
         jScrollPane1.setViewportView(gcui);
@@ -140,12 +140,16 @@ public class BaseUI extends javax.swing.JFrame {
     public String getProblemName() {
         return this.pName;
     }
-    
-    public String getPlayerName(){
+
+    public String getPlayerName() {
         return this.name;
     }
-    
-    public String getProblemBriefInfo(String id) throws IOException, FileNotFoundException, chessException{
+
+    public void setTurn(boolean a) {
+        this.turn = a;
+    }
+
+    public String getProblemBriefInfo(String id) throws IOException, FileNotFoundException, chessException {
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
         System.out.println(aInfo[3]);
@@ -156,27 +160,27 @@ public class BaseUI extends javax.swing.JFrame {
         ret = ret.concat(aInfo[4]);
         return ret;
     }
-    
-    public String getProblemFen(String id) throws IOException, FileNotFoundException, chessException{
+
+    public String getProblemFen(String id) throws IOException, FileNotFoundException, chessException {
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
         return aInfo[1];
-        
+
     }
-    
-    public void setPlayer1(int index){
+
+    public void setPlayer1(int index) {
         p.setPlayer(0, index);
     }
-    
-    public void setPlayer2(int index){
+
+    public void setPlayer2(int index) {
         p.setPlayer(1, index);
     }
-    
-    public void initGame() throws chessException{
+
+    public void initGame() throws chessException {
         p.initGame();
     }
-    
-    public ArrayList<Pair<Long, String>> getTop3(){
+
+    public ArrayList<Pair<Long, String>> getTop3() {
         return p.getTop3();
     }
 

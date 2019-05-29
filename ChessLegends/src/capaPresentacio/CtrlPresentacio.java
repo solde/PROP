@@ -87,36 +87,37 @@ public class CtrlPresentacio {
         System.out.println(ret);
         return ret;
     }
-    
-    String getProblemInfo(String id) throws IOException, FileNotFoundException, chessException{
+
+    String getProblemInfo(String id) throws IOException, FileNotFoundException, chessException {
         return cc.getProblemInfo(id);
     }
 
-    void makeMove(int x, int y, int xnew, int ynew) {
-        //controler domain make move
+    void makeMove(int x, int y, int xnew, int ynew, boolean turn) {
+        cg.movePiece(x, y, xnew, ynew, turn, 0);
     }
 
     public String updateBoard() throws chessException {
-        return cc.getFenCodeOfBoard();
+        return ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+        // return cc.getFenCodeOfBoard();
     }
 
     public boolean canKill(int x, int y, int xnew, int ynew) {
         //controler function check if xy piece can kill xynew piece
-       return false;
+        return false;
     }
-    
-    public void setPlayer(int i, int type){
+
+    public void setPlayer(int i, int type) {
         cg.setPlayer(i, type);
     }
-    
-    public void initGame() throws chessException{
+
+    public void initGame() throws chessException {
         cg.initGame();
     }
-    
-    public ArrayList<Pair<Long, String>> getTop3(){
+
+    public ArrayList<Pair<Long, String>> getTop3() {
         ArrayList<Pair<Long, String>> full = cg.getRanking();
         ArrayList<Pair<Long, String>> ret = new ArrayList<Pair<Long, String>>();
-        for(int i = 0; i < 4; ++i){
+        for (int i = 0; i < 4; ++i) {
             ret.add(full.get(i));
         }
         return ret;

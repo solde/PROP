@@ -10,6 +10,8 @@ import capaDades.CtrlDades;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -264,4 +266,5 @@ public class CtrlDomainCreator {
     public ArrayList<String> getProblemList() throws IOException{
         return CD.listProblmes();
     }
+
 }

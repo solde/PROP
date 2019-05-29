@@ -130,7 +130,7 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
 
         jLabel4.setText("Numbers of movments:");
 
-        jLabel5.setText("Difficulti: ");
+        jLabel5.setText("Difficulty: ");
 
         jLabel6.setText("Theme:");
 

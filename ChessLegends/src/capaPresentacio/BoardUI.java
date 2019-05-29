@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -39,11 +41,14 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     private BaseUI b;
     // char realChessBoard[][];
     Timer time;
+    Timer act;
     JLabel timeLabel;
     double milis;
     int posX, posY, newX, newY;
     boolean playing;
-    String fen = ("rnbqkbnr/8/pppppppp/8/1p1p1p1Q/8/PPPPPPPP/RNBQKBNR");
+    String fen = ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+    String fen_original;
+    boolean turn;
 
     public BoardUI() {
         initComp();
@@ -110,6 +115,15 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         timeLabel.setBounds(350, 0, 100, 20);
         layeredPane.add(timeLabel);
 
+        //Timer d'actualitzacio del board
+        act = new Timer(20000, (ActionEvent e) -> {
+            try {
+                actBoard();
+            } catch (chessException ex) {
+                Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
         //Acabem afegint el panel al layeradPane
         chessBoard = new JPanel();
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
@@ -129,7 +143,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                 bp.setBackground(i % 2 == 0 ? Color.white : Color.black);
             }
         }
-        setPieces(this.fen);
 
         //fill the logical chessboard
     }
@@ -144,16 +157,20 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                 chessBoard.getComponent(i).getComponentAt(30, 30).setVisible(false);
             }
         }
-        setPieces(this.fen);
+        setPieces(fen_original);
         milis = 0;
     }
 
+    //This can be abused
     private void Confirm(java.awt.event.ActionEvent evt) {
         if (posX == newX && posY == newY) {
             JOptionPane.showMessageDialog(null, "You didn't move any piece");
             return;
         }
-        p.makeMove(posX / 64, posY / 64, newX / 64, newY / 64);
+        p.makeMove(posX / 64, posY / 64, newX / 64, newY / 64, turn);
+        fen = p.updateBoard();
+        setPieces(fen);
+
     }
 
     private void logout(java.awt.event.ActionEvent evt) {
@@ -170,7 +187,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             return;
         }
         playing = true;
+        turn = b.turn;
         time.start();
+        act.start();
+        fen_original = fen;
+        setPieces(this.fen);
         //p.startGame();
 
         // setPieces(p.updateBoard());
@@ -186,6 +207,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                 - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) milis))
         ));
         milis += 10;
+    }
+
+    private void actBoard() throws chessException {
+        fen = p.updateBoard();
+        setPieces(fen);
     }
 
     @Override
