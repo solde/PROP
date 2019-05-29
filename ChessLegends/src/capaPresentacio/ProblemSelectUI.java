@@ -276,9 +276,8 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //load Problem
-        String id;
         int i = jProblemSelect.getSelectedIndex();
-        id = jProblemSelect.getItemAt(i);
+        String id = jProblemSelect.getItemAt(i);
         System.out.println(id);
         try {
             b.loadProblem(id);

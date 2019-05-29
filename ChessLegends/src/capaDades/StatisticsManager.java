@@ -75,14 +75,19 @@ public class StatisticsManager {
         aux = aux.concat(id + " ");
         boolean added = false;
         //Afegir o crear (falta)
-        for(int i = 1; i < aInfo.length; i += 2){
-            if(!added && (Integer.parseInt(time) >= Integer.parseInt(aInfo[i+1]))){
-                aux = aux.concat(playerName + " ");
-                aux = aux.concat(time + " ");
-                added = true;
+        if(aInfo.length == 1){
+            aux = aux.concat(time + " " + playerName);
+        }
+        else{
+            for(int i = 1; i < aInfo.length; i += 2){
+                if(!added && (Integer.parseInt(time) >= Integer.parseInt(aInfo[i+1]))){
+                    aux = aux.concat(playerName + " ");
+                    aux = aux.concat(time + " ");
+                    added = true;
+                }
+                aux = aux.concat(aInfo[i]);
+                aux = aux.concat(aInfo[i+1]);
             }
-            aux = aux.concat(aInfo[i]);
-            aux = aux.concat(aInfo[i+1]);
         }
         eraseStatistics(id);
         writer = new BufferedWriter(new FileWriter("Stats.txt", true));

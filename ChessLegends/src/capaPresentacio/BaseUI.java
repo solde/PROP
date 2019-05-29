@@ -109,7 +109,6 @@ public class BaseUI extends javax.swing.JFrame {
     }
 
     public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException, IOException {
-        p.createProblem(fen, name, theme, mov, turn, turn);
         return p.verify(fen, name, theme, mov, turn, turn);
     }
 

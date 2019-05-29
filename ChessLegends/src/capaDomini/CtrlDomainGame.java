@@ -82,7 +82,7 @@ public class CtrlDomainGame {
         ArrayList<Pair<Long, String>> newRanking;
         newRanking = new ArrayList<Pair<Long, String>>();
         for(int i = 1; i < aRankingInfo.length; i+=2){
-            Pair<Long, String> aux = new Pair<Long, String>(Long.parseLong(aRankingInfo[i+1]), aRankingInfo[i]);
+            Pair<Long, String> aux = new Pair<Long, String>(Long.parseLong(aRankingInfo[i]), aRankingInfo[i+1]);
             newRanking.add(aux);
         }
         Prbl.setRanking(newRanking);

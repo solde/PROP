@@ -327,7 +327,6 @@ public class NewProblemUI extends javax.swing.JPanel {
         int movs = (int) jSpinner2.getValue();
         try {
             try {
-                System.out.println("dslñkaj");
                 if (!b.verify(fen, id, theme, movs, first, turn)) {
                     JOptionPane.showMessageDialog(null, "This Problem cannot be solved");
                 }
