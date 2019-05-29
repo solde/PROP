@@ -8,8 +8,10 @@ package capaPresentacio;
 import Exception.chessException;
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.Pair;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,7 +36,17 @@ public class GameConfigUI extends javax.swing.JPanel {
     }
     
     public void initRanking(){
-        ArrayList<Pair<Long, String>>b.getTop3();
+        ArrayList<Pair<Long, String>> top3 = b.getTop3();
+        
+        String text;
+        text = top3.get(0).getValue() + " - " + top3.get(0).getKey().toString();
+        rank1Name.setText(text);
+        
+        text = top3.get(1).getValue() + " - " + top3.get(1).getKey().toString();
+        rank2Name.setText(text);
+        
+            text = top3.get(2).getValue() + " - " + top3.get(2).getKey().toString();
+        rank3Name.setText(text);
     }
     
     /**
@@ -74,9 +86,9 @@ public class GameConfigUI extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        rank1Name = new javax.swing.JLabel();
+        rank2Name = new javax.swing.JLabel();
+        rank3Name = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -189,16 +201,16 @@ public class GameConfigUI extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Rank 3:");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel14.setText("God");
+        rank1Name.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rank1Name.setForeground(new java.awt.Color(255, 51, 51));
+        rank1Name.setText("God");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(153, 51, 0));
-        jLabel15.setText("Pipo");
+        rank2Name.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rank2Name.setForeground(new java.awt.Color(153, 51, 0));
+        rank2Name.setText("Pipo");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setText("AlejandorElJefe");
+        rank3Name.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rank3Name.setText("AlejandorElJefe");
 
         jLabel17.setText("👑");
 
@@ -223,17 +235,17 @@ public class GameConfigUI extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15))
+                                .addComponent(rank2Name))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16))
+                                .addComponent(rank3Name))
                             .addComponent(jLabel10)
                             .addComponent(jLabel1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
+                                .addComponent(rank1Name)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel17)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -283,16 +295,16 @@ public class GameConfigUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel14)
+                    .addComponent(rank1Name)
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel15))
+                    .addComponent(rank2Name))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel16))
+                    .addComponent(rank3Name))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -407,9 +419,6 @@ public class GameConfigUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -421,6 +430,9 @@ public class GameConfigUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel rank1Name;
+    private javax.swing.JLabel rank2Name;
+    private javax.swing.JLabel rank3Name;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,2 +1,1 @@
-1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B test 35 1 false false false
-test 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B test 35 1 false false false
+a 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B a 34 2 true true true

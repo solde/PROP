@@ -90,6 +90,7 @@ public class CtrlDades {
         p = p.concat(String.valueOf(first_turn) + " ");
         p = p.concat(String.valueOf(verified));
         PM.storeProblem(p);
+        System.out.println(Name);
         SM.createStatistics(Name);
     }
     
@@ -114,6 +115,6 @@ public class CtrlDades {
     }
     
     public void addRank(String Name, String id, long time) throws IOException, FileNotFoundException, chessException{
-        SM.addRangTo(id, Name, String.valueOf(time));
+        SM.addRankTo(Name, id, String.valueOf(time));
     }
 }

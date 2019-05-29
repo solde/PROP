@@ -27,6 +27,8 @@ public class StatisticsManager {
 
     private boolean isId(String str, String toFind){
         String result[] = str.split(" ");
+        System.out.println("*"+result[0]+"*");
+        System.out.println("*"+toFind+"*");
         return result[0].equals(toFind);
     }
     
@@ -65,19 +67,9 @@ public class StatisticsManager {
         return find;
     }
     
-    public void addRangTo(String id, String playerName, String time) throws IOException, FileNotFoundException, chessException{
+    public void addRankTo(String id, String playerName, String time) throws IOException, FileNotFoundException, chessException{
         String info = new String();
-        try{
-            info = loadStatistics(id);
-        }
-        catch(chessException e){
-            if(e.getMessage() != "No stats with that id"){
-                throw e;
-            }
-            else{
-                info = id + " ";
-            }
-        }
+        info = loadStatistics(id);
         String aInfo[] = info.split(" ");
         String aux = new String();
         aux = aux.concat(id + " ");
@@ -94,7 +86,7 @@ public class StatisticsManager {
         }
         eraseStatistics(id);
         writer = new BufferedWriter(new FileWriter("Stats.txt", true));
-        writer.append(aux);
+        writer.append(aux+'\n');
         writer.close();
     }
     
@@ -122,7 +114,7 @@ public class StatisticsManager {
         fr.close();
         writerAux.close();
         File file = new File("./Stats.txt");
-        if(!file.delete()) throw new chessException("WTF");
+        if(!file.delete()) throw new chessException("WTF1");
         writer = new BufferedWriter(new FileWriter("Stats.txt", true));
         fr = new FileReader("StatsAux.txt");
         br = new BufferedReader(fr);
@@ -133,6 +125,6 @@ public class StatisticsManager {
         br.close();
         fr.close();
         writer.close();
-        if(!file.delete()) throw new chessException("WTF");
+        if(!file.delete()) throw new chessException("WTF2");
     }
 }

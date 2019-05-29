@@ -114,8 +114,11 @@ public class CtrlPresentacio {
     }
     
     public ArrayList<Pair<Long, String>> getTop3(){
-        ArrayList<Pair<Long, String>> ret = ArrayList<Pair<Long, String>>();
-        
+        ArrayList<Pair<Long, String>> full = cg.getRanking();
+        ArrayList<Pair<Long, String>> ret = new ArrayList<Pair<Long, String>>();
+        for(int i = 0; i < 4; ++i){
+            ret.add(full.get(i));
+        }
         return ret;
     }
 }

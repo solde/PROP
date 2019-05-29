@@ -27,7 +27,7 @@ public class CDdriver {
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
         CtrlDades CD = new CtrlDades();
-        while (i <= 12) { // ( o el que sea
+        while (i <= 14) { // ( o el que sea
             switch (i) {          
                 case 1:
                     String un1 = sc.next();
@@ -107,10 +107,23 @@ public class CDdriver {
                     System.out.println(CD.getStatistics(s10));
                     break;
                 case 12:
+                    System.out.println("Problem id:");
+                    String p12 = sc.next();
+                    System.out.println("player id:");
+                    String pl12 = sc.next();
+                    System.out.println("player time:");
+                    long l12 = sc.nextLong();
+                    
+                    CD.addRank(p12, pl12, l12);
+                    
                     break;
                 case 13:
                     ArrayList<String> AS = CD.listProblmes();
                     System.out.println(AS);
+                    break;
+                    
+                case 14:
+                    CD.createProblem("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B", "a", "a", 34, 2, true, true, true);
             }
             display_menu();
             i = sc.nextInt();
