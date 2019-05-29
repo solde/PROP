@@ -59,6 +59,7 @@ public class Problem {
     public Problem() {
         this. fenCode = "8/8/8/8/8/8/8/8";
         Ranking = new ArrayList<Pair<Long, String>>();
+        Ranking = new ArrayList<Pair<Long, String>>();
     }    
     
     /**
@@ -285,7 +286,6 @@ public class Problem {
     public void addToRanking(String PlayerName, long time){
         Pair<Long, String> e;
         e = new Pair<>(time, PlayerName);
-        System.out.println(e);
         Ranking.add(e);
         Ranking.sort(new Comparator<Pair<Long, String>>() {
             @Override
@@ -298,9 +298,7 @@ public class Problem {
     /**
      * Get the ranking of a problem
      *
-     * @param index
-     * @return
-     * @throws chessException
+     * @return Ranking ArrayList<Pair<Long, String>> Ranking
      */
     public ArrayList<Pair<Long, String>> getRanking(){
         return this.Ranking;

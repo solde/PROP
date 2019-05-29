@@ -39,14 +39,29 @@ public class GameConfigUI extends javax.swing.JPanel {
         ArrayList<Pair<Long, String>> top3 = b.getTop3();
         
         String text;
-        text = top3.get(0).getValue() + " - " + top3.get(0).getKey().toString();
-        rank1Name.setText(text);
+        try{
+            text = top3.get(0).getValue() + " solved the problem in " + top3.get(0).getKey().toString() + " seconds";
+            rank1Name.setText(text);
+        }
+        catch(Exception e){
+            rank1Name.setText("-----");
+        }
         
-        text = top3.get(1).getValue() + " - " + top3.get(1).getKey().toString();
-        rank2Name.setText(text);
+        try{
+            text = top3.get(1).getValue() + " - " + top3.get(1).getKey().toString();
+            rank2Name.setText(text);
+        }
+        catch(Exception e){
+            rank2Name.setText("-----");
+        }
         
+        try{
             text = top3.get(2).getValue() + " - " + top3.get(2).getKey().toString();
-        rank3Name.setText(text);
+            rank3Name.setText(text);
+        }     
+        catch(Exception e){
+            rank3Name.setText("-----");
+        }
     }
     
     /**

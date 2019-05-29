@@ -264,4 +264,8 @@ public class CtrlDomainCreator {
     public ArrayList<String> getProblemList() throws IOException{
         return CD.listProblmes();
     }
+    
+    public void deleteProblem(String id) throws IOException, chessException{
+        CD.eraseProblem(id);
+    }
 }

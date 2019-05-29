@@ -64,6 +64,7 @@ public class CtrlDomainGame {
         boolean atk = Boolean.parseBoolean(aProblemInfo[5]);
         boolean first_turn = Boolean.parseBoolean(aProblemInfo[6]);
         boolean verified = Boolean.parseBoolean(aProblemInfo[7]);
+        System.out.println(verified);
         
         //Prbl = new Problem();
         Prbl.setFenCode(fenCode);
@@ -76,7 +77,6 @@ public class CtrlDomainGame {
         Prbl.setVerified(verified);
         
         //G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
-        
         String rankingInfo = CD.getStatistics(id);
         String aRankingInfo[] = rankingInfo.split(" ");
         ArrayList<Pair<Long, String>> newRanking;
@@ -89,7 +89,7 @@ public class CtrlDomainGame {
     }
     
     public ArrayList<Pair<Long, String>> getRanking(){
-        return G.getRanking();
+        return Prbl.getRanking();
     }
 
     /**
@@ -276,6 +276,10 @@ public class CtrlDomainGame {
      */
     public void letsPlay(Boolean color) throws chessException{
         G.playMatch(color);
+    }
+    
+    public boolean isVerified(){
+        return Prbl.isVerified();
     }
     
     /*public void updatePlayers(long time, boolean color){

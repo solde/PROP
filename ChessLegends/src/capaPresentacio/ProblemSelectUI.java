@@ -48,11 +48,9 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
             problemList = b.getProblemList();
         }
         catch(Exception e){
-            System.out.println("pipo");
-            System.out.println(e.getMessage());
+            ;
         }
         for(int i = 0; i < problemList.size(); ++i){
-            System.out.println("test");
             jProblemSelect.addItem(problemList.get(i));
         }
     }
@@ -70,9 +68,9 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        modifyButton = new javax.swing.JButton();
+        newButton = new javax.swing.JButton();
+        loadButton = new javax.swing.JButton();
         jProblemSelect = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -80,8 +78,9 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         labelDiff = new javax.swing.JLabel();
         labelTheme = new javax.swing.JLabel();
         labelN = new javax.swing.JLabel();
+        deleteButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -95,30 +94,29 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
 
         jLabel2.setText("Select A Problem");
 
-        jButton2.setText("Modifiy");
-        jButton2.setMinimumSize(new java.awt.Dimension(65, 23));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        modifyButton.setText("Modify");
+        modifyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                modifyButtonActionPerformed(evt);
             }
         });
 
-        jButton1.setText("New");
-        jButton1.setMaximumSize(new java.awt.Dimension(67, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(67, 23));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        newButton.setText("New");
+        newButton.setMaximumSize(new java.awt.Dimension(67, 23));
+        newButton.setPreferredSize(new java.awt.Dimension(67, 23));
+        newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                newButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Load");
-        jButton5.setMaximumSize(new java.awt.Dimension(67, 23));
-        jButton5.setMinimumSize(new java.awt.Dimension(65, 23));
-        jButton5.setPreferredSize(new java.awt.Dimension(67, 23));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        loadButton.setText("Load");
+        loadButton.setMaximumSize(new java.awt.Dimension(67, 23));
+        loadButton.setMinimumSize(new java.awt.Dimension(65, 23));
+        loadButton.setPreferredSize(new java.awt.Dimension(67, 23));
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                loadButtonActionPerformed(evt);
             }
         });
 
@@ -140,6 +138,16 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
 
         labelN.setText("Error");
 
+        deleteButton.setBackground(new java.awt.Color(255, 0, 0));
+        deleteButton.setText("Delete");
+        deleteButton.setMaximumSize(new java.awt.Dimension(67, 23));
+        deleteButton.setPreferredSize(new java.awt.Dimension(67, 23));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,10 +155,6 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jProblemSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -166,27 +170,31 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelTheme)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22))))
+                                .addComponent(labelTheme))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(newButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel2))
+                    .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jProblemSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,14 +202,21 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                             .addComponent(labelDiff))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jProblemSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(labelTheme))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(labelN))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addComponent(labelTheme)
+                            .addComponent(modifyButton))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(labelN)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jButton3.setText("Logout");
@@ -211,10 +226,10 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Exit");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
 
@@ -241,7 +256,7 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(exitButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -254,15 +269,15 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(exitButton)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         //exit
         b.close();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //logout
@@ -274,9 +289,10 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         //load Problem
         int i = jProblemSelect.getSelectedIndex();
+        System.out.println(i);
         String id = jProblemSelect.getItemAt(i);
         System.out.println(id);
         try {
@@ -286,10 +302,14 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         } catch (chessException ex) {
             Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(!b.isVerified()){
+            JOptionPane.showMessageDialog(null, "This problem is not verified");
+            return;
+        }
         b.changeSettingsUI();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_loadButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         //Modifiy problem
         String id;
         int i = jProblemSelect.getSelectedIndex();
@@ -302,14 +322,30 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
             Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         b.modifyProblem(id);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_modifyButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // New Problem
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         b.changeNewProb();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_newButtonActionPerformed
 
     private void jProblemSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProblemSelectItemStateChanged
+        updateLabels();
+    }//GEN-LAST:event_jProblemSelectItemStateChanged
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int i = jProblemSelect.getSelectedIndex();
+        String id = jProblemSelect.getItemAt(i);
+        try {
+            b.deleteProblem(id);
+        } catch (IOException | chessException ex) {
+            JOptionPane.showMessageDialog(null, "Cannot delete problem");
+            return;
+        }
+        jProblemSelect.removeItemAt(i);
+        updateLabels();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    void updateLabels(){
         int i = jProblemSelect.getSelectedIndex();
         String id = jProblemSelect.getItemAt(i);
         String diff = "";
@@ -329,15 +365,12 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
             labelTheme.setText(brief[1]);
             labelN.setText(brief[2]);
         }
-    }//GEN-LAST:event_jProblemSelectItemStateChanged
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -351,5 +384,8 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
     private javax.swing.JLabel labelDiff;
     private javax.swing.JLabel labelN;
     private javax.swing.JLabel labelTheme;
+    private javax.swing.JButton loadButton;
+    private javax.swing.JButton modifyButton;
+    private javax.swing.JButton newButton;
     // End of variables declaration//GEN-END:variables
 }

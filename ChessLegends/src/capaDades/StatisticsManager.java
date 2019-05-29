@@ -27,8 +27,6 @@ public class StatisticsManager {
 
     private boolean isId(String str, String toFind){
         String result[] = str.split(" ");
-        System.out.println("*"+result[0]+"*");
-        System.out.println("*"+toFind+"*");
         return result[0].equals(toFind);
     }
     
