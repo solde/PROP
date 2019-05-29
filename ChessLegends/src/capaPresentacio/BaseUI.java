@@ -58,7 +58,6 @@ public class BaseUI extends javax.swing.JFrame {
     public void changeProblem() throws IOException {
         psui = new ProblemSelectUI(this);
         psui.setname(name);
-
         jScrollPane1.setViewportView(psui);
     }
 
