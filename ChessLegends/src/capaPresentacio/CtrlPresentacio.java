@@ -6,6 +6,8 @@ import capaDomini.CtrlDomainGame;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.util.Pair;
 
 /**
@@ -95,13 +97,19 @@ public class CtrlPresentacio {
     }
 
     public String updateBoard() throws chessException {
-        return ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-        // return cc.getFenCodeOfBoard();
+        //return ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+        return cc.getFenCodeOfBoard();
     }
 
-    public boolean canKill(int x, int y, int xnew, int ynew) {
+    public boolean canKill(int x, int y, int xnew, int ynew, boolean turn) {
+
         //controler function check if xy piece can kill xynew piece
         return false;
+    }
+
+    public boolean canMove(int x, int y, int xnew, int ynew, boolean turn) {
+        //controler function that checks if movement is allowed
+        return true;
     }
 
     public void setPlayer(int i, int type) {
@@ -112,20 +120,32 @@ public class CtrlPresentacio {
         cg.initGame();
     }
 
-    public ArrayList<Pair<Long, String>> getTop3(){
+    public ArrayList<Pair<Long, String>> getTop3() {
         ArrayList<Pair<Long, String>> full = cg.getRanking();
         ArrayList<Pair<Long, String>> ret = new ArrayList<Pair<Long, String>>();
-        for(int i = 0; i < 4 && i < full.size(); ++i){
+        for (int i = 0; i < 4 && i < full.size(); ++i) {
             ret.add(full.get(i));
         }
         return ret;
     }
-    
-    public void deleteProblem(String id) throws IOException, chessException{
+
+    public void deleteProblem(String id) throws IOException, chessException {
         cc.deleteProblem(id);
     }
-    
-    boolean isVerified(){
+
+    public boolean getTurn() {
+        return cc.getFirstTurn();
+    }
+
+    boolean isVerified() {
         return cg.isVerified();
+    }
+
+    public void start() {
+        try {
+            cg.initGame();
+        } catch (chessException ex) {
+            Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
