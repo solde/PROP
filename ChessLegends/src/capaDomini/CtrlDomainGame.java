@@ -279,6 +279,7 @@ public class CtrlDomainGame {
     }
     
     public boolean isVerified(){
+        System.out.println(Prbl.isVerified());
         return Prbl.isVerified();
     }
     
