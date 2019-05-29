@@ -38,8 +38,6 @@ public class CtrlPresentacio {
 
     public void createPlayer(String id, String pass) throws chessException, IOException {
         cc.createNewPlayer(id, pass);
-        System.out.println("Player with name: " + id + " created.  Password: " + pass);
-
     }
 
     public void view() {
@@ -114,12 +112,20 @@ public class CtrlPresentacio {
         cg.initGame();
     }
 
-    public ArrayList<Pair<Long, String>> getTop3() {
+    public ArrayList<Pair<Long, String>> getTop3(){
         ArrayList<Pair<Long, String>> full = cg.getRanking();
         ArrayList<Pair<Long, String>> ret = new ArrayList<Pair<Long, String>>();
-        for (int i = 0; i < 4; ++i) {
+        for(int i = 0; i < 4 && i < full.size(); ++i){
             ret.add(full.get(i));
         }
         return ret;
+    }
+    
+    public void deleteProblem(String id) throws IOException, chessException{
+        cc.deleteProblem(id);
+    }
+    
+    boolean isVerified(){
+        return cg.isVerified();
     }
 }

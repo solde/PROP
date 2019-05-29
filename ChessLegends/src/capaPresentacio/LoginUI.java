@@ -294,9 +294,7 @@ public class LoginUI extends javax.swing.JPanel {
             b.name = id;
             if(!b.autenticatePlayer(id, pass1)){
                 JOptionPane.showMessageDialog(null, "Wrong username or password");
-                jLabel8.setForeground(Color.red);
-                //code for when the passwords don't match
-                System.out.println("Passwords didn't match. Try again");
+                jLabel8.setForeground(Color.red);              
                 jPasswordField3.setText("");
                 return;
             }

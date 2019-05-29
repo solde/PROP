@@ -183,6 +183,14 @@ public class BaseUI extends javax.swing.JFrame {
     public ArrayList<Pair<Long, String>> getTop3() {
         return p.getTop3();
     }
+    
+    public boolean isVerified(){
+        return p.isVerified();
+    }
+    
+    public void deleteProblem(String id) throws IOException, chessException{
+        p.deleteProblem(id);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

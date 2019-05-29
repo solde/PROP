@@ -41,7 +41,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     private BaseUI b;
     // char realChessBoard[][];
     Timer time;
-    Timer act;
     JLabel timeLabel;
     double milis;
     int posX, posY, newX, newY;
@@ -115,14 +114,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         timeLabel.setBounds(350, 0, 100, 20);
         layeredPane.add(timeLabel);
 
-        //Timer d'actualitzacio del board
-        act = new Timer(20000, (ActionEvent e) -> {
-            try {
-                actBoard();
-            } catch (chessException ex) {
-                Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
 
         //Acabem afegint el panel al layeradPane
         chessBoard = new JPanel();
@@ -168,7 +159,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             return;
         }
         p.makeMove(posX / 64, posY / 64, newX / 64, newY / 64, turn);
-        fen = p.updateBoard();
+        try {
+            fen = p.updateBoard();
+        } catch (chessException ex) {
+            Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setPieces(fen);
 
     }
@@ -189,7 +184,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         playing = true;
         turn = b.turn;
         time.start();
-        act.start();
         fen_original = fen;
         setPieces(this.fen);
         //p.startGame();
@@ -209,10 +203,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         milis += 10;
     }
 
-    private void actBoard() throws chessException {
-        fen = p.updateBoard();
-        setPieces(fen);
-    }
 
     @Override
     public void mousePressed(MouseEvent e) {
