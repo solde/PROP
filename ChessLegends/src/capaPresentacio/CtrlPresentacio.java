@@ -6,8 +6,7 @@ import capaDomini.CtrlDomainGame;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.util.Pair;
 
 /**
  *
@@ -112,5 +111,11 @@ public class CtrlPresentacio {
     
     public void initGame() throws chessException{
         cg.initGame();
+    }
+    
+    public ArrayList<Pair<Long, String>> getTop3(){
+        ArrayList<Pair<Long, String>> ret = ArrayList<Pair<Long, String>>();
+        
+        return ret;
     }
 }

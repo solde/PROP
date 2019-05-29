@@ -9,6 +9,7 @@ import Exception.chessException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.util.Pair;
 
 /**
  *
@@ -174,6 +175,10 @@ public class BaseUI extends javax.swing.JFrame {
     
     public void initGame() throws chessException{
         p.initGame();
+    }
+    
+    public ArrayList<Pair<Long, String>> getTop3(){
+        return p.getTop3();
     }
 
     /**

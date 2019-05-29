@@ -30,8 +30,13 @@ public class GameConfigUI extends javax.swing.JPanel {
         initComponents();
         this.b = b;
         userLabel.setText(b.getPlayerName());
+        initRanking();
     }
-
+    
+    public void initRanking(){
+        ArrayList<Pair<Long, String>>b.getTop3();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,14 +191,14 @@ public class GameConfigUI extends javax.swing.JPanel {
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel14.setText("jLabel14");
+        jLabel14.setText("God");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(153, 51, 0));
-        jLabel15.setText("jLabel14");
+        jLabel15.setText("Pipo");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setText("jLabel14");
+        jLabel16.setText("AlejandorElJefe");
 
         jLabel17.setText("👑");
 
