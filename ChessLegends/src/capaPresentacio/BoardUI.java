@@ -41,7 +41,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     Timer time;
     JLabel timeLabel;
     double milis;
-    int posX, posY;
+    int posX, posY, newX, newY;
     boolean playing;
     String fen = ("rnbqkbnr/8/pppppppp/8/1p1p1p1Q/8/PPPPPPPP/RNBQKBNR");
 
@@ -78,9 +78,9 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         logout.setBounds(445, 0, 80, 24);
         layeredPane.add(logout, JLayeredPane.DEFAULT_LAYER);
 
-        //Resign button
-        JButton resign = new JButton("Resign");
-        resign.addActionListener(this::resign);
+        //Confirm play button, needed for possible interactive errors
+        JButton resign = new JButton("Confirm");
+        resign.addActionListener(this::Confirm);
         resign.setBounds(0, 0, 80, 24);
         layeredPane.add(resign, JLayeredPane.DEFAULT_LAYER);
 
@@ -94,7 +94,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         JButton play = new JButton("Start Game");
         play.addActionListener(this::play);
         play.setBounds(163, 0, 100, 24);
-        play.setBounds(600, 0, 100, 100);
         layeredPane.add(play, JLayeredPane.DEFAULT_LAYER);
 
         //Name Problem
@@ -149,9 +148,12 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         milis = 0;
     }
 
-    private void resign(java.awt.event.ActionEvent evt) {
-        // b.changeNewProb();
-        this.setVisible(false);
+    private void Confirm(java.awt.event.ActionEvent evt) {
+        if (posX == newX && posY == newY) {
+            JOptionPane.showMessageDialog(null, "You didn't move any piece");
+            return;
+        }
+        p.makeMove(posX / 64, posY / 64, newX / 64, newY / 64);
     }
 
     private void logout(java.awt.event.ActionEvent evt) {
@@ -160,6 +162,19 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         this.setVisible(false);
 
         // System.exit(0);
+    }
+
+    private void play(java.awt.event.ActionEvent evt) {
+
+        if (playing) {
+            return;
+        }
+        playing = true;
+        time.start();
+        //p.startGame();
+
+        // setPieces(p.updateBoard());
+        // TimeUnit.SECONDS.sleep(1);
     }
 
     //doesen't work properly, we may end up removing it
@@ -219,34 +234,34 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         //-ç.println(e.getX());
         //-System.out.println(e.getY());
         Component c;
-        boolean skip = false;
+
         //Boundary Limits makes you return to the original panel
         if (e.getX() < 0 || e.getX() > 600) {
             c = chessBoard.findComponentAt(posX, posY);
-            skip = true;
-
+            newX = posX;
+            newY = posY;
         } else if (e.getY() < 0 || e.getY() > 600) {
-            skip = true;
             c = chessBoard.findComponentAt(posX, posY);
+            newX = posX;
+            newY = posY;
 
         } else {
             c = chessBoard.findComponentAt(e.getX(), e.getY());
+            newX = e.getX();
+            newY = e.getY();
         }
         if (c instanceof JLabel) {
             if (!p.canKill(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64)) {
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);
+                JOptionPane.showMessageDialog(null, "This movement is not allowed");
             } else {
                 Container p = c.getParent();
                 p.remove(0);
                 p.add(chessPiece);
             }
         } else {
-            //pass the interactive movement  to the logical board
-            if (!skip) {
-                p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
-            }
             Container parent = (Container) c;
             parent.add(chessPiece);
         }
@@ -510,18 +525,4 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
 
     }
-
-    private void play(java.awt.event.ActionEvent evt) {
-
-        if (playing) {
-            return;
-        }
-        playing = true;
-        time.start();
-        //p.startGame();
-
-        // setPieces(p.updateBoard());
-        // TimeUnit.SECONDS.sleep(1);
-    }
-
 }
