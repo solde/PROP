@@ -241,7 +241,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         } else {
             //pass the interactive movement  to the logical board
             if (!skip) {
-                p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
+               // p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
             }
             Container parent = (Container) c;
             parent.add(chessPiece);
