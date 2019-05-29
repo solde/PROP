@@ -43,6 +43,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     double milis;
     int posX, posY;
     boolean playing;
+    String init_fen;
     String fen = ("rnbqkbnr/8/pppppppp/8/1p1p1p1Q/8/PPPPPPPP/RNBQKBNR");
 
     public ModifierUI() {
@@ -58,11 +59,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     /*Aquesta Funcio crea els components de board*/
     private void initComp() {
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
-        Dimension boardSize2 = new Dimension(700, 630); //chessboard UI dimension
+        Dimension boardSize2 = new Dimension(800, 630); //chessboard UI dimension
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
         layeredPane = new JLayeredPane();
         getContentPane().add(layeredPane);
-        setPreferredSize(boardSize2);        
+        layeredPane.setPreferredSize(boardSize2);
         layeredPane.addMouseListener(this);
         layeredPane.addMouseMotionListener(this);
 
@@ -72,46 +73,45 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         exit.setBounds(528, 0, 70, 24);
         layeredPane.add(exit, JLayeredPane.DEFAULT_LAYER);
 
-        //Load default button
-        JButton load_default = new JButton("Load Default");
-        load_default.addActionListener(this::load_default);
-        load_default.setBounds(81, 0, 80, 24);
-        layeredPane.add(load_default, JLayeredPane.DEFAULT_LAYER);
+        //Logout button
+        JButton logout = new JButton("Logout");
+        logout.addActionListener(this::logout);
+        logout.setBounds(445, 0, 80, 24);
+        layeredPane.add(logout, JLayeredPane.DEFAULT_LAYER);
 
-        //play button
-        JButton play = new JButton("Start Game");
-        play.addActionListener(this::play);
-        play.setBounds(163, 0, 100, 24);
-        play.setBounds(605, 0, 90, 90);
-        layeredPane.add(play, JLayeredPane.DEFAULT_LAYER);
+        //Load Default button
+        JButton loadDefault = new JButton("Load Default");
+        loadDefault.addActionListener(this::loadDefault);
+        loadDefault.setBounds(0, 0, 200, 24);
+        layeredPane.add(loadDefault, JLayeredPane.DEFAULT_LAYER);
+        
+        //Save button
+        JButton save = new JButton("Save");
+        save.addActionListener(this::save);
+        save.setBounds(200, 0, 150, 24);
+        layeredPane.add(save, JLayeredPane.DEFAULT_LAYER);
+        
+        
 
         //Name Problem
         JLabel nameP = new JLabel("NameSample");
         nameP.setBounds(270, 0, 80, 20);
         layeredPane.add(nameP);
         nameP.setText(b.getProblemName());
-
-        //Timer
-        time = new Timer(10, (ActionEvent e) -> {
-            actTime();
-        });
-        timeLabel = new JLabel("Time: 00:00");
-        timeLabel.setBounds(350, 0, 100, 20);
-        layeredPane.add(timeLabel);
+        
 
         //Acabem afegint el panel al layeradPane
         chessBoard = new JPanel();
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
         chessBoard.setLayout(new GridLayout(8, 8));
         chessBoard.setPreferredSize(boardSize);
-        System.out.println(boardSize.width);
-        System.out.println(boardSize.height);
         chessBoard.setBounds(0, 25, boardSize.width, boardSize.height);
+
         //Put and paint the board
         for (int i = 0; i < 64; i++) {
             JPanel bp = new JPanel(new BorderLayout());
             chessBoard.add(bp);
-            //System.out.println(i);
+
             int row = (i / 8) % 2;
             if (row == 0) {
                 bp.setBackground(i % 2 == 0 ? Color.black : Color.white);
@@ -119,41 +119,33 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                 bp.setBackground(i % 2 == 0 ? Color.white : Color.black);
             }
         }
-        setPieces(this.fen);
+        init_fen = fen;
+        //setPieces(this.fen);
+        setLateralPieces();
 
-        //fill the logical chessboard
     }
 
     private void exit(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-    private void restart(java.awt.event.ActionEvent evt) {
-        for (int i = 0; i < 64; i++) {
-            if (chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel) {
-                chessBoard.getComponent(i).getComponentAt(30, 30).setVisible(false);
-            }
-        }
-        setPieces(this.fen);
-        milis = 0;
-    }
     
-    private void load_default(java.awt.event.ActionEvent evt) {
-        this.fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+    private void loadDefault(java.awt.event.ActionEvent evt) {
+        this.fen = init_fen;
         setPieces(this.fen);
     }
     
-    private void resign(java.awt.event.ActionEvent evt) {
-        // b.changeNewProb();
-        this.setVisible(false);
+    private void save(java.awt.event.ActionEvent evt){
+        
     }
-
+       
+    
     private void logout(java.awt.event.ActionEvent evt) {
         b.changeLog();
-        time.stop();
         this.setVisible(false);
-
-        // System.exit(0);
+        //dispose tanca la pantalla amb logout
+        dispose();
+        //System.exit(0);
     }
 
     //doesen't work properly, we may end up removing it
@@ -510,6 +502,10 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
     }
 
+    private void setLateralPieces(){
+        
+    }
+    
     private void play(java.awt.event.ActionEvent evt) {
 
         if (playing) {
