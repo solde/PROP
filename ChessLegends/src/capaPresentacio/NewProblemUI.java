@@ -33,6 +33,22 @@ public class NewProblemUI extends javax.swing.JPanel {
         this.b = b;
         v = false;
     }
+    
+    public NewProblemUI(BaseUI b, String id) {
+        initComponents();
+        this.b = b;
+        v = false;
+        Name.setText("Copy"+id);
+        String fen = "";
+        try {
+            fen = b.getProblemFen(id);
+        } catch (IOException ex) {
+            Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (chessException ex) {
+            Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        fenCode.setText(fen);
+    }
 
     public void setname(String Text) {
         jLabel7.setText(Text);

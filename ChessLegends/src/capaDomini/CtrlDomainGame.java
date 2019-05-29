@@ -75,6 +75,8 @@ public class CtrlDomainGame {
         Prbl.setFirstTurn(first_turn);
         Prbl.setVerified(verified);
         
+        //G.setProblem(fenCode, Name, diff, N_mov, Theme, atk, first_turn, verified);
+        
         String rankingInfo = CD.getStatistics(id);
         String aRankingInfo[] = rankingInfo.split(" ");
         ArrayList<Pair<Long, String>> newRanking;
@@ -129,16 +131,44 @@ public class CtrlDomainGame {
     public boolean authPlayer2(String username, String password) throws IOException, FileNotFoundException, chessException{
         String playerInfo = CD.getPlayer(username, password);
         if(playerInfo.length() == 0) return false;
-        String aPlayerInfo[] = playerInfo.split(" ");
-        if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
-        String id = aPlayerInfo[0];
-        int wins = Integer.parseInt(aPlayerInfo[1]);
-        int loses = Integer.parseInt(aPlayerInfo[2]);
-        double ELO = Double.parseDouble(aPlayerInfo[3]);
-        double OP_rating = Double.parseDouble(aPlayerInfo[4]);
-        
-        G.setPlayer2(playerInfo, wins, loses, loses, wins);
+        else{
+            String aPlayerInfo[] = playerInfo.split(" ");
+            if(aPlayerInfo.length != 5) throw new chessException("Unexpected error, failed while authenticating player 1");
+            String id = aPlayerInfo[0];
+            int wins = Integer.parseInt(aPlayerInfo[1]);
+            int loses = Integer.parseInt(aPlayerInfo[2]);
+            double ELO = Double.parseDouble(aPlayerInfo[3]);
+            double OP_rating = Double.parseDouble(aPlayerInfo[4]);
+            P.setId(id);
+            P.setWins(wins);
+            P.setLoses(loses);
+        }
         return true;
+    }
+    
+    public void setPlayer(int i, int AI){
+        if(AI == 0){
+            if(i == 1){
+                G.setP1(P);
+            }
+            else if(i == 2){
+                G.setP2(P);
+            }
+        }
+        else if(AI == 1){
+            if(i == 0){
+                G.setP1(new AIEasy());
+            }
+            if(i == 1)
+                G.setP2(new AIEasy());
+        }
+        else if(AI == 2){
+            if(i == 0){
+                G.setP1(new AIHard());
+            }
+            if(i == 1)
+                G.setP2(new AIHard());
+        }
     }
     
     /**
@@ -174,9 +204,10 @@ public class CtrlDomainGame {
     /**
      * Set the game in the initial conditions
      */
-    public void initGame(){
+    public void initGame() throws chessException, chessException{
         G = new Game();
         G.resetTimers();
+        G.setProblem(Prbl);
     }
     
     /**

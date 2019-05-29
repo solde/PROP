@@ -105,4 +105,12 @@ public class CtrlPresentacio {
         //controler function check if xy piece can kill xynew piece
        return false;
     }
+    
+    public void setPlayer(int i, int type){
+        cg.setPlayer(i, type);
+    }
+    
+    public void initGame() throws chessException{
+        cg.initGame();
+    }
 }
