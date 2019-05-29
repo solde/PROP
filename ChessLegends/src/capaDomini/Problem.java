@@ -168,6 +168,7 @@ public class Problem {
      * @throws chessException
      */
     public boolean verify() throws chessException{
+        System.out.println("Enter on verify");
         Board b = new Board(this.getFenCode());
         boolean color = this.first_turn;
 

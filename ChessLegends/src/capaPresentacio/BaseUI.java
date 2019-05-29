@@ -107,9 +107,9 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(gcui);
     }
 
-    public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException {
+    public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException, IOException {
         p.createProblem(fen, name, theme, mov, turn, turn);
-        return p.verify();
+        return p.verify(fen, name, theme, mov, turn, turn);
     }
 
     public boolean verifyFEN(String fen) {

@@ -237,7 +237,7 @@ public class Board {
             }
             ++i;
         }
-        boolean need_throw = false;
+        /*boolean need_throw = false;
         for(int x = 0; x < 6; ++x){
             switch(x){
                 case 0:
@@ -275,7 +275,7 @@ public class Board {
         if(need_throw) {
             System.out.print(this.getFEN_code());
             throw new chessException("Invalid FEN code");
-        }
+        }*/
     }
 
     /**

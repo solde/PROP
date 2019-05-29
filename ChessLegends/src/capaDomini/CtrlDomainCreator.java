@@ -228,7 +228,9 @@ public class CtrlDomainCreator {
      * @return boolean
      * @throws chessException
      */
-    public boolean verifyProblem() throws chessException{
+    public boolean verifyProblem(String fen, String name, String theme, int mov, boolean turn, boolean color) throws chessException{
+       //String fenCode, String Name, int N_mov, String Theme, boolean atk, boolean first_turn
+        P = new Problem(fen, name, mov, theme, turn, color );
         return P.verify();
     }
     

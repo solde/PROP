@@ -100,7 +100,7 @@ public class CtrlDomainCreatorDriver {
                 boolean b;
                 b = sc.nextBoolean();
                 if(b){
-                    System.out.println(ChessLegends.verifyProblem());
+                    //System.out.println(ChessLegends.verifyProblem());
                 }
             }
         }
@@ -163,7 +163,7 @@ public class CtrlDomainCreatorDriver {
                 boolean b;
                 b = sc.nextBoolean();
                 if(b){
-                    System.out.println(ChessLegends.verifyProblem());
+                    //System.out.println(ChessLegends.verifyProblem());
                 }
             }
         }       

@@ -1,18 +1,2 @@
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-k p uy 3 9 true true true
-t r t 1 1 true false false
-test 8/8/8/8/8/8/8/8 test 3 3 true true true
-<<<<<<< HEAD
-8/8/8/8/8/8/8/8 8/8/8/8/8/8/8/8 8/8/8/8/8/8/8/8 1 1 true true false
-8/8/8/8/8/8/8/7K 8/8/8/8/8/8/8/7K 8/8/8/8/8/8/8/7K 1 1 false false false
-=======
-   1 1 false false false
->>>>>>> 80c33c6358991b2a73cdbb49135528007b448c2a
-est test est 1 1 false false false
-testgds test24 asd 1 1 false false false
+1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B test 35 1 false false false
+test 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B test 35 1 false false false

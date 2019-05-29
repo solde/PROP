@@ -326,11 +326,17 @@ public class NewProblemUI extends javax.swing.JPanel {
         boolean v = false;
         int movs = (int) jSpinner2.getValue();
         try {
-            if (!b.verify(fen, id, theme, movs, first, turn)) {
-                JOptionPane.showMessageDialog(null, "This Problem cannot be solved");
-            }
-            else{
-                v = true;
+            try {
+                System.out.println("dslñkaj");
+                if (!b.verify(fen, id, theme, movs, first, turn)) {
+                    JOptionPane.showMessageDialog(null, "This Problem cannot be solved");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Correct");
+                    v = true;
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (chessException ex) {
             Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);

@@ -60,13 +60,13 @@ public class CtrlPresentacio {
         cg.loadProblem(id);
     }
 
-    public void createProblem(String fen, String name, String theme, int mov, boolean color, boolean turn) {
-        //       cc.createNewProblemTest(fen,name,mov,theme,color,turn);
+    public void createProblem(String fen, String name, String theme, int mov, boolean color, boolean turn) throws IOException, chessException {
+        saveProblem(fen, name, theme, mov, color, color, false);
     }
 
-    public boolean verify() throws chessException {
-        //return cc.verifyProblem();
-        return false;
+    public boolean verify(String fen, String name, String theme, int mov, boolean turn, boolean color) throws chessException {
+        boolean ret = cc.verifyProblem(fen, name, theme, mov, turn, color);
+        return ret;
     }
 
     public ArrayList<String> getProblemList() throws IOException {
