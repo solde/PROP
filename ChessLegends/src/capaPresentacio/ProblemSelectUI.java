@@ -360,10 +360,15 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
             Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(done){
-            String brief[] = diff.split("#");
-            labelDiff.setText(brief[0]);
-            labelTheme.setText(brief[1].replace('_', ' '));
-            labelN.setText(brief[2]);
+            try{
+                String brief[] = diff.split("#");
+                labelDiff.setText(brief[0]);
+                labelTheme.setText(brief[1].replace('_', ' '));
+                labelN.setText(brief[2]);
+            }
+            catch(Exception e){
+                ;
+            }
         }
     }
 

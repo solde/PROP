@@ -62,7 +62,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
         layeredPane = new JLayeredPane();
         getContentPane().add(layeredPane);
-        layeredPane.setPreferredSize(boardSize2);
+        setPreferredSize(boardSize2);        
         layeredPane.addMouseListener(this);
         layeredPane.addMouseMotionListener(this);
 
@@ -72,10 +72,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         exit.setBounds(528, 0, 70, 24);
         layeredPane.add(exit, JLayeredPane.DEFAULT_LAYER);
 
-
-
-
-        //Restart button
+        //Load default button
         JButton load_default = new JButton("Load Default");
         load_default.addActionListener(this::load_default);
         load_default.setBounds(81, 0, 80, 24);
@@ -107,13 +104,14 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
         chessBoard.setLayout(new GridLayout(8, 8));
         chessBoard.setPreferredSize(boardSize);
+        System.out.println(boardSize.width);
+        System.out.println(boardSize.height);
         chessBoard.setBounds(0, 25, boardSize.width, boardSize.height);
-
         //Put and paint the board
         for (int i = 0; i < 64; i++) {
             JPanel bp = new JPanel(new BorderLayout());
             chessBoard.add(bp);
-
+            //System.out.println(i);
             int row = (i / 8) % 2;
             if (row == 0) {
                 bp.setBackground(i % 2 == 0 ? Color.black : Color.white);
