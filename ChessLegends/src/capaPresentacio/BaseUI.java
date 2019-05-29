@@ -179,15 +179,9 @@ public class BaseUI extends javax.swing.JFrame {
     public void initGame() throws chessException {
         p.initGame();
     }
-<<<<<<< HEAD
     
     public ArrayList<Pair<Long, String>> getTop3(){
         return p.getTop3(this.name);
-=======
-
-    public ArrayList<Pair<Long, String>> getTop3() {
-        return p.getTop3();
->>>>>>> cd5a85f34d9ef0d49313172db8a971adbb99f539
     }
     
     public boolean isVerified(){
