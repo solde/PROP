@@ -345,7 +345,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-
+    
     private void setPieces(String FEN_code) {
         int i = 0, j = 0, k = 0;
         int cont = 0;
