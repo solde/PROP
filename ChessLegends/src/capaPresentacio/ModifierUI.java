@@ -274,8 +274,13 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-
+    private void cleanBoard(){
+        this.removeAll();
+    }
+    
     private void setPieces(String FEN_code) {
+        this.cleanBoard();
+        
         int i = 0, j = 0, k = 0;
         int cont = 0;
         int t = 0;
