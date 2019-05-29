@@ -111,11 +111,16 @@ public class CtrlPresentacio {
         cg.initGame();
     }
     
-    public ArrayList<Pair<Long, String>> getTop3(){
+    public ArrayList<Pair<Long, String>> getTop3(String user){
         ArrayList<Pair<Long, String>> full = cg.getRanking();
         ArrayList<Pair<Long, String>> ret = new ArrayList<Pair<Long, String>>();
         for(int i = 0; i < 4 && i < full.size(); ++i){
             ret.add(full.get(i));
+        }
+        for(int i = 0; i < full.size(); ++i){
+            if(full.get(i).getValue() == user){
+                ret.add(full.get(i));
+            }
         }
         return ret;
     }

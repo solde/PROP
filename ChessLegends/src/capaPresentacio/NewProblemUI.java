@@ -319,11 +319,12 @@ public class NewProblemUI extends javax.swing.JPanel {
             return;
         }
 
-        String id = fenCode.getText();
+        String id = Name.getText();
         String theme = Theme.getText();
+        //theme.replace(' ', '_');
         boolean turn = jRadioButton1.isSelected();
         boolean first = jRadioButton2.isSelected();
-        boolean v = false;
+        v = false;
         int movs = (int) jSpinner2.getValue();
         try {
             try {
@@ -331,8 +332,9 @@ public class NewProblemUI extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "This Problem cannot be solved");
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Correct");
                     v = true;
+                    JOptionPane.showMessageDialog(null, "Correct");
+                    
                 }
             } catch (IOException ex) {
                 Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -347,6 +349,9 @@ public class NewProblemUI extends javax.swing.JPanel {
         String fen = fenCode.getText();
         String id = Name.getText();
         String theme = Theme.getText();
+        System.out.println(theme);
+        theme = theme.replace(' ', '_');
+        System.out.println(theme);
         boolean turn = jRadioButton1.isSelected();
         boolean first = jRadioButton2.isSelected();
         int movs = (int) jSpinner2.getValue();
