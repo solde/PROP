@@ -7,7 +7,7 @@ package capaPresentacio;
 
 /**
  *
- * @author Internet
+ * @author Daniel Palomo
  */
 import Exception.chessException;
 import capaDomini.Bishop;
@@ -43,11 +43,12 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     Timer time;
     JLabel timeLabel;
     double milis;
-    int posX, posY, newX, newY;
+    int posX, posY, newX, newY, tx, ty;
     boolean playing;
     String fen = ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
     String fen_original;
     boolean turn;
+    boolean mov;
 
     public BoardUI() {
         initComp();
@@ -59,7 +60,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         initComp();
     }
 
-    /*Aquesta Funcio crea els components de board*/
+     /**
+     * @Pre: 
+     * @Post: 
+     * This function sets the board
+     */
     private void initComp() {
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
         Dimension boardSize2 = new Dimension(600, 630); //chessboard UI dimension
@@ -114,7 +119,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         timeLabel.setBounds(350, 0, 100, 20);
         layeredPane.add(timeLabel);
 
-
         //Acabem afegint el panel al layeradPane
         chessBoard = new JPanel();
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
@@ -135,7 +139,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             }
         }
 
-        //fill the logical chessboard
     }
 
     private void exit(java.awt.event.ActionEvent evt) {
@@ -146,13 +149,20 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         for (int i = 0; i < 64; i++) {
             if (chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel) {
                 chessBoard.getComponent(i).getComponentAt(30, 30).setVisible(false);
+                chessBoard.getComponent(i).getComponentAt(30, 30).getParent().remove(0);
             }
         }
         setPieces(fen_original);
         milis = 0;
+        mov = false;
+        turn = p.getTurn();
     }
 
-    //This can be abused
+    /**
+     * @Pre: button Confirm is pressed, there has been a movement
+     * @Post: move is translated to the logical board. 
+     * This function move the piece in the logical board as done in the interactive one
+     */
     private void Confirm(java.awt.event.ActionEvent evt) {
         if (posX == newX && posY == newY) {
             JOptionPane.showMessageDialog(null, "You didn't move any piece");
@@ -165,9 +175,16 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         setPieces(fen);
+        mov = false;
+        // clearBoard();
 
     }
 
+    /**
+     * @Pre: button logout is pressed
+     * @Post:game ends, board closes This function allows to quit the game and
+     * login again
+     */
     private void logout(java.awt.event.ActionEvent evt) {
         b.changeLog();
         time.stop();
@@ -176,23 +193,34 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         // System.exit(0);
     }
 
+    /**
+     * @Pre: button Start play is pressed
+     * @Post: game has started This function starts the game
+     */
     private void play(java.awt.event.ActionEvent evt) {
 
         if (playing) {
             return;
         }
         playing = true;
-        turn = b.turn;
+        p.start();
+        turn = p.getTurn();
+        mov = false;
         time.start();
         fen_original = fen;
+        try {
+            setPieces(p.updateBoard());
+        } catch (chessException ex) {
+            Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setPieces(this.fen);
-        //p.startGame();
 
-        // setPieces(p.updateBoard());
-        // TimeUnit.SECONDS.sleep(1);
     }
 
-    //doesen't work properly, we may end up removing it
+    /**
+     * @Pre:
+     * @Post: This function manages the timer aspect of the board
+     */
     private void actTime() {
 
         timeLabel.setText(String.format("Time: %02d:%02d",
@@ -203,9 +231,27 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         milis += 10;
     }
 
-
+    /**
+     * @Pre:
+     * @Post: This function allows to the jlabel to be pressed
+     * @param e
+     */
     @Override
     public void mousePressed(MouseEvent e) {
+        if (mov) {
+            if (0 == JOptionPane.showConfirmDialog(null, "You have already made a move, do you want to reverse it?")) {
+                chessPiece.setVisible(false);
+                Component d = chessBoard.findComponentAt(tx, ty);
+                Container parent = (Container) d;
+                parent.add(chessPiece);
+                mov = false;
+                chessPiece.setVisible(true);
+                return;
+
+            } else {
+                return;
+            }
+        }
         chessPiece = null;
         //fixes ocasional nullpointer
         if (e.getY() < 0 || e.getY() > 600) {
@@ -230,25 +276,32 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
     }
 
-    //Move the chess piece around
+    /**
+     * @Pre:Something is pressed
+     * @Post:Something can be moved through the board
+     * @param e This function moves the chesspiece around
+     */
     @Override
-    public void mouseDragged(MouseEvent me) {
+    public void mouseDragged(MouseEvent e) {
         if (chessPiece == null) {
             return;
         }
-        chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
+        chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
     }
 
-    //Drop the chess piece back onto the chess board
+    /**
+     * This functions computes the drop of the piece to see if the final
+     * location is allowed
+     *
+     * @param e
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (chessPiece == null) {
             return;
         }
         chessPiece.setVisible(false);
-        //-System.out.println("-------------");
-        //-ç.println(e.getX());
-        //-System.out.println(e.getY());
+
         Component c;
 
         //Boundary Limits makes you return to the original panel
@@ -267,7 +320,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             newY = e.getY();
         }
         if (c instanceof JLabel) {
-            if (!p.canKill(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64)) {
+            if (!p.canMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, turn)) {
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);
@@ -276,10 +329,23 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                 Container p = c.getParent();
                 p.remove(0);
                 p.add(chessPiece);
+                tx = posX;
+                ty = posY;
+                mov = true;
             }
         } else {
-            Container parent = (Container) c;
-            parent.add(chessPiece);
+            if (!p.canMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, turn)) {
+                Component d = chessBoard.findComponentAt(posX, posY);
+                Container parent = (Container) d;
+                parent.add(chessPiece);
+                JOptionPane.showMessageDialog(null, "This movement is not allowed");
+            } else {
+                Container parent = (Container) c;
+                parent.add(chessPiece);
+                tx = posX;
+                ty = posY;
+                mov = true;
+            }
         }
 
         chessPiece.setVisible(true);
@@ -301,6 +367,9 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
     }
 
+    /**
+     * This function allows the Jframe to be displayed
+     */
     public void see() {
         JFrame frame = new BoardUI(this.p, this.b);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -310,6 +379,9 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         frame.setVisible(true);
     }
 
+    /**
+     * This function puts Jlabels on the chessboard acording to the FEN code
+     */
     private void setPieces(String FEN_code) {
         int i = 0, j = 0, k = 0;
         int cont = 0;

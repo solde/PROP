@@ -20,7 +20,6 @@ public class BaseUI extends javax.swing.JFrame {
     private CtrlPresentacio p;
     public String name = "Pipo"; //this will indicate the name of the player, setting is public for easier code
     public String pName = "Memeverso"; //same, but for problem name
-    public boolean turn;
 
     /**
      * Creates new form BaseUI
@@ -59,7 +58,6 @@ public class BaseUI extends javax.swing.JFrame {
     public void changeProblem() throws IOException {
         psui = new ProblemSelectUI(this);
         psui.setname(name);
-
         jScrollPane1.setViewportView(psui);
     }
 
@@ -145,10 +143,6 @@ public class BaseUI extends javax.swing.JFrame {
         return this.name;
     }
 
-    public void setTurn(boolean a) {
-        this.turn = a;
-    }
-
     public String getProblemBriefInfo(String id) throws IOException, FileNotFoundException, chessException {
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
@@ -183,12 +177,12 @@ public class BaseUI extends javax.swing.JFrame {
     public ArrayList<Pair<Long, String>> getTop3(){
         return p.getTop3(this.name);
     }
-    
-    public boolean isVerified(){
+
+    public boolean isVerified() {
         return p.isVerified();
     }
-    
-    public void deleteProblem(String id) throws IOException, chessException{
+
+    public void deleteProblem(String id) throws IOException, chessException {
         p.deleteProblem(id);
     }
 

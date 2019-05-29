@@ -270,5 +270,8 @@ public class CtrlDomainCreator {
     public void deleteProblem(String id) throws IOException, chessException{
         CD.eraseProblem(id);
     }
+    public boolean getFirstTurn(){
+       return P.getFirstTurn();
+    }
 
 }
