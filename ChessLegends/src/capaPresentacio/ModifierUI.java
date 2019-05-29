@@ -72,23 +72,14 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         exit.setBounds(528, 0, 70, 24);
         layeredPane.add(exit, JLayeredPane.DEFAULT_LAYER);
 
-        //Logout button
-        JButton logout = new JButton("Logout");
-        logout.addActionListener(this::logout);
-        logout.setBounds(445, 0, 80, 24);
-        layeredPane.add(logout, JLayeredPane.DEFAULT_LAYER);
 
-        //Resign button
-        JButton resign = new JButton("Resign");
-        resign.addActionListener(this::resign);
-        resign.setBounds(0, 0, 80, 24);
-        layeredPane.add(resign, JLayeredPane.DEFAULT_LAYER);
+
 
         //Restart button
-        JButton restart = new JButton("Restart");
-        restart.addActionListener(this::restart);
-        restart.setBounds(81, 0, 80, 24);
-        layeredPane.add(restart, JLayeredPane.DEFAULT_LAYER);
+        JButton load_default = new JButton("Load Default");
+        load_default.addActionListener(this::load_default);
+        load_default.setBounds(81, 0, 80, 24);
+        layeredPane.add(load_default, JLayeredPane.DEFAULT_LAYER);
 
         //play button
         JButton play = new JButton("Start Game");
@@ -148,7 +139,12 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         setPieces(this.fen);
         milis = 0;
     }
-
+    
+    private void load_default(java.awt.event.ActionEvent evt) {
+        this.fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+        setPieces(this.fen);
+    }
+    
     private void resign(java.awt.event.ActionEvent evt) {
         // b.changeNewProb();
         this.setVisible(false);
