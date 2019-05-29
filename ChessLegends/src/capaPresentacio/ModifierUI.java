@@ -229,7 +229,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             c = chessBoard.findComponentAt(e.getX(), e.getY());
         }
         if (c instanceof JLabel) {
-            if (!p.canKill(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, true)) {
+            if (!p.canMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, true)) {
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);

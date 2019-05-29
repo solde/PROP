@@ -101,15 +101,8 @@ public class CtrlPresentacio {
         return cc.getFenCodeOfBoard();
     }
 
-    public boolean canKill(int x, int y, int xnew, int ynew, boolean turn) {
-
-        //controler function check if xy piece can kill xynew piece
-        return false;
-    }
-
     public boolean canMove(int x, int y, int xnew, int ynew, boolean turn) {
-        //controler function that checks if movement is allowed
-        return true;
+        return cg.canMov(x, y, xnew, ynew);
     }
 
     public void setPlayer(int i, int type) {
