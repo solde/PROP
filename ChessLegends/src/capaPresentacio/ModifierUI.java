@@ -46,15 +46,16 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     int posX, posY;
     boolean playing;
     String init_fen;
-    String fen = ("rnbqkbnr/8/pppppppp/8/1p1p1p1Q/8/PPPPPPPP/RNBQKBNR");
+    String fen;
 
     public ModifierUI() {
         initComp();
     }
 
-    public ModifierUI(CtrlPresentacio p, BaseUI b) {
+    public ModifierUI(CtrlPresentacio p, BaseUI b, String fen) {
         this.b = b;
         this.p = p;
+        this.fen = fen;
         initComp();
     }
 
@@ -90,7 +91,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         layeredPane.add(loadDefault, JLayeredPane.DEFAULT_LAYER);
         
         //Save button
-        JButton save = new JButton("Save");
+        JButton save = new JButton("Save&Exit");
         save.addActionListener(this::save);
         save.setBounds(20, 0, 125, 24);
         layeredPane.add(save, JLayeredPane.DEFAULT_LAYER);
@@ -136,11 +137,22 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         
         
         init_fen = fen;
-        //setPieces(this.fen);
+        setPieces(this.fen);
         setLateralPieces();
 
     }
-
+   
+    private void updateFen(){
+        for (int i = 0; i < 64; i++) {
+            if (chessBoard.getComponent(i).getComponentAt(35,35) instanceof JLabel) {
+                System.out.print(chessBoard.getComponent(i).getComponentAt(35, 35).getName());
+                
+            }
+            if (i%7 == 0) System.out.println("");
+        }
+        
+    }
+    
     private void exit(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
@@ -152,6 +164,9 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
     
     private void save(java.awt.event.ActionEvent evt){
+        updateFen();
+        b.fenCode = this.fen;
+        dispose();
         
     }
        
@@ -164,21 +179,19 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         //System.exit(0);
     }
 
-    //doesen't work properly, we may end up removing it
-    private void actTime() {
-
-        timeLabel.setText(String.format("Time: %02d:%02d",
-                TimeUnit.MILLISECONDS.toMinutes((long) milis),
-                TimeUnit.MILLISECONDS.toSeconds((long) milis)
-                - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) milis))
-        ));
-        milis += 10;
-    }
+    
 
     @Override
     public void mousePressed(MouseEvent e) {
+        chessPiece = null;
+        posX = e.getX();
+        posY = e.getY();
+        Point po = new Point(e.getX(), e.getY());
+        
         if (chessBoard.getBounds().contains(new Point(e.getX(), e.getY()))){
-            Component c = chessBoard.findComponentAt(e.getX(), e.getY());   
+            
+            Component c = chessBoard.findComponentAt(e.getX(), e.getY()); 
+            
             if (c instanceof JPanel){
                 
                 return;
@@ -197,17 +210,44 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         }
         else if (lateralPieceZone.getBounds().contains(new Point(e.getX(), e.getY()))){
             
+            
             Component c = lateralPieceZone.findComponentAt(e.getX(), e.getY());
+
             if (c instanceof JPanel){
-                System.out.println("Estas clicando el panel, de aqui el null?");   
+                
                 return;
             }
             else {
+               
+                //Point parentLocation = c.getParent().getLocation();
+                //xAdjustment = parentLocation.x - e.getX();
+                //yAdjustment = parentLocation.y - e.getY();
+                chessPiece = (JLabel) c;
+                chessPiece.setLocation(e.getX(), e.getY()); // + xAdjustment  + yAdjustment
+                chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
+                layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);       
+            }
+            /*Component c = lateralPieceZone.findComponentAt(po);
+            chessPiece = (JLabel) c;
+            
+            /*if (chessPiece instanceof JPanel){
+                System.out.println("Estas clicando el panel");   
+                return;
+            }
+           if  (c instanceof JLabel){
+                //System.out.println("Estas clicando el label");
                 chessPiece = (JLabel) c;
                 chessPiece.setLocation(e.getX(), e.getY());
                 chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-                layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);        
+                layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);  
             }
+            else if (c != null){
+                System.out.println("no es null");
+            }
+            else{
+                System.out.println("es null");
+                return;
+            }*/
             
         } 
                 
@@ -217,32 +257,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         }
         else    System.out.println("Cuidado donde clicas amigo");
 
-        
-        /*chessPiece = null;
-        //fixes ocasional nullpointer
-        if (e.getY() < 0 || e.getY() > 600) {
-            
-            return;
-        }
-        Component c = chessBoard.findComponentAt(e.getX(), e.getY());
-        posX = e.getX();
-        posY = e.getY();
-        if (c instanceof JPanel) {
-            
-            // ((JPanel) c).setBorder(BorderFactory.createLineBorder(Color.green, 4));
-
-             //c.setBackground(Color.yellow);
-            return;
-        }
-        
-        Point parentLocation = c.getParent().getLocation();
-        xAdjustment = parentLocation.x - e.getX();
-        yAdjustment = parentLocation.y - e.getY();
-        chessPiece = (JLabel) c;
-        chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
-        chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-        layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
-        */
     }
 
     //Move the chess piece around
@@ -273,22 +287,19 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
         } else if (e.getY() < 0 || e.getY() > 600) {
             skip = true;
+            posX = e.getX();
+            posY = e.getY();
             c = chessBoard.findComponentAt(posX, posY);
 
         } else {
             c = chessBoard.findComponentAt(e.getX(), e.getY());
         }
         if (c instanceof JLabel) {
-            if (!p.canMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, true)) {
-                Component d = chessBoard.findComponentAt(posX, posY);
-                Container parent = (Container) d;
-                parent.add(chessPiece);
-            } else {
                 Container p = c.getParent();
                 p.remove(0);
                 p.add(chessPiece);
-            }
-        } else {
+        }
+         else {
             //pass the interactive movement  to the logical board
             if (!skip) {
                // p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
@@ -316,23 +327,26 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
     }
 
-    public void see() {
-        JFrame frame = new ModifierUI(this.p, this.b);
+    public void see(JFrame frame) {
+        //JFrame frame = new ModifierUI(this.p, this.b, fen);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frame.pack();
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
     private void cleanBoard(){
-        this.removeAll();
+         for (int i = 0; i < 64; i++) {
+            if (chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel) {
+                chessBoard.getComponent(i).getComponentAt(30, 30).setVisible(false);
+                chessBoard.getComponent(i).getComponentAt(30, 30).getParent().remove(0);
+            }
+        }
     }
     
-    private void setPieces(String FEN_code) {
-        this.cleanBoard();
-        
+     private void setPieces(String FEN_code) {
+        cleanBoard();
         int i = 0, j = 0, k = 0;
-        int cont = 0;
         int t = 0;
         int y = 0;
         boolean nope = false;
@@ -353,6 +367,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
+                                    piece.setName("Q");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -368,6 +383,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
+                                    piece.setName("K");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -383,6 +399,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
+                                    piece.setName("B");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -399,6 +416,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
+                                    piece.setName("R");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -415,6 +433,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
+                                    piece.setName("N");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -431,6 +450,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
+                                    piece.setName("P");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -447,6 +467,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
+                                    piece.setName("q");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -463,6 +484,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
+                                    piece.setName("k");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -479,6 +501,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
+                                    piece.setName("b");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -495,6 +518,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
+                                    piece.setName("r");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -511,6 +535,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
+                                    piece.setName("n");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -527,6 +552,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     BufferedImage bi = ImageIO.read(url);
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
+                                    piece.setName("p");
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -563,7 +589,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
 
     private void setLateralPieces(){
+        
         lateralPieceZone = new JPanel();
+        layeredPane.add(lateralPieceZone, JLayeredPane.DEFAULT_LAYER);
+        
+        lateralPieceZone.setName("lateralpiece");
         
         lateralPieceZone.setLayout(new GridLayout(6,2));
         Dimension latpiece = new Dimension(128, 384); //lateral piece zone dimension
@@ -574,18 +604,22 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         for (int i = 0; i < 12; ++i){
             JPanel bp = new JPanel(new BorderLayout());
             bp.setBackground(Color.LIGHT_GRAY);
+            bp.setSize(64,64);
+            bp.setName("panel " + (i+1));
             lateralPieceZone.add(bp);
-            
+             
         }
-        layeredPane.add(lateralPieceZone, JLayeredPane.DEFAULT_LAYER);
         //White pawn
         try {
             URL url = new URL("http://i.stack.imgur.com/memI0.png");
             BufferedImage bi = ImageIO.read(url);
 
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
+            piece.setBounds(636, 30, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(0);
             panel.add(piece);
+
+            
             
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -597,6 +631,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
+            piece.setBounds(700, 30, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(1);
             panel.add(piece);
             
@@ -612,6 +647,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
+            piece.setBounds(636, 94, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(2);
             panel.add(piece);
             
@@ -627,6 +663,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
+            piece.setBounds(700, 94, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(3);
             panel.add(piece);
             
@@ -642,6 +679,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
+            piece.setBounds(636, 158, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(4);
             panel.add(piece);
             
@@ -657,6 +695,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
+            piece.setBounds(700, 158, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(5);
             panel.add(piece);
             
@@ -672,6 +711,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
+            piece.setBounds(636, 222, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(6);
             panel.add(piece);
             
@@ -687,6 +727,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
+            piece.setBounds(700, 222, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(7);
             panel.add(piece);
             
@@ -702,6 +743,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
+            piece.setBounds(636, 286, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(8);
             panel.add(piece);
             
@@ -717,6 +759,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
+            piece.setBounds(700, 286, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(9);
             panel.add(piece);
             
@@ -732,6 +775,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
+            piece.setBounds(636, 350, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(10);
             panel.add(piece);
             
@@ -747,6 +791,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             BufferedImage bi = ImageIO.read(url);
             
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
+            piece.setBounds(700, 350, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(11);
             panel.add(piece);
             
@@ -759,17 +804,5 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         
     }
     
-    private void play(java.awt.event.ActionEvent evt) {
-
-        if (playing) {
-            return;
-        }
-        playing = true;
-        time.start();
-        //p.startGame();
-
-        // setPieces(p.updateBoard());
-        // TimeUnit.SECONDS.sleep(1);
-    }
-
+   
 }
