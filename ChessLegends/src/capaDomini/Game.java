@@ -219,6 +219,7 @@ public class Game extends GameAbs {
 
     @Override
     public boolean playMatch(Boolean color) throws chessException {
+        System.out.println("pipo is my god");
         if (color){
             try{
                 this.B = new Board(this.P1.makeMove(this.B, this.isTurn(), 2), true);}

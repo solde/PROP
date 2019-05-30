@@ -159,9 +159,9 @@ public class CtrlDomainGame {
 
     public void setPlayer(int i, int AI) {
         if (AI == 0) {
-            if (i == 1) {
+            if (i == 0) {
                 G.setP1(P);
-            } else if (i == 2) {
+            } else if (i == 1) {
                 G.setP2(P);
             }
         } else if (AI == 1) {
@@ -229,9 +229,8 @@ public class CtrlDomainGame {
      * @throws Exception.chessException
      */
     public void initAIComp(int n) throws chessException {
-        G = new AICompetition(n);
+        G = new AICompetition(1);
         G.setProblem(Prbl);
-        // G.setB(new Board(Prbl.getFenCode()));
     }
 
     /**
@@ -295,7 +294,8 @@ public class CtrlDomainGame {
      * @throws chessException
      */
     public boolean letsPlay() throws chessException {
-        return G.playMatch(this.Prbl.getFirstTurn());
+        boolean ret = G.playMatch(Prbl.getFirstTurn());
+        return ret;
     }
 
     public boolean isVerified() {

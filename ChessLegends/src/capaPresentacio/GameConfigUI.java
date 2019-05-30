@@ -96,9 +96,9 @@ public class GameConfigUI extends javax.swing.JPanel {
         BPselect = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        AIselector2 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        AIselector1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         buttonPlay = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -192,11 +192,11 @@ public class GameConfigUI extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Hall of fame");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
+        AIselector2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
 
         jLabel5.setText("Black player");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
+        AIselector1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toaster processor (Easy AI)", "Kasparov's Brain (Hard AI)" }));
 
         jLabel6.setText("White Player");
 
@@ -310,7 +310,7 @@ public class GameConfigUI extends javax.swing.JPanel {
                                         .addComponent(jLabel3))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(7, 7, 7)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(AIselector2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5))
@@ -324,7 +324,7 @@ public class GameConfigUI extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jButton7)
-                                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(AIselector1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(222, 222, 222))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -372,11 +372,11 @@ public class GameConfigUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AIselector1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AIselector2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -442,11 +442,22 @@ public class GameConfigUI extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonPlayActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        b.changeAIcompUI();
+        int i = AIselector1.getSelectedIndex();
+        int j = AIselector2.getSelectedIndex();
+        try {
+            b.initAIComp();
+        } catch (chessException ex) {
+            Logger.getLogger(GameConfigUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        b.setPlayer1(i+1);
+        b.setPlayer2(j+1);
+        b.changeAIcompUI(i+1, j+1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> AIselector1;
+    private javax.swing.JComboBox<String> AIselector2;
     private javax.swing.JComboBox<String> BPselect;
     private javax.swing.JComboBox<String> WPselect;
     private javax.swing.JButton buttonPlay;
@@ -454,8 +465,6 @@ public class GameConfigUI extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;

@@ -163,8 +163,14 @@ public class CtrlPresentacio {
         }
     }
     
-    public boolean playAIgame() throws chessException{
+    public void initAIComp() throws chessException{
         cg.initAIComp(1);
+    }
+    
+    public boolean playAIgame(int WP, int BP) throws chessException{
+        cg.initAIComp(1);
+        cg.setPlayer(0, WP);
+        cg.setPlayer(1, BP);
         return cg.letsPlay();
     }
     public boolean colorPiece(int x,int y){

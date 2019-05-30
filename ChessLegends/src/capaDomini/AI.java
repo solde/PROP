@@ -18,15 +18,10 @@ import java.math.*;
  *
  * @author Arnau Santos
  */
-public class AI extends Player {
+abstract class AI extends Player {
     
     private static int AI_ID = 2;
-    private static final long serialVersionUID = 1L;
-    
-    public AI(){
-        
-    }
-    
+    private static final long serialVersionUID = 1L;   
     
     /**
      * makeMove: moves the ideal piece on a given board 

@@ -15,7 +15,7 @@ import Exception.chessException;
 public class AIEasy extends AI{
     
     public AIEasy(){
-        
+        super.id = "AIEasy";
     }
     
     /**

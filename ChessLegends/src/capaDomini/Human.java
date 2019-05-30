@@ -99,5 +99,10 @@ public class Human extends Player {
     public String getPassword() {
         return this.password;
     }
+
+    @Override
+    Board makeMove(Board b, boolean color, int depth) throws Exception {
+        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

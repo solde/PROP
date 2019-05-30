@@ -18,7 +18,7 @@ public class AIHard extends AI {
     private static final long serialVersionUID = 1L;
     
     public AIHard(){
-        
+        super.id = "AIHard";
     }
     
     /**
