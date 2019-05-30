@@ -148,7 +148,7 @@ public class CtrlPresentacio {
     }
     
     public boolean playAIgame() throws chessException{
-        cg.initAIComp();
+        cg.initAIComp(1);
         return cg.letsPlay();
     }
 }

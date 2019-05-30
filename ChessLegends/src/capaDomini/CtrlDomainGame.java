@@ -227,8 +227,8 @@ public class CtrlDomainGame {
      *
      * @throws Exception.chessException
      */
-    public void initAIComp() throws chessException {
-        G = new AICompetition();
+    public void initAIComp(int n) throws chessException {
+        G = new AICompetition(n);
         G.setProblem(Prbl);
     }
 

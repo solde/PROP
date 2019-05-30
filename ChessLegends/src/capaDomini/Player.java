@@ -79,7 +79,7 @@ public abstract class Player {
     /**
      * increments the wins on plalyer
      */
-    public void incWinds() {
+    public void incWins() {
         this.wins += 1;
     }
 

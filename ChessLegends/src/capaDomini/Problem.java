@@ -250,10 +250,6 @@ public class Problem {
         this.diff = (5*(16-x))*N_mov;
     }
     
-    private boolean comp(Pair<Long, String> a, Pair<Long, String>b){
-        return true;
-    }
-    
     /**
      * Returns information of the problem
      *
