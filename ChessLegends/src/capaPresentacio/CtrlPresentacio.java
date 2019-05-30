@@ -93,16 +93,20 @@ public class CtrlPresentacio {
     }
 
     void makeMove(int x, int y, int xnew, int ynew, boolean turn) {
-        cg.movePiece(x, y, xnew, ynew, turn, 0);
+        cg.movePiece(y, x, ynew, xnew, turn, 0); //Board works backwards
     }
 
     public String updateBoard() throws chessException {
         //return ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-        return cc.getFenCodeOfBoard();
+        return cg.getFen();
+    }
+
+    public String updateBoard2() throws chessException {
+        return cg.getFenCodeOfBoard();
     }
 
     public boolean canMove(int x, int y, int xnew, int ynew, boolean turn) {
-        return cg.canMov(x, y, xnew, ynew);
+        return cg.canMov(x, y, xnew, ynew, turn);
     }
 
     public void setPlayer(int i, int type) {
@@ -132,7 +136,19 @@ public class CtrlPresentacio {
     }
 
     public boolean getTurn() {
-        return cc.getFirstTurn();
+        return cg.getTurn();
+    }
+
+    public void restarB() {
+        cg.restartB();
+    }
+
+    public void muevetePuta(boolean turn) {
+        try {
+            cg.muevetePuta(turn);
+        } catch (chessException ex) {
+            Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     boolean isVerified() {
@@ -151,4 +167,7 @@ public class CtrlPresentacio {
         cg.initAIComp(1);
         return cg.letsPlay();
     }
+    public boolean colorPiece(int x,int y){
+        return cg.colorPiece(y,x);
+}
 }

@@ -214,16 +214,7 @@ public class CtrlDomainCreator {
         return true;
     }
     
-    /**
-     * Return the FEN code of a board
-     * 
-     * @return String
-     * @throws chessException
-     */
-    public String getFenCodeOfBoard() throws chessException{
-        return B.fenToString();
-    }
-    
+
     /**
      * Check if a problem has a solution
      *
@@ -269,9 +260,6 @@ public class CtrlDomainCreator {
 
     public void deleteProblem(String id) throws IOException, chessException{
         CD.eraseProblem(id);
-    }
-    public boolean getFirstTurn(){
-       return P.getFirstTurn();
     }
 
 }

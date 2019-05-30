@@ -146,7 +146,7 @@ public class GameConfigUI extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setPreferredSize(new java.awt.Dimension(455, 338));
+        setPreferredSize(new java.awt.Dimension(455, 388));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Game Settings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
