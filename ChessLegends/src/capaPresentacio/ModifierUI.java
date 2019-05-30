@@ -34,7 +34,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     JPanel chessBoard;
     JLabel chessPiece;
     JPanel deleteZone;
-    JPanel lateralPieceZone;
+    //JPanel lateralPieceZone;
     int xAdjustment;
     int yAdjustment;
     private CtrlPresentacio p;
@@ -47,6 +47,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     boolean playing;
     String init_fen;
     String fen;
+    
+    //private Pair<Integer, Integer> lateralPiecesPos[2][6];
 
     public ModifierUI() {
         initComp();
@@ -95,6 +97,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         save.addActionListener(this::save);
         save.setBounds(20, 0, 125, 24);
         layeredPane.add(save, JLayeredPane.DEFAULT_LAYER);
+        
+        
         
         
 
@@ -178,7 +182,73 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         dispose();
         //System.exit(0);
     }
+    
+    private void wP(ActionEvent e){
+        for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
 
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
+                    piece.setName("P");
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    piece.setVisible(true);
+                    panel.add(piece);
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
+        
+    }
+    
+    private void wR(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void wN(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void wB(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void wQ(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void wK(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void bP(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void bR(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void bN(ActionEvent e){
+        System.out.println("Hola");
+    }
+    private void bB(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void bQ(ActionEvent e){
+        System.out.println("Hola");
+    }
+    
+    private void bK(ActionEvent e){
+        System.out.println("Hola");
+    }
     
 
     @Override
@@ -208,7 +278,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             }
             
         }
-        else if (lateralPieceZone.getBounds().contains(new Point(e.getX(), e.getY()))){
+        /*else if (lateralPieceZone.getBounds().contains(new Point(e.getX(), e.getY()))){
             
             
             Component c = lateralPieceZone.findComponentAt(e.getX(), e.getY());
@@ -247,9 +317,9 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             else{
                 System.out.println("es null");
                 return;
-            }*/
+            }
             
-        } 
+        } */
                 
         
         else if (deleteZone.getBounds().contains(new Point(e.getX(), e.getY()))){
@@ -589,8 +659,224 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
 
     private void setLateralPieces(){
+        JButton whitePawn = new JButton();
+        whitePawn.addActionListener(this::wP);
+        whitePawn.setBounds(605, 30, 95,64);
+        whitePawn.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(whitePawn, JLayeredPane.DEFAULT_LAYER);
+        try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
+            piece.setName("P");
+            whitePawn.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
         
-        lateralPieceZone = new JPanel();
+        JButton whiteRook = new JButton();
+        whiteRook.addActionListener(this::wR);
+        whiteRook.setBounds(605, 94, 95,64);
+        whiteRook.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(whiteRook, JLayeredPane.DEFAULT_LAYER);
+        try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
+            piece.setName("R");
+            whiteRook.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton whiteKnight = new JButton();
+        whiteKnight.addActionListener(this::wN);
+        whiteKnight.setBounds(605, 158, 95,64);
+        whiteKnight.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(whiteKnight, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
+            piece.setName("N");
+            whiteKnight.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton whiteBishop = new JButton();
+        whiteBishop.addActionListener(this::wB);
+        whiteBishop.setBounds(605, 222, 95,64);
+        whiteBishop.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(whiteBishop, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
+            piece.setName("B");
+            whiteBishop.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton whiteQueen = new JButton();
+        whiteQueen.addActionListener(this::wQ);
+        whiteQueen.setBounds(605, 286, 95,64);
+        whiteQueen.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(whiteQueen, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
+            piece.setName("Q");
+            whiteQueen.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton whiteKing = new JButton();
+        whiteKing.addActionListener(this::wK);
+        whiteKing.setBounds(605, 350, 95,64);
+        whiteKing.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(whiteKing, JLayeredPane.DEFAULT_LAYER);
+        try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
+            piece.setName("K");
+            whiteKing.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton blackPawn = new JButton();
+        blackPawn.addActionListener(this::bP);
+        blackPawn.setBounds(705, 30, 95,64);
+        blackPawn.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(blackPawn, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
+            piece.setName("p");
+            blackPawn.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton blackRook = new JButton();
+        blackRook.addActionListener(this::bR);
+        blackRook.setBounds(705, 94, 95,64);
+        blackRook.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(blackRook, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
+            piece.setName("r");
+            blackRook.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton blackKnight = new JButton();
+        blackKnight.addActionListener(this::bN);
+        blackKnight.setBounds(705, 158, 95,64);
+        blackKnight.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(blackKnight, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
+            piece.setName("n");
+            blackKnight.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton blackBishop = new JButton();
+        blackBishop.addActionListener(this::bB);
+        blackBishop.setBounds(705, 222, 95,64);
+        blackBishop.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(blackBishop, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
+            piece.setName("b");
+            blackBishop.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton blackQueen = new JButton();
+        blackQueen.addActionListener(this::bQ);
+        blackQueen.setBounds(705, 286, 95,64);
+        blackQueen.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(blackQueen, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
+            piece.setName("q");
+            blackQueen.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        JButton blackKing = new JButton();
+        blackKing.addActionListener(this::bK);
+        blackKing.setBounds(705, 350, 95,64);
+        blackKing.setBackground(Color.LIGHT_GRAY);
+        layeredPane.add(blackKing, JLayeredPane.DEFAULT_LAYER);
+         try {
+            URL url = new URL("http://i.stack.imgur.com/memI0.png");
+            BufferedImage bi = ImageIO.read(url);
+
+            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
+            piece.setName("k");
+            blackKing.add(piece);
+            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            System.exit(1);
+        }
+        
+        
+        /*lateralPieceZone = new JPanel();
         layeredPane.add(lateralPieceZone, JLayeredPane.DEFAULT_LAYER);
         
         lateralPieceZone.setName("lateralpiece");
@@ -613,8 +899,13 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         try {
             URL url = new URL("http://i.stack.imgur.com/memI0.png");
             BufferedImage bi = ImageIO.read(url);
+            
+            JButton logout = new JButton("Logout");
+            logout.addActionListener(this::logout);
+            logout.setBounds(310, 0, 125, 24);
+            layeredPane.add(logout, JLayeredPane.DEFAULT_LAYER);
 
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
+            /*JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
             piece.setBounds(636, 30, 64, 64);
             JPanel panel = (JPanel) lateralPieceZone.getComponent(0);
             panel.add(piece);
@@ -800,7 +1091,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             e12.printStackTrace();
             System.exit(1);
         }
-        
+        */
         
     }
     
