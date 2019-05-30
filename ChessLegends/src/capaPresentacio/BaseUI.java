@@ -20,6 +20,7 @@ public class BaseUI extends javax.swing.JFrame {
     private CtrlPresentacio p;
     public String name = "Pipo"; //this will indicate the name of the player, setting is public for easier code
     public String pName = "Memeverso"; //same, but for problem name
+    protected String fenCode = "8/8/8/8/8/8/8/8";
 
     /**
      * Creates new form BaseUI
@@ -88,10 +89,10 @@ public class BaseUI extends javax.swing.JFrame {
         // close();
     }
 
-    public void changeModifyUI() {
-        modifUI = new ModifierUI(p, this);
+    public void changeModifyUI(String fen) {
+        modifUI = new ModifierUI(p, this, fen);
         // jScrollPane1.setViewportView(brui);
-        modifUI.see();
+        modifUI.see(modifUI);
         //close();
     }
 

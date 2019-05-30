@@ -381,7 +381,9 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        b.changeModifyUI();
+        String fen = this.fenCode.getText();
+        if(fen.equals("") || !b.verifyFEN(fen)) fen = "8/8/8/8/8/8/8/8";
+        b.changeModifyUI(fen);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void ThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemeActionPerformed
@@ -398,6 +400,7 @@ public class NewProblemUI extends javax.swing.JPanel {
             text = text.concat(aTheme[i] + " ");
         }
         Theme.setText(text);
+        System.out.println(b.fenCode);
     }//GEN-LAST:event_firstMoveButtonActionPerformed
 
     private void firstMoveButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_firstMoveButtonStateChanged
