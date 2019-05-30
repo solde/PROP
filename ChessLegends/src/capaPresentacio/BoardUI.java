@@ -65,6 +65,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
      * @Post: This function sets the board
      */
     private void initComp() {
+        //System.out.println("ashrdtjfy");
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
         Dimension boardSize2 = new Dimension(600, 630); //chessboard UI dimension
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
@@ -148,6 +149,12 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
     }
 
+    /**
+     * @pre:
+     * @post: there aren't any Jlabels in board. 
+     * Deletes all the Jlabels from
+     * board
+     */
     public void cleanBoard() {
         for (int i = 0; i < 64; i++) {
             if (chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel) {
@@ -157,6 +164,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
     }
 
+    /**
+     * @pre: fen is valid
+     * @post: Sets fen
+     * @about: Sets fen
+     */
     public void setFEN(String fen) {
         this.fen = fen;
     }
@@ -183,7 +195,8 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
         }
         if ('a' == evt.getKeyChar()) {
-            p.muevetePuta(turn);
+            p.moveAI(turn);
+            turn = !turn;
         }
 
     }

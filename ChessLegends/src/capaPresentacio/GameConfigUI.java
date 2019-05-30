@@ -429,7 +429,7 @@ public class GameConfigUI extends javax.swing.JPanel {
 
     private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
         System.out.println(WPselect.getSelectedIndex());
-        System.out.println(BPselect.getSelectedIndex());
+        System.out.println("Black:"+BPselect.getSelectedIndex());
         try {
             b.initGame();
         } catch (chessException ex) {
@@ -439,6 +439,7 @@ public class GameConfigUI extends javax.swing.JPanel {
         b.setPlayer1(WPselect.getSelectedIndex());
         b.setPlayer2(BPselect.getSelectedIndex());
         b.changeBoardUI();
+        b.changeLoadUI();
     }//GEN-LAST:event_buttonPlayActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

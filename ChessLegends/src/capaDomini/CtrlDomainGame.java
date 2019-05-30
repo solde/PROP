@@ -159,9 +159,9 @@ public class CtrlDomainGame {
 
     public void setPlayer(int i, int AI) {
         if (AI == 0) {
-            if (i == 1) {
+            if (i == 0) {
                 G.setP1(P);
-            } else if (i == 2) {
+            } else if (i == 1) {
                 G.setP2(P);
             }
         } else if (AI == 1) {
@@ -348,7 +348,7 @@ public class CtrlDomainGame {
         return Prbl.getFenCode();
     }
 
-    public void muevetePuta(boolean turn) throws chessException {
+    public void moveAI(boolean turn) throws chessException {
         G.playMatch(turn);
     }
 }
