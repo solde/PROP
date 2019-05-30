@@ -82,8 +82,7 @@ public class NewProblemUI extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         Name = new javax.swing.JTextField();
         Theme = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        firstMoveButton = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jSpinner2 = new javax.swing.JSpinner();
@@ -126,9 +125,7 @@ public class NewProblemUI extends javax.swing.JPanel {
 
         jLabel3.setText("Theme:");
 
-        jLabel4.setText("Whites First:");
-
-        jLabel5.setText("Whites Attack:");
+        jLabel4.setText("Attacker:");
 
         jButton3.setText("Verify");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -150,9 +147,24 @@ public class NewProblemUI extends javax.swing.JPanel {
             }
         });
 
-        jRadioButton1.setText("Select");
+        Theme.setText("Black mate in 1");
+        Theme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ThemeActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Select");
+        firstMoveButton.setText("Black");
+        firstMoveButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                firstMoveButtonStateChanged(evt);
+            }
+        });
+        firstMoveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstMoveButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("User:");
 
@@ -160,6 +172,11 @@ public class NewProblemUI extends javax.swing.JPanel {
         jLabel7.setText("jLabel7");
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
+            }
+        });
 
         jLabel9.setText("N_mov:");
 
@@ -195,13 +212,11 @@ public class NewProblemUI extends javax.swing.JPanel {
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton2))
+                                .addComponent(firstMoveButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel9)
                                 .addGap(9, 9, 9))
@@ -260,14 +275,12 @@ public class NewProblemUI extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jRadioButton1)
+                    .addComponent(firstMoveButton)
                     .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
@@ -322,8 +335,8 @@ public class NewProblemUI extends javax.swing.JPanel {
         String id = Name.getText();
         String theme = Theme.getText();
         //theme.replace(' ', '_');
-        boolean turn = jRadioButton1.isSelected();
-        boolean first = jRadioButton2.isSelected();
+        boolean turn = firstMoveButton.isSelected();
+        boolean first = firstMoveButton.isSelected();
         v = false;
         int movs = (int) jSpinner2.getValue();
         try {
@@ -352,11 +365,12 @@ public class NewProblemUI extends javax.swing.JPanel {
         System.out.println(theme);
         theme = theme.replace(' ', '_');
         System.out.println(theme);
-        boolean turn = jRadioButton1.isSelected();
-        boolean first = jRadioButton2.isSelected();
+        boolean turn = firstMoveButton.isSelected();
+        boolean first = firstMoveButton.isSelected();
         int movs = (int) jSpinner2.getValue();
         try {
             b.saveProblem(fen, id, theme, movs, turn, first, v);
+            JOptionPane.showMessageDialog(null, "Saved");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Error while saving the problem.");
             return;
@@ -370,6 +384,44 @@ public class NewProblemUI extends javax.swing.JPanel {
         b.changeModifyUI();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void ThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ThemeActionPerformed
+
+    private void firstMoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstMoveButtonActionPerformed
+        String theme = Theme.getText();
+        String aTheme[] = theme.split(" ");
+        if(firstMoveButton.isSelected()) aTheme[0] = "White";
+        else aTheme[0] = "Black";
+        String text = "";
+        for(int i = 0; i < 4; ++i){
+            text = text.concat(aTheme[i] + " ");
+        }
+        Theme.setText(text);
+    }//GEN-LAST:event_firstMoveButtonActionPerformed
+
+    private void firstMoveButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_firstMoveButtonStateChanged
+        boolean bColor = firstMoveButton.isSelected();
+        if(bColor){
+            firstMoveButton.setText("White");
+        }
+        else{
+            firstMoveButton.setText("Black");
+        }
+    }//GEN-LAST:event_firstMoveButtonStateChanged
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        String theme = Theme.getText();
+        String aTheme[] = theme.split(" ");
+        int j = (int) jSpinner2.getValue();
+        aTheme[3] = Integer.toString(j);
+        String text = "";
+        for(int i = 0; i < 4; ++i){
+            text = text.concat(aTheme[i] + " ");
+        }
+        Theme.setText(text);
+    }//GEN-LAST:event_jSpinner2StateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Name;
@@ -377,6 +429,7 @@ public class NewProblemUI extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField fenCode;
+    private javax.swing.JRadioButton firstMoveButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -395,8 +448,6 @@ public class NewProblemUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField4;
