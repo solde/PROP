@@ -348,7 +348,7 @@ public class CtrlDomainGame {
         return Prbl.getFenCode();
     }
 
-    public void muevetePuta(boolean turn) throws chessException {
+    public void moveAI(boolean turn) throws chessException {
         G.playMatch(turn);
     }
 }

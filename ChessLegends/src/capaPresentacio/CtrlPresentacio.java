@@ -143,9 +143,9 @@ public class CtrlPresentacio {
         cg.restartB();
     }
 
-    public void muevetePuta(boolean turn) {
+    public void moveAI(boolean turn) {
         try {
-            cg.muevetePuta(turn);
+            cg.moveAI(turn);
         } catch (chessException ex) {
             Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
         }

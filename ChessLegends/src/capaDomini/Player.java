@@ -166,5 +166,5 @@ public abstract class Player {
     abstract String getPassword();
     
     abstract Board makeMove(Board b, boolean color, int depth) throws Exception;
-    
+
 }
