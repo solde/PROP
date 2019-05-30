@@ -141,6 +141,9 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
     }
 
+    public void setFEN(String fen){
+        this.fen=fen;
+    }
     private void exit(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
@@ -168,7 +171,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             JOptionPane.showMessageDialog(null, "You didn't move any piece");
             return;
         }
-        p.makeMove(posX / 64, posY / 64, newX / 64, newY / 64, turn);
+        p.makeMove(posX / 75, posY / 75, newX / 75, newY / 75, turn);
         try {
             fen = p.updateBoard();
         } catch (chessException ex) {
@@ -320,7 +323,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             newY = e.getY();
         }
         if (c instanceof JLabel) {
-            if (!p.canMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, turn)) {
+            if (!p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn)) {
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);
@@ -334,7 +337,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                 mov = true;
             }
         } else {
-            if (!p.canMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64, turn)) {
+            if (!p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn)) {
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);
@@ -384,7 +387,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
      */
     private void setPieces(String FEN_code) {
         int i = 0, j = 0, k = 0;
-        int cont = 0;
         int t = 0;
         int y = 0;
         boolean nope = false;
