@@ -218,7 +218,7 @@ public class Game extends GameAbs {
     }
 
     @Override
-    public void playMatch(Boolean color) throws chessException {
+    public boolean playMatch(Boolean color) throws chessException {
         if (color){
             try{
                 this.B = new Board(this.P1.makeMove(this.B, this.isTurn(), 2), true);}
@@ -233,5 +233,6 @@ public class Game extends GameAbs {
                 throw new chessException (e.getMessage());
             }
         }
+        return false;
     }
 }

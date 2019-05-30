@@ -146,13 +146,17 @@ public class BaseUI extends javax.swing.JFrame {
     public String getProblemBriefInfo(String id) throws IOException, FileNotFoundException, chessException {
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
-        System.out.println(aInfo[3]);
-        String ret = aInfo[3];
-        ret = ret.concat("#");
-        ret = ret.concat(aInfo[2]);
-        ret = ret.concat("#");
-        ret = ret.concat(aInfo[4]);
-        return ret;
+        try{
+            System.out.println(aInfo[3]);
+            String ret = aInfo[3];
+            ret = ret.concat("#");
+            ret = ret.concat(aInfo[2]);
+            ret = ret.concat("#");
+            ret = ret.concat(aInfo[4]);
+            return ret;
+        }
+        catch(Exception e){}
+        return "";
     }
 
     public String getProblemFen(String id) throws IOException, FileNotFoundException, chessException {
@@ -184,6 +188,10 @@ public class BaseUI extends javax.swing.JFrame {
 
     public void deleteProblem(String id) throws IOException, chessException {
         p.deleteProblem(id);
+    }
+    
+    public boolean playAIgame() throws chessException{
+        return p.playAIgame();
     }
 
     /**

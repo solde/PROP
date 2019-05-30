@@ -225,19 +225,11 @@ public class CtrlDomainGame {
     /**
      * Set the game of IAvIA in the initial conditions
      *
+     * @throws Exception.chessException
      */
-    public void initAIComp() {
+    public void initAIComp() throws chessException {
         G = new AICompetition();
-    }
-
-    /**
-     * Set the players to be two IA
-     *
-     */
-    public void initCompetition() {
-        G.setPlayer1("AI1", 0, 0, 1000, 1000);
-        G.setPlayer2("AI1", 0, 0, 1000, 1000);
-        //Fer coses d'estadistiques
+        G.setProblem(Prbl);
     }
 
     /**
@@ -290,8 +282,8 @@ public class CtrlDomainGame {
      * @param color
      * @throws chessException
      */
-    public void letsPlay(Boolean color) throws chessException {
-        G.playMatch(color);
+    public boolean letsPlay() throws chessException {
+        return G.playMatch(this.Prbl.getFirstTurn());
     }
 
     public boolean isVerified() {

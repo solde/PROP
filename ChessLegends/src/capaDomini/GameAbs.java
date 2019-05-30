@@ -200,7 +200,7 @@ public abstract class GameAbs {
      * @throws chessException
      */
     public abstract void movePiece(int sX, int sY, int dX, int dY, boolean color, long time) throws chessException;
-    public abstract void playMatch(Boolean color) throws chessException;
+    public abstract boolean playMatch(Boolean color) throws chessException;
     public abstract void resetTimers();
     public abstract ArrayList<int[]> possibleMovements(boolean color);
     public abstract char[][] getBoard() throws chessException;

@@ -1,4 +1,1 @@
-<<<<<<< HEAD
-=======
-test 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B a_a_aa 60 2 true true true
->>>>>>> 798013fb4120a7e75270b6f17987e5c164aa686d
+test 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B pipo_es_dios 60 2 true true true

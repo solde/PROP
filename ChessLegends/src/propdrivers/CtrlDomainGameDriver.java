@@ -90,13 +90,13 @@ public class CtrlDomainGameDriver {
             diff = sc.nextInt();
 
             //ChessLegends.loadProblemTest(fenCode, Name, N, diff, Theme, atk, atk);
-            ChessLegends.letsPlay(color);
+            //ChessLegends.letsPlay(color);
             
         
         }
         else if (input == 2){
             ChessLegends.initAIComp();
-            ChessLegends.initCompetition();
+            //ChessLegends.initCompetition();
             
             System.out.println("Enter a fen code");
             fenCode = sc.next();
