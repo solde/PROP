@@ -105,6 +105,12 @@ public class BaseUI extends javax.swing.JFrame {
         gcui.setName(name);
         jScrollPane1.setViewportView(gcui);
     }
+    
+    public void changeAIcompUI() {
+        aiUI = new AIcompUI(this);
+        aiUI.setName(name);
+        jScrollPane1.setViewportView(aiUI);
+    }
 
     public boolean verify(String fen, String name, String theme, int mov, boolean first, boolean turn) throws chessException, IOException {
         return p.verify(fen, name, theme, mov, turn, turn);
@@ -241,4 +247,5 @@ public class BaseUI extends javax.swing.JFrame {
     private GameConfigUI gcui;
     private LoadingUI loadUI;
     private ModifierUI modifUI;
+    private AIcompUI aiUI;
 }
