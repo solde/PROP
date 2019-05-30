@@ -92,7 +92,7 @@ public class BaseUI extends javax.swing.JFrame {
         modifUI = new ModifierUI(p, this);
         // jScrollPane1.setViewportView(brui);
         modifUI.see();
-        // close();
+        //close();
     }
 
     public void changeLoadUI() {

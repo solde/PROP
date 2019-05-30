@@ -361,12 +361,14 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         }
         if(done){
             try{
-            String brief[] = diff.split("#");
-            labelDiff.setText(brief[0]);
-            labelTheme.setText(brief[1].replace('_', ' '));
-            labelN.setText(brief[2]);
+                String brief[] = diff.split("#");
+                labelDiff.setText(brief[0]);
+                labelTheme.setText(brief[1].replace('_', ' '));
+                labelN.setText(brief[2]);
             }
-            catch(Exception e){}
+            catch(Exception e){
+                ;
+            }
         }
     }
 
