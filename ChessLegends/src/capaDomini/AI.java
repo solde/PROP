@@ -135,7 +135,9 @@ public class AI extends Player {
      * @throws chessException
      */
     protected static int evaluate(Board b, boolean color) throws chessException{
-		int attackScore = 0;
+	if (b.isCheckMate(!color)) return 100000; //King's Value
+        else {
+                int attackScore = 0;
 		int defendScore = 0;
                 
                         for(int i = 0; i<8; i++){
@@ -152,8 +154,11 @@ public class AI extends Player {
                                     }
                             }
                     }
-                    return attackScore-defendScore; 
-                }
+                    return attackScore-defendScore;
+    
+    
+        }
+    }
 	
 
 
