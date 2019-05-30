@@ -17,6 +17,7 @@ public class Board {
 
     //private
     private String FEN_code;
+    private String ogFEN;
     private final String Default_FEN_code;
 
     private Piece[][] chessBoard;
@@ -71,6 +72,7 @@ public class Board {
         }
         this.Default_FEN_code = "8/8/8/8/8/8/8/8";
         this.FEN_code = b.getFEN_code();
+        ogFEN=FEN_code;
         processFEN(searching);
     }
 
@@ -499,6 +501,10 @@ public class Board {
      */
     public Piece getPieceAt(int x, int y) {
         return chessBoard[x][y];
+    }
+    
+    public void restartBoard(){
+        FEN_code=ogFEN;
     }
 
 }

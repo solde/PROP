@@ -39,7 +39,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     int yAdjustment;
     private CtrlPresentacio p;
     private BaseUI b;
-    // char realChessBoard[][];
+    //realChessBoard[][];
     Timer time;
     JLabel timeLabel;
     double milis;
@@ -65,6 +65,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
      * @Post: This function sets the board
      */
     private void initComp() {
+        //System.out.println("ashrdtjfy");
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
         Dimension boardSize2 = new Dimension(600, 630); //chessboard UI dimension
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
@@ -125,6 +126,14 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         chessBoard.setPreferredSize(boardSize);
         chessBoard.setBounds(0, 25, boardSize.width, boardSize.height);
 
+        //keyboard listeners
+        resign.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                keyFunction(evt);
+            }
+        });
+
         //Put and paint the board
         for (int i = 0; i < 64; i++) {
             JPanel bp = new JPanel(new BorderLayout());
@@ -140,6 +149,12 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
     }
 
+    /**
+     * @pre:
+     * @post: there aren't any Jlabels in board. 
+     * Deletes all the Jlabels from
+     * board
+     */
     public void cleanBoard() {
         for (int i = 0; i < 64; i++) {
             if (chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel) {
@@ -149,8 +164,41 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
     }
 
+    /**
+     * @pre: fen is valid
+     * @post: Sets fen
+     * @about: Sets fen
+     */
     public void setFEN(String fen) {
         this.fen = fen;
+    }
+
+    //Adds the confirm functionality via c key
+    private void keyFunction(java.awt.event.KeyEvent evt) {
+        if ('c' == evt.getKeyChar()) {
+            if (posX == newX && posY == newY) {
+                JOptionPane.showMessageDialog(null, "You didn't move any piece");
+                return;
+            }
+            p.makeMove(posX / 75, posY / 75, newX / 75, newY / 75, turn);
+            System.out.println(posX / 75 + " " + posY / 75 + " " + newX / 75 + " " + newY / 75 + " " + turn);
+            try {
+                fen = p.updateBoard2();
+                System.out.println(fen);
+            } catch (chessException ex) {
+                Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            cleanBoard();
+            setPieces(fen);
+            mov = false;
+            turn = !turn;
+
+        }
+        if ('a' == evt.getKeyChar()) {
+            p.moveAI(turn);
+            turn = !turn;
+        }
+
     }
 
     private void exit(java.awt.event.ActionEvent evt) {
@@ -168,6 +216,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         milis = 0;
         mov = false;
         turn = p.getTurn();
+
     }
 
     /**
@@ -277,6 +326,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         Component c = chessBoard.findComponentAt(e.getX(), e.getY());
         posX = e.getX();
         posY = e.getY();
+
+        if (turn != p.colorPiece(posX / 75, posY / 75)) {
+            JOptionPane.showMessageDialog(null, "Not your turn");
+            return;
+        }
         if (c instanceof JPanel) {
             // ((JPanel) c).setBorder(BorderFactory.createLineBorder(Color.green, 4));
 
@@ -431,6 +485,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
+
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e1) {
                                     e1.printStackTrace();

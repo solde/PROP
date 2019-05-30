@@ -100,11 +100,13 @@ public class CtrlPresentacio {
         //return ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
         return cg.getFen();
     }
-     public String updateBoard2() throws chessException {
-     return cg.getFenCodeOfBoard();
-     }
+
+    public String updateBoard2() throws chessException {
+        return cg.getFenCodeOfBoard();
+    }
+
     public boolean canMove(int x, int y, int xnew, int ynew, boolean turn) {
-        return cg.canMov(x, y, xnew, ynew,turn);
+        return cg.canMov(x, y, xnew, ynew, turn);
     }
 
     public void setPlayer(int i, int type) {
@@ -137,6 +139,18 @@ public class CtrlPresentacio {
         return cg.getTurn();
     }
 
+    public void restarB() {
+        cg.restartB();
+    }
+
+    public void moveAI(boolean turn) {
+        try {
+            cg.moveAI(turn);
+        } catch (chessException ex) {
+            Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     boolean isVerified() {
         return cg.isVerified();
     }
@@ -150,7 +164,10 @@ public class CtrlPresentacio {
     }
     
     public boolean playAIgame() throws chessException{
-        cg.initAIComp();
+        cg.initAIComp(1);
         return cg.letsPlay();
     }
+    public boolean colorPiece(int x,int y){
+        return cg.colorPiece(y,x);
+}
 }

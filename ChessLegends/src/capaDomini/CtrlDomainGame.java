@@ -159,9 +159,9 @@ public class CtrlDomainGame {
 
     public void setPlayer(int i, int AI) {
         if (AI == 0) {
-            if (i == 1) {
+            if (i == 0) {
                 G.setP1(P);
-            } else if (i == 2) {
+            } else if (i == 1) {
                 G.setP2(P);
             }
         } else if (AI == 1) {
@@ -220,7 +220,7 @@ public class CtrlDomainGame {
         G = new Game();
         G.resetTimers();
         G.setProblem(Prbl);
-      //  G.setB(new Board(Prbl.getFenCode()));
+        //  G.setB(new Board(Prbl.getFenCode()));
     }
 
     /**
@@ -228,21 +228,22 @@ public class CtrlDomainGame {
      *
      * @throws Exception.chessException
      */
-    public void initAIComp() throws chessException {
-        G = new AICompetition();
+    public void initAIComp(int n) throws chessException {
+        G = new AICompetition(n);
         G.setProblem(Prbl);
-       // G.setB(new Board(Prbl.getFenCode()));
+        // G.setB(new Board(Prbl.getFenCode()));
     }
+
     /**
      * Return the FEN code of a board
-     * 
+     *
      * @return String
      * @throws chessException
      */
-    public String getFenCodeOfBoard() throws chessException{
+    public String getFenCodeOfBoard() throws chessException {
         return G.getB().fenToString();
     }
-    
+
     /**
      * Set a human player
      *
@@ -310,32 +311,44 @@ public class CtrlDomainGame {
         String aPl[] = pl.split(" ");
         
     }*/
-    
-    public boolean getTurn(){
-        return G.turn;
-    }
-    
-    public String getFen(){
-        return Prbl.getFenCode();
-    }
     public boolean canMov(int x, int y, int xnew, int ynew, boolean turn) {
         Piece p = G.getB().getPieceAt(y, x);
         Pair<Integer, Integer> c = new Pair(ynew, xnew);
         System.out.println("pieza" + p.getX() + " " + p.getY());
         boolean ret = false;
-        System.out.println(turn+" "+G.turn);
+        System.out.println(turn + " " + G.turn);
         if (turn == G.turn) {
             System.out.println("HELOOOOOOOOOOOOO");
             ArrayList<Pair<Integer, Integer>> llista = p.get_poss_mov(G.getB());
             for (Pair<Integer, Integer> mov : llista) {
                 System.out.println(p.getTypeOfPiece());
                 System.out.println(mov.getKey() + " " + mov.getValue());
-                System.out.println("A comprovar con:"+xnew + " " + ynew);
+                System.out.println("A comprovar con:" + xnew + " " + ynew);
                 if (mov.getKey() == c.getKey() && mov.getValue() == c.getValue()) {
                     ret = true;
                 }
             }
         }
         return ret;
+    }
+
+    public void restartB() {
+        G.getB().restartBoard();
+    }
+
+    public boolean colorPiece(int x, int y) {
+        return G.getB().getPieceAt(x, y).isColor();
+    }
+
+    public boolean getTurn() {
+        return G.turn;
+    }
+
+    public String getFen() {
+        return Prbl.getFenCode();
+    }
+
+    public void moveAI(boolean turn) throws chessException {
+        G.playMatch(turn);
     }
 }
