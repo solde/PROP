@@ -107,8 +107,8 @@ public class BaseUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(gcui);
     }
     
-    public void changeAIcompUI() {
-        aiUI = new AIcompUI(this);
+    public void changeAIcompUI(int WP, int BP) {
+        aiUI = new AIcompUI(this, WP, BP);
         aiUI.setName(name);
         jScrollPane1.setViewportView(aiUI);
     }
@@ -197,8 +197,12 @@ public class BaseUI extends javax.swing.JFrame {
         p.deleteProblem(id);
     }
     
-    public boolean playAIgame() throws chessException{
-        return p.playAIgame();
+    public boolean playAIgame(int WP, int BP) throws chessException{
+        return p.playAIgame(WP, BP);
+    }
+    
+    public void initAIComp() throws chessException{
+        p.initAIComp();
     }
 
     /**

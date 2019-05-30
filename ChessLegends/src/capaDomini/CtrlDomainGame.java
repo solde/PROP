@@ -229,9 +229,8 @@ public class CtrlDomainGame {
      * @throws Exception.chessException
      */
     public void initAIComp(int n) throws chessException {
-        G = new AICompetition(n);
+        G = new AICompetition(1);
         G.setProblem(Prbl);
-        // G.setB(new Board(Prbl.getFenCode()));
     }
 
     /**
@@ -295,7 +294,8 @@ public class CtrlDomainGame {
      * @throws chessException
      */
     public boolean letsPlay() throws chessException {
-        return G.playMatch(this.Prbl.getFirstTurn());
+        boolean ret = G.playMatch(Prbl.getFirstTurn());
+        return ret;
     }
 
     public boolean isVerified() {

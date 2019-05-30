@@ -26,6 +26,9 @@ public final class AIcompUI extends javax.swing.JPanel {
     private BaseUI b;
     private int totalGames;
     private int Wwins;
+    
+    private int WP;
+    private int BP;
 
     /**
      * Creates new form ProblemSelectUI
@@ -34,9 +37,11 @@ public final class AIcompUI extends javax.swing.JPanel {
         initComponents();
     }
     
-    public AIcompUI(BaseUI b) {
+    public AIcompUI(BaseUI b, int WP, int BP) {
         initComponents();
         this.b = b;
+        this.WP = WP;
+        this.BP = BP;
         initListOfProblems();
     }
 
@@ -284,9 +289,10 @@ public final class AIcompUI extends javax.swing.JPanel {
         }
         boolean win;
         try {
-            win = b.playAIgame();
+            win = b.playAIgame(WP, BP);
             updateLabels(win);
         } catch (chessException ex) {
+            System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "Cannot play the game");
         }
     }//GEN-LAST:event_playButtonActionPerformed

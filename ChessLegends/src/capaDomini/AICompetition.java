@@ -97,21 +97,18 @@ public class AICompetition extends GameAbs{
         for(int i = 0; i < this.N; ++i){
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
-
                 try{
                     this.B = new Board(P1.makeMove(this.B, this.isTurn(), 2), true);}
                 catch (Exception e){
+                    System.out.println("1");
                     throw new chessException (e.getMessage());
                 }
- 
-                
                 try{
                     this.B = new Board(P2.makeMove(this.B, this.isTurn(), 2), true);}
                 catch (Exception e){
+                    System.out.println("2");
                     throw new chessException (e.getMessage());
                 }
- 
-                
                 turn_cont += 1;
             }
             
@@ -138,7 +135,6 @@ public class AICompetition extends GameAbs{
                     ret = true;
                 }
             }
-            //resetBoard();
         }
         return ret;
     }
