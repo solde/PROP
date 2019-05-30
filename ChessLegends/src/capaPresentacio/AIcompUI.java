@@ -290,7 +290,7 @@ public final class AIcompUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Cannot play the game");
         }
 
-       boolean win = b.playAIgame();
+       //boolean win = b.playAIgame();
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void jProblemSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProblemSelectItemStateChanged
