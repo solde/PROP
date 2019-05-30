@@ -155,9 +155,7 @@ public class BaseUI extends javax.swing.JFrame {
             ret = ret.concat(aInfo[4]);
             return ret;
         }
-        catch(Exception e){
-            ;
-        }
+        catch(Exception e){}
         return "";
     }
 
@@ -190,6 +188,10 @@ public class BaseUI extends javax.swing.JFrame {
 
     public void deleteProblem(String id) throws IOException, chessException {
         p.deleteProblem(id);
+    }
+    
+    public boolean playAIgame() throws chessException{
+        return p.playAIgame();
     }
 
     /**

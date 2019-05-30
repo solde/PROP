@@ -282,7 +282,15 @@ public final class AIcompUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "This problem is not verified");
             return;
         }
-       // boolean win = b.playAIgame();
+        boolean win;
+        try {
+            win = b.playAIgame();
+            updateLabels(win);
+        } catch (chessException ex) {
+            JOptionPane.showMessageDialog(null, "Cannot play the game");
+        }
+
+       boolean win = b.playAIgame();
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void jProblemSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProblemSelectItemStateChanged
@@ -302,12 +310,16 @@ public final class AIcompUI extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     void updateLabels(boolean win){
+        this.totalGames += 1;
+        winBar.setMaximum(this.totalGames);
         if(win){
+            this.Wwins += 1;
             winnerLabel.setText("White wins");
-            
+            winBar.setValue(Wwins);
         }
         else{
             winnerLabel.setText("Black wins");
+            winBar.setValue(Wwins);
         }
         double W = winBar.getPercentComplete();
         double B = 100-W;

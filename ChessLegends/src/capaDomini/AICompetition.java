@@ -92,7 +92,7 @@ public class AICompetition extends GameAbs{
     
  
     @Override
-    public void playMatch(Boolean color) throws chessException{
+    public boolean playMatch(Boolean color) throws chessException{
         for(int i = 0; i < this.N; ++i){
             int turn_cont = 0;
             while(turn_cont < this.P.getN_mov()){
@@ -114,35 +114,33 @@ public class AICompetition extends GameAbs{
                 turn_cont += 1;
                 
             }
+            boolean ret;
             if(B.isCheckMate(!P.getATK())){
                 
                 if (P.getATK()){
                     WhiteWins += 1;
-                   
+                    return true;
                 }
                 else{
                     BlackWins += 1;
-                    
+                    return false;
                 }
                 
             }
             else{
                 if(P.getATK()) {
                     BlackWins += 1;
+                    return false;
                    
                 }
                 else {
                     WhiteWins += 1;
-                    
+                    return true;
                 }
             }
-            
-            resetBoard();
-            int aux = i;
-            ++aux;
-            
-            
+            //resetBoard();
         }
+        return false;
     }
 
     @Override

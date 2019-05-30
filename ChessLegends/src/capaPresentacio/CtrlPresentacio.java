@@ -146,4 +146,9 @@ public class CtrlPresentacio {
             Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public boolean playAIgame() throws chessException{
+        cg.initAIComp();
+        return cg.letsPlay();
+    }
 }

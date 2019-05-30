@@ -306,8 +306,6 @@ public class LoginUI extends javax.swing.JPanel {
         } catch (IOException | chessException ex ) {
             JOptionPane.showMessageDialog(null, "Unexpected error");
             jLabel8.setForeground(Color.red);
-            //code for when the passwords don't match
-            System.out.println("Passwords didn't match. Try again");
             jPasswordField3.setText("");
         }
         //code for when the passwords don't match
