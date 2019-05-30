@@ -162,9 +162,9 @@ public class CtrlPresentacio {
             Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public boolean playAIgame() throws chessException {
-        cg.initAIComp();
+    
+    public boolean playAIgame() throws chessException{
+        cg.initAIComp(1);
         return cg.letsPlay();
     }
     public boolean colorPiece(int x,int y){

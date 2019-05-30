@@ -14,28 +14,6 @@ public class Human extends Player {
     //private
     private String password;
     //Funció temporal per la primera entrega 
- 
-    /**
-     * Checks if a the string pass is equal to the password in player.
-     *
-     * @param pass
-     * @return int
-     * @throws chessException
-     * @throws FileNotFoundException
-     * @throws IOException
-     */
-    public int autenticate(String pass) throws chessException, FileNotFoundException, IOException {
-        String truePass = this.getPassword();
-        if (pass.isEmpty()) {
-            throw new chessException("No password introduced");
-        } else if (!pass.equals(truePass)) {
-            throw new chessException("Bad password");
-        }
-
-        return 0;
-
-    }
-    //public constructors & get/set
 
     /**
      * basic constructor without parametres
