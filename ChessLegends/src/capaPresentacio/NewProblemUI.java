@@ -461,17 +461,12 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jSpinner2StateChanged
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-        try {
-            evt.w
-        } catch (InterruptedException ex) {
-            Logger.getLogger(NewProblemUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         this.fenCode.setText(b.fenCode);
     }//GEN-LAST:event_formMouseMoved
 
     private void fenCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fenCodeKeyPressed
         b.fenCode = fenCode.getText();
-        evt.notifyAll();
     }//GEN-LAST:event_fenCodeKeyPressed
 
     private void fenCodeMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fenCodeMouseMoved
