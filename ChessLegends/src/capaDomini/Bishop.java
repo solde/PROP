@@ -53,14 +53,13 @@ public class Bishop extends Piece {
     @Override
     public ArrayList<Pair<Integer, Integer>> get_poss_mov(Board b) {
         ArrayList<Pair<Integer, Integer>> mov;
-        mov = new ArrayList<>();
+        mov = new ArrayList<Pair<Integer, Integer>>();
         Pair<Integer, Integer> tmp;
         int x_temp = getX();
         int y_temp = getY();
 
-        for (int i = 0; i < 8; i++) {
-            tmp = new Pair<>(x_temp - i, y_temp - i);
-            System.out.println("entra --");
+        for (int i = 1; i < 8; i++) {
+            tmp = new Pair<Integer, Integer>(x_temp - i, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
@@ -72,7 +71,7 @@ public class Bishop extends Piece {
         }
 
         for (int i = 1; i < 8; i++) {
-            tmp = new Pair<>(x_temp + i, y_temp + i);
+            tmp = new Pair<Integer, Integer>(x_temp + i, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
@@ -84,8 +83,7 @@ public class Bishop extends Piece {
         }
 
         for (int i = 1; i < 8; i++) {
-            tmp = new Pair<>(x_temp - i, y_temp + i);
-            System.out.println("entra-+");
+            tmp = new Pair<Integer, Integer>(x_temp - i, y_temp + i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {
@@ -97,7 +95,7 @@ public class Bishop extends Piece {
         }
 
         for (int i = 1; i < 8; i++) {
-            tmp = new Pair<>(x_temp + i, y_temp - i);
+            tmp = new Pair<Integer, Integer>(x_temp + i, y_temp - i);
             if (!pos_Taken(tmp, b)) {
                 mov.add(tmp);
             } else {

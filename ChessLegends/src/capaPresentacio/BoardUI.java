@@ -50,6 +50,8 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     String fen_original;
     long actTime;
     boolean turn;
+    boolean iaTurn1=false;
+    boolean iaTurn2=false;
     boolean mov;
 
     public BoardUI() {
@@ -67,7 +69,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
      * @Post: This function sets the board
      */
     private void initComp() {
-        //System.out.println("ashrdtjfy");
         Dimension boardSize = new Dimension(600, 600); //chessboard dimension
         Dimension boardSize2 = new Dimension(600, 630); //chessboard UI dimension
         //LayeredPane per poder afegir peçes com jlabels a sobre de jpanels
@@ -100,7 +101,8 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         restart.addActionListener(this::restart);
         restart.setBounds(81, 0, 80, 24);
         layeredPane.add(restart, JLayeredPane.DEFAULT_LAYER);
-        //AI play button
+
+        //AI play button 
         JButton ai = new JButton("AI");
         ai.addActionListener(this::AiPlay);
         ai.setBounds(264, 0, 45, 24);
@@ -171,21 +173,16 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         this.fen = fen;
     }
 
-    //Adds the confirm functionality via a key
+      /**
+     * @pre: Ai button is pressed
+     * @post: board is modified to refelct the changes in logical board
+     * @about: this function tells the ai to move and updates the board
+     */
     private void AiPlay(java.awt.event.ActionEvent evt) {
-        if (0 == b.player1 && turn) {
-            JOptionPane.showMessageDialog(null, "It's not AI turn");
-            return;
-        }
-        if (0 == b.player2 && !turn) {
-            JOptionPane.showMessageDialog(null, "It's not AI turn");
-            return;
-        }
-
         p.moveAI(turn);
         try {
             fen = p.updateBoard2();
-            System.out.println(fen);
+            //System.out.println(fen);
         } catch (chessException ex) {
             Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -228,10 +225,10 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             return;
         }
         p.makeMove(posX / 75, posY / 75, newX / 75, newY / 75, turn);
-        System.out.println(posX / 75 + " " + posY / 75 + " " + newX / 75 + " " + newY / 75 + " " + turn);
+        //System.out.println(posX / 75 + " " + posY / 75 + " " + newX / 75 + " " + newY / 75 + " " + turn);
         try {
             fen = p.updateBoard2();
-            System.out.println(fen);
+            //System.out.println(fen);
         } catch (chessException ex) {
             Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -273,12 +270,21 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         // p.start();
         turn = p.getTurn();
         mov = false;
+
+        if (0!= b.player1) {
+            iaTurn1 = true;
+        }
+        if (0 != b.player2) {
+            System.out.println("adf efqdvdsdscsda"+b.player2);
+            iaTurn2 = true;
+        }
+
         time.start();
 
         try {
             fen = p.updateBoard();
             setPieces(fen);
-            System.out.println(fen);
+            //System.out.println(fen);
         } catch (chessException ex) {
             Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -298,7 +304,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                 TimeUnit.MILLISECONDS.toSeconds((long) milis)
                 - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) milis))
         ));
-        actTime = TimeUnit.MILLISECONDS.toSeconds((long) milis);
+        actTime =(long) (milis/1000);
     }
 
     /**
@@ -308,6 +314,15 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
      */
     @Override
     public void mousePressed(MouseEvent e) {
+        if (iaTurn1 && (turn == true)) {
+            JOptionPane.showMessageDialog(null, "It's ai turn. Press AI button");
+            return;
+        }
+        if (iaTurn2 && (turn == false)) {
+            JOptionPane.showMessageDialog(null, "It's ai turn. Press AI button");
+            return;
+        }
+
         if (mov) {
             if (0 == JOptionPane.showConfirmDialog(null, "You have already made a move, do you want to reverse it?")) {
                 chessPiece.setVisible(false);
@@ -396,16 +411,16 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
         if (c instanceof JLabel) {
             if (!p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn)) {
-                System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
-                System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
+                //System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
+                //System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);
                 JOptionPane.showMessageDialog(null, "This movement is not allowed");
             } else {
                 Container l = c.getParent();
-                System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
-                System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
+                //System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
+                //System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
                 l.remove(0);
                 l.add(chessPiece);
                 tx = posX;
@@ -414,16 +429,16 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             }
         } else {
             if (!p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn)) {
-                System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
-                System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
+                //System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
+                //System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
                 Component d = chessBoard.findComponentAt(posX, posY);
                 Container parent = (Container) d;
                 parent.add(chessPiece);
                 JOptionPane.showMessageDialog(null, "This movement is not allowed");
             } else {
                 Container parent = (Container) c;
-                System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
-                System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
+                //System.out.println(p.canMove(posX / 75, posY / 75, e.getX() / 75, e.getY() / 75, turn));
+                //System.out.println(posX / 75 + " " + posY / 75 + " " + e.getX() / 75 + " " + e.getY() / 75);
                 parent.add(chessPiece);
                 tx = posX;
                 ty = posY;
@@ -490,7 +505,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
 
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e1) {
                                     e1.printStackTrace();
                                     System.exit(1);
@@ -505,7 +520,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e2) {
                                     e2.printStackTrace();
                                     System.exit(1);
@@ -520,7 +535,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e3) {
                                     e3.printStackTrace();
                                     System.exit(1);
@@ -536,7 +551,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e4) {
                                     e4.printStackTrace();
                                     System.exit(1);
@@ -552,7 +567,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e5) {
                                     e5.printStackTrace();
                                     System.exit(1);
@@ -568,7 +583,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e6) {
                                     e6.printStackTrace();
                                     System.exit(1);
@@ -584,7 +599,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e7) {
                                     e7.printStackTrace();
                                     System.exit(1);
@@ -600,7 +615,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e8) {
                                     e8.printStackTrace();
                                     System.exit(1);
@@ -616,7 +631,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e9) {
                                     e9.printStackTrace();
                                     System.exit(1);
@@ -632,7 +647,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e10) {
                                     e10.printStackTrace();
                                     System.exit(1);
@@ -648,7 +663,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e11) {
                                     e11.printStackTrace();
                                     System.exit(1);
@@ -664,7 +679,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    //-//System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e12) {
                                     e12.printStackTrace();
                                     System.exit(1);
@@ -675,7 +690,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                             default:
                             // chessBoard[i][cont] = new NullPiece(i, cont, true);
                         }
-                        //-System.out.print(FEN_code.charAt(t));
+                        //-//System.out.print(FEN_code.charAt(t));
                         t++;
                     }
                     j++;
@@ -685,14 +700,14 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
                     t++;
                     j += 10;
                 }
-                //-System.out.print(k + " ");
+                //-//System.out.print(k + " ");
             }
             if (!nope) {
                 i++;
             }
             nope = false;
             j = 0;
-            //-System.out.print("i:" + i + " ");
+            //-//System.out.print("i:" + i + " ");
         }
 
     }
