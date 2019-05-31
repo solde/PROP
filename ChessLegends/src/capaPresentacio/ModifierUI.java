@@ -912,7 +912,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             j = 0;
 
         }
-        System.out.println("FEN SET: "+ FEN_code);
     }
 
     private void setLateralPieces(){
