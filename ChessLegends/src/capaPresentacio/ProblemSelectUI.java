@@ -294,7 +294,7 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
         int i = jProblemSelect.getSelectedIndex();
         System.out.println(i);
         String id = jProblemSelect.getItemAt(i);
-        System.out.println(id);
+        b.pName = id;
         try {
             b.loadProblem(id);
         } catch (IOException ex) {

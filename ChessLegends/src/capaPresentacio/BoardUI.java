@@ -42,11 +42,13 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
     //realChessBoard[][];
     Timer time;
     JLabel timeLabel;
+    JLabel nameP;
     double milis;
     int posX, posY, newX, newY, tx, ty;
     boolean playing;
     String fen;
     String fen_original;
+    long actTime;
     boolean turn;
     boolean mov;
 
@@ -98,6 +100,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         restart.addActionListener(this::restart);
         restart.setBounds(81, 0, 80, 24);
         layeredPane.add(restart, JLayeredPane.DEFAULT_LAYER);
+        //AI play button
+        JButton ai = new JButton("AI");
+        ai.addActionListener(this::AiPlay);
+        ai.setBounds(264, 0, 45, 24);
+        layeredPane.add(ai, JLayeredPane.DEFAULT_LAYER);
 
         //play button
         JButton play = new JButton("Start Game");
@@ -106,8 +113,8 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         layeredPane.add(play, JLayeredPane.DEFAULT_LAYER);
 
         //Name Problem
-        JLabel nameP = new JLabel("NameSample");
-        nameP.setBounds(270, 0, 80, 20);
+        nameP = new JLabel("NameSample");
+        nameP.setBounds(315, 0, 80, 20);
         layeredPane.add(nameP);
         nameP.setText(b.getProblemName());
 
@@ -116,7 +123,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             actTime();
         });
         timeLabel = new JLabel("Time: 00:00");
-        timeLabel.setBounds(350, 0, 100, 20);
+        timeLabel.setBounds(378, 0, 100, 20);
         layeredPane.add(timeLabel);
 
         //Acabem afegint el panel al layeradPane
@@ -125,14 +132,6 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         chessBoard.setLayout(new GridLayout(8, 8));
         chessBoard.setPreferredSize(boardSize);
         chessBoard.setBounds(0, 25, boardSize.width, boardSize.height);
-
-        //keyboard listeners
-        resign.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                keyFunction(evt);
-            }
-        });
 
         //Put and paint the board
         for (int i = 0; i < 64; i++) {
@@ -151,8 +150,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
     /**
      * @pre:
-     * @post: there aren't any Jlabels in board. 
-     * Deletes all the Jlabels from
+     * @post: there aren't any Jlabels in board. Deletes all the Jlabels from
      * board
      */
     public void cleanBoard() {
@@ -173,31 +171,31 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         this.fen = fen;
     }
 
-    //Adds the confirm functionality via c key
-    private void keyFunction(java.awt.event.KeyEvent evt) {
-        if ('c' == evt.getKeyChar()) {
-            if (posX == newX && posY == newY) {
-                JOptionPane.showMessageDialog(null, "You didn't move any piece");
-                return;
-            }
-            p.makeMove(posX / 75, posY / 75, newX / 75, newY / 75, turn);
-            System.out.println(posX / 75 + " " + posY / 75 + " " + newX / 75 + " " + newY / 75 + " " + turn);
-            try {
-                fen = p.updateBoard2();
-                System.out.println(fen);
-            } catch (chessException ex) {
-                Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            cleanBoard();
-            setPieces(fen);
-            mov = false;
-            turn = !turn;
+    //Adds the confirm functionality via a key
+    private void AiPlay(java.awt.event.ActionEvent evt) {
+        if (0 == b.player1 && turn) {
+            JOptionPane.showMessageDialog(null, "It's not AI turn");
+            return;
+        }
+        if (0 == b.player2 && !turn) {
+            JOptionPane.showMessageDialog(null, "It's not AI turn");
+            return;
+        }
 
+        p.moveAI(turn);
+        try {
+            fen = p.updateBoard2();
+            System.out.println(fen);
+        } catch (chessException ex) {
+            Logger.getLogger(BoardUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if ('a' == evt.getKeyChar()) {
-            p.moveAI(turn);
-            turn = !turn;
+        cleanBoard();
+        setPieces(fen);
+        if (p.isCheckMate(!turn)) {
+            JOptionPane.showMessageDialog(null, "IA WINS");
+            time.stop();
         }
+        turn = !turn;
 
     }
 
@@ -240,6 +238,11 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         cleanBoard();
         setPieces(fen);
         mov = false;
+        if (p.isCheckMate(!turn)) {
+            JOptionPane.showMessageDialog(null, "Congratulations! You Won!!");
+            time.stop();
+            p.updateRanking(actTime);
+        }
         turn = !turn;
     }
 
@@ -266,7 +269,8 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             return;
         }
         playing = true;
-        p.start();
+        nameP.setText(p.getProbName());
+        // p.start();
         turn = p.getTurn();
         mov = false;
         time.start();
@@ -288,13 +292,13 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
      * @Post: This function manages the timer aspect of the board
      */
     private void actTime() {
-
+        milis += 10;
         timeLabel.setText(String.format("Time: %02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes((long) milis),
                 TimeUnit.MILLISECONDS.toSeconds((long) milis)
                 - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) milis))
         ));
-        milis += 10;
+        actTime = TimeUnit.MILLISECONDS.toSeconds((long) milis);
     }
 
     /**

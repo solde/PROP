@@ -35,7 +35,7 @@ abstract class AI extends Player {
     @Override
     public Board makeMove(Board b, boolean color, int depth) throws Exception {   
         
-		System.out.println("hellowo here is the problemo-san");
+		//System.out.println("hellowo here is the problemo-san");
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
                 ArrayList<int[]> moves = new ArrayList<>();
                 

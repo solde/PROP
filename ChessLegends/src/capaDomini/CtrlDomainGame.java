@@ -10,6 +10,8 @@ import capaDades.CtrlDades;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.util.Pair;
 
 /**
@@ -158,6 +160,7 @@ public class CtrlDomainGame {
     }
 
     public void setPlayer(int i, int AI) {
+        System.out.println("**" + i + " " + AI);
         if (AI == 0) {
             if (i == 0) {
                 G.setP1(P);
@@ -316,7 +319,7 @@ public class CtrlDomainGame {
         Pair<Integer, Integer> c = new Pair(ynew, xnew);
         System.out.println("pieza" + p.getX() + " " + p.getY());
         boolean ret = false;
-        System.out.println(turn + " " + G.turn);
+        System.out.println("mine:" + turn + "Board turn:" + G.turn);
         if (turn == G.turn) {
             System.out.println("HELOOOOOOOOOOOOO");
             ArrayList<Pair<Integer, Integer>> llista = p.get_poss_mov(G.getB());
@@ -351,4 +354,28 @@ public class CtrlDomainGame {
     public void moveAI(boolean turn) throws chessException {
         G.playMatch(turn);
     }
+
+    public boolean isCheckMate(boolean turn) {
+        boolean ret=false;
+        try {
+            ret= G.getB().isCheckMate(turn);
+        } catch (chessException ex) {
+            Logger.getLogger(CtrlDomainGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+    public void addRank(long num){
+        try {
+            CD.addRank(Prbl.getName(), P.id, num);
+        } catch (IOException ex) {
+            Logger.getLogger(CtrlDomainGame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (chessException ex) {
+            Logger.getLogger(CtrlDomainGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public String getProbName(){
+        return Prbl.getName();
+    }
+   
 }
