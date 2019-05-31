@@ -34,12 +34,10 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     JPanel chessBoard;
     JLabel chessPiece;
     JPanel deleteZone;
-    //JPanel lateralPieceZone;
     int xAdjustment;
     int yAdjustment;
     private CtrlPresentacio p;
     private BaseUI b;
-    // char realChessBoard[][];
     Timer time;
     JLabel timeLabel;
     double milis;
@@ -150,7 +148,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         String fen = "";
         int aux = 0;
         for (int i = 1; i <= 64; i++) {
-            if (chessBoard.getComponent(i-1).getComponentAt(35,35) instanceof JLabel) {
+            if (chessBoard.getComponent(i-1).getComponentAt(0,0) instanceof JLabel) {
                 if( aux != 0){
                     fen = fen +(Integer.toString(aux));
                 }
@@ -170,6 +168,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             }
            
         }
+        System.out.println(fen);
         return fen;
     }
     
@@ -179,10 +178,9 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
     
     private void loadDefault(java.awt.event.ActionEvent evt) {
-        this.fen = init_fen;
-        System.out.println(this.fen);
         System.out.println(init_fen);
-        setPieces(init_fen);
+        this.fen = init_fen;
+        setPieces(this.fen);
     }
     
     private void save(java.awt.event.ActionEvent evt){
@@ -202,7 +200,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         this.setVisible(false);
         //dispose tanca la pantalla amb logout
         dispose();
-        //System.exit(0);
     }
     
     private void wP(ActionEvent e){
@@ -224,7 +221,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -254,7 +250,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -283,7 +278,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -312,7 +306,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -341,7 +334,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -370,7 +362,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -399,7 +390,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -428,7 +418,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -457,7 +446,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     setPieces(this.fen);
                     
                     
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -484,8 +472,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     this.fen = updateFen();
                     setPieces(this.fen);
                     
-                    
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -513,8 +500,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     this.fen = updateFen();
                     setPieces(this.fen);
                     
-                    
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -542,8 +528,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     this.fen = updateFen();
                     setPieces(this.fen);
                     
-                    
-                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+
                 } catch (Exception e6) {
                     e6.printStackTrace();
                     System.exit(1);
@@ -603,10 +588,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             return;
         }
         chessPiece.setVisible(false); 
-        
-        //-System.out.println("-------------");
-        //-ç.println(e.getX());
-        //-System.out.println(e.getY());
+
         Component c;
         boolean skip = false;
         //Boundary Limits makes you return to the original panel
@@ -634,7 +616,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         else {
             //pass the interactive movement  to the logical board
             if (!skip) {
-               // p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
+
             }
             if (chessPiece != null){
                 Container parent = (Container) c;
@@ -665,7 +647,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
 
     public void see(JFrame frame) {
-        //JFrame frame = new ModifierUI(this.p, this.b, fen);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setResizable(false);
@@ -710,7 +691,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e1) {
                                     e1.printStackTrace();
                                     System.exit(1);
@@ -728,7 +708,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e2) {
                                     e2.printStackTrace();
                                     System.exit(1);
@@ -746,7 +725,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e3) {
                                     e3.printStackTrace();
                                     System.exit(1);
@@ -765,7 +743,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e4) {
                                     e4.printStackTrace();
                                     System.exit(1);
@@ -784,7 +761,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e5) {
                                     e5.printStackTrace();
                                     System.exit(1);
@@ -803,13 +779,12 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e6) {
                                     e6.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                //chessBoard[i][cont] = new Pawn(i, cont, true);
+
                                 break;
                             case 'q':
                                 try {
@@ -822,13 +797,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e7) {
                                     e7.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                // chessBoard[i][cont] = new Queen(i, cont, false);
                                 break;
                             case 'k':
                                 try {
@@ -841,13 +814,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e8) {
                                     e8.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                //chessBoard[i][cont] = new King(i, cont, false);
                                 break;
                             case 'b':
                                 try {
@@ -860,13 +831,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e9) {
                                     e9.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                // chessBoard[i][cont] = new Bishop(i, cont, false);
                                 break;
                             case 'r':
                                 try {
@@ -879,13 +848,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e10) {
                                     e10.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                // chessBoard[i][cont] = new Rock(i, cont, false);
                                 break;
                             case 'n':
                                 try {
@@ -898,13 +865,12 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                                 } catch (Exception e11) {
                                     e11.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                // chessBoard[i][cont] = new Knight(i, cont, false);
+                                
                                 break;
                             case 'p':
                                 try {
@@ -916,19 +882,18 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                                     
                                     piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
-                                    panel.add(piece);
-                                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                                    panel.add(piece);;
                                 } catch (Exception e12) {
                                     e12.printStackTrace();
                                     System.exit(1);
                                 }
 
-                                // chessBoard[i][cont] = new Pawn(i, cont, false);
+
                                 break;
                             default:
-                            // chessBoard[i][cont] = new NullPiece(i, cont, true);
+
                         }
-                        //-System.out.print(FEN_code.charAt(t));
+
                         t++;
                     }
                     j++;
@@ -938,16 +903,16 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     t++;
                     j += 10;
                 }
-                //-System.out.print(k + " ");
+
             }
             if (!nope) {
                 i++;
             }
             nope = false;
             j = 0;
-            //-System.out.print("i:" + i + " ");
-        }
 
+        }
+        System.out.println("FEN SET: "+ FEN_code);
     }
 
     private void setLateralPieces(){
@@ -965,7 +930,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
             piece.setName("P");
             whitePawn.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -984,7 +948,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
             piece.setName("R");
             whiteRook.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1003,7 +966,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
             piece.setName("N");
             whiteKnight.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1022,7 +984,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
             piece.setName("B");
             whiteBishop.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1041,7 +1002,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
             piece.setName("Q");
             whiteQueen.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1060,7 +1020,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
             piece.setName("K");
             whiteKing.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1079,7 +1038,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
             piece.setName("p");
             blackPawn.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1098,7 +1056,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
             piece.setName("r");
             blackRook.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1117,7 +1074,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
             piece.setName("n");
             blackKnight.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1136,7 +1092,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
             piece.setName("b");
             blackBishop.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1155,7 +1110,6 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
             piece.setName("q");
             blackQueen.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
@@ -1174,13 +1128,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
             piece.setName("k");
             blackKing.add(piece);
-            //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
         } catch (Exception e6) {
             e6.printStackTrace();
             System.exit(1);
         }
        
     }
-    
-   
+
 }
