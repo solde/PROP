@@ -304,7 +304,7 @@ public class LoginUI extends javax.swing.JPanel {
                 System.out.println(ex.getMessage());
             }
         } catch (IOException | chessException ex ) {
-            JOptionPane.showMessageDialog(null, "Unexpected error");
+            JOptionPane.showMessageDialog(null, "User dataBase not found");
             jLabel8.setForeground(Color.red);
             jPasswordField3.setText("");
         }
