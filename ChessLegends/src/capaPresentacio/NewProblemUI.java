@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package capaPresentacio;
 
 import Exception.chessException;
@@ -340,7 +335,7 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        try {
+       try {
             // Back
             b.changeProblem();
         } catch (IOException ex) {
@@ -357,7 +352,7 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_NameActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //Verify
+       //Verify
         String fen = fenCode.getText();
         if (!b.verifyFEN(fen)) {
             JOptionPane.showMessageDialog(null, "Fen is incorrect");
@@ -462,11 +457,11 @@ public class NewProblemUI extends javax.swing.JPanel {
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         if(!jCheckBox1.isSelected())
-            this.fenCode.setText(b.fenCode);
+        this.fenCode.setText(b.fenCode);
     }//GEN-LAST:event_formMouseMoved
 
     private void fenCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fenCodeKeyPressed
-
+        
     }//GEN-LAST:event_fenCodeKeyPressed
 
     private void fenCodeMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fenCodeMouseMoved

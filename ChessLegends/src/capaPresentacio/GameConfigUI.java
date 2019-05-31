@@ -428,7 +428,7 @@ public class GameConfigUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
-        System.out.println(WPselect.getSelectedIndex());
+        System.out.println("white:"+WPselect.getSelectedIndex());
         System.out.println("Black:"+BPselect.getSelectedIndex());
         try {
             b.initGame();
@@ -445,6 +445,8 @@ public class GameConfigUI extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int i = AIselector1.getSelectedIndex();
         int j = AIselector2.getSelectedIndex();
+        b.player1= AIselector1.getSelectedIndex();
+        b.player2=AIselector2.getSelectedIndex();
         try {
             b.initAIComp();
         } catch (chessException ex) {

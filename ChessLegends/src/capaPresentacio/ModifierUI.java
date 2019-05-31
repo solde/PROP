@@ -166,6 +166,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                 aux = 0;
             }
         }
+        System.out.println("*"+fen+"*");
         return fen;
     }
     

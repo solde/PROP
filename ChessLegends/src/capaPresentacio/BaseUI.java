@@ -21,6 +21,8 @@ public class BaseUI extends javax.swing.JFrame {
     public String name = "Pipo"; //this will indicate the name of the player, setting is public for easier code
     public String pName = "Memeverso"; //same, but for problem name
     protected String fenCode = "8/8/8/8/8/8/8/8";
+    int player1;
+    int player2;
 
     /**
      * Creates new form BaseUI

@@ -239,18 +239,20 @@ public class Game extends GameAbs {
 
     @Override
     public boolean playMatch(Boolean color) throws chessException {
-        if (color){
-            try{
-                this.B = new Board(this.P1.makeMove(this.B, this.isTurn(), 2), true);}
-            catch (Exception e){
-                throw new chessException (e.getMessage());
-            }            
-        }
-        else{
-            try{
-                this.B = new Board(this.P2.makeMove(this.B, this.isTurn(), 2), true);}
-            catch (Exception e){
-                throw new chessException (e.getMessage());
+        if (color) {
+            try {
+                this.B = new Board(P1.makeMove(this.B, this.isTurn(), 2), true);
+                setTurn(!isTurn());
+                
+            } catch (Exception e) {
+                throw new chessException(e.getMessage());
+            }
+        } else {
+            try {
+                this.B = new Board(P2.makeMove(this.B, this.isTurn(), 2), true);
+                setTurn(!isTurn());
+            } catch (Exception e) {
+                throw new chessException(e.getMessage());
             }
         }
         return false;
