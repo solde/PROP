@@ -114,7 +114,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
         //Name Problem
         nameP = new JLabel("NameSample");
-        nameP.setBounds(310, 0, 80, 20);
+        nameP.setBounds(315, 0, 80, 20);
         layeredPane.add(nameP);
         nameP.setText(b.getProblemName());
 
@@ -123,7 +123,7 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
             actTime();
         });
         timeLabel = new JLabel("Time: 00:00");
-        timeLabel.setBounds(370, 0, 100, 20);
+        timeLabel.setBounds(378, 0, 100, 20);
         layeredPane.add(timeLabel);
 
         //Acabem afegint el panel al layeradPane
@@ -173,6 +173,14 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
 
     //Adds the confirm functionality via a key
     private void AiPlay(java.awt.event.ActionEvent evt) {
+        if (0 == b.player1 && turn) {
+            JOptionPane.showMessageDialog(null, "It's not AI turn");
+            return;
+        }
+        if (0 == b.player2 && !turn) {
+            JOptionPane.showMessageDialog(null, "It's not AI turn");
+            return;
+        }
 
         p.moveAI(turn);
         try {
