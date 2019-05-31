@@ -388,6 +388,9 @@ public class NewProblemUI extends javax.swing.JPanel {
         //save problem
         String fen = fenCode.getText();
         String id = Name.getText();
+        if(id.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Problem name can only has one word");
+        }
         String theme = Theme.getText();
         System.out.println(theme);
         theme = theme.replace(' ', '_');

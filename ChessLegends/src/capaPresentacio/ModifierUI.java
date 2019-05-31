@@ -98,12 +98,12 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         save.setBounds(20, 0, 125, 24);
         layeredPane.add(save, JLayeredPane.DEFAULT_LAYER);
         
+        //Clear Board button
+        JButton clear = new JButton("Clear Board");
+        clear.addActionListener(this::clear);
+        clear.setBounds(600, 0, 125, 24);
+        layeredPane.add(clear,JLayeredPane.DEFAULT_LAYER);  
         
-        
-        
-
-        
-
         //Acabem afegint el panel al layeredPane
         chessBoard = new JPanel();
         layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
@@ -140,7 +140,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         nameP.setText("Drag&Release here to delete.");
         
         
-        init_fen = fen;
+        init_fen = b.fenCode;
         setPieces(this.fen);
         setLateralPieces();
 
@@ -158,15 +158,18 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                 aux = 0;
             }
             else aux++;
-            if (i%8 == 0 && i != 64){
+            if (i%8 == 0){
                 if( aux != 0){
                     fen = fen +(Integer.toString(aux));
                 }
-                fen = fen + ("/");
+                if (i != 64){
+                    fen = fen + ("/");
                 aux = 0;
+                }
+
             }
+           
         }
-        System.out.println("*"+fen+"*");
         return fen;
     }
     
@@ -177,7 +180,9 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     
     private void loadDefault(java.awt.event.ActionEvent evt) {
         this.fen = init_fen;
-        setPieces(this.fen);
+        System.out.println(this.fen);
+        System.out.println(init_fen);
+        setPieces(init_fen);
     }
     
     private void save(java.awt.event.ActionEvent evt){
@@ -186,7 +191,11 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         dispose();
         
     }
-       
+    
+    private void clear(java.awt.event.ActionEvent evt){
+        this.fen = "8/8/8/8/8/8/8/8";
+        setPieces(this.fen);
+    }
     
     private void logout(java.awt.event.ActionEvent evt) {
         b.changeLog();
@@ -206,8 +215,10 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
                     piece.setName("P");
                     piece.setVisible(true);
+                    piece.setSize(75,75);
                     JPanel panel = (JPanel) chessBoard.getComponent(i);
                     panel.add(piece);
+                    
                     
                     this.fen = updateFen();
                     setPieces(this.fen);
@@ -225,46 +236,321 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
     
     private void wR(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
+                    piece.setName("R");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        };
     }
     
     private void wN(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
+                    piece.setName("N");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void wB(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
+                    piece.setName("B");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void wQ(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
+                    piece.setName("Q");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void wK(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
+                    piece.setName("K");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void bP(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
+                    piece.setName("p");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void bR(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
+                    piece.setName("r");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void bN(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
+                    piece.setName("n");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     private void bB(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
+                    piece.setName("b");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void bQ(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
+                    piece.setName("q");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
     private void bK(ActionEvent e){
-        System.out.println("Hola");
+         for (int i = 0; i < 64; i++){
+            if (!(chessBoard.getComponent(i).getComponentAt(30, 30) instanceof JLabel)) {
+                try {
+                    URL url = new URL("http://i.stack.imgur.com/memI0.png");
+                    BufferedImage bi = ImageIO.read(url);
+
+                    JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
+                    piece.setName("k");
+                    piece.setVisible(true);
+                    piece.setSize(75,75);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
+                    panel.add(piece);
+                    
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
+                    
+                    //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    System.exit(1);
+                }
+             break;   
+            }
+        }
     }
     
 
@@ -297,54 +583,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             }
             
         }
-        /*else if (lateralPieceZone.getBounds().contains(new Point(e.getX(), e.getY()))){
-            
-            
-            Component c = lateralPieceZone.findComponentAt(e.getX(), e.getY());
-
-            if (c instanceof JPanel){
-                
-                return;
-            }
-            else {
-               
-                //Point parentLocation = c.getParent().getLocation();
-                //xAdjustment = parentLocation.x - e.getX();
-                //yAdjustment = parentLocation.y - e.getY();
-                chessPiece = (JLabel) c;
-                chessPiece.setLocation(e.getX(), e.getY()); // + xAdjustment  + yAdjustment
-                chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-                layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);       
-            }
-            /*Component c = lateralPieceZone.findComponentAt(po);
-            chessPiece = (JLabel) c;
-            
-            /*if (chessPiece instanceof JPanel){
-                System.out.println("Estas clicando el panel");   
-                return;
-            }
-           if  (c instanceof JLabel){
-                //System.out.println("Estas clicando el label");
-                chessPiece = (JLabel) c;
-                chessPiece.setLocation(e.getX(), e.getY());
-                chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-                layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);  
-            }
-            else if (c != null){
-                System.out.println("no es null");
-            }
-            else{
-                System.out.println("es null");
-                return;
-            }
-            
-        } */
-                
-        
-        else if (deleteZone.getBounds().contains(new Point(me.getX(), me.getY()))){
-            System.out.println("Zona de deletear amigo");
-        }
-        else    System.out.println("Cuidado donde clicas amigo");
+        else return;
 
     }
 
@@ -376,7 +615,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         }
         else if (deleteZone.getBounds().contains(new Point(e.getX(), e.getY()))){
             skip = true;
-            c = null;
+            c = chessBoard.findComponentAt(posX, posY);
             chessPiece = null;
         }
  
@@ -406,6 +645,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
         if (chessPiece != null) chessPiece.setVisible(true);
         this.fen = updateFen();
+        setPieces(this.fen);
     }
 
     @Override
@@ -442,6 +682,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
     
      private void setPieces(String FEN_code) {
+        chessPiece = new JLabel();
         cleanBoard();
         int i = 0, j = 0, k = 0;
         int t = 0;
@@ -465,6 +706,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
                                     piece.setName("Q");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -481,6 +724,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
                                     piece.setName("K");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -497,6 +742,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
                                     piece.setName("B");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -514,6 +761,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
                                     piece.setName("R");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -531,6 +780,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
                                     piece.setName("N");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -548,6 +799,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
                                     piece.setName("P");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -565,6 +818,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
                                     piece.setName("q");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -582,6 +837,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
                                     piece.setName("k");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -599,6 +856,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
                                     piece.setName("b");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -616,6 +875,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
                                     piece.setName("r");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -633,6 +894,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
                                     piece.setName("n");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -650,6 +913,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
                                     piece.setName("p");
+                                    
+                                    piece.setVisible(true);
                                     JPanel panel = (JPanel) chessBoard.getComponent(k);
                                     panel.add(piece);
                                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
@@ -686,6 +951,8 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
 
     private void setLateralPieces(){
+        
+        //White Pawn button
         JButton whitePawn = new JButton();
         whitePawn.addActionListener(this::wP);
         whitePawn.setBounds(605, 30, 95,64);
@@ -704,6 +971,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //White Rook button
         JButton whiteRook = new JButton();
         whiteRook.addActionListener(this::wR);
         whiteRook.setBounds(605, 94, 95,64);
@@ -722,6 +990,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //White Knight button
         JButton whiteKnight = new JButton();
         whiteKnight.addActionListener(this::wN);
         whiteKnight.setBounds(605, 158, 95,64);
@@ -740,6 +1009,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+         //White Bishop button
         JButton whiteBishop = new JButton();
         whiteBishop.addActionListener(this::wB);
         whiteBishop.setBounds(605, 222, 95,64);
@@ -758,6 +1028,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //White Queen button
         JButton whiteQueen = new JButton();
         whiteQueen.addActionListener(this::wQ);
         whiteQueen.setBounds(605, 286, 95,64);
@@ -776,6 +1047,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //White King button
         JButton whiteKing = new JButton();
         whiteKing.addActionListener(this::wK);
         whiteKing.setBounds(605, 350, 95,64);
@@ -794,6 +1066,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //Black Pawn button
         JButton blackPawn = new JButton();
         blackPawn.addActionListener(this::bP);
         blackPawn.setBounds(705, 30, 95,64);
@@ -812,6 +1085,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //Black Rook button
         JButton blackRook = new JButton();
         blackRook.addActionListener(this::bR);
         blackRook.setBounds(705, 94, 95,64);
@@ -830,6 +1104,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //Black Knight button
         JButton blackKnight = new JButton();
         blackKnight.addActionListener(this::bN);
         blackKnight.setBounds(705, 158, 95,64);
@@ -848,6 +1123,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //Black Bishop button
         JButton blackBishop = new JButton();
         blackBishop.addActionListener(this::bB);
         blackBishop.setBounds(705, 222, 95,64);
@@ -866,6 +1142,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //Black Queen button
         JButton blackQueen = new JButton();
         blackQueen.addActionListener(this::bQ);
         blackQueen.setBounds(705, 286, 95,64);
@@ -884,6 +1161,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             System.exit(1);
         }
         
+        //Black King button
         JButton blackKing = new JButton();
         blackKing.addActionListener(this::bK);
         blackKing.setBounds(705, 350, 95,64);
@@ -901,225 +1179,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             e6.printStackTrace();
             System.exit(1);
         }
-        
-        
-        /*lateralPieceZone = new JPanel();
-        layeredPane.add(lateralPieceZone, JLayeredPane.DEFAULT_LAYER);
-        
-        lateralPieceZone.setName("lateralpiece");
-        
-        lateralPieceZone.setLayout(new GridLayout(6,2));
-        Dimension latpiece = new Dimension(128, 384); //lateral piece zone dimension
-        lateralPieceZone.setPreferredSize(latpiece);
-        lateralPieceZone.setBounds(636,30, latpiece.width, latpiece.height);
-
-        
-        for (int i = 0; i < 12; ++i){
-            JPanel bp = new JPanel(new BorderLayout());
-            bp.setBackground(Color.LIGHT_GRAY);
-            bp.setSize(64,64);
-            bp.setName("panel " + (i+1));
-            lateralPieceZone.add(bp);
-             
-        }
-        //White pawn
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JButton logout = new JButton("Logout");
-            logout.addActionListener(this::logout);
-            logout.setBounds(310, 0, 125, 24);
-            layeredPane.add(logout, JLayeredPane.DEFAULT_LAYER);
-
-            /*JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
-            piece.setBounds(636, 30, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(0);
-            panel.add(piece);
-
-            
-            
-        } catch (Exception e1) {
-            e1.printStackTrace();
-            System.exit(1);
-        }
-        //White rook
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 1 * 64, 64, 64)));
-            piece.setBounds(700, 30, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(1);
-            panel.add(piece);
-            
-            
-        } catch (Exception e2) {
-            e2.printStackTrace();
-            System.exit(1);
-        }
-        
-        //White knight
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 1 * 64, 64, 64)));
-            piece.setBounds(636, 94, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(2);
-            panel.add(piece);
-            
-            
-        } catch (Exception e3) {
-            e3.printStackTrace();
-            System.exit(1);
-        }
-        
-        //White Bishop
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 1 * 64, 64, 64)));
-            piece.setBounds(700, 94, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(3);
-            panel.add(piece);
-            
-            
-        } catch (Exception e4) {
-            e4.printStackTrace();
-            System.exit(1);
-        }
-        
-        //White Queen
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 1 * 64, 64, 64)));
-            piece.setBounds(636, 158, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(4);
-            panel.add(piece);
-            
-            
-        } catch (Exception e5) {
-            e5.printStackTrace();
-            System.exit(1);
-        }
-        
-        //White King
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 1 * 64, 64, 64)));
-            piece.setBounds(700, 158, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(5);
-            panel.add(piece);
-            
-            
-        } catch (Exception e6) {
-            e6.printStackTrace();
-            System.exit(1);
-        }
-        
-        //Black Pawn
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 0 * 64, 64, 64)));
-            piece.setBounds(636, 222, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(6);
-            panel.add(piece);
-            
-            
-        } catch (Exception e7) {
-            e7.printStackTrace();
-            System.exit(1);
-        }
-        
-        //Black Rook
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(2 * 64, 0 * 64, 64, 64)));
-            piece.setBounds(700, 222, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(7);
-            panel.add(piece);
-            
-            
-        } catch (Exception e8) {
-            e8.printStackTrace();
-            System.exit(1);
-        }
-        
-        //Black Knight
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(3 * 64, 0 * 64, 64, 64)));
-            piece.setBounds(636, 286, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(8);
-            panel.add(piece);
-            
-            
-        } catch (Exception e9) {
-            e9.printStackTrace();
-            System.exit(1);
-        }
-        
-        //Black Bishop
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(4 * 64, 0 * 64, 64, 64)));
-            piece.setBounds(700, 286, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(9);
-            panel.add(piece);
-            
-            
-        } catch (Exception e10) {
-            e10.printStackTrace();
-            System.exit(1);
-        }
-        
-        //Black Queen
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(0 * 64, 0 * 64, 64, 64)));
-            piece.setBounds(636, 350, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(10);
-            panel.add(piece);
-            
-            
-        } catch (Exception e11) {
-            e11.printStackTrace();
-            System.exit(1);
-        }
-        
-        //Black King
-        try {
-            URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
-            
-            JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(1 * 64, 0 * 64, 64, 64)));
-            piece.setBounds(700, 350, 64, 64);
-            JPanel panel = (JPanel) lateralPieceZone.getComponent(11);
-            panel.add(piece);
-            
-            
-        } catch (Exception e12) {
-            e12.printStackTrace();
-            System.exit(1);
-        }
-        */
-        
+       
     }
     
    
