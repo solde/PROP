@@ -146,15 +146,27 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
     }
    
-    private void updateFen(){
-        for (int i = 0; i < 64; i++) {
-            if (chessBoard.getComponent(i).getComponentAt(35,35) instanceof JLabel) {
-                System.out.print(chessBoard.getComponent(i).getComponentAt(35, 35).getName());
-                
+    private String updateFen(){
+        String fen = "";
+        int aux = 0;
+        for (int i = 1; i <= 64; i++) {
+            if (chessBoard.getComponent(i-1).getComponentAt(35,35) instanceof JLabel) {
+                if( aux != 0){
+                    fen = fen +(Integer.toString(aux));
+                }
+                fen = fen + chessBoard.getComponent(i-1).getComponentAt(35, 35).getName();
+                aux = 0;
             }
-            if (i%7 == 0) System.out.println("");
+            else aux++;
+            if (i%8 == 0 && i != 64){
+                if( aux != 0){
+                    fen = fen +(Integer.toString(aux));
+                }
+                fen = fen + ("/");
+                aux = 0;
+            }
         }
-        
+        return fen;
     }
     
     private void exit(java.awt.event.ActionEvent evt) {
@@ -168,7 +180,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     }
     
     private void save(java.awt.event.ActionEvent evt){
-        updateFen();
+        this.fen = updateFen();
         b.fenCode = this.fen;
         dispose();
         
@@ -192,9 +204,13 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
 
                     JLabel piece = new JLabel(new ImageIcon(bi.getSubimage(5 * 64, 1 * 64, 64, 64)));
                     piece.setName("P");
-                    JPanel panel = (JPanel) chessBoard.getComponent(i);
                     piece.setVisible(true);
+                    JPanel panel = (JPanel) chessBoard.getComponent(i);
                     panel.add(piece);
+                    
+                    this.fen = updateFen();
+                    setPieces(this.fen);
+                    
                     
                     //-System.out.println("pos:" + k + "case:" + FEN_code.charAt(j));
                 } catch (Exception e6) {
@@ -252,15 +268,17 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
     
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        chessPiece = null;
-        posX = e.getX();
-        posY = e.getY();
-        Point po = new Point(e.getX(), e.getY());
+    public void mousePressed(MouseEvent me) {
         
-        if (chessBoard.getBounds().contains(new Point(e.getX(), e.getY()))){
+        chessPiece = null;
+        
+        posX = me.getX();
+        posY = me.getY();
+        
+        
+        if (chessBoard.getBounds().contains(new Point(me.getX(), me.getY()))){
             
-            Component c = chessBoard.findComponentAt(e.getX(), e.getY()); 
+            Component c = chessBoard.findComponentAt(me.getX(), me.getY()); 
             
             if (c instanceof JPanel){
                 
@@ -269,10 +287,10 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
             else {
                
                 Point parentLocation = c.getParent().getLocation();
-                xAdjustment = parentLocation.x - e.getX();
-                yAdjustment = parentLocation.y - e.getY();
+                xAdjustment = parentLocation.x - me.getX();
+                yAdjustment = parentLocation.y - me.getY();
                 chessPiece = (JLabel) c;
-                chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
+                chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
                 chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
                 layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);       
             }
@@ -322,7 +340,7 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         } */
                 
         
-        else if (deleteZone.getBounds().contains(new Point(e.getX(), e.getY()))){
+        else if (deleteZone.getBounds().contains(new Point(me.getX(), me.getY()))){
             System.out.println("Zona de deletear amigo");
         }
         else    System.out.println("Cuidado donde clicas amigo");
@@ -344,49 +362,57 @@ public class ModifierUI extends JFrame implements MouseListener, MouseMotionList
         if (chessPiece == null) {
             return;
         }
-        chessPiece.setVisible(false);
+        chessPiece.setVisible(false); 
+        
         //-System.out.println("-------------");
         //-ç.println(e.getX());
         //-System.out.println(e.getY());
         Component c;
         boolean skip = false;
         //Boundary Limits makes you return to the original panel
-        if (e.getX() < 0 || e.getX() > 600) {
-            c = chessBoard.findComponentAt(posX, posY);
-            skip = true;
-
-        } else if (e.getY() < 0 || e.getY() > 600) {
-            skip = true;
-            posX = e.getX();
-            posY = e.getY();
-            c = chessBoard.findComponentAt(posX, posY);
-
-        } else {
+        if (chessBoard.getBounds().contains(new Point(e.getX(), e.getY()))) {
             c = chessBoard.findComponentAt(e.getX(), e.getY());
         }
-        if (c instanceof JLabel) {
+        else if (deleteZone.getBounds().contains(new Point(e.getX(), e.getY()))){
+            skip = true;
+            c = null;
+            chessPiece = null;
+        }
+ 
+        else {
+            c = chessBoard.findComponentAt(posX, posY);
+            posX = e.getX();
+            posY = e.getY();
+            skip = true;
+        }
+        
+        if (c instanceof JLabel && chessPiece != null) {
                 Container p = c.getParent();
                 p.remove(0);
                 p.add(chessPiece);
         }
-         else {
+        else {
             //pass the interactive movement  to the logical board
             if (!skip) {
                // p.makeMove(posX / 64, posY / 64, e.getX() / 64, e.getY() / 64);
             }
-            Container parent = (Container) c;
-            parent.add(chessPiece);
+            if (chessPiece != null){
+                Container parent = (Container) c;
+                parent.add(chessPiece);
+            }
+            
         }
 
-        chessPiece.setVisible(true);
+        if (chessPiece != null) chessPiece.setVisible(true);
+        this.fen = updateFen();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     public void mouseMoved(MouseEvent e) {
+        
     }
 
     public void mouseEntered(MouseEvent e) {

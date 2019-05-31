@@ -1,2 +1,3 @@
 ashad r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R White_mate_in_2_ 10 2 true true true
 test 1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B White_mate_in_2_ 60 2 true true true
+Copyashad r2qkb1r/pp2nppp/3p4/2pNN1B1/2BnP3/3P4/PPP2PPP/R2bK2R Black_mate_in_1 5 1 false false false
