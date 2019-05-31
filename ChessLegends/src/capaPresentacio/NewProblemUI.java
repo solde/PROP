@@ -107,6 +107,7 @@ public class NewProblemUI extends javax.swing.JPanel {
         jMenuItem1.setText("jMenuItem1");
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Problem Creator", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(100, 32767));
         setPreferredSize(new java.awt.Dimension(455, 338));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -114,6 +115,8 @@ public class NewProblemUI extends javax.swing.JPanel {
             }
         });
 
+        fenCode.setEditable(false);
+        fenCode.setAutoscrolls(false);
         fenCode.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 fenCodeMouseMoved(evt);
@@ -189,7 +192,7 @@ public class NewProblemUI extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel7.setText("jLabel7");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
         jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinner2StateChanged(evt);
@@ -219,7 +222,7 @@ public class NewProblemUI extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.setText("Manul fencode editor");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -259,22 +262,20 @@ public class NewProblemUI extends javax.swing.JPanel {
                                                 .addComponent(jButton3)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton4))
-                                            .addComponent(fenCode)
-                                            .addComponent(Name)))
+                                            .addComponent(Name)
+                                            .addComponent(fenCode, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton5))
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton6))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCheckBox1))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton5)
+                                    .addComponent(jCheckBox1))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7)))
@@ -294,19 +295,15 @@ public class NewProblemUI extends javax.swing.JPanel {
                     .addComponent(fenCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jButton5))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jCheckBox1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jCheckBox1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -396,7 +393,7 @@ public class NewProblemUI extends javax.swing.JPanel {
         //save problem
         String fen = fenCode.getText();
         String id = Name.getText();
-        String theme = Theme.getText();
+        String
         System.out.println(theme);
         theme = theme.replace(' ', '_');
         System.out.println(theme);
@@ -461,12 +458,17 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jSpinner2StateChanged
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-
-        this.fenCode.setText(b.fenCode);
+        if(!jCheckBox1.isSelected())this.fenCode.setText(b.fenCode);
     }//GEN-LAST:event_formMouseMoved
 
-    private void fenCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fenCodeKeyPressed
+    private void fenCodeKeyPressed(java.awt.event.KeyEvent evt) {                                   
         b.fenCode = fenCode.getText();
+        if(!jCheckBox1.isSelected())
+            this.fenCode.setText(b.fenCode);
+    }                               
+
+    private void fenCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fenCodeKeyPressed
+        
     }//GEN-LAST:event_fenCodeKeyPressed
 
     private void fenCodeMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fenCodeMouseMoved
@@ -474,7 +476,8 @@ public class NewProblemUI extends javax.swing.JPanel {
     }//GEN-LAST:event_fenCodeMouseMoved
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+        fenCode.setEditable(jCheckBox1.isSelected());
+        b.fenCode = fenCode.getText();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 
