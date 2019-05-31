@@ -21,56 +21,53 @@ import javax.swing.JOptionPane;
 public class GameConfigUI extends javax.swing.JPanel {
 
     private BaseUI b;
+
     /**
      * Creates new form GameConfigUI
      */
     public GameConfigUI() {
         initComponents();
     }
-    
+
     public GameConfigUI(BaseUI b) {
         initComponents();
         this.b = b;
         userLabel.setText(b.getPlayerName());
         initRanking();
     }
-    
-    public void initRanking(){
+
+    public void initRanking() {
         ArrayList<Pair<Long, String>> top3 = b.getTop3();
-        
+
         String text;
-        try{
+        try {
             text = top3.get(0).getValue() + " solved the problem in " + top3.get(0).getKey().toString() + " seconds";
             rank1Name.setText(text);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             rank1Name.setText("-----");
         }
-        
-        try{
+
+        try {
             text = top3.get(1).getValue() + " - " + top3.get(1).getKey().toString();
             rank2Name.setText(text);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             rank2Name.setText("-----");
         }
-        
-        try{
+
+        try {
             text = top3.get(2).getValue() + " - " + top3.get(2).getKey().toString();
             rank3Name.setText(text);
-        }     
-        catch(Exception e){
+        } catch (Exception e) {
             rank3Name.setText("-----");
         }
-        try{
+        try {
             text = top3.get(3).getValue() + " - " + top3.get(3).getKey().toString();
             yourRank.setText(text);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             yourRank.setText("-----");
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -428,12 +425,14 @@ public class GameConfigUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
-        System.out.println("white:"+WPselect.getSelectedIndex());
-        System.out.println("Black:"+BPselect.getSelectedIndex());
+        // System.out.println("white:"+WPselect.getSelectedIndex());
+        //  System.out.println("Black:"+BPselect.getSelectedIndex());
+        b.player1 = WPselect.getSelectedIndex();
+        b.player2 = BPselect.getSelectedIndex();
         try {
             b.initGame();
         } catch (chessException ex) {
-            JOptionPane.showMessageDialog(null, "Cannot init game");            
+            JOptionPane.showMessageDialog(null, "Cannot init game");
             return;
         }
         b.setPlayer1(WPselect.getSelectedIndex());
@@ -445,16 +444,14 @@ public class GameConfigUI extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int i = AIselector1.getSelectedIndex();
         int j = AIselector2.getSelectedIndex();
-        b.player1= AIselector1.getSelectedIndex();
-        b.player2=AIselector2.getSelectedIndex();
         try {
             b.initAIComp();
         } catch (chessException ex) {
             Logger.getLogger(GameConfigUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        b.setPlayer1(i+1);
-        b.setPlayer2(j+1);
-        b.changeAIcompUI(i+1, j+1);
+        b.setPlayer1(i + 1);
+        b.setPlayer2(j + 1);
+        b.changeAIcompUI(i + 1, j + 1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

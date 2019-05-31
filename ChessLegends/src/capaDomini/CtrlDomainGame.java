@@ -317,16 +317,14 @@ public class CtrlDomainGame {
     public boolean canMov(int x, int y, int xnew, int ynew, boolean turn) {
         Piece p = G.getB().getPieceAt(y, x);
         Pair<Integer, Integer> c = new Pair(ynew, xnew);
-        System.out.println("pieza" + p.getX() + " " + p.getY());
+ 
         boolean ret = false;
-        System.out.println("mine:" + turn + "Board turn:" + G.turn);
+ 
         if (turn == G.turn) {
-            System.out.println("HELOOOOOOOOOOOOO");
+  
             ArrayList<Pair<Integer, Integer>> llista = p.get_poss_mov(G.getB());
             for (Pair<Integer, Integer> mov : llista) {
-                System.out.println(p.getTypeOfPiece());
-                System.out.println(mov.getKey() + " " + mov.getValue());
-                System.out.println("A comprovar con:" + xnew + " " + ynew);
+
                 if (mov.getKey() == c.getKey() && mov.getValue() == c.getValue()) {
                     ret = true;
                 }
