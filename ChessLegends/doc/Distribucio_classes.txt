@@ -1,0 +1,24 @@
+Daniel Palomo
+-------------
+LoginUI
+BoardUI
+GameConfigUI
+CtrlPresentation
+LoadingUI
+BaseUI
+
+David Soldevila
+---------------
+ProblemManaget
+PlayerManager
+StatisticsManager
+CtrlData
+ProblemSelect
+NewProblemUI
+
+Arnau Santos
+------------
+AIEasy
+AIHard
+AIcompUI
+ModifierUI

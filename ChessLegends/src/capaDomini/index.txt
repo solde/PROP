@@ -1,6 +1,7 @@
 El directori conte totes les classes de la capa de domini.
 
-AI1.java
+AIEasy.java
+AIHard.java
 AICompetition.java
 Bishop.java
 Board.java

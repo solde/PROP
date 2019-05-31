@@ -1,0 +1,7 @@
+El directori conte totes les classes de la capa de dades.
+
+CtrlDades.java
+PlayerManager.java
+ProblemManager.java
+StatisticsManager.java
+

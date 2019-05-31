@@ -1,0 +1,21 @@
+total 325
+-rw-r--r-- 1 David Soldevila 197609 15268 maig  30 18:03 AIcompUI.form
+-rw-r--r-- 1 David Soldevila 197609 16342 maig  31 16:19 AIcompUI.java
+-rw-r--r-- 1 David Soldevila 197609  2756 maig  30 10:19 BaseUI.form
+-rw-r--r-- 1 David Soldevila 197609  7688 maig  31 16:29 BaseUI.java
+-rw-r--r-- 1 David Soldevila 197609 28317 maig  31 16:29 BoardUI.java
+-rw-r--r-- 1 David Soldevila 197609  5389 maig  31 16:17 CtrlPresentacio.java
+-rw-r--r-- 1 David Soldevila 197609 28609 maig  31 16:30 GameConfigUI.form
+-rw-r--r-- 1 David Soldevila 197609 25458 maig  31 16:30 GameConfigUI.java
+-rw-r--r-- 1 David Soldevila 197609   144 maig  31 16:38 Index.txt
+-rw-r--r-- 1 David Soldevila 197609  7774 maig  28 20:08 LoadingUI.form
+-rw-r--r-- 1 David Soldevila 197609  7089 maig  28 20:08 LoadingUI.java
+-rw-r--r-- 1 David Soldevila 197609 15557 maig  31 16:19 LoginUI.form
+-rw-r--r-- 1 David Soldevila 197609 17578 maig  31 16:19 LoginUI.java
+-rw-r--r-- 1 David Soldevila 197609   946 maig  24 23:43 mainChessLegends.java
+-rw-r--r-- 1 David Soldevila 197609 48120 maig  31 15:33 ModifierUI.java
+-rw-r--r-- 1 David Soldevila 197609 18286 maig  31 16:21 NewProblemUI.form
+-rw-r--r-- 1 David Soldevila 197609 23269 maig  31 16:21 NewProblemUI.java
+-rw-r--r-- 1 David Soldevila 197609 17258 maig  31 16:19 ProblemSelectUI.form
+-rw-r--r-- 1 David Soldevila 197609 19107 maig  31 16:19 ProblemSelectUI.java
+-rw-r--r-- 1 David Soldevila 197609     0 maig  31 16:40 test.txt
