@@ -428,7 +428,7 @@ public class GameConfigUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
-        System.out.println(WPselect.getSelectedIndex());
+        System.out.println("white:"+WPselect.getSelectedIndex());
         System.out.println("Black:"+BPselect.getSelectedIndex());
         try {
             b.initGame();

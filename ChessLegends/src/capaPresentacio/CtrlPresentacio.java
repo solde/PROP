@@ -162,18 +162,28 @@ public class CtrlPresentacio {
             Logger.getLogger(CtrlPresentacio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void initAIComp() throws chessException{
+
+    public void initAIComp() throws chessException {
         cg.initAIComp(1);
     }
-    
-    public boolean playAIgame(int WP, int BP) throws chessException{
+
+    public boolean playAIgame(int WP, int BP) throws chessException {
         cg.initAIComp(1);
         cg.setPlayer(0, WP);
         cg.setPlayer(1, BP);
         return cg.letsPlay();
     }
-    public boolean colorPiece(int x,int y){
-        return cg.colorPiece(y,x);
-}
+
+    public boolean colorPiece(int x, int y) {
+        return cg.colorPiece(y, x);
+    }
+    public boolean isCheckMate(boolean turn){
+        return cg.isCheckMate(turn);
+    }
+    public void updateRanking(long num){
+        cg.addRank(num);
+    }
+    public String getProbName(){
+        return cg.getProbName();
+    }
 }
