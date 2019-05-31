@@ -253,7 +253,6 @@ public class LoginUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Passwords don`t match");
             jLabel8.setForeground(Color.red);
             //code for when the passwords don't match
-            System.out.println("Passwords didn't match. Try again");
             jPasswordField3.setText("");
             return;
         }
@@ -263,14 +262,12 @@ public class LoginUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Username is already used");
             jLabel8.setForeground(Color.red);
             //code for when the passwords don't match
-            System.out.println("Passwords didn't match. Try again");
             jPasswordField3.setText("");
             return;
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Unexpected error");
             jLabel8.setForeground(Color.red);
             //code for when the passwords don't match
-            System.out.println("Passwords didn't match. Try again");
             jPasswordField3.setText("");
             return;
         }
@@ -301,7 +298,6 @@ public class LoginUI extends javax.swing.JPanel {
             try {
                 b.changeProblem();
             } catch (IOException ex) {
-                System.out.println(ex.getMessage());
             }
         } catch (IOException | chessException ex ) {
             JOptionPane.showMessageDialog(null, "User dataBase not found");

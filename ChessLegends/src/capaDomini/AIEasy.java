@@ -37,7 +37,7 @@ public class AIEasy extends AI{
 
     if (depth == 0){
         int evaluation = evaluate(bo, attackColor);
-        //System.out.println("Puntuació: "+ evaluation);
+
         return evaluation;
     }
 
@@ -51,12 +51,6 @@ public class AIEasy extends AI{
              try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
 
              catch(chessException e){
-
-                 System.out.println("Ooops. Move tried:");
-                 System.out.println(aux[0]+" "+ aux[1]);
-                 System.out.println(aux[2]+" "+ aux[3]);
-                 if (especulativeTurn) System.out.println("beta situation");
-                 else System.out.println("alpha situation");
                  throw new chessException(e.getMessage());
              }
              return evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor); 
@@ -66,17 +60,12 @@ public class AIEasy extends AI{
         ArrayList<int[]> moves = deepEvaluate(bo, color);
         int newAlpha = alpha;
         for (int i = 0; i < moves.size(); ++i){
-            //System.out.println(bo.getFEN_code());
+
             Board successorBoard = new Board(bo, true);
             int[] aux= moves.get(i);
             try{successorBoard.movePiece(aux[0], aux[1], aux[2], aux[3], color);}
 
              catch(chessException e){
-                 System.out.println("Ooops. Move tried:");
-                 System.out.println(aux[0]+" "+ aux[1]);
-                 System.out.println(aux[2]+" "+ aux[3]);
-                 if (especulativeTurn) System.out.println("beta situation");
-                 else System.out.println("alpha situation");
                  throw new chessException(e.getMessage());
              }
             return evaluatePosition(successorBoard, alpha, beta, depth -1, !color, !especulativeTurn, attackColor);

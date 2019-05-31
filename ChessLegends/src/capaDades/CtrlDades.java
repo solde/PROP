@@ -89,7 +89,6 @@ public class CtrlDades {
         p = p.concat(String.valueOf(first_turn) + " ");
         p = p.concat(String.valueOf(verified));
         PM.storeProblem(p);
-        System.out.println(Name);
         SM.createStatistics(Name);
     }
     
@@ -104,7 +103,6 @@ public class CtrlDades {
     
     public ArrayList<String> listProblmes() throws IOException{
         ArrayList<String> LP = PM.listProblems();
-        System.out.println(LP.size());
         
         return LP;
     }

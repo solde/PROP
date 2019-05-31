@@ -1,4 +1,0 @@
-Fitxers per la implementacio de chessExcetion
-
-ChessEsception.class
-ChessEsception.java

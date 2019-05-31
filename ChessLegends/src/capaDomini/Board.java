@@ -274,7 +274,6 @@ public class Board {
             }
         }
         if(need_throw) {
-            System.out.print(this.getFEN_code());
             throw new chessException("Invalid FEN code");
         }*/
     }

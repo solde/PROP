@@ -1,16 +1,3 @@
 Directori amb els subdirectoris amb els drivers.
 
-AICompetitionDriver
-BishopDriver
-BoardDriver
-CtrlDomainCreator
-CtrlDomainGame
-GameDriver
-HumanDriver
-KingDriver
-KnightDriver
-nullPieceDriver
-PawnDriver
-ProblemDriver
-QueenDriver
-RookDriver
+ChessLegends.jar

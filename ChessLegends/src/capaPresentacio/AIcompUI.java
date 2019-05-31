@@ -273,9 +273,7 @@ public final class AIcompUI extends javax.swing.JPanel {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         //load Problem
         int i = jProblemSelect.getSelectedIndex();
-        System.out.println(i);
         String id = jProblemSelect.getItemAt(i);
-        System.out.println(id);
         try {
             b.loadProblem(id);
         } catch (IOException ex) {
@@ -292,7 +290,6 @@ public final class AIcompUI extends javax.swing.JPanel {
             win = b.playAIgame(WP, BP);
             updateLabels(win);
         } catch (chessException ex) {
-            System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "Cannot play the game");
         }
     }//GEN-LAST:event_playButtonActionPerformed

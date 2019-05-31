@@ -84,7 +84,6 @@ public class CtrlPresentacio {
 
     boolean authenticatePlayer(String Username, String Password) throws IOException, FileNotFoundException, chessException {
         boolean ret = cg.authPlayer1(Username, Password);
-        System.out.println(ret);
         return ret;
     }
 

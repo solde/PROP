@@ -82,7 +82,6 @@ public class Pawn extends Piece {
         if (!isColor()) {
             tmp = new Pair<>(x_temp + 1, y_temp);
             if (!pos_Taken(tmp, b)) {
-                //   System.out.println(x_temp + " " + y_temp + " " + Arrays.toString(b.getPieceAt(tmp.getKey(), tmp.getValue()).getXY()));
                 mov.add(tmp);
             }
             tmp = new Pair<>(x_temp + 1, y_temp + 1);

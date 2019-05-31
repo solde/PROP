@@ -128,7 +128,6 @@ public class BaseUI extends javax.swing.JFrame {
     }
 
     void createPlayer(String id, String pass1) throws chessException, IOException {
-        System.out.println(id + " " + pass1);
         p.createPlayer(id, pass1);
     }
 
@@ -156,7 +155,6 @@ public class BaseUI extends javax.swing.JFrame {
         String info = p.getProblemInfo(id);
         String aInfo[] = info.split(" ");
         try{
-            System.out.println(aInfo[3]);
             String ret = aInfo[3];
             ret = ret.concat("#");
             ret = ret.concat(aInfo[2]);

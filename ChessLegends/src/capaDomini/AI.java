@@ -35,7 +35,6 @@ abstract class AI extends Player {
     @Override
     public Board makeMove(Board b, boolean color, int depth) throws Exception {   
         
-		//System.out.println("hellowo here is the problemo-san");
 		ArrayList<Board> possibleBoards = new ArrayList<>(); //keeps track of the possible boards (boards with the possible moves made on them)
                 ArrayList<int[]> moves = new ArrayList<>();
                 
@@ -47,9 +46,6 @@ abstract class AI extends Player {
                     try{altBoard.movePiece(mov[0], mov[1], mov[2], mov[3], color); //moves piece on the alternative board
                     }
                     catch(chessException exc){
-                        System.out.println("Oops.");
-                        System.out.println("Source: "+ mov[0] + " " + mov[1]);
-                        System.out.println("Destination: "+ mov[2] + " " + mov[3]);
                         throw new chessException(exc.getMessage());
                     }
 

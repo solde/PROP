@@ -217,7 +217,7 @@ public class NewProblemUI extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox1.setText("Manul fencode editor");
+        jCheckBox1.setText("Manual fencode editor");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -392,9 +392,7 @@ public class NewProblemUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Problem name can only has one word");
         }
         String theme = Theme.getText();
-        System.out.println(theme);
         theme = theme.replace(' ', '_');
-        System.out.println(theme);
         boolean turn = firstMoveButton.isSelected();
         boolean first = firstMoveButton.isSelected();
         int movs = (int) jSpinner2.getValue();
@@ -430,7 +428,6 @@ public class NewProblemUI extends javax.swing.JPanel {
             text = text.concat(aTheme[i] + " ");
         }
         Theme.setText(text);
-        System.out.println(b.fenCode);
     }//GEN-LAST:event_firstMoveButtonActionPerformed
 
     private void firstMoveButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_firstMoveButtonStateChanged

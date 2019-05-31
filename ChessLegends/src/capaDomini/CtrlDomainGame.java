@@ -306,14 +306,6 @@ public class CtrlDomainGame {
         return Prbl.isVerified();
     }
 
-    /*public void updatePlayers(long time, boolean color){
-        boolean winner = G.getWinner();
-        String pl1, pl2;
-        pl2 = G.getPlayer1Info();
-        pl1 = G.getPlayer2Info();
-        String aPl[] = pl.split(" ");
-        
-    }*/
     public boolean canMov(int x, int y, int xnew, int ynew, boolean turn) {
         Piece p = G.getB().getPieceAt(y, x);
         Pair<Integer, Integer> c = new Pair(ynew, xnew);

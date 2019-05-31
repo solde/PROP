@@ -100,13 +100,11 @@ public class AICompetition extends GameAbs{
                 try{
                     this.B = new Board(P1.makeMove(this.B, this.isTurn(), 2), true);}
                 catch (Exception e){
-                    System.out.println("1");
                     throw new chessException (e.getMessage());
                 }
                 try{
                     this.B = new Board(P2.makeMove(this.B, this.isTurn(), 2), true);}
                 catch (Exception e){
-                    System.out.println("2");
                     throw new chessException (e.getMessage());
                 }
                 turn_cont += 1;
