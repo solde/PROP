@@ -1,0 +1,22 @@
+El directori conte totes les classes de la capa de presentacio.
+
+
+AIcompUI.form
+AIcompUI.java
+BaseUI.form
+BaseUI.java
+BoardUI.java
+CtrlPresentacio.java
+GameConfigUI.form
+GameConfigUI.java
+Index.txt
+LoadingUI.form
+LoadingUI.java
+LoginUI.form
+LoginUI.java
+mainChessLegends.java
+ModifierUI.java
+NewProblemUI.form
+NewProblemUI.java
+ProblemSelectUI.form
+ProblemSelectUI.java

@@ -1,3 +1,4 @@
 Directori amb els subdirectoris amb els drivers.
 
 ChessLegends.jar
+lib
