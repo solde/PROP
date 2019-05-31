@@ -71,8 +71,8 @@ public class CtrlDomainGame {
         boolean atk = Boolean.parseBoolean(aProblemInfo[5]);
         boolean first_turn = Boolean.parseBoolean(aProblemInfo[6]);
         boolean verified = Boolean.parseBoolean(aProblemInfo[7]);
-        System.out.println(verified);
 
+        
         //Prbl = new Problem();
         Prbl.setFenCode(fenCode);
         Prbl.setName(Name);
@@ -160,7 +160,7 @@ public class CtrlDomainGame {
     }
 
     public void setPlayer(int i, int AI) {
-        System.out.println("**" + i + " " + AI);
+
         if (AI == 0) {
             if (i == 0) {
                 G.setP1(P);
@@ -201,7 +201,7 @@ public class CtrlDomainGame {
             G.setTurn(!color);
             this.movCounter += 1;
         } catch (chessException e) {
-            System.out.println(e.getMessage());
+
         }
     }
 
@@ -302,7 +302,7 @@ public class CtrlDomainGame {
     }
 
     public boolean isVerified() {
-        System.out.println(Prbl.isVerified());
+        //System.out.println(Prbl.isVerified());
         return Prbl.isVerified();
     }
 
@@ -317,11 +317,11 @@ public class CtrlDomainGame {
     public boolean canMov(int x, int y, int xnew, int ynew, boolean turn) {
         Piece p = G.getB().getPieceAt(y, x);
         Pair<Integer, Integer> c = new Pair(ynew, xnew);
- 
+
         boolean ret = false;
- 
+
         if (turn == G.turn) {
-  
+
             ArrayList<Pair<Integer, Integer>> llista = p.get_poss_mov(G.getB());
             for (Pair<Integer, Integer> mov : llista) {
 
@@ -354,26 +354,29 @@ public class CtrlDomainGame {
     }
 
     public boolean isCheckMate(boolean turn) {
-        boolean ret=false;
+        boolean ret = false;
         try {
-            ret= G.getB().isCheckMate(turn);
+            ret = G.getB().isCheckMate(turn);
         } catch (chessException ex) {
             Logger.getLogger(CtrlDomainGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
     }
-    
-    public void addRank(long num){
+
+    public void addRank(long num) {
         try {
-            CD.addRank(Prbl.getName(), P.id, num);
+            if (P.id != null) {
+                CD.addRank(Prbl.getName(), P.id, num);
+            }
         } catch (IOException ex) {
             Logger.getLogger(CtrlDomainGame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (chessException ex) {
             Logger.getLogger(CtrlDomainGame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public String getProbName(){
+
+    public String getProbName() {
         return Prbl.getName();
     }
-   
+
 }
