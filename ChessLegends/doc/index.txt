@@ -1,7 +1,8 @@
 Documentacio del projecte
 
-casos_Us.png
+Use_Case_Diagram.png
 ClassSpecification.pdf
-DocAPaper.pdf
-UML_Diagram.png
+UML_data.png
+UML_presentacio.png
+UML_domini.png
 UseCaseEsp.pdf

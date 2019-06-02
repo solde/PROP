@@ -1,0 +1,1 @@
+ 8/8/8/8/8/8/8/8 Black_mate_in_1 80 1 false false false
