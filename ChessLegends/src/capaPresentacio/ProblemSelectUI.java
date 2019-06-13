@@ -310,21 +310,31 @@ public final class ProblemSelectUI extends javax.swing.JPanel {
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         //Modifiy problem
-        String id;
-        int i = jProblemSelect.getSelectedIndex();
-        id = jProblemSelect.getItemAt(i);
-        try {
-            b.loadProblem(id);
-        } catch (IOException ex) {
-            Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (chessException ex) {
-            Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
+        if(b.name != "Guest"){
+            String id;
+            int i = jProblemSelect.getSelectedIndex();
+            id = jProblemSelect.getItemAt(i);
+            try {
+                b.loadProblem(id);
+            } catch (IOException ex) {
+                Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (chessException ex) {
+                Logger.getLogger(ProblemSelectUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            b.modifyProblem(id);
         }
-        b.modifyProblem(id);
+        else{
+            JOptionPane.showMessageDialog(null, "Guest cannot modify a problem");
+        }
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        b.changeNewProb();
+        if(b.name != "Guest"){
+            b.changeNewProb();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Guest cannot create a problem");
+        }
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void jProblemSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jProblemSelectItemStateChanged

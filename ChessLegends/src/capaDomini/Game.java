@@ -234,7 +234,7 @@ public class Game extends GameAbs {
      * @return
      */
     public int leftTurn() {
-        return ((2 * P.getN_mov()) - movCounter) / 2;
+        return (P.getN_mov() - movCounter);
     }
 
     @Override

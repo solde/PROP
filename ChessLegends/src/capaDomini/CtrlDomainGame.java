@@ -370,5 +370,10 @@ public class CtrlDomainGame {
     public String getProbName() {
         return Prbl.getName();
     }
-
+    
+    public int leftTurn(){
+        Game gaux;
+        gaux = (Game)this.G;
+        return gaux.leftTurn();
+    }
 }

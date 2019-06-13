@@ -204,6 +204,10 @@ public class BaseUI extends javax.swing.JFrame {
     public void initAIComp() throws chessException{
         p.initAIComp();
     }
+    
+    public int leftTurn(){
+        return p.leftTurn();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

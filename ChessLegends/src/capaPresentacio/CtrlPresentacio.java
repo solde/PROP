@@ -185,4 +185,8 @@ public class CtrlPresentacio {
     public String getProbName(){
         return cg.getProbName();
     }
+    
+    public int leftTurn(){
+        return cg.leftTurn();
+    }
 }

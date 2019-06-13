@@ -188,12 +188,19 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         }
         cleanBoard();
         setPieces(fen);
-        if (p.isCheckMate(!turn)) {
-            JOptionPane.showMessageDialog(null, "IA WINS");
-            time.stop();
+        if(b.leftTurn() == 0){
+            if (p.isCheckMate(!turn)) {
+                JOptionPane.showMessageDialog(null, "AI Won!!");
+                time.stop();
+                p.updateRanking(actTime);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "You win!!");
+                time.stop();
+            }
+            this.dispose();
         }
         turn = !turn;
-
     }
 
     private void exit(java.awt.event.ActionEvent evt) {
@@ -235,11 +242,19 @@ public class BoardUI extends JFrame implements MouseListener, MouseMotionListene
         cleanBoard();
         setPieces(fen);
         mov = false;
-        if (p.isCheckMate(!turn)) {
-            JOptionPane.showMessageDialog(null, "Congratulations! You Won!!");
-            time.stop();
-            p.updateRanking(actTime);
+        if(b.leftTurn() == 0){
+            if (p.isCheckMate(!turn)) {
+                JOptionPane.showMessageDialog(null, "Congratulations! You Won!!");
+                time.stop();
+                p.updateRanking(actTime);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "You lose!!");
+                time.stop();
+            }
+            this.dispose();
         }
+
         turn = !turn;
     }
 

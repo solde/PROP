@@ -438,7 +438,7 @@ public class GameConfigUI extends javax.swing.JPanel {
         b.setPlayer1(WPselect.getSelectedIndex());
         b.setPlayer2(BPselect.getSelectedIndex());
         b.changeBoardUI();
-        b.changeLoadUI();
+        //b.changeLoadUI();
     }//GEN-LAST:event_buttonPlayActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
